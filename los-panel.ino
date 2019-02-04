@@ -4,6 +4,7 @@
 // include the library code:
 #include <LiquidCrystal.h>
 
+#define FW_NAME             "ALoS" /* Arduino LCD over Serial Panel */
 #define FW_VERSION          __TIME__ " " __DATE__
 
 #define LCD_PIN_RS          12
@@ -27,16 +28,20 @@
 #define LOS_BACKLIGHT_OFF   0x00
 #define LOS_BACKLIGHT_ON    0xFF
 
-#define LOG_UART_BOD        9600
+#define UART_BOD            9600
+#define UART_BUF_SIZE       128
 
 LiquidCrystal lcd(LCD_PIN_RS, LCD_PIN_RW, LCD_PIN_ENABLE,
   LCD_PIN_D4, LCD_PIN_D5, LCD_PIN_D6, LCD_PIN_D7);
+
+byte uart_buf[UART_BUF_SIZE] = {0};
+word uart_buf_filled = 0;
 
 void setup() { 
 
   pinMode(LED_BUILTIN, OUTPUT);
   pinMode(LCD_PIN_BACKLIGHT, OUTPUT);
-  Serial.begin(LOG_UART_BOD);
+  Serial.begin(UART_BOD);
 
   digitalWrite(LED_BUILTIN, HIGH);
   analogWrite(LCD_PIN_BACKLIGHT, LOS_BACKLIGHT_INIT);
@@ -44,27 +49,46 @@ void setup() {
   lcd.begin(LCD_ROWS, LCD_COLS);
   lcd.clear();
   lcd.setCursor(0, 0);
-  lcd.print("LoS-Panel Ready...");
+  lcd.print(FW_NAME " Ready...");
   lcd.setCursor(0, 1);
   lcd.print(FW_VERSION);
 
   digitalWrite(LED_BUILTIN, LOW);
 }
 
-byte serial_getch() {
+byte serial_fill_buffer() {
 
-  while(Serial.available() == 0) {
-//    delay(10);
+  while(uart_buf_filled < UART_BUF_SIZE && Serial.available() != 0) {
+    byte rxbyte = Serial.read();
+    uart_buf[uart_buf_filled++] = rxbyte;
   }
 
-  return Serial.read();
+  return uart_buf_filled;
+}
+
+byte serial_push_buffer() {
+
+  byte top_byte = uart_buf[0];
+
+  for(word i = 1; i < uart_buf_filled; i++) {
+    uart_buf[i - 1] = uart_buf[i];
+  }
+
+  uart_buf_filled--;
+  return top_byte;
+}
+
+byte serial_getch() {
+
+  while(serial_fill_buffer() == 0) {
+  }
+
+  return serial_push_buffer();
 }
 
 void loop() {
 
-  byte rxbyte;
-
-  rxbyte = serial_getch();
+  byte rxbyte = serial_getch();
 
   switch(rxbyte) {
 
@@ -73,7 +97,6 @@ void loop() {
     break;
 
   case LOS_BACKLIGHT:
-//    digitalWrite(LED_BUILTIN, HIGH);
     analogWrite(LCD_PIN_BACKLIGHT, serial_getch());
     break;
 
@@ -82,5 +105,5 @@ void loop() {
     break;
   }
 
-  // TODO: add check of keyboard pins and send data to pc
+  // TODO: add check of keyboard pins and send data to uart
 }
