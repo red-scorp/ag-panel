@@ -4,11 +4,11 @@
 // include the library code:
 #include <LiquidCrystal.h>
 
-#define FW_VERSION        __TIME__ " " __DATE__
+#define FW_VERSION          __TIME__ " " __DATE__
 
 #define LCD_PIN_RS          12
 #define LCD_PIN_RW          11
-#define LCD_PIN_E           10
+#define LCD_PIN_ENABLE      10
 #define LCD_PIN_BACKLIGHT   9
 
 #define LCD_PIN_D4          5
@@ -29,9 +29,11 @@
 
 #define LOG_UART_BOD        9600
 
-LiquidCrystal lcd(LCD_PIN_RS, LCD_PIN_RW, LCD_PIN_E, LCD_PIN_D4, LCD_PIN_D5, LCD_PIN_D6, LCD_PIN_D7);
+LiquidCrystal lcd(LCD_PIN_RS, LCD_PIN_RW, LCD_PIN_ENABLE,
+  LCD_PIN_D4, LCD_PIN_D5, LCD_PIN_D6, LCD_PIN_D7);
 
 void setup() { 
+
   pinMode(LED_BUILTIN, OUTPUT);
   pinMode(LCD_PIN_BACKLIGHT, OUTPUT);
   Serial.begin(LOG_UART_BOD);
@@ -71,7 +73,7 @@ void loop() {
     break;
 
   case LOS_BACKLIGHT:
-    digitalWrite(LED_BUILTIN, HIGH);
+//    digitalWrite(LED_BUILTIN, HIGH);
     analogWrite(LCD_PIN_BACKLIGHT, serial_getch());
     break;
 
