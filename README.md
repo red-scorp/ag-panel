@@ -1,4 +1,4 @@
-# los-panel
+# alos-panel
 
 Arduino LCD over Serial Panel.
 Here I'm creating an Arduino based replacement for [LCD over Serial Panel (LoS-Panel)](https://mlf.home.xs4all.nl/los/) for HD44780 Driver of [lcdproc](http://www.lcdproc.org/).
