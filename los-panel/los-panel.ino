@@ -8,7 +8,7 @@
 #define FW_VERSION          __TIME__ " " __DATE__
 
 #define LCD_PIN_RS          12
-#define LCD_PIN_RW          11
+#define LCD_PIN_RW          11 // 255
 #define LCD_PIN_ENABLE      10
 #define LCD_PIN_BACKLIGHT   9
 
