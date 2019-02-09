@@ -1,6 +1,10 @@
 // https://www.milesburton.com/USD_LCD_Display_(HD44780)_Running_on_Linux_via_Arduino
 // https://mlf.home.xs4all.nl/los/
 
+#include "privat.h"
+#include "config.h"
+#include "uart.h"
+
 // include the library code:
 #include <LiquidCrystal.h>
 
@@ -28,20 +32,14 @@
 #define LOS_BACKLIGHT_OFF   0x00
 #define LOS_BACKLIGHT_ON    0xFF
 
-#define UART_BOD            9600
-#define UART_BUF_SIZE       128
-
 LiquidCrystal lcd(LCD_PIN_RS, LCD_PIN_RW, LCD_PIN_ENABLE,
   LCD_PIN_D4, LCD_PIN_D5, LCD_PIN_D6, LCD_PIN_D7);
-
-byte uart_buf[UART_BUF_SIZE] = {0};
-word uart_buf_filled = 0;
 
 void setup() { 
 
   pinMode(LED_BUILTIN, OUTPUT);
   pinMode(LCD_PIN_BACKLIGHT, OUTPUT);
-  Serial.begin(UART_BOD);
+  uart_init();
 
   digitalWrite(LED_BUILTIN, HIGH);
   analogWrite(LCD_PIN_BACKLIGHT, LOS_BACKLIGHT_INIT);
@@ -56,48 +54,18 @@ void setup() {
   digitalWrite(LED_BUILTIN, LOW);
 }
 
-byte serial_fill_buffer() {
-
-  while(uart_buf_filled < UART_BUF_SIZE && Serial.available() != 0) {
-    byte rxbyte = Serial.read();
-    uart_buf[uart_buf_filled++] = rxbyte;
-  }
-
-  return uart_buf_filled;
-}
-
-byte serial_push_buffer() {
-
-  byte top_byte = uart_buf[0];
-
-  for(word i = 1; i < uart_buf_filled; i++) {
-    uart_buf[i - 1] = uart_buf[i];
-  }
-
-  uart_buf_filled--;
-  return top_byte;
-}
-
-byte serial_getch() {
-
-  while(serial_fill_buffer() == 0) {
-  }
-
-  return serial_push_buffer();
-}
-
 void loop() {
 
-  byte rxbyte = serial_getch();
+  uint8_t rxbyte = uart_getch();
 
   switch(rxbyte) {
 
   case LOS_INSTRUCTION:
-    lcd.command(serial_getch());
+    lcd.command(uart_getch());
     break;
 
   case LOS_BACKLIGHT:
-    analogWrite(LCD_PIN_BACKLIGHT, serial_getch());
+    analogWrite(LCD_PIN_BACKLIGHT, uart_getch());
     break;
 
   default:
