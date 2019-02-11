@@ -1,20 +1,12 @@
 /*!
-  \file privat.h
+  \file private.h
   \brief ALoS-Panel Project private header
+  \author Andriy Golovnya (andriy.golovnya@googlemail.com)
 */
 
-#ifndef PRIVAT_H
-#define PRIVAT_H
+#ifndef PRIVATE_H
+#define PRIVATE_H
 
-#include <math.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <inttypes.h>
+#include <Arduino.h>
 
-#include <util/delay.h>
-#include <avr/pgmspace.h>
-#include <avr/eeprom.h>
-#include <avr/interrupt.h>
-
-#endif//PRIVAT_H
+#endif//PRIVATE_H

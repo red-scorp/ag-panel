@@ -1,6 +1,7 @@
 /*!
   \file uart.h
   \brief ALoS-Panel Project UART interface
+  \author Andriy Golovnya (andriy.golovnya@googlemail.com)
 */
 
 #ifndef UART_H

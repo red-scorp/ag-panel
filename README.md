@@ -6,4 +6,4 @@ This project **will** support different connections and different types of HD447
 Main platform for this project is Arduino Uno and Nano boards but it should certainly work on another Arduino boards as well.
 
 ## Current status 
-Initial commit of ALoS-Panel code.
+Work-In-Progress but already usable.
