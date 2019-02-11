@@ -9,6 +9,8 @@
 
 #include <HardwareSerial.cpp>
 
+/* TODO: add Software UART too, instead of Hardware UART? */
+
 /* UARD Configuration sanity check */
 #if (!defined(UART_DIRECT) && !defined(UART_BUFFERED)) \
   || (defined(UART_DIRECT) && defined(UART_BUFFERED))
