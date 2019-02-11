@@ -3,7 +3,7 @@
   \brief ALoS-Panel Project UART code
 */
 
-#include "privat.h"
+#include "private.h"
 #include "uart.h"
 
 #include <HardwareSerial.cpp>

@@ -1,7 +1,7 @@
 // https://www.milesburton.com/USD_LCD_Display_(HD44780)_Running_on_Linux_via_Arduino
 // https://mlf.home.xs4all.nl/los/
 
-#include "privat.h"
+#include "private.h"
 #include "config.h"
 #include "uart.h"
 

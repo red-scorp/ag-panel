@@ -1,6 +1,6 @@
 /*!
   \file privat.h
-  \brief ALoS-Panel Project privat header
+  \brief ALoS-Panel Project private header
 */
 
 #ifndef PRIVAT_H
