@@ -15,7 +15,7 @@
 #define UART_DIRECT
 //#define UART_BUFFERED
 
-#define UART_BOD            9600
+#define UART_BAUD           9600
 #define UART_BUF_SIZE       512
 
 /* LCD Configuration */

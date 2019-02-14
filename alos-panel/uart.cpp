@@ -21,12 +21,12 @@
 #error You should define UART_BUF_SIZE for UART_BUFFERED UART type!
 #endif
 
-#if !defined(UART_BOD)
-#define UART_BOD            9600
+#if !defined(UART_BAUD)
+#define UART_BAUD           9600
 #endif
 
 void uart_init() {
-  Serial.begin(UART_BOD);
+  Serial.begin(UART_BAUD);
 }
 
 uint8_t uart_putch(uint8_t txbyte) {
