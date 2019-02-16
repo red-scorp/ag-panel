@@ -6,16 +6,10 @@
 
 #include "private.h"
 #include "config.h"
+#include "los.h"
 #include "uart.h"
 #include "lcd.h"
-
-#define LOS_INSTRUCTION     0xFE
-#define LOS_KEYPAD          0xFE
-#define LOS_BACKLIGHT       0xFD
-
-#define LOS_BACKLIGHT_INIT  0x20
-#define LOS_BACKLIGHT_OFF   0x00
-#define LOS_BACKLIGHT_ON    0xFF
+#include "kbd.h"
 
 void setup() { 
 
@@ -49,5 +43,10 @@ void loop() {
     break;
   }
 
-  // TODO: add check of keyboard pins and send data to uart
+  uint8_t key = kbd_getkey();
+
+  if(key != KBD_KEY_NONE) {
+    uart_putch(LOS_KEYPAD);
+    uart_putch(key);
+  }
 }

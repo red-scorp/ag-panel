@@ -7,7 +7,7 @@
 #include "private.h"
 #include "lcd.h"
 
-/* UARD Configuration sanity check */
+/* LCD Configuration sanity check */
 #if (!defined(LCD_4BIT) && !defined(LCD_8BIT) && !defined(LCD_I2C)) \
   || (defined(LCD_4BIT) && defined(LCD_8BIT)) \
   || (defined(LCD_4BIT) && defined(LCD_I2C)) \

@@ -11,7 +11,7 @@
 
 /* TODO: add Software UART too, instead of Hardware UART? */
 
-/* UARD Configuration sanity check */
+/* UART Configuration sanity check */
 #if (!defined(UART_DIRECT) && !defined(UART_BUFFERED)) \
   || (defined(UART_DIRECT) && defined(UART_BUFFERED))
 #error You should define UART_DIRECT or UART_BUFFERED and only one of them!
