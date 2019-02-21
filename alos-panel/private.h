@@ -9,4 +9,6 @@
 
 #include <Arduino.h>
 
+void los_yield();
+
 #endif//PRIVATE_H

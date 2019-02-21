@@ -43,6 +43,11 @@ void loop() {
     break;
   }
 
+  los_yield();
+}
+
+void los_yield() {
+
   uint8_t key = kbd_getkey();
 
   if(key != KBD_KEY_NONE) {

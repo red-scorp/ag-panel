@@ -38,6 +38,7 @@ uint8_t uart_putch(uint8_t txbyte) {
 uint8_t uart_getch() {
 
   while(Serial.available() == 0) {
+    los_yield();
   }
 
   return Serial.read();
@@ -81,6 +82,7 @@ static uint8_t uart_push_buffer() {
 uint8_t uart_getch() {
 
   while(uart_fill_buffer() == 0) {
+    los_yield();
   }
 
   return uart_push_buffer();

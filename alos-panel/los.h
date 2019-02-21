@@ -13,7 +13,6 @@
 #define LOS_KEYPAD          0xFE
 #define LOS_BACKLIGHT       0xFD
 
-#define LOS_BACKLIGHT_INIT  0x20
 #define LOS_BACKLIGHT_OFF   0x00
 #define LOS_BACKLIGHT_ON    0xFF
 

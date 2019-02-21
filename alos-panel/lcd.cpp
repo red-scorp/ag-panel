@@ -6,6 +6,7 @@
 
 #include "private.h"
 #include "lcd.h"
+#include "los.h"
 
 /* LCD Configuration sanity check */
 #if (!defined(LCD_4BIT) && !defined(LCD_8BIT) && !defined(LCD_I2C)) \
@@ -98,7 +99,7 @@ void lcd_init_backlight() {
 #if defined(LCD_4BIT) || defined(LCD_8BIT)
 #if defined(LCD_BACKLIGHT_ONOFF) || defined(LCD_BACKLIGHT_PWM)
   pinMode(LCD_PIN_BACKLIGHT, OUTPUT);
-  lcd_set_backlight(0xFF);
+  lcd_set_backlight(LCD_BL_PWM_INIT);
 #endif
 #elif defined(LCD_I2C)
   lcd.backlight();

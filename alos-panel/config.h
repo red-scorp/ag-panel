@@ -33,26 +33,29 @@
 #define LCD_COLS            16
 
 /* for LCD_4BIT and LCD_8BIT */
-#define LCD_PIN_RS          12
-#define LCD_PIN_RW          11 // 255
-#define LCD_PIN_ENABLE      10
-#define LCD_PIN_BACKLIGHT   9
+#define LCD_PIN_RS          8
+#define LCD_PIN_RW          255
+#define LCD_PIN_ENABLE      9
+#define LCD_PIN_BACKLIGHT   10
 //#define LCD_PIN_D0          255
 //#define LCD_PIN_D1          255
 //#define LCD_PIN_D2          255
 //#define LCD_PIN_D3          255
-#define LCD_PIN_D4          5
-#define LCD_PIN_D5          4
-#define LCD_PIN_D6          3
-#define LCD_PIN_D7          2
+#define LCD_PIN_D4          4
+#define LCD_PIN_D5          5
+#define LCD_PIN_D6          6
+#define LCD_PIN_D7          7
 
 /* for LCD_I2C */
 //#define LCD_I2C_ADDR        0x27
 
+#define LCD_BL_PWM_INIT     0x20
+
 /* Keyboard Configuration */
-#define KBD_NONE
+//#define KBD_NONE
 //#define KBD_D_MATRIX
 //#define KBD_A_JOYSTICK
+#define KBD_A_KEYPAD
 
 #define KBD_ROWS            4
 #define KBD_COLS            4
@@ -71,5 +74,20 @@
 #define KBD_PIN_X           A0
 #define KBD_PIN_Y           A1
 #define KBD_PIN_BTN         13
+
+/* for KBD_A_KEYPAD */
+#define KBD_PIN_DATA        A0
+#define KBD_DATA_NONE_MIN   700
+#define KBD_DATA_NONE_MAX   1023
+#define KBD_DATA_UP_MIN     50
+#define KBD_DATA_UP_MAX     150
+#define KBD_DATA_DOWN_MIN   150
+#define KBD_DATA_DOWN_MAX   350
+#define KBD_DATA_LEFT_MIN   350
+#define KBD_DATA_LEFT_MAX   550
+#define KBD_DATA_RIGHT_MIN  0
+#define KBD_DATA_RIGHT_MAX  50
+#define KBD_DATA_SELECT_MIN 550
+#define KBD_DATA_SELECT_MAX 700
 
 #endif//CONFIG_H

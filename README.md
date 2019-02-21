@@ -25,6 +25,7 @@ Work in progress but already usable.
   - [x] No keyboard
   - [ ] Digital Matrix up to 4x4 (work in progress)
   - [ ] Analog Arduino joystick as key strokes (work in progress)
+  - [ ] Analog Keypad (work in progress)
   - [ ] Analog Matrix (to do defined)
 
 Please check config.h for more information.

@@ -8,11 +8,14 @@
 #include "kbd.h"
 
 /* Keyboard Configuration sanity check */
-#if (!defined(KBD_NONE) && !defined(KBD_D_MATRIX) && !defined(KBD_A_JOYSTICK)) \
+#if (!defined(KBD_NONE) && !defined(KBD_D_MATRIX) && !defined(KBD_A_JOYSTICK) && !defined(KBD_A_KEYPAD)) \
   || (defined(KBD_NONE) && defined(KBD_D_MATRIX)) \
   || (defined(KBD_NONE) && defined(KBD_A_JOYSTICK)) \
-  || (defined(KBD_D_MATRIX) && defined(KBD_A_JOYSTICK))
-#error You should define KBD_NONE, KBD_D_MATRIX or KBD_A_JOYSTICK and only one of them!
+  || (defined(KBD_NONE) && defined(KBD_A_KEYPAD)) \
+  || (defined(KBD_D_MATRIX) && defined(KBD_A_JOYSTICK)) \
+  || (defined(KBD_D_MATRIX) && defined(KBD_A_KEYPAD)) \
+  || (defined(KBD_A_JOYSTICK) && defined(KBD_A_KEYPAD))
+#error You should define KBD_NONE, KBD_D_MATRIX, KBD_A_JOYSTICK or KBD_A_KEYPAD and only one of them!
 #endif
 
 #if defined(KBD_D_MATRIX) && \
@@ -37,6 +40,21 @@
 #error You should define KBD_PIN_X, KBD_PIN_Y and KBD_PIN_BTN for KBD_A_JOYSTICK!
 #endif
 
+#if defined(KBD_A_KEYPAD) && \
+  (!defined(KBD_PIN_DATA))
+#error You should define LCD_PIN_DATA for KBD_A_KEYPAD!
+#endif
+
+#if defined(KBD_A_KEYPAD) && \
+  (!defined(KBD_DATA_NONE_MIN) || !defined(KBD_DATA_NONE_MAX) || (KBD_DATA_NONE_MIN > KBD_DATA_NONE_MAX) \
+  || !defined(KBD_DATA_UP_MIN) || !defined(KBD_DATA_UP_MAX) || (KBD_DATA_UP_MIN > KBD_DATA_UP_MAX) \
+  || !defined(KBD_DATA_DOWN_MIN) || !defined(KBD_DATA_DOWN_MAX) || (KBD_DATA_DOWN_MIN > KBD_DATA_DOWN_MAX) \
+  || !defined(KBD_DATA_LEFT_MIN) || !defined(KBD_DATA_LEFT_MAX) || (KBD_DATA_LEFT_MIN > KBD_DATA_LEFT_MAX) \
+  || !defined(KBD_DATA_RIGHT_MIN) || !defined(KBD_DATA_RIGHT_MAX) || (KBD_DATA_RIGHT_MIN > KBD_DATA_RIGHT_MAX) \
+  || !defined(KBD_DATA_SELECT_MIN) || !defined(KBD_DATA_SELECT_MAX) || (KBD_DATA_SELECT_MIN > KBD_DATA_SELECT_MAX))
+#error You should define proper ranges KBD_DATA_*_MIN and  KBD_DATA_*_MAX for KBD_A_KEYPAD!
+#endif
+
 void kbd_init() {
 #if defined(KBD_NONE)
   /* nothig to do here */
@@ -44,15 +62,30 @@ void kbd_init() {
   /* TODO: init pins */
 #elif defined(KBD_A_JOYSTICK)
   /* TODO: init pins */
+#elif defined(KBD_A_KEYPAD)
+  /* No initialization for analog pins needed */
 #endif
 }
 
 uint8_t kbd_getkey() {
 #if defined(KBD_NONE)
-  return KBD_KEY_NONE;
+  /* No keys to read */
 #elif defined(KBD_D_MATRIX)
-  return KBD_KEY_NONE; /* TODO: read keys */
+  /* TODO: read keys */
 #elif defined(KBD_A_JOYSTICK)
-  return KBD_KEY_NONE; /* TODO: read keys */
+  /* TODO: read keys */
+#elif defined(KBD_A_KEYPAD)
+  uint16_t data = analogRead(KBD_PIN_DATA);
+  if(data >= KBD_DATA_UP_MIN && data < KBD_DATA_UP_MAX)
+    return KBD_KEY_UP;
+  if(data >= KBD_DATA_DOWN_MIN && data < KBD_DATA_DOWN_MAX)
+    return KBD_KEY_DOWN;
+  if(data >= KBD_DATA_LEFT_MIN && data < KBD_DATA_LEFT_MAX)
+    return KBD_KEY_LEFT;
+  if(data >= KBD_DATA_RIGHT_MIN && data < KBD_DATA_RIGHT_MAX)
+    return KBD_KEY_RIGHT;
+  if(data >= KBD_DATA_SELECT_MIN && data < KBD_DATA_SELECT_MAX)
+    return KBD_KEY_SELECT;
 #endif
+  return KBD_KEY_NONE;
 }
