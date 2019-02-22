@@ -19,10 +19,9 @@
 void setup() { 
 
   pinMode(LED_BUILTIN, OUTPUT);
-  uart_init();
-
   digitalWrite(LED_BUILTIN, HIGH);
 
+  uart_init();
   lcd_init();
   lcd_welcome();
   kbd_init();
