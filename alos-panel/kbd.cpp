@@ -75,7 +75,7 @@ uint8_t kbd_getkey() {
 #elif defined(KBD_A_JOYSTICK)
   /* TODO: read keys */
 #elif defined(KBD_A_KEYPAD)
-  uint16_t data = analogRead(KBD_PIN_DATA);
+  int data = analogRead(KBD_PIN_DATA);
   if(data >= KBD_DATA_UP_MIN && data < KBD_DATA_UP_MAX)
     return KBD_KEY_UP;
   if(data >= KBD_DATA_DOWN_MIN && data < KBD_DATA_DOWN_MAX)
