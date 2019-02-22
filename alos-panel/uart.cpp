@@ -25,16 +25,25 @@
 #define UART_BAUD           9600
 #endif
 
+/*! \brief Initialization of UART
+ * - Set UART baud rate
+ */
 void uart_init() {
   Serial.begin(UART_BAUD);
 }
 
+/*! \brief Write byte to UART
+ */
 uint8_t uart_putch(uint8_t txbyte) {
   return Serial.write(txbyte);
 }
 
 #if defined(UART_DIRECT)
 
+/*! \brief Read byte from UART
+ * - Read UART if data available
+ * - Start background task while waiting for data from UART
+ */
 uint8_t uart_getch() {
 
   while(Serial.available() == 0) {
@@ -54,9 +63,15 @@ typedef uint16_t uart_buf_type;
 typedef uint32_t uart_buf_type;
 #endif//UART_BUF_SIZE
 
+/*! \brief UART buffer array */
 static uint8_t uart_buf[UART_BUF_SIZE] = {0};
+/*! \brief Counter of bytes stored in UART buffer */
 static uart_buf_type uart_buf_filled = 0;
 
+/*! \brief Fill UART buffer
+ * - Read UART if data available
+ * - Copy data UART data buffer
+ */
 static uint8_t uart_fill_buffer() {
 
   while(uart_buf_filled < UART_BUF_SIZE && Serial.available() != 0) {
@@ -67,6 +82,11 @@ static uint8_t uart_fill_buffer() {
   return uart_buf_filled;
 }
 
+/*! \brief Push data from UART buffer
+ * - Get first byte from UART buffer
+ * - Pull all stored bytes one step to the front
+ * - Return stored earlier first byte
+ */
 static uint8_t uart_push_buffer() {
 
   uint8_t top_byte = uart_buf[0];
@@ -79,6 +99,11 @@ static uint8_t uart_push_buffer() {
   return top_byte;
 }
 
+/*! \brief Read byte from UART buffer
+ * - Fill UART buffer with data
+ * - Start background task while waiting for data from UART
+ * - Read byte from UART buffer
+ */
 uint8_t uart_getch() {
 
   while(uart_fill_buffer() == 0) {

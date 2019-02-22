@@ -11,7 +11,7 @@
 #include "lcd.h"
 #include "kbd.h"
 
-/*! \brief Main initialisation function
+/*! \brief Main initialization function
  * - setup UART
  * - setup LCD
  * - setup keyboard

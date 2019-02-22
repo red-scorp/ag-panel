@@ -55,6 +55,8 @@
 #error You should define proper ranges KBD_DATA_*_MIN and  KBD_DATA_*_MAX for KBD_A_KEYPAD!
 #endif
 
+/*! \brief Initialization of keyboard
+ */
 void kbd_init() {
 #if defined(KBD_NONE)
   /* nothig to do here */
@@ -67,6 +69,8 @@ void kbd_init() {
 #endif
 }
 
+/*! \brief Read current key
+ */
 uint8_t kbd_getkey() {
 #if defined(KBD_NONE)
   /* No keys to read */

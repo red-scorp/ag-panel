@@ -71,6 +71,8 @@ LiquidCrystal lcd(LCD_PIN_RS, LCD_PIN_RW, LCD_PIN_ENABLE,
 LiquidCrystal_I2C lcd(LCD_I2C_ADDR, LCD_COLS, LCD_ROWS);
 #endif
 
+/*! \brief Initialization of LCD display
+ */
 void lcd_init() {
 #if defined(LCD_4BIT) || defined(LCD_8BIT)
   lcd.begin(LCD_ROWS, LCD_COLS);
@@ -80,6 +82,8 @@ void lcd_init() {
   lcd_init_backlight();
 }
 
+/*! \brief Write welcome message on LCD display
+ */
 void lcd_welcome() {
   lcd.clear();
   lcd.setCursor(0, 0);
@@ -88,14 +92,20 @@ void lcd_welcome() {
   lcd.print(FW_VERSION);
 }
 
+/*! \brief Write character to LCD display
+ */
 void lcd_write(uint8_t txbyte) {
   lcd.write(txbyte);
 }
 
+/*! \brief Send command to LCD display
+ */
 void lcd_command(uint8_t txbyte) {
   lcd.command(txbyte);
 }
 
+/*! \brief Initialization of LCD display backlight LED
+ */
 void lcd_init_backlight() {
 #if defined(LCD_4BIT) || defined(LCD_8BIT)
 #if defined(LCD_BACKLIGHT_ONOFF) || defined(LCD_BACKLIGHT_PWM)
@@ -107,6 +117,8 @@ void lcd_init_backlight() {
 #endif
 }
 
+/*! \brief Set brightness of LCD display backlight LED
+ */
 void lcd_set_backlight(uint8_t brightness) {
 #if defined(LCD_4BIT) || defined(LCD_8BIT)
 #if defined(LCD_PIN_BACKLIGHT)
