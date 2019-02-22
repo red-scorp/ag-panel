@@ -6,7 +6,6 @@
 
 #include "private.h"
 #include "lcd.h"
-#include "los.h"
 
 /* LCD Configuration sanity check */
 #if (!defined(LCD_4BIT) && !defined(LCD_8BIT) && !defined(LCD_I2C)) \
@@ -16,11 +15,13 @@
 #error You should define LCD_4BIT, LCD_8BIT or LCD_I2C and only one of them!
 #endif
 
+#if defined(LCD_4BIT) || defined(LCD_8BIT)
 #if (!defined(LCD_BACKLIGHT_NONE) && !defined(LCD_BACKLIGHT_ONOFF) && !defined(LCD_BACKLIGHT_PWM)) \
   || (defined(LCD_BACKLIGHT_NONE) && defined(LCD_BACKLIGHT_ONOFF)) \
   || (defined(LCD_BACKLIGHT_NONE) && defined(LCD_BACKLIGHT_PWM)) \
   || (defined(LCD_BACKLIGHT_ONOFF) && defined(LCD_BACKLIGHT_PWM))
 #error You should define LCD_BACKLIGHT_NONE, LCD_BACKLIGHT_ONOFF or LCD_BACKLIGHT_PWM and only one of them!
+#endif
 #endif
 
 #if !defined(LCD_ROWS) || !defined(LCD_COLS)
@@ -118,6 +119,9 @@ void lcd_set_backlight(uint8_t brightness) {
 #endif
 #endif
 #elif defined(LCD_I2C)
-  lcd.backlight();
+  if(brightness == 0)
+    lcd.noBacklight();
+  else
+    lcd.backlight();
 #endif
 }

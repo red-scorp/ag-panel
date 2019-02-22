@@ -29,24 +29,26 @@
 //#define LCD_8BIT
 //#define LCD_I2C
 
-//#define LCD_BACKLIGHT_NONE
-//#define LCD_BACKLIGHT_ONOFF
-#define LCD_BACKLIGHT_PWM
-
 #define LCD_ROWS            2
 #define LCD_COLS            16
 
 #if defined(LCD_4BIT) || defined(LCD_8BIT)
+//#define LCD_BACKLIGHT_NONE
+//#define LCD_BACKLIGHT_ONOFF
+#define LCD_BACKLIGHT_PWM
+
 #define LCD_PIN_RS          8
 #define LCD_PIN_RW          255
 #define LCD_PIN_ENABLE      9
 #define LCD_PIN_BACKLIGHT   10
+
 #ifdef LCD_8BIT
 #define LCD_PIN_D0          255
 #define LCD_PIN_D1          255
 #define LCD_PIN_D2          255
 #define LCD_PIN_D3          255
 #endif
+
 #define LCD_PIN_D4          4
 #define LCD_PIN_D5          5
 #define LCD_PIN_D6          6
@@ -90,6 +92,7 @@
 
 #ifdef KBD_A_KEYPAD
 #define KBD_PIN_DATA        A0
+
 #define KBD_DATA_NONE_MIN   700
 #define KBD_DATA_NONE_MAX   1023
 #define KBD_DATA_UP_MIN     50
