@@ -110,7 +110,11 @@ void lcd_init_backlight() {
 #if defined(LCD_4BIT) || defined(LCD_8BIT)
 #if defined(LCD_BACKLIGHT_ONOFF) || defined(LCD_BACKLIGHT_PWM)
   pinMode(LCD_PIN_BACKLIGHT, OUTPUT);
+#if defined(LCD_BACKLIGHT_ONOFF)
+  lcd_set_backlight(1);
+#elif defined(LCD_BACKLIGHT_PWM)
   lcd_set_backlight(LCD_BL_PWM_INIT);
+#endif
 #endif
 #elif defined(LCD_I2C)
   lcd.backlight();
@@ -121,14 +125,16 @@ void lcd_init_backlight() {
  */
 void lcd_set_backlight(uint8_t brightness) {
 #if defined(LCD_4BIT) || defined(LCD_8BIT)
-#if defined(LCD_PIN_BACKLIGHT)
 #if defined(LCD_BACKLIGHT_NONE)
   brightness = brightness;
 #elif defined(LCD_BACKLIGHT_ONOFF)
   digitalWrite(LCD_PIN_BACKLIGHT, brightness == 0? LOW: HIGH);
 #elif defined(LCD_BACKLIGHT_PWM)
-  analogWrite(LCD_PIN_BACKLIGHT, brightness);
+#if defined(LCD_BL_PWM_MAX)
+  uint16_t real_brightness = (brightness * LCD_BL_PWM_MAX) >> 8;
+  brightness = real_brightness;
 #endif
+  analogWrite(LCD_PIN_BACKLIGHT, brightness);
 #endif
 #elif defined(LCD_I2C)
   if(brightness == 0)

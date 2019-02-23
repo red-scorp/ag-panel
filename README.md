@@ -11,9 +11,9 @@ Work in progress but already usable.
 
 ## Supported configurations
 - UART Serial
-  - [x] HW UART of Arduino
-  - [x] HW UART of Arduino with extra buffer
-  - [ ] SW UART of Arduino (to be defined)
+  - [x] Arduino HW UART
+  - [x] Arduino HW UART with extra buffer
+  - [ ] Arduino SW UART (to be defined)
 - LCD Display
   - [x] HD44780 in 4-bit and 8-bit modes
   - [x] HD44780 over I2C bus
@@ -25,7 +25,7 @@ Work in progress but already usable.
   - [x] No keyboard
   - [ ] Digital Matrix up to 4x4 (work in progress)
   - [ ] Analog Arduino joystick as key strokes (work in progress)
-  - [ ] Analog Keypad (work in progress)
-  - [ ] Analog Matrix (to do defined)
+  - [x] Analog Keypad of 'LCD Keypad Shield'
+  - [ ] Analog Matrix (to be defined)
 
 Please check config.h for more information.
