@@ -17,7 +17,7 @@
 #define UART_DIRECT
 //#define UART_BUFFERED
 
-#define UART_BAUD           9600
+#define UART_BAUD           115200
 /* Add proper 'Speed=????' to '[hd44780]' section of your '/etc/LCDd.conf' if you use any other UART_BAUD then 9600 */
 
 #ifdef UART_BUFFERED

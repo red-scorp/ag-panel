@@ -53,6 +53,12 @@ uint8_t uart_getch() {
   return Serial.read();
 }
 
+/*! \brief Prepare data in UART to be read
+ */
+void uart_prefill() {
+  /* Does nothing for direct UART */
+}
+
 #elif defined(UART_BUFFERED)
 
 #if UART_BUF_SIZE <= 255
@@ -79,7 +85,7 @@ static uint8_t uart_fill_buffer() {
     uart_buf[uart_buf_filled++] = rxbyte;
   }
 
-  return uart_buf_filled;
+  return uart_buf_filled > 255? 255: uart_buf_filled;
 }
 
 /*! \brief Push data from UART buffer
@@ -111,6 +117,13 @@ uint8_t uart_getch() {
   }
 
   return uart_push_buffer();
+}
+
+/*! \brief Prepare data in UART to be read
+ * - Fill UART data buffer
+ */
+void uart_prefill() {
+  uart_fill_buffer();
 }
 
 #endif//UART_DIRECT

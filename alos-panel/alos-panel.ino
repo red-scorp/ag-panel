@@ -75,4 +75,6 @@ void los_yield() {
     uart_putch(LOS_KEYPAD);
     uart_putch(key);
   }
+
+  uart_prefill();
 }

@@ -2,6 +2,7 @@
   \file lcd.cpp
   \brief ALoS-Panel Project LCD code
   \author Andriy Golovnya (andriy.golovnya@googlemail.com)
+  \note https://en.wikipedia.org/wiki/Hitachi_HD44780_LCD_controller
 */
 
 #include "private.h"
@@ -92,16 +93,51 @@ void lcd_welcome() {
   lcd.print(FW_VERSION);
 }
 
+/*! \brief Last LCD transfer microseconds time stamp value
+ */
+static uint32_t lcd_last_tx_micros = 0;
+
+/*! \brief Wait for given microseconds from last LCD transfer
+ */
+static void wait_from_last_tx(uint32_t wait_micros) {
+  uint32_t wait_for_micros = lcd_last_tx_micros + wait_micros;
+
+  if(micros() >= wait_for_micros)
+    return;
+
+  digitalWrite(LED_BUILTIN, HIGH);
+
+  if(wait_for_micros < lcd_last_tx_micros) { /* we have an micros() overflow!? */
+    while(micros() > lcd_last_tx_micros)
+      los_yield();
+  }
+
+  while(micros() < wait_for_micros)
+    los_yield();
+
+  digitalWrite(LED_BUILTIN, LOW);
+}
+
+/*! \brief Store last LCD transfer time stamp
+ */
+static void stamp_last_tx() {
+  lcd_last_tx_micros = micros();
+}
+
 /*! \brief Write character to LCD display
  */
 void lcd_write(uint8_t txbyte) {
+  wait_from_last_tx(40);
   lcd.write(txbyte);
+  stamp_last_tx();
 }
 
 /*! \brief Send command to LCD display
  */
 void lcd_command(uint8_t txbyte) {
+  wait_from_last_tx(txbyte < 4? 2000: 40); /* for commands 1 - 3 wait for 2 ms, otherwise 40 us */
   lcd.command(txbyte);
+  stamp_last_tx();
 }
 
 /*! \brief Initialization of LCD display backlight LED
