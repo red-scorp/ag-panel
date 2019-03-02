@@ -102,17 +102,17 @@ static uint32_t lcd_last_tx_micros = 0;
 static void wait_from_last_tx(uint32_t wait_micros) {
   uint32_t wait_for_micros = lcd_last_tx_micros + wait_micros;
 
-  if(micros() >= wait_for_micros)
+  if((wait_for_micros > lcd_last_tx_micros) && (micros() >= wait_for_micros)) /* we are already over the target time */
     return;
 
   digitalWrite(LED_BUILTIN, HIGH);
 
-  if(wait_for_micros < lcd_last_tx_micros) { /* we have an micros() overflow!? */
-    while(micros() > lcd_last_tx_micros)
+  if(wait_for_micros < lcd_last_tx_micros) { /* we have an micros() overflow */
+    while(micros() > lcd_last_tx_micros) /* first run over the maximum */
       los_yield();
   }
 
-  while(micros() < wait_for_micros)
+  while(micros() < wait_for_micros) /* now wait for target time */
     los_yield();
 
   digitalWrite(LED_BUILTIN, LOW);

@@ -63,7 +63,7 @@ void kbd_init() {
 #elif defined(KBD_D_MATRIX)
   /* TODO: init pins */
 #elif defined(KBD_A_JOYSTICK)
-  /* TODO: init pins */
+  pinMode(KBD_PIN_BTN, INPUT);
 #elif defined(KBD_A_KEYPAD)
   /* No initialization for analog pins needed */
 #endif
@@ -77,7 +77,19 @@ uint8_t kbd_getkey() {
 #elif defined(KBD_D_MATRIX)
   /* TODO: read keys */
 #elif defined(KBD_A_JOYSTICK)
-  /* TODO: read keys */
+  int x = analogRead(KBD_PIN_X);
+  int y = analogRead(KBD_PIN_Y);
+  int btn = digitalRead(KBD_PIN_BTN);
+  if(btn == HIGH)
+    return KBD_KEY_SELECT;
+  if(x < (KBD_X_CENTER - KBD_THRESHOLD))
+    return KBD_KEY_RIGHT;
+  if(x > (KBD_X_CENTER + KBD_THRESHOLD))
+    return KBD_KEY_RIGHT;
+  if(y < (KBD_Y_CENTER - KBD_THRESHOLD))
+    return KBD_KEY_DOWN;
+  if(y > (KBD_Y_CENTER + KBD_THRESHOLD))
+    return KBD_KEY_UP;
 #elif defined(KBD_A_KEYPAD)
   int data = analogRead(KBD_PIN_DATA);
   if(data >= KBD_DATA_UP_MIN && data < KBD_DATA_UP_MAX)
