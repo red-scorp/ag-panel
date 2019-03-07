@@ -27,5 +27,6 @@ Work in progress but already usable.
   - [x] Analog Arduino joystick as key strokes
   - [x] Analog Keypad of 'LCD Keypad Shield'
   - [ ] Analog Matrix (to be defined)
+  - [x] Rotary Encoder
 
 Please check config.h for more information.

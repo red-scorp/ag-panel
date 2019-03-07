@@ -73,6 +73,7 @@
 //#define KBD_D_MATRIX
 //#define KBD_A_JOYSTICK
 #define KBD_A_KEYPAD
+//#define KBD_ROTARY_ENCODER
 /* Add 'Keypad=yes' to '[hd44780]' section of your '/etc/LCDd.conf' if you use any other value then KBD_NONE */
 /* Check for proper 'KeyMatrix_?_?=???' values for your '/etc/LCDd.conf' in kbd.h */
 
@@ -93,7 +94,7 @@
 #ifdef KBD_A_JOYSTICK
 #define KBD_PIN_X           A0
 #define KBD_PIN_Y           A1
-#define KBD_PIN_BTN         3
+#define KBD_PIN_BTN         12
 
 #define KBD_X_CENTER        512
 #define KBD_Y_CENTER        512
@@ -115,6 +116,12 @@
 #define KBD_DATA_RIGHT_MAX  50
 #define KBD_DATA_SELECT_MIN 550
 #define KBD_DATA_SELECT_MAX 700
+#endif
+
+#ifdef KBD_ROTARY_ENCODER
+#define KBD_PIN_D1          2
+#define KBD_PIN_D2          3
+#define KBD_PIN_BTN         11
 #endif
 
 #endif//CONFIG_H
