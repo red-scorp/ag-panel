@@ -93,7 +93,7 @@
 #ifdef KBD_A_JOYSTICK
 #define KBD_PIN_X           A0
 #define KBD_PIN_Y           A1
-#define KBD_PIN_BTN         13
+#define KBD_PIN_BTN         3
 
 #define KBD_X_CENTER        512
 #define KBD_Y_CENTER        512

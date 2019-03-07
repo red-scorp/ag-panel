@@ -63,7 +63,7 @@ void kbd_init() {
 #elif defined(KBD_D_MATRIX)
   /* TODO: init pins */
 #elif defined(KBD_A_JOYSTICK)
-  pinMode(KBD_PIN_BTN, INPUT);
+  pinMode(KBD_PIN_BTN, INPUT_PULLUP);
 #elif defined(KBD_A_KEYPAD)
   /* No initialization for analog pins needed */
 #endif
