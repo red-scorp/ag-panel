@@ -24,7 +24,7 @@ Work in progress but already usable.
 - Keyboard
   - [x] No keyboard
   - [ ] Digital Matrix up to 4x4 (work in progress)
-  - [ ] Analog Arduino joystick as key strokes (work in progress)
+  - [x] Analog Arduino joystick as key strokes
   - [x] Analog Keypad of 'LCD Keypad Shield'
   - [ ] Analog Matrix (to be defined)
 

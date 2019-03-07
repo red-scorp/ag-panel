@@ -80,10 +80,10 @@ uint8_t kbd_getkey() {
   int x = analogRead(KBD_PIN_X);
   int y = analogRead(KBD_PIN_Y);
   int btn = digitalRead(KBD_PIN_BTN);
-  if(btn == HIGH)
+  if(btn == LOW)
     return KBD_KEY_SELECT;
   if(x < (KBD_X_CENTER - KBD_THRESHOLD))
-    return KBD_KEY_RIGHT;
+    return KBD_KEY_LEFT;
   if(x > (KBD_X_CENTER + KBD_THRESHOLD))
     return KBD_KEY_RIGHT;
   if(y < (KBD_Y_CENTER - KBD_THRESHOLD))
