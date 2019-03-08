@@ -23,10 +23,10 @@ Work in progress but already usable.
   - [x] PWM-controlled backlight
 - Keyboard
   - [x] No keyboard
-  - [ ] Digital Matrix up to 4x4 (work in progress)
+  - [x] Digital Matrix up to 4x4 (on analog pins)
   - [x] Analog Arduino joystick as key strokes
   - [x] Analog Keypad of 'LCD Keypad Shield'
-  - [ ] Analog Matrix (to be defined)
   - [x] Rotary Encoder
+  - [ ] Analog Matrix (to be defined)
 
 Please check config.h for more information.

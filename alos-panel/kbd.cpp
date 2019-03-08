@@ -72,7 +72,30 @@ void kbd_init() {
 #if defined(KBD_NONE)
   /* nothig to do here */
 #elif defined(KBD_D_MATRIX)
-  /* TODO: init pins */
+#if KBD_COLS >= 1
+  pinMode(KBD_PIN_C1, OUTPUT);
+#if KBD_COLS >= 2
+  pinMode(KBD_PIN_C2, OUTPUT);
+#if KBD_COLS >= 3
+  pinMode(KBD_PIN_C3, OUTPUT);
+#if KBD_COLS >= 4
+  pinMode(KBD_PIN_C4, OUTPUT);
+#endif
+#endif
+#endif
+#endif
+#if KBD_ROWS >= 1
+  pinMode(KBD_PIN_R1, INPUT_PULLUP);
+#if KBD_ROWS >= 2
+  pinMode(KBD_PIN_R2, INPUT_PULLUP);
+#if KBD_ROWS >= 3
+  pinMode(KBD_PIN_R3, INPUT_PULLUP);
+#if KBD_ROWS >= 4
+  pinMode(KBD_PIN_R4, INPUT_PULLUP);
+#endif
+#endif
+#endif
+#endif
 #elif defined(KBD_A_JOYSTICK)
   pinMode(KBD_PIN_BTN, INPUT_PULLUP);
 #elif defined(KBD_A_KEYPAD)
@@ -91,7 +114,56 @@ uint8_t kbd_getkey() {
 #if defined(KBD_NONE)
   /* No keys to read */
 #elif defined(KBD_D_MATRIX)
-  /* TODO: read keys */
+  uint8_t cols[] = {
+#if KBD_COLS >= 1
+    KBD_PIN_C1,
+#if KBD_COLS >= 2
+    KBD_PIN_C2,
+#if KBD_COLS >= 3
+    KBD_PIN_C3,
+#if KBD_COLS >= 4
+    KBD_PIN_C4,
+#endif
+#endif
+#endif
+#endif
+  };
+  uint8_t rows[] = {
+#if KBD_ROWS >= 1
+    KBD_PIN_R1,
+#if KBD_ROWS >= 2
+    KBD_PIN_R2,
+#if KBD_ROWS >= 3
+    KBD_PIN_R3,
+#if KBD_ROWS >= 4
+    KBD_PIN_R4,
+#endif
+#endif
+#endif
+#endif
+  };
+  for(uint8_t c = 0; c < KBD_COLS; c++) {
+    delayMicroseconds(5);
+    for(uint8_t i = 0; i < KBD_COLS; i++) {
+      digitalWrite(cols[i], i == c? LOW: HIGH);
+    }
+    delayMicroseconds(5);
+    for(uint8_t r = 0; r < KBD_ROWS; r++) {
+      uint16_t v = analogRead(rows[r]);
+      if(v < 100) {
+        uint8_t x = 0;
+        x |= c << 4;
+        x |= 1 << r;
+        for(uint8_t i = 0; i < KBD_COLS; i++) {
+          digitalWrite(cols[i], HIGH);
+        }
+        return x;
+      }
+    }
+  }
+  for(uint8_t i = 0; i < KBD_COLS; i++) {
+    digitalWrite(cols[i], HIGH);
+  }
 #elif defined(KBD_A_JOYSTICK)
   uint16_t x = analogRead(KBD_PIN_X);
   uint16_t y = analogRead(KBD_PIN_Y);

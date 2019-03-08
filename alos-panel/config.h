@@ -81,14 +81,14 @@
 #define KBD_ROWS            4
 #define KBD_COLS            4
 
-#define KBD_PIN_C1          13
-#define KBD_PIN_C2          8
-#define KBD_PIN_C3          7
-#define KBD_PIN_C4          6
-#define KBD_PIN_R1          A0
-#define KBD_PIN_R2          A1
-#define KBD_PIN_R3          A2
-#define KBD_PIN_R4          A3
+#define KBD_PIN_C1          A0
+#define KBD_PIN_C2          A1
+#define KBD_PIN_C3          A2
+#define KBD_PIN_C4          A3
+#define KBD_PIN_R1          A4
+#define KBD_PIN_R2          A5
+#define KBD_PIN_R3          A6
+#define KBD_PIN_R4          A7
 #endif
 
 #ifdef KBD_A_JOYSTICK
