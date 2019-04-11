@@ -9,18 +9,28 @@
 
 /* Keyboard Configuration sanity check */
 #if (!defined(KBD_NONE) && !defined(KBD_D_MATRIX) && !defined(KBD_A_JOYSTICK) \
-  && !defined(KBD_A_KEYPAD) && !defined(KBD_ROTARY_ENCODER)) \
+  && !defined(KBD_A_KEYPAD) && !defined(KBD_ROTARY_ENCODER) && !defined(KBD_A_MATRIX)) \
   || (defined(KBD_NONE) && defined(KBD_D_MATRIX)) \
   || (defined(KBD_NONE) && defined(KBD_A_JOYSTICK)) \
   || (defined(KBD_NONE) && defined(KBD_A_KEYPAD)) \
   || (defined(KBD_NONE) && defined(KBD_ROTARY_ENCODER)) \
+  || (defined(KBD_NONE) && defined(KBD_A_MATRIX)) \
   || (defined(KBD_D_MATRIX) && defined(KBD_A_JOYSTICK)) \
   || (defined(KBD_D_MATRIX) && defined(KBD_A_KEYPAD)) \
   || (defined(KBD_D_MATRIX) && defined(KBD_ROTARY_ENCODER)) \
+  || (defined(KBD_D_MATRIX) && defined(KBD_A_MATRIX)) \
   || (defined(KBD_A_JOYSTICK) && defined(KBD_A_KEYPAD)) \
   || (defined(KBD_A_JOYSTICK) && defined(KBD_ROTARY_ENCODER)) \
-  || (defined(KBD_A_KEYPAD) && defined(KBD_ROTARY_ENCODER))
-#error You should define KBD_NONE, KBD_D_MATRIX, KBD_A_JOYSTICK, KBD_A_KEYPAD or KBD_ROTARY_ENCODER and only one of them!
+  || (defined(KBD_A_JOYSTICK) && defined(KBD_A_MATRIX)) \
+  || (defined(KBD_A_KEYPAD) && defined(KBD_ROTARY_ENCODER)) \
+  || (defined(KBD_A_KEYPAD) && defined(KBD_A_MATRIX)) \
+  || (defined(KBD_ROTARY_ENCODER) && defined(KBD_A_MATRIX))
+#error You should define KBD_NONE, KBD_D_MATRIX, KBD_A_JOYSTICK, KBD_A_KEYPAD, KBD_ROTARY_ENCODER or KBD_A_MATRIX and only one of them!
+#endif
+
+#if defined(KBD_D_MATRIX) && \
+  (!defined(KBD_ROWS) || !defined(KBD_COLS))
+#error You should define KBD_ROWS and KBD_COLS for KBD_D_MATRIX!
 #endif
 
 #if defined(KBD_D_MATRIX) && \
@@ -57,13 +67,28 @@
   || !defined(KBD_DATA_LEFT_MIN) || !defined(KBD_DATA_LEFT_MAX) || (KBD_DATA_LEFT_MIN > KBD_DATA_LEFT_MAX) \
   || !defined(KBD_DATA_RIGHT_MIN) || !defined(KBD_DATA_RIGHT_MAX) || (KBD_DATA_RIGHT_MIN > KBD_DATA_RIGHT_MAX) \
   || !defined(KBD_DATA_SELECT_MIN) || !defined(KBD_DATA_SELECT_MAX) || (KBD_DATA_SELECT_MIN > KBD_DATA_SELECT_MAX))
-#error You should define proper ranges KBD_DATA_*_MIN and  KBD_DATA_*_MAX for KBD_A_KEYPAD!
+#error You should define proper ranges KBD_DATA_*_MIN and KBD_DATA_*_MAX for KBD_A_KEYPAD!
 #endif
 
 #if defined(KBD_ROTARY_ENCODER) && \
   (!defined(KBD_PIN_D1) || !defined(KBD_PIN_D2) \
   || !defined(KBD_PIN_BTN))
 #error You should define KBD_PIN_D1, KBD_PIN_D2 and KBD_PIN_BTN for KBD_ROTARY_ENCODER!
+#endif
+
+#if defined(KBD_A_MATRIX) && \
+  (!defined(KBD_ROWS) || !defined(KBD_COLS))
+#error You should define KBD_ROWS and KBD_COLS for KBD_A_MATRIX!
+#endif
+
+#if defined(KBD_A_MATRIX) && \
+  (!defined(KBD_PIN_DATA))
+#error You should define LCD_PIN_DATA for KBD_A_MATRIX!
+#endif
+
+#if defined(KBD_A_MATRIX) && \
+  (!defined(KBD_DATA_TOLERANCE) || !defined(KBD_DATA_ARRAY))
+#error You should define proper KBD_DATA_TOLERANCE and KBD_DATA_ARRAY for KBD_A_MATRIX!
 #endif
 
 /*! \brief Initialization of keyboard
@@ -105,6 +130,8 @@ void kbd_init() {
   pinMode(KBD_PIN_D2, INPUT_PULLUP);
   pinMode(KBD_PIN_BTN, INPUT_PULLUP);
   /* TODO: use attachInterrupt() and ISR if/when we have bad read timing! */
+#elif defined(KBD_A_MATRIX)
+  /* No initialization for analog pins needed */
 #endif
 }
 
@@ -179,7 +206,7 @@ uint8_t kbd_getkey() {
   if(y > (KBD_Y_CENTER + KBD_THRESHOLD))
     return KBD_KEY_UP;
 #elif defined(KBD_A_KEYPAD)
-  int data = analogRead(KBD_PIN_DATA);
+  uint16_t data = analogRead(KBD_PIN_DATA);
   if(data >= KBD_DATA_UP_MIN && data < KBD_DATA_UP_MAX)
     return KBD_KEY_UP;
   if(data >= KBD_DATA_DOWN_MIN && data < KBD_DATA_DOWN_MAX)
@@ -227,6 +254,19 @@ uint8_t kbd_getkey() {
   }
   if(btn == LOW)
     return KBD_KEY_SELECT;
+#elif defined(KBD_A_MATRIX)
+  static const uint16_t data_array[KBD_ROWS * KBD_COLS] = KBD_DATA_ARRAY;
+  uint16_t data = analogRead(KBD_PIN_DATA);
+  for(uint8_t c = 0 ; c < KBD_COLS; c++)
+    for(uint8_t r = 0 ; r < KBD_ROWS; r++) {
+      if(data >= data_array[r * KBD_COLS + c] - KBD_PIN_DATA &&
+        data <= data_array[r * KBD_COLS + c] + KBD_PIN_DATA) {
+        uint8_t x = 0;
+        x |= c << 4;
+        x |= 1 << r;
+        return x;
+      }
+    }
 #endif
   return KBD_KEY_NONE;
 }

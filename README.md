@@ -27,6 +27,6 @@ Work in progress but already usable.
   - [x] Analog Arduino joystick as key strokes
   - [x] Analog Keypad of 'LCD Keypad Shield'
   - [x] Rotary Encoder
-  - [ ] Analog Matrix (to be defined)
+  - [x] Analog Matrix 4x4 and 3x4 from RobotDyn
 
 Please check config.h for more information.
