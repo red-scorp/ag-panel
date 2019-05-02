@@ -29,6 +29,6 @@ Work in progress but already usable.
   - [x] Analog Keypad of 'LCD Keypad Shield'
   - [x] Rotary Encoder
   - [x] Analog Matrix 4x4 and 3x4 from RobotDyn
-  - [x] Digital Keypad of Digital Joystick over I2C bus, like 'Adafruit RGB 16x2 LCD Shield'
+  - [x] Digital Keypad or Digital Joystick over I2C bus, like 'Adafruit RGB 16x2 LCD Shield'
 
 Please check config.h for more information.
