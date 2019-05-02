@@ -9,23 +9,30 @@
 
 /* Keyboard Configuration sanity check */
 #if (!defined(KBD_NONE) && !defined(KBD_D_MATRIX) && !defined(KBD_A_JOYSTICK) \
-  && !defined(KBD_A_KEYPAD) && !defined(KBD_ROTARY_ENCODER) && !defined(KBD_A_MATRIX)) \
+  && !defined(KBD_A_KEYPAD) && !defined(KBD_ROTARY_ENCODER) && !defined(KBD_A_MATRIX) \
+  && !defined(KBD_I2C_RGB)) \
   || (defined(KBD_NONE) && defined(KBD_D_MATRIX)) \
   || (defined(KBD_NONE) && defined(KBD_A_JOYSTICK)) \
   || (defined(KBD_NONE) && defined(KBD_A_KEYPAD)) \
   || (defined(KBD_NONE) && defined(KBD_ROTARY_ENCODER)) \
   || (defined(KBD_NONE) && defined(KBD_A_MATRIX)) \
+  || (defined(KBD_NONE) && defined(KBD_I2C_RGB)) \
   || (defined(KBD_D_MATRIX) && defined(KBD_A_JOYSTICK)) \
   || (defined(KBD_D_MATRIX) && defined(KBD_A_KEYPAD)) \
   || (defined(KBD_D_MATRIX) && defined(KBD_ROTARY_ENCODER)) \
   || (defined(KBD_D_MATRIX) && defined(KBD_A_MATRIX)) \
+  || (defined(KBD_D_MATRIX) && defined(KBD_I2C_RGB)) \
   || (defined(KBD_A_JOYSTICK) && defined(KBD_A_KEYPAD)) \
   || (defined(KBD_A_JOYSTICK) && defined(KBD_ROTARY_ENCODER)) \
   || (defined(KBD_A_JOYSTICK) && defined(KBD_A_MATRIX)) \
+  || (defined(KBD_A_JOYSTICK) && defined(KBD_I2C_RGB)) \
   || (defined(KBD_A_KEYPAD) && defined(KBD_ROTARY_ENCODER)) \
   || (defined(KBD_A_KEYPAD) && defined(KBD_A_MATRIX)) \
-  || (defined(KBD_ROTARY_ENCODER) && defined(KBD_A_MATRIX))
-#error You should define KBD_NONE, KBD_D_MATRIX, KBD_A_JOYSTICK, KBD_A_KEYPAD, KBD_ROTARY_ENCODER or KBD_A_MATRIX and only one of them!
+  || (defined(KBD_A_KEYPAD) && defined(KBD_I2C_RGB)) \
+  || (defined(KBD_ROTARY_ENCODER) && defined(KBD_A_MATRIX)) \
+  || (defined(KBD_ROTARY_ENCODER) && defined(KBD_I2C_RGB)) \
+  || (defined(KBD_A_MATRIX) && defined(KBD_I2C_RGB))
+#error You should define KBD_NONE, KBD_D_MATRIX, KBD_A_JOYSTICK, KBD_A_KEYPAD, KBD_ROTARY_ENCODER, KBD_A_MATRIX or KBD_I2C_RGB and only one of them!
 #endif
 
 #if defined(KBD_D_MATRIX) && \
@@ -91,6 +98,11 @@
 #error You should define proper KBD_DATA_TOLERANCE and KBD_DATA_ARRAY for KBD_A_MATRIX!
 #endif
 
+#if defined(LCD_I2C_RGB)
+#include <Adafruit_RGBLCDShield.h>
+extern Adafruit_RGBLCDShield lcd; /* defined in lcd.cpp */
+#endif
+
 /*! \brief Initialization of keyboard
  */
 void kbd_init() {
@@ -132,6 +144,8 @@ void kbd_init() {
   /* TODO: use attachInterrupt() and ISR if/when we have bad read timing! */
 #elif defined(KBD_A_MATRIX)
   /* No initialization for analog pins needed */
+#elif defined(KBD_I2C_RGB)
+  /* The RGB Keypad is already initialized in lcd.cpp */
 #endif
 }
 
@@ -267,6 +281,18 @@ uint8_t kbd_getkey() {
         return x;
       }
     }
+#elif defined(KBD_I2C_RGB)
+  uint8_t buttons = lcd.readButtons();
+  if(buttons & BUTTON_UP)
+    return KBD_KEY_UP;
+  if(buttons & BUTTON_DOWN)
+    return KBD_KEY_DOWN;
+  if(buttons & BUTTON_LEFT)
+    return KBD_KEY_LEFT;
+  if(buttons & BUTTON_RIGHT)
+    return KBD_KEY_RIGHT;
+  if(buttons & BUTTON_SELECT)
+    return KBD_KEY_SELECT;
 #endif
   return KBD_KEY_NONE;
 }

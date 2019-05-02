@@ -9,11 +9,14 @@
 #include "lcd.h"
 
 /* LCD Configuration sanity check */
-#if (!defined(LCD_4BIT) && !defined(LCD_8BIT) && !defined(LCD_I2C)) \
+#if (!defined(LCD_4BIT) && !defined(LCD_8BIT) && !defined(LCD_I2C) && !defined(LCD_I2C_RGB)) \
   || (defined(LCD_4BIT) && defined(LCD_8BIT)) \
   || (defined(LCD_4BIT) && defined(LCD_I2C)) \
-  || (defined(LCD_8BIT) && defined(LCD_I2C))
-#error You should define LCD_4BIT, LCD_8BIT or LCD_I2C and only one of them!
+  || (defined(LCD_4BIT) && defined(LCD_I2C_RGB)) \
+  || (defined(LCD_8BIT) && defined(LCD_I2C)) \
+  || (defined(LCD_8BIT) && defined(LCD_I2C_RGB)) \
+  || (defined(LCD_I2C) && defined(LCD_I2C_RGB))
+#error You should define LCD_4BIT, LCD_8BIT, LCD_I2C or LCD_I2C_RGB and only one of them!
 #endif
 
 #if defined(LCD_4BIT) || defined(LCD_8BIT)
@@ -46,6 +49,11 @@
 #endif
 
 #if defined(LCD_I2C) && \
+  (!defined(LCD_BACKLIGHT_COLOR))
+#error You should define LCD_BACKLIGHT_COLOR for LCD_I2C_RGB!
+#endif
+
+#if defined(LCD_I2C__RGB) && \
   (!defined(LCD_I2C_ADDR))
 #error You should define LCD_I2C_ADDR for LCD_I2C!
 #endif
@@ -59,6 +67,8 @@
 #include <LiquidCrystal.h>
 #elif defined(LCD_I2C)
 #include <LiquidCrystal_I2C.h>
+#elif defined(LCD_I2C_RGB)
+#include <Adafruit_RGBLCDShield.h>
 #endif
 
 #if defined(LCD_4BIT)
@@ -70,6 +80,8 @@ LiquidCrystal lcd(LCD_PIN_RS, LCD_PIN_RW, LCD_PIN_ENABLE,
   LCD_PIN_D4, LCD_PIN_D5, LCD_PIN_D6, LCD_PIN_D7);
 #elif defined(LCD_I2C)
 LiquidCrystal_I2C lcd(LCD_I2C_ADDR, LCD_COLS, LCD_ROWS);
+#elif defined(LCD_I2C_RGB)
+Adafruit_RGBLCDShield lcd;
 #endif
 
 /*! \brief Initialization of LCD display
@@ -79,6 +91,8 @@ void lcd_init() {
   lcd.begin(LCD_ROWS, LCD_COLS);
 #elif defined(LCD_I2C)
   lcd.init();
+#elif defined(LCD_I2C_RGB)
+  lcd.begin(LCD_ROWS, LCD_COLS);
 #endif
   lcd_init_backlight();
 }
@@ -105,7 +119,7 @@ static void wait_from_last_tx(uint32_t wait_micros) {
   if((wait_for_micros > lcd_last_tx_micros) && (micros() >= wait_for_micros)) /* we are already over the target time */
     return;
 
-  digitalWrite(LED_BUILTIN, HIGH);
+//  digitalWrite(LED_BUILTIN, HIGH);
 
   if(wait_for_micros < lcd_last_tx_micros) { /* we have an micros() overflow */
     while(micros() > lcd_last_tx_micros) /* first run over the maximum */
@@ -115,7 +129,7 @@ static void wait_from_last_tx(uint32_t wait_micros) {
   while(micros() < wait_for_micros) /* now wait for target time */
     los_yield();
 
-  digitalWrite(LED_BUILTIN, LOW);
+//  digitalWrite(LED_BUILTIN, LOW);
 }
 
 /*! \brief Store last LCD transfer time stamp
@@ -154,6 +168,8 @@ void lcd_init_backlight() {
 #endif
 #elif defined(LCD_I2C)
   lcd.backlight();
+#elif defined(LCD_I2C_RGB)
+  lcd.setBacklight(LCD_BACKLIGHT_COLOR);
 #endif
 }
 
@@ -177,5 +193,10 @@ void lcd_set_backlight(uint8_t brightness) {
     lcd.noBacklight();
   else
     lcd.backlight();
+#elif defined(LCD_I2C_RGB)
+  if(brightness == 0)
+    lcd.setBacklight(0); /* does it work? */
+  else
+    lcd.setBacklight(LCD_BACKLIGHT_COLOR);
 #endif
 }

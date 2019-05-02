@@ -29,6 +29,7 @@
 #define LCD_4BIT
 //#define LCD_8BIT
 //#define LCD_I2C
+//#define LCD_I2C_RGB
 
 #define LCD_ROWS            2
 #define LCD_COLS            16
@@ -60,6 +61,11 @@
 
 #ifdef LCD_I2C
 #define LCD_I2C_ADDR        0x27
+#endif
+
+#ifdef LCD_I2C_RGB
+#define LCD_BACKLIGHT_COLOR 0x1 /* Bitmask: 0x01 - red, 0x02 - green, 0x04 - blue */
+#define KBD_I2C_RGB
 #endif
 
 #ifdef LCD_BACKLIGHT_PWM
