@@ -27,18 +27,6 @@
 #error You should define proper amount of LCD_PIN_Rx for KBD_ROWS of KBD_D_MATRIX!
 #endif
 
-#if !defined(KBD_ROWS) || !defined(KBD_COLS)
-#error You should define KBD_ROWS and KBD_COLS for KBD_A_MATRIX!
-#endif
-
-#if !defined(KBD_PIN_DATA)
-#error You should define LCD_PIN_DATA for KBD_A_MATRIX!
-#endif
-
-#if !defined(KBD_DATA_TOLERANCE) || !defined(KBD_DATA_ARRAY)
-#error You should define proper KBD_DATA_TOLERANCE and KBD_DATA_ARRAY for KBD_A_MATRIX!
-#endif
-
 /*! \brief Initialization of keyboard
  */
 void kbd_init() {

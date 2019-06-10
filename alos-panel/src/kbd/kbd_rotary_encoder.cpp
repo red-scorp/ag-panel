@@ -17,7 +17,6 @@
 /*! \brief Initialization of keyboard
  */
 void kbd_init() {
-#elif defined(KBD_ROTARY_ENCODER)
   pinMode(KBD_PIN_D1, INPUT_PULLUP);
   pinMode(KBD_PIN_D2, INPUT_PULLUP);
   pinMode(KBD_PIN_BTN, INPUT_PULLUP);
