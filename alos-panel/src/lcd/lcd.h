@@ -7,7 +7,7 @@
 #ifndef LCD_H
 #define LCD_H
 
-#include "config.h"
+#include "../../config.h"
 
 void lcd_init();
 void lcd_welcome();

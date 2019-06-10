@@ -7,7 +7,7 @@
 #ifndef UART_H
 #define UART_H
 
-#include "config.h"
+#include "../../config.h"
 
 void uart_init();
 uint8_t uart_putch(uint8_t txbyte);

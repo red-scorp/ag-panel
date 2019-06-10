@@ -7,7 +7,7 @@
 #ifndef LOS_H
 #define LOS_H
 
-#include "config.h"
+#include "../config.h"
 
 #define LOS_INSTRUCTION     0xFE
 #define LOS_KEYPAD          0xFE

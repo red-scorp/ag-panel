@@ -4,12 +4,12 @@
   \author Andriy Golovnya (andriy.golovnya@googlemail.com)
 */
 
-#include "private.h"
+#include "src/private.h"
 #include "config.h"
-#include "los.h"
-#include "uart.h"
-#include "lcd.h"
-#include "kbd.h"
+#include "src/los.h"
+#include "src/uart/uart.h"
+#include "src/lcd/lcd.h"
+#include "src/kbd/kbd.h"
 
 /*! \brief Main initialization function
  * - setup UART

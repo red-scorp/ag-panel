@@ -4,7 +4,7 @@
   \author Andriy Golovnya (andriy.golovnya@googlemail.com)
 */
 
-#include "private.h"
+#include "../private.h"
 #include "uart.h"
 
 #include <HardwareSerial.cpp>

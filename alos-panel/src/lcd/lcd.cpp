@@ -5,7 +5,7 @@
   \note https://en.wikipedia.org/wiki/Hitachi_HD44780_LCD_controller
 */
 
-#include "private.h"
+#include "../private.h"
 #include "lcd.h"
 
 /* LCD Configuration sanity check */

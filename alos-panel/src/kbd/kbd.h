@@ -7,7 +7,7 @@
 #ifndef KBD_H
 #define KBD_H
 
-#include "config.h"
+#include "../../config.h"
 
 #define KBD_KEY_NONE        0x00  /* No key is pressed */
 

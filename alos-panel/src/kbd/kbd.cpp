@@ -4,7 +4,7 @@
   \author Andriy Golovnya (andriy.golovnya@googlemail.com)
 */
 
-#include "private.h"
+#include "../private.h"
 #include "kbd.h"
 
 /* Keyboard Configuration sanity check */
