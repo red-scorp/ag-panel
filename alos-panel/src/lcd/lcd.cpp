@@ -71,40 +71,21 @@
 #include <Adafruit_RGBLCDShield.h>
 #endif
 
-#if defined(LCD_4BIT)
-LiquidCrystal lcd(LCD_PIN_RS, LCD_PIN_RW, LCD_PIN_ENABLE,
-  LCD_PIN_D4, LCD_PIN_D5, LCD_PIN_D6, LCD_PIN_D7);
-#elif defined(LCD_8BIT)
-LiquidCrystal lcd(LCD_PIN_RS, LCD_PIN_RW, LCD_PIN_ENABLE,
-  LCD_PIN_D0, LCD_PIN_D1, LCD_PIN_D2, LCD_PIN_D3,
-  LCD_PIN_D4, LCD_PIN_D5, LCD_PIN_D6, LCD_PIN_D7);
-#elif defined(LCD_I2C)
-LiquidCrystal_I2C lcd(LCD_I2C_ADDR, LCD_COLS, LCD_ROWS);
-#elif defined(LCD_I2C_RGB)
-Adafruit_RGBLCDShield lcd;
-#endif
-
 /*! \brief Initialization of LCD display
  */
 void lcd_init() {
-#if defined(LCD_4BIT) || defined(LCD_8BIT)
-  lcd.begin(LCD_ROWS, LCD_COLS);
-#elif defined(LCD_I2C)
-  lcd.init();
-#elif defined(LCD_I2C_RGB)
-  lcd.begin(LCD_ROWS, LCD_COLS);
-#endif
+  lcd_init_display();
   lcd_init_backlight();
 }
 
 /*! \brief Write welcome message on LCD display
  */
 void lcd_welcome() {
-  lcd.clear();
-  lcd.setCursor(0, 0);
-  lcd.print(FW_NAME " Ready...");
-  lcd.setCursor(0, 1);
-  lcd.print(FW_VERSION);
+  lcd_clear_display();
+  lcd_set_cursor(0, 0);
+  lcd_print_string(FW_NAME " Ready...");
+  lcd_set_cursor(0, 1);
+  lcd_print_string(FW_VERSION);
 }
 
 /*! \brief Last LCD transfer microseconds time stamp value
@@ -142,7 +123,7 @@ static void stamp_last_tx() {
  */
 void lcd_write(uint8_t txbyte) {
   wait_from_last_tx(40);
-  lcd.write(txbyte);
+  lcd_write_display(txbyte);
   stamp_last_tx();
 }
 
@@ -150,8 +131,34 @@ void lcd_write(uint8_t txbyte) {
  */
 void lcd_command(uint8_t txbyte) {
   wait_from_last_tx(txbyte < 4? 2000: 40); /* for commands 1 - 3 wait for 2 ms, otherwise 40 us */
-  lcd.command(txbyte);
+  lcd_command_display(txbyte);
   stamp_last_tx();
+}
+
+#if defined(LCD_4BIT)
+LiquidCrystal lcd(LCD_PIN_RS, LCD_PIN_RW, LCD_PIN_ENABLE,
+  LCD_PIN_D4, LCD_PIN_D5, LCD_PIN_D6, LCD_PIN_D7);
+#elif defined(LCD_8BIT)
+LiquidCrystal lcd(LCD_PIN_RS, LCD_PIN_RW, LCD_PIN_ENABLE,
+  LCD_PIN_D0, LCD_PIN_D1, LCD_PIN_D2, LCD_PIN_D3,
+  LCD_PIN_D4, LCD_PIN_D5, LCD_PIN_D6, LCD_PIN_D7);
+#elif defined(LCD_I2C)
+LiquidCrystal_I2C lcd(LCD_I2C_ADDR, LCD_COLS, LCD_ROWS);
+#elif defined(LCD_I2C_RGB)
+Adafruit_RGBLCDShield lcd;
+#endif
+
+/*! \brief Initialization of LCD display itself
+ */
+void lcd_init_display() {
+#if defined(LCD_4BIT) || defined(LCD_8BIT)
+  lcd.begin(LCD_ROWS, LCD_COLS);
+#elif defined(LCD_I2C)
+  lcd.init();
+#elif defined(LCD_I2C_RGB)
+  lcd.begin(LCD_ROWS, LCD_COLS);
+#endif
+  lcd_init_backlight();
 }
 
 /*! \brief Initialization of LCD display backlight LED
@@ -199,4 +206,34 @@ void lcd_set_backlight(uint8_t brightness) {
   else
     lcd.setBacklight(LCD_BACKLIGHT_COLOR);
 #endif
+}
+
+/*! \brief Write character to LCD display directly
+ */
+void lcd_write_display(uint8_t txbyte) {
+  lcd.write(txbyte);
+}
+
+/*! \brief Send command to LCD display directly
+ */
+void lcd_command_display(uint8_t txbyte) {
+  lcd.command(txbyte);
+}
+
+/*! \brief Clear LCD display
+ */
+void lcd_clear_display() {
+  lcd.clear();
+}
+
+/*! \brief Set cursor to specific positon on LCD display
+ */
+void lcd_set_cursor(uint8_t row, uint8_t col) {
+  lcd.setCursor(row, col);
+}
+
+/*! \brief Print a string on LCD display
+ */
+void lcd_print_string(const char *str) {
+  lcd.print(str);
 }
