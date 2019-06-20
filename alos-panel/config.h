@@ -7,11 +7,6 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-/* FirmWare Configuration */
-/* ------------------------------------------------------------------------- */
-#define FW_NAME             "ALoS" /* Arduino LCD over Serial Panel */
-#define FW_VERSION          __TIME__ " " __DATE__
-
 /* UART Configuration */
 /* ------------------------------------------------------------------------- */
 #define UART_DIRECT
