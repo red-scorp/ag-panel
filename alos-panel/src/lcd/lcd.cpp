@@ -35,12 +35,14 @@ void lcd_init() {
 /*! \brief Write welcome message on LCD display
  */
 void lcd_welcome() {
-  lcd_clear_display();
-  lcd_set_cursor(0, 0);
-  lcd_print_string(FW_NAME " v" FW_VERSION);
-  lcd_set_cursor(0, 1);
   char str[LCD_COLS + 1];
+  uint8_t center_x = (LCD_COLS - 16) / 2;
+  uint8_t center_y = (LCD_ROWS - 2) / 2;
   memset(str, 0, sizeof(str));
+  lcd_clear_display();
+  lcd_set_cursor(center_x, center_y);
+  lcd_print_string(FW_NAME " v" FW_VERSION);
+  lcd_set_cursor(center_x, center_y + 1);
   snprintf(str, LCD_COLS, "@%ldBd Ready", UART_BAUD);
   lcd_print_string(str);
 }
