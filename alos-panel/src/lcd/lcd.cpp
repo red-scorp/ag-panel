@@ -41,7 +41,7 @@ void lcd_welcome() {
   lcd_set_cursor(0, 1);
   char str[LCD_COLS + 1];
   memset(str, 0, sizeof(str));
-  snprintf(str, LCD_COLS, "@%ldb Ready...", UART_BAUD);
+  snprintf(str, LCD_COLS, "@%ldBd Ready", UART_BAUD);
   lcd_print_string(str);
 }
 
