@@ -10,6 +10,7 @@
 #include "uart/uart.h"
 #include "lcd/lcd.h"
 #include "kbd/kbd.h"
+#include "debug.h"
 
 /*! \brief Main initialization function
  * - setup UART
@@ -72,8 +73,15 @@ void los_yield() {
     return;
 
   if(key != KBD_KEY_NONE) {
+#ifdef DEBUG_KBD_HEX_OUTPUT
+    char hex_str[10];
+    snprintf(hex_str, sizeof(hex_str) - 1, "%02x%02x\n\r", LOS_KEYPAD, key);
+    for(char *p = hex_str; *p != '\0'; p++)
+      uart_putch(*p);
+#else
     uart_putch(LOS_KEYPAD);
     uart_putch(key);
+#endif
   }
 
   uart_prefill();
