@@ -59,7 +59,7 @@ void kbd_init() {
 /*! \brief Read current key
  */
 uint8_t kbd_getkey() {
-  uint8_t cols[] = {
+  static const uint8_t cols[] = {
 #if KBD_COLS >= 1
     KBD_PIN_C1,
 #if KBD_COLS >= 2
@@ -68,12 +68,15 @@ uint8_t kbd_getkey() {
     KBD_PIN_C3,
 #if KBD_COLS >= 4
     KBD_PIN_C4,
+#if KBD_COLS >= 5
+#error Only 4 Columns are supported for now
+#endif
 #endif
 #endif
 #endif
 #endif
   };
-  uint8_t rows[] = {
+  static const uint8_t rows[] = {
 #if KBD_ROWS >= 1
     KBD_PIN_R1,
 #if KBD_ROWS >= 2
@@ -82,6 +85,9 @@ uint8_t kbd_getkey() {
     KBD_PIN_R3,
 #if KBD_ROWS >= 4
     KBD_PIN_R4,
+#if KBD_ROWS >= 5
+#error Only 4 Rows are supported for now
+#endif
 #endif
 #endif
 #endif
@@ -96,13 +102,10 @@ uint8_t kbd_getkey() {
     for(uint8_t r = 0; r < KBD_ROWS; r++) {
       uint16_t v = analogRead(rows[r]);
       if(v < 100) {
-        uint8_t x = 0;
-        x |= c << 4;
-        x |= 1 << r;
         for(uint8_t i = 0; i < KBD_COLS; i++) {
           digitalWrite(cols[i], HIGH);
         }
-        return x;
+        return KBD_KEY(c, r);
       }
     }
   }

@@ -30,5 +30,6 @@ Work in progress but already usable.
   - [x] Rotary Encoder
   - [x] Analog Matrix 4x4 and 3x4 from RobotDyn
   - [x] Digital Keypad or Digital Joystick over I2C bus, like 'Adafruit RGB 16x2 LCD Shield'
+  - [x] Capacitive Keypad attached over I2C based on MPR121
 
 Please check config.h for more information.

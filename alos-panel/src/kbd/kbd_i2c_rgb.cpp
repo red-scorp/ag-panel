@@ -10,12 +10,12 @@
 #if defined(LCD_I2C_RGB)
 
 #include <Adafruit_RGBLCDShield.h>
-extern Adafruit_RGBLCDShield lcd; /* defined in lcd.cpp */
+extern Adafruit_RGBLCDShield lcd; /* defined in lcd_i2c_rgb.cpp */
 
 /*! \brief Initialization of keyboard
  */
 void kbd_init() {
-  /* The RGB Keypad is already initialized in lcd.cpp */
+  /* The RGB Keypad is already initialized in lcd_i2c_rgb.cpp */
 }
 
 /*! \brief Read current key

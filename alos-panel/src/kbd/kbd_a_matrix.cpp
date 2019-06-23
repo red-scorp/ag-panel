@@ -36,10 +36,7 @@ uint8_t kbd_getkey() {
     for(uint8_t r = 0 ; r < KBD_ROWS; r++) {
       if(data >= data_array[r * KBD_COLS + c] - KBD_PIN_DATA &&
         data <= data_array[r * KBD_COLS + c] + KBD_PIN_DATA) {
-        uint8_t x = 0;
-        x |= c << 4;
-        x |= 1 << r;
-        return x;
+        return KBD_KEY(c, r);
       }
     }
   return KBD_KEY_NONE;

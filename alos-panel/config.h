@@ -76,6 +76,8 @@
 #define KBD_A_KEYPAD
 //#define KBD_ROTARY_ENCODER
 //#define KBD_A_MATRIX
+//#define KBD_I2C_RGB /* this option is added automatically if LCD_I2C_RGB is selected */
+//#define KBD_I2C_C_MATRIX
 /* Add 'Keypad=yes' to '[hd44780]' section of your '/etc/LCDd.conf' if you use any other value then KBD_NONE */
 /* Check for proper 'KeyMatrix_?_?=???' values for your '/etc/LCDd.conf' in kbd.h */
 
@@ -141,6 +143,13 @@
                              790, 730, 680, \
                              640, 600, 570, \
                              540, 510, 490}*/
+#endif
+
+#ifdef KBD_I2C_C_MATRIX
+#define KBD_ROWS            4
+#define KBD_COLS            4
+
+#define KBD_I2C_ADDR        0x5A
 #endif
 
 #endif//CONFIG_H

@@ -11,12 +11,6 @@
 
 #define KBD_KEY_NONE        0x00  /* No key is pressed */
 
-#define KBD_KEY_UP          0x01  /* KeyMatrix_1_1=Up */
-#define KBD_KEY_DOWN        0x02  /* KeyMatrix_1_2=Down */
-#define KBD_KEY_LEFT        0x04  /* KeyMatrix_1_3=Left */
-#define KBD_KEY_RIGHT       0x08  /* KeyMatrix_1_4=Right */
-#define KBD_KEY_SELECT      0x11  /* KeyMatrix_2_1=Enter */
-
 /* Key conversion for LoS-Panel keypad values:
  * Rows are bits:
  *  - 0x?1 => KeyMatrix_?_1
@@ -30,6 +24,13 @@
  *  - 0x3? => KeyMatrix_4_?
  *  - 0x4? => KeyMatrix_5_?
  */
+#define KBD_KEY(r, c)       ((c << 4) | (1 << r))
+
+#define KBD_KEY_UP          KBD_KEY(0, 0)  /* KeyMatrix_1_1=Up */
+#define KBD_KEY_DOWN        KBD_KEY(0, 1)  /* KeyMatrix_1_2=Down */
+#define KBD_KEY_LEFT        KBD_KEY(0, 2)  /* KeyMatrix_1_3=Left */
+#define KBD_KEY_RIGHT       KBD_KEY(0, 3)  /* KeyMatrix_1_4=Right */
+#define KBD_KEY_SELECT      KBD_KEY(1, 0)  /* KeyMatrix_2_1=Enter */
 
 void kbd_init();
 uint8_t kbd_getkey();
