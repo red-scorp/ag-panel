@@ -13,21 +13,19 @@
 #include "debug.h"
 
 /*! \brief Main initialization function
+ * - setup debugging
  * - setup UART
  * - setup LCD
  * - setup keyboard
  */
-void setup() { 
+void setup() {
 
-  pinMode(LED_BUILTIN, OUTPUT);
-  digitalWrite(LED_BUILTIN, HIGH);
+  debug_init();
 
   uart_init();
   lcd_init();
   lcd_welcome();
   kbd_init();
-
-  digitalWrite(LED_BUILTIN, LOW);
 }
 
 /*! \brief Main loop function
@@ -73,15 +71,8 @@ void los_yield() {
     return;
 
   if(key != KBD_KEY_NONE) {
-#ifdef DEBUG_KBD_HEX_OUTPUT
-    char hex_str[10];
-    snprintf(hex_str, sizeof(hex_str) - 1, "%02x%02x\n\r", LOS_KEYPAD, key);
-    for(char *p = hex_str; *p != '\0'; p++)
-      uart_putch(*p);
-#else
     uart_putch(LOS_KEYPAD);
     uart_putch(key);
-#endif
   }
 
   uart_prefill();

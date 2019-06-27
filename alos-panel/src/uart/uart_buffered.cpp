@@ -24,6 +24,7 @@ void uart_init() {
 
 /*! \brief Write byte to UART
  */
+#undef uart_putch
 uint8_t uart_putch(uint8_t txbyte) {
   return Serial.write(txbyte);
 }
@@ -77,6 +78,7 @@ static uint8_t uart_push_buffer() {
  * - Start background task while waiting for data from UART
  * - Read byte from UART buffer
  */
+#undef uart_getch
 uint8_t uart_getch() {
 
   while(uart_fill_buffer() == 0) {

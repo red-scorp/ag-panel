@@ -32,6 +32,8 @@ Work in progress but already usable.
   - [x] Digital Keypad or Digital Joystick over I2C bus, like 'Adafruit RGB 16x2 LCD Shield'
   - [x] Capacitive Keypad attached over I2C based on MPR121
 - Development
-  - [x] Hex String dump of keyboard output
+  - [x] SW UART port for debugging output
+  - [x] Hex String dump of UART output
+  - [x] Hex String dump of UART input
 
 Please check config.h for more information.
