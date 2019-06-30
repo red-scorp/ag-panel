@@ -18,17 +18,22 @@
 
 #if defined(DEBUG_UART_OUTPUT_HEX_STR) || defined(DEBUG_UART_INPUT_HEX_STR)
 static const char hex_to_char[] = "01234567890ABCDEF";
+static uint8_t direction = 2;
 #endif
 
 #if defined(DEBUG_UART_OUTPUT_HEX_STR)
 #undef uart_putch
 uint8_t uart_putch_debug(uint8_t txbyte) {
   uint8_t r;
-  char str[] = ">xx\n\r";
+  char hex_str[] = " xx";
   r = uart_putch(txbyte);
-  str[1] = hex_to_char[txbyte >> 4];
-  str[2] = hex_to_char[txbyte & 0xF];
-  debug_puts(str);
+  if(direction != 0) {
+    debug_puts("\n\r>");
+    direction = 0;
+  }
+  hex_str[1] = hex_to_char[txbyte >> 4];
+  hex_str[2] = hex_to_char[txbyte & 0xF];
+  debug_puts(hex_str);
   return r;
 }
 #endif
@@ -37,11 +42,15 @@ uint8_t uart_putch_debug(uint8_t txbyte) {
 #undef uart_getch
 uint8_t uart_getch_debug() {
   uint8_t r;
-  char str[] = "<xx\n\r";
+  char hex_str[] = " xx";
   r = uart_getch();
-  str[1] = hex_to_char[r >> 4];
-  str[2] = hex_to_char[r & 0xF];
-  debug_puts(str);
+  if(direction != 1) {
+    debug_puts("\n\r<");
+    direction = 1;
+  }
+  hex_str[1] = hex_to_char[r >> 4];
+  hex_str[2] = hex_to_char[r & 0xF];
+  debug_puts(hex_str);
   return r;
 }
 #endif
