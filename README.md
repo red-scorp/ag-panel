@@ -1,8 +1,8 @@
 # Arduino Graphic Panel for lcdproc (ag-panel)
 
-A Next generation of lcdproc display panel based on Arduino and similar HW.
+A Next generation of [lcdproc](http://lcdproc.sourceforge.net/) display panel based on Arduino and similar HW.
 This project is based on my earlier code [Arduino LCD over Serial Panel (alos-panel)](https://github.com/red-scorp/alos-panel).
-More information on lcdproc [can be found here](http://lcdproc.sourceforge.net/).
+Documentation pending!
 
 This project **will** support different connections and different types of displays, including HD44780 based.
 Main platform for this project is Arduino Uno and Nano boards but it should certainly work on another Arduino boards as well.
