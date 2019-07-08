@@ -11,10 +11,14 @@ Main platform for this project is Arduino Uno and Nano boards but it should cert
 Work in progress but already usable.
 
 ## Supported configurations
+- Protocols
+  - [x] los-panel (lcdproc) for HD44780
+  - [ ] los-panel (lcdproc) emulation of HD44780 (to be implemented)
+  - [ ] rawserial (lcdproc) (to be implemented)
 - UART Serial
   - [x] Arduino HW UART
   - [x] Arduino HW UART with extra buffer
-  - [ ] Arduino SW UART (to be defined)
+  - [ ] Arduino SW UART (to be implemented)
 - LCD Display
   - [x] HD44780 in 4-bit and 8-bit modes
   - [x] HD44780 over I2C bus
