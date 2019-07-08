@@ -65,9 +65,11 @@ void debug_init() {
 }
 
 void debug_putch(uint8_t txbyte) {
+  txbyte = txbyte;
 }
 
 void debug_puts(char *str) {
+  str = str;
 }
 
 #endif
