@@ -1,6 +1,7 @@
 /*!
   \file lcd_4and8bit.cpp
   \brief AG-Panel Project 4- and 8-bit LCD code
+  \copyright (C) 2019 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@googlemail.com)
   \note https://en.wikipedia.org/wiki/Hitachi_HD44780_LCD_controller
 */

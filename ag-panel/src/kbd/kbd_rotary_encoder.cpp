@@ -1,6 +1,7 @@
 /*!
   \file kbd_rotary_encoder.cpp
   \brief AG-Panel Project Keyboard code
+  \copyright (C) 2019 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@googlemail.com)
 */
 

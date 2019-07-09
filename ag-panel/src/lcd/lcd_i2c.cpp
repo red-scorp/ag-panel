@@ -1,6 +1,7 @@
 /*!
   \file lcd_i2c.cpp
   \brief AG-Panel Project I2C LCD code
+  \copyright (C) 2019 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@googlemail.com)
   \note https://en.wikipedia.org/wiki/Hitachi_HD44780_LCD_controller
 */

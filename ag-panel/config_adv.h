@@ -1,6 +1,7 @@
 /*!
   \file config_adv.h
   \brief AG-Panel Project advanced configuration file
+  \copyright (C) 2019 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@googlemail.com)
 */
 

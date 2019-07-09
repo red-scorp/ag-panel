@@ -1,6 +1,7 @@
 /*!
   \file kbd_a_joystick.cpp
   \brief AG-Panel Project analog joystick Keyboard code
+  \copyright (C) 2019 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@googlemail.com)
 */
 

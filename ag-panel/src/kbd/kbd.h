@@ -1,6 +1,7 @@
 /*!
   \file kbd.h
   \brief AG-Panel Project Keyboard interface
+  \copyright (C) 2019 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@googlemail.com)
 */
 

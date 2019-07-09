@@ -1,6 +1,7 @@
 /*!
   \file kbd_i2c_rgb.cpp
   \brief AG-Panel Project I2C RGB keypad Keyboard code
+  \copyright (C) 2019 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@googlemail.com)
 */
 

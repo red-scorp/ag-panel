@@ -1,6 +1,7 @@
 /*!
   \file kbd_d_matrix.cpp
   \brief AG-Panel Project digital matrix Keyboard code
+  \copyright (C) 2019 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@googlemail.com)
 */
 

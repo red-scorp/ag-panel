@@ -1,6 +1,7 @@
 /*!
   \file uart.h
   \brief AG-Panel Project UART interface
+  \copyright (C) 2019 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@googlemail.com)
 */
 

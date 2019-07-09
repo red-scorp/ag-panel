@@ -1,6 +1,7 @@
 /*!
   \file version.h
   \brief AG-Panel Project version header
+  \copyright (C) 2019 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@googlemail.com)
 */
 

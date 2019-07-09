@@ -1,6 +1,7 @@
 /*!
   \file uart_direct.cpp
   \brief AG-Panel Project direct UART code
+  \copyright (C) 2019 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@googlemail.com)
 */
 

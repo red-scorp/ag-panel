@@ -1,6 +1,7 @@
 /*!
   \file kbd_a_keypad.cpp
   \brief AG-Panel Project analog keypad Keyboard code
+  \copyright (C) 2019 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@googlemail.com)
 */
 

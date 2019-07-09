@@ -1,6 +1,7 @@
 /*!
   \file kbd_none.cpp
   \brief AG-Panel Project none Keyboard code
+  \copyright (C) 2019 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@googlemail.com)
 */
 

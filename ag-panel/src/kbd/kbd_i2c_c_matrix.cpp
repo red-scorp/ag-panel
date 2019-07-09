@@ -1,6 +1,7 @@
 /*!
   \file kbd_i2c_c_matrix.cpp
   \brief AG-Panel Project I2C capacitive matrix Keyboard code
+  \copyright (C) 2019 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@googlemail.com)
 */
 
