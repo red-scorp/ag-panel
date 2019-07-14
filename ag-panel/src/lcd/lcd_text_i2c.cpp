@@ -1,5 +1,5 @@
 /*!
-  \file lcd_i2c.cpp
+  \file lcd_text_i2c.cpp
   \brief AG-Panel Project I2C LCD code
   \copyright (C) 2019 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@googlemail.com)
@@ -9,10 +9,10 @@
 #include "../private.h"
 #include "lcd.h"
 
-#if defined(LCD_I2C)
+#if defined(LCD_TEXT_I2C)
 
 #if !defined(LCD_I2C_ADDR)
-#error You should define LCD_I2C_ADDR for LCD_I2C!
+#error You should define LCD_I2C_ADDR for LCD_TEXT_I2C!
 #endif
 
 #include <LiquidCrystal_I2C.h>
@@ -70,4 +70,4 @@ void lcd_print_string(const char *str) {
   lcd.print(str);
 }
 
-#endif//LCD_I2C
+#endif//LCD_TEXT_I2C

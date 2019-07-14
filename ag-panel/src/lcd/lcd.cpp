@@ -11,14 +11,14 @@
 #include "../uart/uart.h"
 
 /* LCD Configuration sanity check */
-#if (!defined(LCD_4BIT) && !defined(LCD_8BIT) && !defined(LCD_I2C) && !defined(LCD_I2C_RGB)) \
-  || (defined(LCD_4BIT) && defined(LCD_8BIT)) \
-  || (defined(LCD_4BIT) && defined(LCD_I2C)) \
-  || (defined(LCD_4BIT) && defined(LCD_I2C_RGB)) \
-  || (defined(LCD_8BIT) && defined(LCD_I2C)) \
-  || (defined(LCD_8BIT) && defined(LCD_I2C_RGB)) \
-  || (defined(LCD_I2C) && defined(LCD_I2C_RGB))
-#error You should define LCD_4BIT, LCD_8BIT, LCD_I2C or LCD_I2C_RGB and only one of them!
+#if (!defined(LCD_TEXT_4BIT) && !defined(LCD_TEXT_8BIT) && !defined(LCD_TEXT_I2C) && !defined(LCD_TEXT_I2C_RGB)) \
+  || (defined(LCD_TEXT_4BIT) && defined(LCD_TEXT_8BIT)) \
+  || (defined(LCD_TEXT_4BIT) && defined(LCD_TEXT_I2C)) \
+  || (defined(LCD_TEXT_4BIT) && defined(LCD_TEXT_I2C_RGB)) \
+  || (defined(LCD_TEXT_8BIT) && defined(LCD_TEXT_I2C)) \
+  || (defined(LCD_TEXT_8BIT) && defined(LCD_TEXT_I2C_RGB)) \
+  || (defined(LCD_TEXT_I2C) && defined(LCD_TEXT_I2C_RGB))
+#error You should define LCD_TEXT_4BIT, LCD_TEXT_8BIT, LCD_TEXT_I2C or LCD_TEXT_I2C_RGB and only one of them!
 #endif
 
 #if !defined(LCD_ROWS) || !defined(LCD_COLS)

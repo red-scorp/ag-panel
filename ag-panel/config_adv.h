@@ -18,7 +18,7 @@
 
 /* LCD Configuration */
 /* ------------------------------------------------------------------------- */
-#if defined(LCD_4BIT) || defined(LCD_8BIT)
+#if defined(LCD_TEXT_4BIT) || defined(LCD_TEXT_8BIT)
 //#define LCD_BACKLIGHT_NONE
 #define LCD_BACKLIGHT_ONOFF
 //#define LCD_BACKLIGHT_PWM
@@ -29,7 +29,7 @@
 #define LCD_PIN_ENABLE      9
 #define LCD_PIN_BACKLIGHT   10
 
-#ifdef LCD_8BIT
+#ifdef LCD_TEXT_8BIT
 #define LCD_PIN_D0          255
 #define LCD_PIN_D1          255
 #define LCD_PIN_D2          255
@@ -42,11 +42,11 @@
 #define LCD_PIN_D7          7
 #endif
 
-#ifdef LCD_I2C
+#ifdef LCD_TEXT_I2C
 #define LCD_I2C_ADDR        0x27
 #endif
 
-#ifdef LCD_I2C_RGB
+#ifdef LCD_TEXT_I2C_RGB
 #define LCD_BACKLIGHT_COLOR 0x1 /* Bitmask: 0x01 - red, 0x02 - green, 0x04 - blue */
 #define KBD_I2C_RGB
 #endif

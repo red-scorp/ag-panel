@@ -1,5 +1,5 @@
 /*!
-  \file lcd_4and8bit.cpp
+  \file lcd_tetx_4and8bit.cpp
   \brief AG-Panel Project 4- and 8-bit LCD code
   \copyright (C) 2019 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@googlemail.com)
@@ -9,7 +9,7 @@
 #include "../private.h"
 #include "lcd.h"
 
-#if defined(LCD_4BIT) || defined(LCD_8BIT)
+#if defined(LCD_TEXT_4BIT) || defined(LCD_TEXT_8BIT)
 
 #if (!defined(LCD_BACKLIGHT_NONE) && !defined(LCD_BACKLIGHT_ONOFF) && !defined(LCD_BACKLIGHT_PWM)) \
   || (defined(LCD_BACKLIGHT_NONE) && defined(LCD_BACKLIGHT_ONOFF)) \
@@ -18,20 +18,20 @@
 #error You should define LCD_BACKLIGHT_NONE, LCD_BACKLIGHT_ONOFF or LCD_BACKLIGHT_PWM and only one of them!
 #endif
 
-#if defined(LCD_4BIT) && \
+#if defined(LCD_TEXT_4BIT) && \
   (!defined(LCD_PIN_RS) || !defined(LCD_PIN_ENABLE) \
   || !defined(LCD_PIN_D4) || !defined(LCD_PIN_D5) \
   || !defined(LCD_PIN_D6) || !defined(LCD_PIN_D7))
-#error You should define at least LCD_PIN_RS, LCD_PIN_ENABLE, LCD_PIN_D4, LCD_PIN_D5, LCD_PIN_D6 and LCD_PIN_D7 for LCD_4BIT!
+#error You should define at least LCD_PIN_RS, LCD_PIN_ENABLE, LCD_PIN_D4, LCD_PIN_D5, LCD_PIN_D6 and LCD_PIN_D7 for LCD_TEXT_4BIT!
 #endif
 
-#if defined(LCD_8BIT) && \
+#if defined(LCD_TEXT_8BIT) && \
   (!defined(LCD_PIN_RS) || !defined(LCD_PIN_ENABLE) \
   || !defined(LCD_PIN_D0) || !defined(LCD_PIN_D1) \
   || !defined(LCD_PIN_D2) || !defined(LCD_PIN_D3) \
   || !defined(LCD_PIN_D4) || !defined(LCD_PIN_D5) \
   || !defined(LCD_PIN_D6) || !defined(LCD_PIN_D7))
-#error You should define at least LCD_PIN_RS, LCD_PIN_ENABLE, LCD_PIN_D0, LCD_PIN_D1, LCD_PIN_D2, LCD_PIN_D3, LCD_PIN_D4, LCD_PIN_D5, LCD_PIN_D6 and LCD_PIN_D7 for LCD_8BIT!
+#error You should define at least LCD_PIN_RS, LCD_PIN_ENABLE, LCD_PIN_D0, LCD_PIN_D1, LCD_PIN_D2, LCD_PIN_D3, LCD_PIN_D4, LCD_PIN_D5, LCD_PIN_D6 and LCD_PIN_D7 for LCD_TEXT_8BIT!
 #endif
 
 #if (defined(LCD_BACKLIGHT_ONOFF) || defined(LCD_BACKLIGHT_PWM)) \
@@ -41,10 +41,10 @@
 
 #include <LiquidCrystal.h>
 
-#if defined(LCD_4BIT)
+#if defined(LCD_TEXT_4BIT)
 LiquidCrystal lcd(LCD_PIN_RS, LCD_PIN_RW, LCD_PIN_ENABLE,
   LCD_PIN_D4, LCD_PIN_D5, LCD_PIN_D6, LCD_PIN_D7);
-#elif defined(LCD_8BIT)
+#elif defined(LCD_TEXT_8BIT)
 LiquidCrystal lcd(LCD_PIN_RS, LCD_PIN_RW, LCD_PIN_ENABLE,
   LCD_PIN_D0, LCD_PIN_D1, LCD_PIN_D2, LCD_PIN_D3,
   LCD_PIN_D4, LCD_PIN_D5, LCD_PIN_D6, LCD_PIN_D7);
@@ -115,4 +115,4 @@ void lcd_print_string(const char *str) {
   lcd.print(str);
 }
 
-#endif//LCD_4BIT||LCD_8BIT
+#endif//LCD_TEXT_4BIT||LCD_TEXT_8BIT

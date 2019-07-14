@@ -8,7 +8,7 @@
 #include "../private.h"
 #include "kbd.h"
 
-#if defined(LCD_I2C_RGB)
+#if defined(LCD_TEXT_I2C_RGB)
 
 #include <Adafruit_RGBLCDShield.h>
 extern Adafruit_RGBLCDShield lcd; /* defined in lcd_i2c_rgb.cpp */

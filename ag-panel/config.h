@@ -18,10 +18,10 @@
 
 /* LCD Configuration */
 /* ------------------------------------------------------------------------- */
-#define LCD_4BIT
-//#define LCD_8BIT
-//#define LCD_I2C
-//#define LCD_I2C_RGB
+#define LCD_TEXT_4BIT
+//#define LCD_TEXT_8BIT
+//#define LCD_TEXT_I2C
+//#define LCD_TEXT_I2C_RGB
 
 #define LCD_ROWS            4
 #define LCD_COLS            40
