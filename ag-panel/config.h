@@ -23,16 +23,16 @@
 //#define LCD_TEXT_I2C
 //#define LCD_TEXT_I2C_RGB
 
-#define LCD_ROWS            4
-#define LCD_COLS            40
+#define LCD_ROWS            2
+#define LCD_COLS            16
 /* Add proper 'Size=?x?' to '[hd44780]' section of your '/etc/LCDd.conf' for selected LCD_ROWS and LCD_COLS */
 
 /* Keyboard Configuration */
 /* ------------------------------------------------------------------------- */
-#define KBD_NONE
+//#define KBD_NONE
 //#define KBD_D_MATRIX
 //#define KBD_A_JOYSTICK
-//#define KBD_A_KEYPAD
+#define KBD_A_KEYPAD
 //#define KBD_ROTARY_ENCODER
 //#define KBD_A_MATRIX
 //#define KBD_I2C_RGB /* this option is added automatically if LCD_I2C_RGB is selected */
