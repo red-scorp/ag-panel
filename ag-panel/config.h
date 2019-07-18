@@ -8,6 +8,11 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
+/* Protocol Configuration */
+/* ------------------------------------------------------------------------- */
+#define PROT_LOSPANAEL
+//#define PROT_RAWSERIAL
+
 /* UART Configuration */
 /* ------------------------------------------------------------------------- */
 #define UART_DIRECT

@@ -9,6 +9,7 @@
 #include "lcd.h"
 #include "../version.h"
 #include "../uart/uart.h"
+#include "../prot/prot.h"
 
 /* LCD Configuration sanity check */
 #if (!defined(LCD_TEXT_4BIT) && !defined(LCD_TEXT_8BIT) && !defined(LCD_TEXT_I2C) && !defined(LCD_TEXT_I2C_RGB)) \
@@ -63,11 +64,11 @@ static void wait_from_last_tx(uint32_t wait_micros) {
 
   if(wait_for_micros < lcd_last_tx_micros) { /* we have an micros() overflow */
     while(micros() > lcd_last_tx_micros) /* first run over the maximum */
-      los_yield();
+      prot_yield();
   }
 
   while(micros() < wait_for_micros) /* now wait for target time */
-    los_yield();
+    prot_yield();
 
 //  digitalWrite(LED_BUILTIN, LOW);
 }

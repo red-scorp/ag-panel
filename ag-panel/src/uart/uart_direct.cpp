@@ -7,6 +7,7 @@
 
 #include "../private.h"
 #include "uart.h"
+#include "../prot/prot.h"
 
 #if defined(UART_DIRECT)
 
@@ -34,7 +35,7 @@ uint8_t uart_putch(uint8_t txbyte) {
 uint8_t uart_getch() {
 
   while(Serial.available() == 0) {
-    los_yield();
+    prot_yield();
   }
 
   return Serial.read();
