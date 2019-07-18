@@ -11,7 +11,7 @@
 #include "../lcd/lcd.h"
 #include "../kbd/kbd.h"
 
-#if defined(PROT_LOSPANAEL)
+#if defined(PROT_LOSPANEL)
 
 /* Protocol commands definition */
 #define LOS_INSTRUCTION     0xFE
@@ -74,4 +74,4 @@ void prot_loop() {
   uart_prefill();
 }
 
-#endif//PROT_LOSPANAEL
+#endif//PROT_LOSPANEL

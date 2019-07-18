@@ -9,7 +9,7 @@
 #include "prot.h"
 
 /* Protocol Configuration sanity check */
-#if (!defined(PROT_LOSPANAEL) && !defined(PROT_RAWSERIAL)) \
-  || (defined(PROT_LOSPANAEL) && defined(PROT_RAWSERIAL))
-#error You should define PROT_LOSPANAEL or PROT_RAWSERIAL and only one of them!
+#if (!defined(PROT_LOSPANEL) && !defined(PROT_RAWSERIAL)) \
+  || (defined(PROT_LOSPANEL) && defined(PROT_RAWSERIAL))
+#error You should define PROT_LOSPANEL or PROT_RAWSERIAL and only one of them!
 #endif

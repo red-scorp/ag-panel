@@ -10,7 +10,7 @@
 
 /* Protocol Configuration */
 /* ------------------------------------------------------------------------- */
-#define PROT_LOSPANAEL
+#define PROT_LOSPANEL
 //#define PROT_RAWSERIAL
 
 /* UART Configuration */
