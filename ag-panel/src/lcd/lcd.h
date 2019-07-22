@@ -26,4 +26,16 @@ void lcd_clear_display();
 void lcd_set_cursor(uint8_t row, uint8_t col);
 void lcd_print_string(const char *str);
 
+/* New LCD functions for Hitachi HD44780 LCD emulation */
+void lcd_clear();
+void lcd_home();
+void lcd_set_cursor(uint8_t x, uint8_t y);
+void lcd_display(uint8_t on);
+void lcd_cursor(uint8_t on);
+void lcd_blink(uint8_t on);
+void lcd_scroll(uint8_t right);
+void lcd_direction(uint8_t left2right);
+void lcd_autoscroll(uint8_t on);
+void lcd_create_char(uint8_t pos, uint8_t *buf);
+
 #endif//LCD_H
