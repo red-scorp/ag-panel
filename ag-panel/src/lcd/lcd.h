@@ -20,16 +20,15 @@ void lcd_command(uint8_t txbyte);
 void lcd_init_display();
 void lcd_init_backlight();
 void lcd_set_backlight(uint8_t brightness);
-void lcd_write_display(uint8_t txbyte);
-void lcd_command_display(uint8_t txbyte);
-void lcd_clear_display();
+void lcd_write_display(uint8_t txbyte); // -> do be deleted
+void lcd_command_display(uint8_t txbyte); // -> do be deleted
+void lcd_clear_display(); // -> do be renamed?
 void lcd_set_cursor(uint8_t row, uint8_t col);
 void lcd_print_string(const char *str);
 
 /* New LCD functions for Hitachi HD44780 LCD emulation */
 void lcd_clear();
 //void lcd_home(); -> lcd_set_cursor
-void lcd_set_cursor(uint8_t x, uint8_t y);
 //void lcd_display(uint8_t on); -> part of protocol emulator
 //void lcd_cursor(uint8_t on); -> not supported
 //void lcd_blink(uint8_t on); -> not supported
