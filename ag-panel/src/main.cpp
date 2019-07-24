@@ -41,3 +41,9 @@ void loop() {
   prot_loop();
   prot_yield();
 }
+
+/*! \brief Background task function */
+void yield() {
+
+  prot_yield();
+}
