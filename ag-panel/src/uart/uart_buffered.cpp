@@ -10,7 +10,7 @@
 
 #if defined(UART_BUFFERED)
 
-#include <HardwareSerial.cpp>
+#include <HardwareSerial.h>
 
 #if !defined(UART_BUF_SIZE)
 #error You should define UART_BUF_SIZE for UART_BUFFERED UART type!

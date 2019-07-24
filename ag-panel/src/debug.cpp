@@ -11,22 +11,22 @@
 #if defined(DEBUG_HW_SERIAL) || defined(DEBUG_HW_SERIAL1) || defined(DEBUG_HW_SERIAL2) || defined(DEBUG_HW_SERIAL3) || defined(DEBUG_SW_SERIAL)
 
 #if defined(DEBUG_HW_SERIAL)
-#include <HardwareSerial.cpp>
+#include <HardwareSerial.h>
 #define DEBUG_PORT      Serial
 #endif
 
 #if defined(DEBUG_HW_SERIAL1)
-#include <HardwareSerial1.cpp>
+#include <HardwareSerial.h>
 #define DEBUG_PORT      Serial1
 #endif
 
 #if defined(DEBUG_HW_SERIAL2)
-#include <HardwareSerial2.cpp>
+#include <HardwareSerial.h>
 #define DEBUG_PORT      Serial2
 #endif
 
 #if defined(DEBUG_HW_SERIAL3)
-#include <HardwareSerial3.cpp>
+#include <HardwareSerial.h>
 #define DEBUG_PORT      Serial3
 #endif
 

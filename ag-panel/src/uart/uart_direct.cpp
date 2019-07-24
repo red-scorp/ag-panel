@@ -11,7 +11,7 @@
 
 #if defined(UART_DIRECT)
 
-#include <HardwareSerial.cpp>
+#include <HardwareSerial.h>
 
 /*! \brief Initialization of UART
  * - Set UART baud rate
