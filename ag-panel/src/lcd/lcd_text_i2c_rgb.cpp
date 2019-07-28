@@ -11,7 +11,7 @@
 
 #if defined(LCD_TEXT_I2C_RGB)
 
-#if!defined(LCD_BACKLIGHT_COLOR)
+#if !defined(LCD_BACKLIGHT_COLOR)
 #error You should define LCD_BACKLIGHT_COLOR for LCD_TEXT_I2C_RGB!
 #endif
 

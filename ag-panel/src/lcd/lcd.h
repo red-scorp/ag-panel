@@ -13,8 +13,6 @@
 /* Common LCD functions */
 void lcd_init();
 void lcd_welcome();
-void lcd_write(uint8_t txbyte);
-void lcd_command(uint8_t txbyte);
 
 /* Specific LCD functions */
 void lcd_init_display();
@@ -27,7 +25,7 @@ void lcd_set_cursor(uint8_t row, uint8_t col);
 void lcd_print_string(const char *str);
 
 /* New LCD functions for Hitachi HD44780 LCD emulation */
-void lcd_clear();
+//void lcd_clear(); -> we have it
 //void lcd_home(); -> lcd_set_cursor
 //void lcd_display(uint8_t on); -> part of protocol emulator
 //void lcd_cursor(uint8_t on); -> not supported
