@@ -10,6 +10,20 @@
 
 #if defined(DEBUG_HW_SERIAL) || defined(DEBUG_HW_SERIAL1) || defined(DEBUG_HW_SERIAL2) || defined(DEBUG_HW_SERIAL3) || defined(DEBUG_SW_SERIAL)
 
+/* Debug Configuration sanity check */
+#if  (defined(DEBUG_HW_SERIAL) && defined(DEBUG_HW_SERIAL1)) \
+  || (defined(DEBUG_HW_SERIAL) && defined(DEBUG_HW_SERIAL2)) \
+  || (defined(DEBUG_HW_SERIAL) && defined(DEBUG_HW_SERIAL3)) \
+  || (defined(DEBUG_HW_SERIAL) && defined(DEBUG_SW_SERIAL)) \
+  || (defined(DEBUG_HW_SERIAL1) && defined(DEBUG_HW_SERIAL2)) \
+  || (defined(DEBUG_HW_SERIAL1) && defined(DEBUG_HW_SERIAL3)) \
+  || (defined(DEBUG_HW_SERIAL1) && defined(DEBUG_SW_SERIAL)) \
+  || (defined(DEBUG_HW_SERIAL2) && defined(DEBUG_HW_SERIAL3)) \
+  || (defined(DEBUG_HW_SERIAL2) && defined(DEBUG_SW_SERIAL)) \
+  || (defined(DEBUG_HW_SERIAL3) && defined(DEBUG_SW_SERIAL))
+#error You should define DEBUG_HW_SERIAL, DEBUG_HW_SERIAL1, DEBUG_HW_SERIAL2, DEBUG_HW_SERIAL3 or DEBUG_SW_SERIAL and only one of them!
+#endif
+
 #if defined(DEBUG_HW_SERIAL)
 #include <HardwareSerial.h>
 #define DEBUG_PORT      Serial
