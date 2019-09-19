@@ -21,6 +21,7 @@ public:
 	virtual uint8_t PutCh(uint8_t txbyte) override;
 	virtual uint8_t GetCh() override;
 	virtual void Prefill() override;
+	virtual uint32_t Available() override;
 
 private:
 	uint32_t m_BufferSize;

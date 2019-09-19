@@ -8,7 +8,7 @@
 #include "../private.h"
 #include "uart.h"
 
-#if defined(UART_BUFFERED)
+#if 0 //defined(UART_BUFFERED)
 
 #include <HardwareSerial.h>
 

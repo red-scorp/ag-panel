@@ -55,3 +55,29 @@ uint8_t uart_getch_debug() {
   return r;
 }
 #endif
+
+#include "AbstractUART.h"
+#include "HardwareUART.h"
+#include "BufferedUART.h"
+
+static AbstractUART *UART = nullptr;
+
+void uart_init() {
+#if defined(UART_DIRECT)
+  UART = new HardwareUART(UART_BAUD);
+#elif defined(UART_BUFFERED)
+  UART = new BufferedUART(new HardwareUART(UART_BAUD), UART_BUF_SIZE);
+#endif
+}
+
+uint8_t uart_putch(uint8_t txbyte) {
+  return UART->PutCh(txbyte);
+}
+
+uint8_t uart_getch() {
+  return UART->GetCh();
+}
+
+void uart_prefill() {
+  return UART->Prefill();
+}

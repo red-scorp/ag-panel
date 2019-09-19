@@ -46,10 +46,14 @@ uint8_t BufferedUART::PushBuffer() {
 }
 
 uint8_t BufferedUART::FillBuffer() {
-	while(m_BufferFilled < m_BufferSize) {
+	while(m_BufferFilled < m_BufferSize && m_UART->Available()) {
 		uint8_t rxbyte = m_UART->GetCh();
 		m_Buffer[m_BufferFilled++] = rxbyte;
 	}
 
+	return m_BufferFilled;
+}
+
+uint32_t BufferedUART::Available() {
 	return m_BufferFilled;
 }

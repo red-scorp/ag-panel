@@ -27,3 +27,7 @@ uint8_t HardwareUART::GetCh() {
 
 	return Serial.read();
 }
+
+uint32_t HardwareUART::Available() {
+	return Serial.available();
+}

@@ -9,7 +9,7 @@
 #include "uart.h"
 #include "../prot/prot.h"
 
-#if defined(UART_DIRECT)
+#if 0 //defined(UART_DIRECT)
 
 #include <HardwareSerial.h>
 
