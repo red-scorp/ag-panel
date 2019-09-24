@@ -8,26 +8,48 @@
 #include "HardwareUART.h"
 #include <HardwareSerial.h>
 
+/*!
+  \brief Initialization of hardware UART
+  Initialize hardware UART and set baud rate.
+  \return true
+ */
 bool HardwareUART::Init() {
-	Serial.begin(m_BaudRate);
-	return true;
+  Serial.begin(m_BaudRate);
+  return true;
 }
 
+/*!
+  \brief Deinitialization of hardware UART
+ */
 void HardwareUART::Exit() {
 }
 
-uint8_t HardwareUART::PutCh(uint8_t txbyte) {
-	return Serial.write(txbyte);
+/*!
+  \brief Write a character to hardware UART
+  \returns Number of bytes written to hardware UART
+ */
+uint8_t HardwareUART::PutCh(
+  uint8_t txbyte      /*!< Character to be writte to hardware UART */
+) {
+  return Serial.write(txbyte);
 }
 
+/*!
+  \brief Read a character from hardware UART
+  \returns Charecter (byte) read from hardware UART
+ */
 uint8_t HardwareUART::GetCh() {
-	while(Serial.available() == 0) {
-		yield();
-	}
+  while(Available() == 0) {
+    yield();
+  }
 
-	return Serial.read();
+  return Serial.read();
 }
 
+/*!
+  \brief Check number of bytes in hardware UART buffer
+  \returns number of bytes stored in buffer of hardware UART
+ */
 uint32_t HardwareUART::Available() {
-	return Serial.available();
+  return Serial.available();
 }

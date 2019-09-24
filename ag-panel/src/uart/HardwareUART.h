@@ -10,19 +10,23 @@
 #include "../private.h"
 #include "AbstractUART.h"
 
-//const auto DefaultBaudRate = 9600;
-
+/*!
+  \brief Hardware UART class
+  This is a class which implements hardware UART of arduino boards.
+ */
 class HardwareUART: public AbstractUART {
 
 public:
-	HardwareUART(uint32_t BaudRate = DefaultBaudRate): AbstractUART(BaudRate) {}
-//	virtual ~HardwareUART() {}
+  HardwareUART(
+    uint32_t BaudRate = DefaultBaudRate /*!< Baud rate of an UART */
+  ): AbstractUART(BaudRate) { Init(); }
+  virtual ~HardwareUART() { Exit(); }
 
-	virtual uint8_t PutCh(uint8_t txbyte) override;
-	virtual uint8_t GetCh() override;
-	virtual uint32_t Available() override;
+  virtual uint8_t PutCh(uint8_t txbyte) override;
+  virtual uint8_t GetCh() override;
+  virtual uint32_t Available() override;
 
 private:
-	virtual bool Init() override;
-	virtual void Exit() override;
+  bool Init();
+  void Exit();
 };
