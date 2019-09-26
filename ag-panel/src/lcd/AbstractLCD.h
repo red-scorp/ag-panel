@@ -1,6 +1,6 @@
 /*!
   \file AbstractLCD.h
-  \brief AG-Panel Project abstract LCD backlight interface
+  \brief AG-Panel Project abstract LCD interface
   \copyright (C) 2019 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@googlemail.com)
 */
@@ -13,7 +13,7 @@
 class AbstractLCD {
 
 public:
-  AbstractLCD(AbstractLCDBackligt * LCDBacklight = nullptr): m_LCDBacklight(LCDBacklight) { Init(); }
+  AbstractLCD(AbstractLCDBackligt *LCDBacklight = nullptr): m_LCDBacklight(LCDBacklight) { Init(); }
   virtual ~AbstractLCD() { Exit(); }
 
   virtual void SetBacklight(bool on) { m_LCDBacklight->SetBacklight(on); }

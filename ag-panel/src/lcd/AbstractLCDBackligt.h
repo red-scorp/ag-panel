@@ -1,6 +1,6 @@
 /*!
   \file AbstractLCDBackligt.h
-  \brief AG-Panel Project abstract backlight interface
+  \brief AG-Panel Project abstract LCD backlight interface
   \copyright (C) 2019 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@googlemail.com)
 */

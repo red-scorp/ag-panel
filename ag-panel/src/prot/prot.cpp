@@ -8,6 +8,8 @@
 #include "../private.h"
 #include "prot.h"
 
+#include "AbstractProtocol.h"
+
 /* Protocol Configuration sanity check */
 #if (!defined(PROT_LOSPANEL) && !defined(PROT_RAWSERIAL)) \
   || (defined(PROT_LOSPANEL) && defined(PROT_RAWSERIAL))

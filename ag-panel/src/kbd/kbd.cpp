@@ -8,6 +8,8 @@
 #include "../private.h"
 #include "kbd.h"
 
+#include "AbstractKeyboard.h"
+
 /* Keyboard Configuration sanity check */
 #if (!defined(KBD_NONE) && !defined(KBD_D_MATRIX) && !defined(KBD_A_JOYSTICK) \
   && !defined(KBD_A_KEYPAD) && !defined(KBD_ROTARY_ENCODER) && !defined(KBD_A_MATRIX) \
