@@ -34,10 +34,10 @@ public:
   AbstractLCDBackligt() { Init(); }
   virtual ~AbstractLCDBackligt() { Exit(); }
 
-  virtual void SetBacklight(bool on) = 0;
-  virtual void SetBacklight(uint8_t brightness) = 0;
-  virtual void SetBacklight(uint8_t red, uint8_t green, uint8_t blue) = 0;
-  virtual void SetBacklight(uint32_t rgb) = 0;
+  virtual void Set(bool on) = 0;
+  virtual void Set(uint8_t brightness) = 0;
+  virtual void Set(uint8_t red, uint8_t green, uint8_t blue) = 0;
+  virtual void Set(uint32_t rgb) = 0;
 
 protected:
 
