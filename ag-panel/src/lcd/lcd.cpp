@@ -12,6 +12,7 @@
 #include "../prot/prot.h"
 
 #include "AbstractLCD.h"
+#include "AbstractTextLCD.h"
 
 /* LCD Configuration sanity check */
 #if (!defined(LCD_TEXT_4BIT) && !defined(LCD_TEXT_8BIT) && !defined(LCD_TEXT_I2C) && !defined(LCD_TEXT_I2C_RGB)) \
