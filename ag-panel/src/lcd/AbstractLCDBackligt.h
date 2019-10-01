@@ -9,19 +9,19 @@
 
 #include "../private.h"
 
-inline uint32_t RGBColor2Uint(uint8_t red, uint8_t green, uint8_t blue) {
+constexpr inline uint32_t RGBColor2Uint(uint8_t red, uint8_t green, uint8_t blue) {
   return (uint32_t(red) & 0xFF) << 0 | (uint32_t(green) & 0xFF) << 8 | (uint32_t(blue) & 0xFF) << 16;
 }
 
-inline uint8_t RGBUint2Red(uint32_t uint) {
+constexpr inline uint8_t RGBUint2Red(uint32_t uint) {
   return (uint >> 0) & 0xFF;
 }
 
-inline uint8_t RGBUint2Green(uint32_t uint) {
+constexpr inline uint8_t RGBUint2Green(uint32_t uint) {
   return (uint >> 8) & 0xFF;
 }
 
-inline uint8_t RGBUint2Blue(uint32_t uint) {
+constexpr inline uint8_t RGBUint2Blue(uint32_t uint) {
   return (uint >> 16) & 0xFF;
 }
 
