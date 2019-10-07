@@ -9,6 +9,14 @@
 
 #include "../private.h"
 
+const uint8_t KeyNone = 0;            /* No key is pressed */
+
+const uint8_t KeyDefaultUp = 1;       /* KeyMatrix_1_1=Up */
+const uint8_t KeyDefaultDown = 2;     /* KeyMatrix_1_2=Down */
+const uint8_t KeyDefaultLeft = 3;     /* KeyMatrix_1_3=Left */
+const uint8_t KeyDefaultRight = 4;    /* KeyMatrix_1_4=Right */
+const uint8_t KeyDefaultSelect = 5;   /* KeyMatrix_2_1=Enter */
+
 class AbstractKeyboard {
 
 public:
