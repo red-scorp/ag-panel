@@ -10,16 +10,18 @@
 #include "../private.h"
 #include "AbstractKeyboard.h"
 
+const uint8_t DefaultAnalogKeypadPin = A0;
+
 class AnalogKeypadKeyboard: public AbstractKeyboard {
 
 public:
-  AnalogKeypadKeyboard(uint8_t Pin = A0): AbstractKeyboard(), m_Pin(Pin) { Init(); }
+  AnalogKeypadKeyboard(uint8_t AnalogKeypadPin = DefaultAnalogKeypadPin): AbstractKeyboard(), m_AnalogKeypadPin(AnalogKeypadPin) { Init(); }
   virtual ~AnalogKeypadKeyboard() { Exit(); }
 
   virtual uint8_t GetKey();
 
 protected:
-  uint8_t m_Pin;
+  uint8_t m_AnalogKeypadPin;
 
 private:
   bool Init();
