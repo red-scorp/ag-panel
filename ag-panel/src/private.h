@@ -10,4 +10,6 @@
 
 #include <Arduino.h>
 
+#undef UART /* Requered to compile for DUE board */
+
 #endif//PRIVATE_H
