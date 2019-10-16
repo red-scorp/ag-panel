@@ -9,7 +9,7 @@
 #include "../../config.h"
 #include "AnalogJoystickKeyboard.h"
 
-/* TODO: Chage KBD_X_CENTER and KBD_THRESHOLD macros to constants */
+/* TODO: Change KBD_X_CENTER and KBD_THRESHOLD macros to constants */
 #define KBD_X_CENTER        512
 #define KBD_Y_CENTER        512
 #define KBD_THRESHOLD       50

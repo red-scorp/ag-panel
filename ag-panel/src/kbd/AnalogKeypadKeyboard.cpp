@@ -9,7 +9,7 @@
 #include "../../config.h"
 #include "AnalogKeypadKeyboard.h"
 
-/* TODO: Chage all KBD_DATA_* macros to constants */
+/* TODO: Change all KBD_DATA_* macros to constants */
 #define KBD_DATA_NONE_MIN   700
 #define KBD_DATA_NONE_MAX   1023
 #define KBD_DATA_UP_MIN     50
