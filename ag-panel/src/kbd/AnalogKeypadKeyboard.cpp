@@ -9,6 +9,20 @@
 #include "../../config.h"
 #include "AnalogKeypadKeyboard.h"
 
+/* TODO: Chage all KBD_DATA_* macros to constants */
+#define KBD_DATA_NONE_MIN   700
+#define KBD_DATA_NONE_MAX   1023
+#define KBD_DATA_UP_MIN     50
+#define KBD_DATA_UP_MAX     150
+#define KBD_DATA_DOWN_MIN   150
+#define KBD_DATA_DOWN_MAX   350
+#define KBD_DATA_LEFT_MIN   350
+#define KBD_DATA_LEFT_MAX   550
+#define KBD_DATA_RIGHT_MIN  0
+#define KBD_DATA_RIGHT_MAX  50
+#define KBD_DATA_SELECT_MIN 550
+#define KBD_DATA_SELECT_MAX 700
+
 bool AnalogKeypadKeyboard::Init() {
   /* no initialization needed for analog pins */
   return true;
@@ -18,7 +32,9 @@ void AnalogKeypadKeyboard::Exit() {
 }
 
 uint8_t AnalogKeypadKeyboard::GetKey() {
-  uint16_t data = analogRead(m_AnalogKeypadPin);
+
+  uint16_t data = analogRead(m_Pin);
+
   if(data >= KBD_DATA_UP_MIN && data < KBD_DATA_UP_MAX)
     return KeyDefaultUp;
   if(data >= KBD_DATA_DOWN_MIN && data < KBD_DATA_DOWN_MAX)

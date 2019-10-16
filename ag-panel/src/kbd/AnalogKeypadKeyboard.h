@@ -15,13 +15,13 @@ const uint8_t DefaultAnalogKeypadPin = A0;
 class AnalogKeypadKeyboard: public AbstractKeyboard {
 
 public:
-  AnalogKeypadKeyboard(uint8_t AnalogKeypadPin = DefaultAnalogKeypadPin): AbstractKeyboard(), m_AnalogKeypadPin(AnalogKeypadPin) { Init(); }
+  AnalogKeypadKeyboard(uint8_t Pin = DefaultAnalogKeypadPin): AbstractKeyboard(), m_Pin(Pin) { Init(); }
   virtual ~AnalogKeypadKeyboard() { Exit(); }
 
   virtual uint8_t GetKey();
 
 protected:
-  uint8_t m_AnalogKeypadPin;
+  uint8_t m_Pin;
 
 private:
   bool Init();

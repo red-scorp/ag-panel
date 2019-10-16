@@ -9,6 +9,8 @@
 #include "kbd.h"
 
 #include "AbstractKeyboard.h"
+#include "AnalogKeypadKeyboard.h"
+#include "AnalogJoystickKeyboard.h"
 
 /* Keyboard Configuration sanity check */
 #if (!defined(KBD_NONE) && !defined(KBD_D_MATRIX) && !defined(KBD_A_JOYSTICK) \
