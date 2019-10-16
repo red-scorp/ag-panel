@@ -9,6 +9,7 @@
 #include "kbd.h"
 
 #include "AbstractKeyboard.h"
+#include "NoneKeyboard.h"
 #include "AnalogKeypadKeyboard.h"
 #include "AnalogJoystickKeyboard.h"
 
