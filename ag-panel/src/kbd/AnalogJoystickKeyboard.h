@@ -20,7 +20,7 @@ public:
   AnalogJoystickKeyboard(uint8_t XPin = DefaultAnalogJoystickXPin, uint8_t YPin = DefaultAnalogJoystickYPin, uint8_t ButtonPin = DefaultAnalogJoystickButtonPin): AbstractKeyboard(), m_XPin(XPin), m_YPin(YPin), m_ButtonPin(ButtonPin) { Init(); }
   virtual ~AnalogJoystickKeyboard() { Exit(); }
 
-  virtual uint8_t GetKey();
+  virtual uint8_t GetKey() override;
 
 protected:
   uint8_t m_XPin;

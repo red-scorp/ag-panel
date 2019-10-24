@@ -18,7 +18,7 @@ public:
   AnalogKeypadKeyboard(uint8_t Pin = DefaultAnalogKeypadPin): AbstractKeyboard(), m_Pin(Pin) { Init(); }
   virtual ~AnalogKeypadKeyboard() { Exit(); }
 
-  virtual uint8_t GetKey();
+  virtual uint8_t GetKey() override;
 
 protected:
   uint8_t m_Pin;
