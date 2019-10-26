@@ -1,5 +1,5 @@
 /*!
-  \file AnalogKeypadKeyboard.h
+  \file AnalogKeypad.h
   \brief AG-Panel Project analog keypad keyboard interface
   \copyright (C) 2019 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@googlemail.com)
