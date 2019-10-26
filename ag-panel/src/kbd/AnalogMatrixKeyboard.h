@@ -10,12 +10,12 @@
 #include "../private.h"
 #include "AbstractKeyboard.h"
 
-const uint8_t DefaultAnalogMatrixPin = A0;
+const uint8_t DefaultAnalogMatrixDataPin = A0;
 
 class AnalogMatrixKeyboard: public AbstractKeyboard {
 
 public:
-  AnalogMatrixKeyboard(uint8_t Columns, uint8_t Raws, const uint16_t *Array, uint8_t Pin = DefaultAnalogMatrixPin): AbstractKeyboard(), m_Columns(Columns), m_Raws(Raws), m_Array(Array), m_Pin(Pin) { Init(); }
+  AnalogMatrixKeyboard(uint8_t Columns, uint8_t Raws, const uint16_t *DataArray, uint8_t DataPin = DefaultAnalogMatrixDataPin): AbstractKeyboard(), m_Columns(Columns), m_Raws(Raws), m_DataArray(DataArray), m_DataPin(DataPin) { Init(); }
   virtual ~AnalogMatrixKeyboard() { Exit(); }
 
   virtual uint8_t GetKey() override;
@@ -23,8 +23,8 @@ public:
 protected:
   uint8_t m_Columns;
   uint8_t m_Raws;
-  const uint16_t *m_Array;
-  uint8_t m_Pin;
+  const uint16_t *m_DataArray;
+  uint8_t m_DataPin;
 
 private:
   bool Init();

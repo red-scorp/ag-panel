@@ -33,7 +33,7 @@ void AnalogKeypadKeyboard::Exit() {
 
 uint8_t AnalogKeypadKeyboard::GetKey() {
 
-  uint16_t data = analogRead(m_Pin);
+  uint16_t data = analogRead(m_DataPin);
 
   if(data >= KBD_DATA_UP_MIN && data < KBD_DATA_UP_MAX)
     return KeyDefaultUp;
