@@ -8,7 +8,7 @@
 #include "../private.h"
 #include "kbd.h"
 
-#if defined(KBD_NONE)
+#if 0 //defined(KBD_NONE)
 
 /*! \brief Initialization of keyboard
  */

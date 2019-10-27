@@ -8,7 +8,7 @@
 #include "../private.h"
 #include "kbd.h"
 
-#if defined(KBD_A_JOYSTICK)
+#if 0 //defined(KBD_A_JOYSTICK)
 
 #if !defined(KBD_PIN_X) || !defined(KBD_PIN_Y) \
   || !defined(KBD_PIN_BTN)

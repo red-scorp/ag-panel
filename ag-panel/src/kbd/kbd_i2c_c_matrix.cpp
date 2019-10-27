@@ -8,7 +8,7 @@
 #include "../private.h"
 #include "kbd.h"
 
-#if defined(KBD_I2C_C_MATRIX)
+#if 0 //defined(KBD_I2C_C_MATRIX)
 
 #if !defined(KBD_I2C_ADDR)
 #error You should define KBD_I2C_ADDR for KBD_I2C_C_MATRIX!

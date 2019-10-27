@@ -25,7 +25,7 @@
  *  - 0x3? => KeyMatrix_4_?
  *  - 0x4? => KeyMatrix_5_?
  */
-#define KBD_KEY(r, c)       ((c << 4) | (1 << r))
+#define KBD_KEY(r, c)       (((c) << 4) | (1 << (r)))
 
 #define KBD_KEY_UP          KBD_KEY(0, 0)  /* KeyMatrix_1_1=Up */
 #define KBD_KEY_DOWN        KBD_KEY(0, 1)  /* KeyMatrix_1_2=Down */

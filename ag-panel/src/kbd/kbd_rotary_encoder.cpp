@@ -8,7 +8,7 @@
 #include "../private.h"
 #include "kbd.h"
 
-#if defined(KBD_ROTARY_ENCODER)
+#if 0 //defined(KBD_ROTARY_ENCODER)
 
 #if !defined(KBD_PIN_D1) || !defined(KBD_PIN_D2) \
   || !defined(KBD_PIN_BTN)

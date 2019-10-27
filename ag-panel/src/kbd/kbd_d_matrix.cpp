@@ -8,7 +8,7 @@
 #include "../private.h"
 #include "kbd.h"
 
-#if defined(KBD_D_MATRIX)
+#if 0 //defined(KBD_D_MATRIX)
 
 #if !defined(KBD_ROWS) || !defined(KBD_COLS)
 #error You should define KBD_ROWS and KBD_COLS for KBD_D_MATRIX!

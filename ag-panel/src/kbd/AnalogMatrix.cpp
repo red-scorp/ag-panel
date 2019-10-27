@@ -32,8 +32,8 @@ uint8_t AnalogMatrix::GetKey() {
 
   uint16_t data = analogRead(m_DataPin);
 
-  for(uint8_t c = 0 ; c < m_Columns; c++)
-    for(uint8_t r = 0 ; r < m_Rows; r++) {
+  for(uint8_t c = 0; c < m_Columns; c++)
+    for(uint8_t r = 0; r < m_Rows; r++) {
       if(data >= m_DataArray[r * m_Columns + c] - KBD_DATA_TOLERANCE &&
         data <= m_DataArray[r * m_Columns + c] + KBD_DATA_TOLERANCE) {
         return r * m_Columns + c + 1;

@@ -8,7 +8,7 @@
 #include "../private.h"
 #include "kbd.h"
 
-#if defined(KBD_A_KEYPAD)
+#if 0 //defined(KBD_A_KEYPAD)
 
 #if !defined(KBD_PIN_DATA)
 #error You should define LCD_PIN_DATA for KBD_A_KEYPAD!
