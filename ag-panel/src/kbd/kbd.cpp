@@ -15,6 +15,7 @@
 #include "AnalogMatrix.h"
 #include "RotaryEncoder.h"
 #include "I2CCapacitiveMatrix.h"
+#include "DigitalMatrix.h"
 
 /* Keyboard Configuration sanity check */
 #if (!defined(KBD_NONE) && !defined(KBD_D_MATRIX) && !defined(KBD_A_JOYSTICK) \
