@@ -13,6 +13,7 @@
 #include "AnalogKeypad.h"
 #include "AnalogJoystick.h"
 #include "AnalogMatrix.h"
+#include "RotaryEncoder.h"
 
 /* Keyboard Configuration sanity check */
 #if (!defined(KBD_NONE) && !defined(KBD_D_MATRIX) && !defined(KBD_A_JOYSTICK) \
