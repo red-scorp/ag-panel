@@ -16,7 +16,7 @@ public:
   NoneKeyboard(): AbstractKeyboard() { Init(); }
   virtual ~NoneKeyboard() { Exit(); }
 
-  virtual uint8_t GetKey();
+  virtual uint8_t GetKey() override;
 
 protected:
 
