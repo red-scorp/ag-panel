@@ -13,7 +13,7 @@
 class AbstractTextLCD: public AbstractLCD {
 
 public:
-  AbstractTextLCD(AbstractLCDBackligt *LCDBacklight = nullptr): AbstractLCD(LCDBacklight) { Init(); }
+  AbstractTextLCD(AbstractBacklight *Backlight = nullptr): AbstractLCD(Backlight) { Init(); }
   virtual ~AbstractTextLCD() { Exit(); }
 
   virtual void Write(uint8_t byte) = 0;

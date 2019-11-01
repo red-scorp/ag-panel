@@ -1,6 +1,6 @@
 /*!
-  \file AbstractLCDBackligt.h
-  \brief AG-Panel Project abstract LCD backlight interface
+  \file AbstractBacklight.h
+  \brief AG-Panel Project abstract backlight interface
   \copyright (C) 2019 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@googlemail.com)
 */
@@ -25,14 +25,14 @@ constexpr inline uint8_t RGBUint2Blue(uint32_t uint) {
   return (uint >> 16) & 0xFF;
 }
 
-const uint8_t DefaultLCDBacklightBrightness = 255;
-const uint32_t DefaultLCDBacklightRGB = RGBColor2Uint(0, 0, 255);
+const uint8_t DefaultBacklightBrightness = 255;
+const uint32_t DefaultBacklightRGB = RGBColor2Uint(0, 0, 255);
 
-class AbstractLCDBackligt {
+class AbstractBacklight {
 
 public:
-  AbstractLCDBackligt() { Init(); }
-  virtual ~AbstractLCDBackligt() { Exit(); }
+  AbstractBacklight() { Init(); }
+  virtual ~AbstractBacklight() { Exit(); }
 
   virtual void Set(bool on) = 0;
   virtual void Set(uint8_t brightness) = 0;
