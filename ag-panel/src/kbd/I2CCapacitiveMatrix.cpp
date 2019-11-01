@@ -10,10 +10,10 @@
 #include "I2CCapacitiveMatrix.h"
 
 #include <Adafruit_MPR121.h>
-Adafruit_MPR121 kbd; /* TODO: Use m_I2CAddress somewhere? */
+static Adafruit_MPR121 s_I2CKbd; /* TODO: Use m_I2CAddress somewhere? */
 
 bool I2CCapacitiveMatrix::Init() {
-  kbd.begin();
+  s_I2CKbd.begin();
   return true;
 }
 
@@ -25,7 +25,7 @@ uint8_t I2CCapacitiveMatrix::GetKey() {
   const uint16_t watch_mask = (uint16_t)(1l << (m_Columns * m_Rows + 1)) - 1; /* watch only lower CxR bits, ignore rest */
   static uint16_t last_touched = 0;
 
-  uint16_t touched = kbd.touched() & watch_mask;
+  uint16_t touched = s_I2CKbd.touched() & watch_mask;
   uint16_t pressed = (touched ^ last_touched) & touched;
   uint16_t released = (touched ^ last_touched) & last_touched;
 

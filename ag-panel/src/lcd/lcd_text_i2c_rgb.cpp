@@ -17,57 +17,57 @@
 
 #include <Adafruit_RGBLCDShield.h>
 
-Adafruit_RGBLCDShield rgb_lcd;
+Adafruit_RGBLCDShield g_I2CRGBLCD;
 
 /*! \brief Initialization of LCD display itself
  */
 void lcd_init_display() {
-  rgb_lcd.begin(LCD_ROWS, LCD_COLS);
+  g_I2CRGBLCD.begin(LCD_ROWS, LCD_COLS);
 }
 
 /*! \brief Initialization of LCD display backlight LED
  */
 void lcd_init_backlight() {
-  rgb_lcd.setBacklight(LCD_BACKLIGHT_COLOR);
+  g_I2CRGBLCD.setBacklight(LCD_BACKLIGHT_COLOR);
 }
 
 /*! \brief Set brightness of LCD display backlight LED
  */
 void lcd_set_backlight(uint8_t brightness) {
   if(brightness == 0)
-    rgb_lcd.setBacklight(0); /* does it work? */
+    g_I2CRGBLCD.setBacklight(0); /* does it work? */
   else
-    rgb_lcd.setBacklight(LCD_BACKLIGHT_COLOR);
+    g_I2CRGBLCD.setBacklight(LCD_BACKLIGHT_COLOR);
 }
 
 /*! \brief Write character to LCD display directly
  */
 void lcd_write_display(uint8_t txbyte) {
-  rgb_lcd.write(txbyte);
+  g_I2CRGBLCD.write(txbyte);
 }
 
 /*! \brief Send command to LCD display directly
  */
 void lcd_command_display(uint8_t txbyte) {
-  rgb_lcd.command(txbyte);
+  g_I2CRGBLCD.command(txbyte);
 }
 
 /*! \brief Clear LCD display
  */
 void lcd_clear_display() {
-  rgb_lcd.clear();
+  g_I2CRGBLCD.clear();
 }
 
 /*! \brief Set cursor to specific positon on LCD display
  */
 void lcd_set_cursor(uint8_t row, uint8_t col) {
-  rgb_lcd.setCursor(row, col);
+  g_I2CRGBLCD.setCursor(row, col);
 }
 
 /*! \brief Print a string on LCD display
  */
 void lcd_print_string(const char *str) {
-  rgb_lcd.print(str);
+  g_I2CRGBLCD.print(str);
 }
 
 #endif//LCD_TEXT_I2C_RGB

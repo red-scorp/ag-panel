@@ -10,7 +10,7 @@
 #include "I2CRGBKeypad.h"
 
 #include <Adafruit_RGBLCDShield.h>
-extern Adafruit_RGBLCDShield rgb_lcd; /* defined in lcd_i2c_rgb.cpp */
+extern Adafruit_RGBLCDShield g_I2CRGBLCD; /* defined in lcd_i2c_rgb.cpp */
 
 bool I2CRGBKeypad::Init() {
   /* The RGB Keypad is already initialized in lcd_i2c_rgb.cpp */
@@ -22,7 +22,7 @@ void I2CRGBKeypad::Exit() {
 
 uint8_t I2CRGBKeypad::GetKey() {
 
-  uint8_t buttons = rgb_lcd.readButtons();
+  uint8_t buttons = g_I2CRGBLCD.readButtons();
 
   if(buttons & BUTTON_UP)
     return KeyDefaultUp;
