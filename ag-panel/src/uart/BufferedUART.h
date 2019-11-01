@@ -13,7 +13,7 @@
 /*!
   \brief Default buffer size in bytes for buffered UART if no other value is given.
  */
-const auto DefaultBufferSize = 512;
+const auto DefaultBufferedUARTBufferSize = 512;
 
 /*!
   \brief Hardware UART class
@@ -23,9 +23,9 @@ const auto DefaultBufferSize = 512;
 class BufferedUART: public AbstractUART {
 
 public:
-	BufferedUART(
+  BufferedUART(
     AbstractUART *UART,     /*!< Real UART for I/O operations */
-    uint32_t BufferSize = DefaultBufferSize /*!< Size of UART Buffer */
+    uint32_t BufferSize = DefaultBufferedUARTBufferSize /*!< Size of UART Buffer */
   ): AbstractUART(), m_BufferSize(BufferSize), m_UART(UART), m_Buffer(nullptr), m_BufferFilled(0) { Init(); }
   virtual ~BufferedUART() { Exit(); }
 

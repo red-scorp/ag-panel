@@ -11,8 +11,16 @@
 #include "../uart/uart.h"
 #include "../prot/prot.h"
 
+
+#include "AbstractBacklight.h"
 #include "AbstractLCD.h"
 #include "AbstractTextLCD.h"
+
+#include "NoneBacklight.h"
+#include "BinaryBacklight.h"
+#include "PWMBacklight.h"
+#include "RGBPWMBacklight.h"
+#include "RGBBinaryBacklight.h"
 
 /* LCD Configuration sanity check */
 #if (!defined(LCD_TEXT_4BIT) && !defined(LCD_TEXT_8BIT) && !defined(LCD_TEXT_I2C) && !defined(LCD_TEXT_I2C_RGB)) \

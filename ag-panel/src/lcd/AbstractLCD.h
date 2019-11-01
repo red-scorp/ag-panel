@@ -16,10 +16,10 @@ public:
   AbstractLCD(AbstractBacklight *Backlight = nullptr): m_Backlight(Backlight) { Init(); }
   virtual ~AbstractLCD() { Exit(); }
 
-  virtual void SetBacklight(bool on) { m_Backlight->Set(on); }
-  virtual void SetBacklight(uint8_t brightness) { m_Backlight->Set(brightness); }
-  virtual void SetBacklight(uint8_t red, uint8_t green, uint8_t blue) { m_Backlight->Set(red, green, blue); }
-  virtual void SetBacklight(uint32_t rgb) { m_Backlight->Set(rgb); }
+  virtual void SetBacklight(bool on) { m_Backlight->SetOn(on); }
+  virtual void SetBacklight(uint8_t brightness) { m_Backlight->SetBrightness(brightness); }
+  virtual void SetBacklight(uint8_t red, uint8_t green, uint8_t blue) { m_Backlight->SetRGB(red, green, blue); }
+  virtual void SetBacklight(uint32_t rgb) { m_Backlight->SetRGB(rgb); }
 
   virtual void Clear() = 0;
   virtual void SetCursor(uint8_t row, uint8_t col) = 0;
