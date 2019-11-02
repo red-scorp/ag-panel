@@ -9,7 +9,7 @@
 #include "../private.h"
 #include "lcd.h"
 
-#if defined(LCD_TEXT_I2C)
+#if 0 //defined(LCD_TEXT_I2C)
 
 #if !defined(LCD_I2C_ADDR)
 #error You should define LCD_I2C_ADDR for LCD_TEXT_I2C!

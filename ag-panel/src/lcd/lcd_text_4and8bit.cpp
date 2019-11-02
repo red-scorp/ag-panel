@@ -9,7 +9,7 @@
 #include "../private.h"
 #include "lcd.h"
 
-#if defined(LCD_TEXT_4BIT) || defined(LCD_TEXT_8BIT)
+#if 0 //defined(LCD_TEXT_4BIT) || defined(LCD_TEXT_8BIT)
 
 #if (!defined(LCD_BACKLIGHT_NONE) && !defined(LCD_BACKLIGHT_ONOFF) && !defined(LCD_BACKLIGHT_PWM)) \
   || (defined(LCD_BACKLIGHT_NONE) && defined(LCD_BACKLIGHT_ONOFF)) \
