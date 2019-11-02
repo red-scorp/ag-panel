@@ -16,7 +16,7 @@ class RGBBinaryBacklight: public AbstractBacklight {
 
 public:
   RGBBinaryBacklight(uint8_t RedPin, uint8_t GreenPin, uint8_t BluePin, uint32_t DefaultColor = DefaultRGBBinaryBacklightDefaultColor): AbstractBacklight(), m_RedPin(RedPin), m_GreenPin(GreenPin), m_BluePin(BluePin), m_DefaultColor(DefaultColor) { Init(); }
-  virtual ~RGBBinaryBacklight() { Exit(); }
+  virtual ~RGBBinaryBacklight() override { Exit(); }
 
   virtual void SetOn(bool on) override;
   virtual void SetBrightness(uint8_t brightness) override;

@@ -18,7 +18,7 @@ class RotaryEncoder: public AbstractKeyboard {
 
 public:
   RotaryEncoder(uint8_t D1Pin = DefaultRotaryEncoderD1Pin, uint8_t D2Pin = DefaultRotaryEncoderD1Pin, uint8_t ButtonPin = DefaultRotaryEncoderButtonPin): AbstractKeyboard(), m_D1Pin(D1Pin), m_D2Pin(D2Pin), m_ButtonPin(ButtonPin) { Init(); }
-  virtual ~RotaryEncoder() { Exit(); }
+  virtual ~RotaryEncoder() override { Exit(); }
 
   virtual uint8_t GetKey() override;
 

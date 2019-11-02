@@ -14,7 +14,7 @@ class AbstractTextLCD: public AbstractLCD {
 
 public:
   AbstractTextLCD(AbstractBacklight *Backlight = nullptr): AbstractLCD(Backlight) { Init(); }
-  virtual ~AbstractTextLCD() { Exit(); }
+  virtual ~AbstractTextLCD() override { Exit(); }
 
   using AbstractLCD::SetBacklight;
   using AbstractLCD::Clear;

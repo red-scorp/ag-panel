@@ -16,7 +16,7 @@ class AnalogKeypad: public AbstractKeyboard {
 
 public:
   AnalogKeypad(uint8_t DataPin = DefaultAnalogKeypadDataPin): AbstractKeyboard(), m_DataPin(DataPin) { Init(); }
-  virtual ~AnalogKeypad() { Exit(); }
+  virtual ~AnalogKeypad() override { Exit(); }
 
   virtual uint8_t GetKey() override;
 

@@ -20,7 +20,7 @@ public:
   HardwareUART(
     uint32_t BaudRate = DefaultBaudRate /*!< Baud rate of an UART */
   ): AbstractUART(BaudRate) { Init(); }
-  virtual ~HardwareUART() { Exit(); }
+  virtual ~HardwareUART() override { Exit(); }
 
   virtual uint8_t PutCh(uint8_t txbyte) override;
   virtual uint8_t GetCh() override;

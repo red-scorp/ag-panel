@@ -14,7 +14,7 @@ class I2CRGBKeypad: public AbstractKeyboard {
 
 public:
   I2CRGBKeypad(): AbstractKeyboard() { Init(); }
-  virtual ~I2CRGBKeypad() { Exit(); }
+  virtual ~I2CRGBKeypad() override { Exit(); }
 
   virtual uint8_t GetKey() override;
 

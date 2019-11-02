@@ -16,7 +16,7 @@ class I2CRGBTextLCD: public AbstractTextLCD {
 
 public:
   I2CRGBTextLCD(uint8_t Columns, uint8_t Rows, uint8_t I2CAddress, uint32_t DefaultColor = DefaultI2CRGBTextLCDDefaultColor): AbstractTextLCD(nullptr), m_Columns(Columns), m_Rows(Rows), m_I2CAddress(I2CAddress), m_DefaultColor(DefaultColor) { Init(); }
-  virtual ~I2CRGBTextLCD() { Exit(); }
+  virtual ~I2CRGBTextLCD() override { Exit(); }
 
   virtual void SetBacklight(bool on) override;
   virtual void SetBacklight(uint8_t brightness) override;

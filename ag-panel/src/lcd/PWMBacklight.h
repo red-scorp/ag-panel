@@ -16,7 +16,7 @@ class PWMBacklight: public AbstractBacklight {
 
 public:
   PWMBacklight(uint8_t LEDPin, uint8_t ScaleBrightness = DefaultPWMBacklightScaleBrightness): AbstractBacklight(), m_LEDPin(LEDPin), m_ScaleBrightness(ScaleBrightness) { Init(); }
-  virtual ~PWMBacklight() { Exit(); }
+  virtual ~PWMBacklight() override { Exit(); }
 
   virtual void SetOn(bool on) override;
   virtual void SetBrightness(uint8_t brightness) override;

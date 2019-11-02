@@ -14,7 +14,7 @@ class I2CTextLCD: public AbstractTextLCD {
 
 public:
   I2CTextLCD(uint8_t Columns, uint8_t Rows, uint8_t I2CAddress): AbstractTextLCD(nullptr), m_Columns(Columns), m_Rows(Rows), m_I2CAddress(I2CAddress) { Init(); }
-  virtual ~I2CTextLCD() { Exit(); }
+  virtual ~I2CTextLCD() override { Exit(); }
 
   virtual void SetBacklight(bool on) override;
   virtual void SetBacklight(uint8_t brightness) override;

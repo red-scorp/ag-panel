@@ -16,7 +16,7 @@ class I2CCapacitiveMatrix: public AbstractKeyboard {
 
 public:
   I2CCapacitiveMatrix(uint8_t Columns, uint8_t Rows, uint8_t I2CAddress = DefaultI2CCapacitiveMatrixI2CAddress): AbstractKeyboard(), m_Columns(Columns), m_Rows(Rows), m_I2CAddress(I2CAddress) { Init(); }
-  virtual ~I2CCapacitiveMatrix() { Exit(); }
+  virtual ~I2CCapacitiveMatrix() override { Exit(); }
 
   virtual uint8_t GetKey() override;
 

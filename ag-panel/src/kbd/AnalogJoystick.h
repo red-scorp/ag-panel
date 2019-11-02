@@ -18,7 +18,7 @@ class AnalogJoystick: public AbstractKeyboard {
 
 public:
   AnalogJoystick(uint8_t XPin = DefaultAnalogJoystickXPin, uint8_t YPin = DefaultAnalogJoystickYPin, uint8_t ButtonPin = DefaultAnalogJoystickButtonPin): AbstractKeyboard(), m_XPin(XPin), m_YPin(YPin), m_ButtonPin(ButtonPin) { Init(); }
-  virtual ~AnalogJoystick() { Exit(); }
+  virtual ~AnalogJoystick() override { Exit(); }
 
   virtual uint8_t GetKey() override;
 

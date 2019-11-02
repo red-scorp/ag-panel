@@ -16,7 +16,7 @@ class AnalogMatrix: public AbstractKeyboard {
 
 public:
   AnalogMatrix(uint8_t Columns, uint8_t Rows, const uint16_t *DataArray, uint8_t DataPin = DefaultAnalogMatrixDataPin): AbstractKeyboard(), m_Columns(Columns), m_Rows(Rows), m_DataArray(DataArray), m_DataPin(DataPin) { Init(); }
-  virtual ~AnalogMatrix() { Exit(); }
+  virtual ~AnalogMatrix() override { Exit(); }
 
   virtual uint8_t GetKey() override;
 
