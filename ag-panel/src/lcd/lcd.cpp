@@ -22,6 +22,10 @@
 #include "RGBPWMBacklight.h"
 #include "RGBBinaryBacklight.h"
 
+#include "PPITextLCD.h"
+#include "I2CTextLCD.h"
+#include "I2CRGBTextLCD.h"
+
 /* LCD Configuration sanity check */
 #if (!defined(LCD_TEXT_4BIT) && !defined(LCD_TEXT_8BIT) && !defined(LCD_TEXT_I2C) && !defined(LCD_TEXT_I2C_RGB)) \
   || (defined(LCD_TEXT_4BIT) && defined(LCD_TEXT_8BIT)) \

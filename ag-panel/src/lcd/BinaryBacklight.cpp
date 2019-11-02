@@ -25,5 +25,5 @@ void BinaryBacklight::SetBrightness(uint8_t brightness) {
 }
 
 void BinaryBacklight::SetRGB(uint8_t red, uint8_t green, uint8_t blue) {
-  SetOn(red > 0 || green >> 0 || blue > 0? true: false);
+  SetOn(red > 0 || green > 0 || blue > 0? true: false);
 }

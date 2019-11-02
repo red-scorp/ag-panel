@@ -53,7 +53,7 @@ LiquidCrystal lcd(LCD_PIN_RS, LCD_PIN_RW, LCD_PIN_ENABLE,
 /*! \brief Initialization of LCD display itself
  */
 void lcd_init_display() {
-  lcd.begin(LCD_ROWS, LCD_COLS);
+  lcd.begin(LCD_COLS, LCD_ROWS);
 }
 
 /*! \brief Initialization of LCD display backlight LED

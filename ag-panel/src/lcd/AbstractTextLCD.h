@@ -16,6 +16,11 @@ public:
   AbstractTextLCD(AbstractBacklight *Backlight = nullptr): AbstractLCD(Backlight) { Init(); }
   virtual ~AbstractTextLCD() { Exit(); }
 
+  using AbstractLCD::SetBacklight;
+  using AbstractLCD::Clear;
+  using AbstractLCD::SetCursor;
+  using AbstractLCD::Print;
+
   virtual void Write(uint8_t byte) = 0;
   virtual void Command(uint8_t byte) = 0;
 

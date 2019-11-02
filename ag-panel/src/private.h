@@ -12,4 +12,6 @@
 
 #undef UART /* Requered to compile for DUE board */
 
+const uint8_t InvalidPin = 255;
+
 #endif//PRIVATE_H

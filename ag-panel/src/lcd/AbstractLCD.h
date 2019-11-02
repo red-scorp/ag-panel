@@ -22,8 +22,8 @@ public:
   virtual void SetBacklight(uint32_t rgb) { m_Backlight->SetRGB(rgb); }
 
   virtual void Clear() = 0;
-  virtual void SetCursor(uint8_t row, uint8_t col) = 0;
-  virtual void Print(char *str) = 0;
+  virtual void SetCursor(uint8_t column, uint8_t row) = 0;
+  virtual void Print(const char *str) = 0;
 
 protected:
   AbstractBacklight * m_Backlight;
