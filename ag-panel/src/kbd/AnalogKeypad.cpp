@@ -23,14 +23,26 @@
 #define KBD_DATA_SELECT_MIN 550
 #define KBD_DATA_SELECT_MAX 700
 
+/*!
+  \brief Initialization of analog keypad
+  \returns true
+ */
 bool AnalogKeypad::Init() {
   /* no initialization needed for analog pins */
   return true;
 }
 
+/*!
+  \brief Deinitialisation of analog keypad class
+ */
 void AnalogKeypad::Exit() {
 }
 
+/*!
+  \brief Get a key of analog keypad
+  Reads analog pin and deduces what key has been pressed.
+  \returns #KeyNone if no new actions detected, else a key code
+ */
 uint8_t AnalogKeypad::GetKey() {
 
   uint16_t data = analogRead(m_DataPin);

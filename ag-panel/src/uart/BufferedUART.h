@@ -26,7 +26,12 @@ public:
   BufferedUART(
     AbstractUART *UART,     /*!< Real UART for I/O operations */
     uint32_t BufferSize = DefaultBufferedUARTBufferSize /*!< Size of UART Buffer */
-  ): AbstractUART(), m_BufferSize(BufferSize), m_UART(UART), m_Buffer(nullptr), m_BufferFilled(0) { Init(); }
+  ): AbstractUART(),
+    m_BufferSize(BufferSize),
+    m_UART(UART),
+    m_Buffer(nullptr),
+    m_BufferFilled(0)
+    { Init(); }
   virtual ~BufferedUART() override { Exit(); }
 
   virtual uint8_t PutCh(uint8_t txbyte) override;

@@ -20,14 +20,26 @@
                              640, 600, 570, \
                              540, 510, 490}*/
 
+/*!
+  \brief Initialization of analog matrix
+  \returns true
+*/
 bool AnalogMatrix::Init() {
   /* no initialization needed for analog pins */
   return true;
 }
 
+/*!
+  \brief Deinitialisation of analog matrix class
+ */
 void AnalogMatrix::Exit() {
 }
 
+/*!
+  \brief Get a key of analog matrix
+  Reads analog pin and deduces what key has been pressed.
+  \returns #KeyNone if no new actions detected, else a key code
+ */
 uint8_t AnalogMatrix::GetKey() {
 
   uint16_t data = analogRead(m_DataPin);

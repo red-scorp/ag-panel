@@ -10,19 +10,32 @@
 #include "../private.h"
 #include "AbstractKeyboard.h"
 
+/*!
+  \brief Digital Matrix class
+  This class implements digital matrix based on several buttons connected between columns and rows wires
+ */
 class DigitalMatrix: public AbstractKeyboard {
 
 public:
-  DigitalMatrix(uint8_t Columns, uint8_t Rows, const uint8_t *CPinsArray, const uint8_t *RPinsArray): AbstractKeyboard(), m_Columns(Columns), m_Rows(Rows), m_CPinsArray(CPinsArray), m_RPinsArray(RPinsArray) { Init(); }
+  DigitalMatrix(
+    uint8_t Columns,            /*!< Number of columns of the matrix */
+    uint8_t Rows,               /*!< Number of rows of the matrix */
+    const uint8_t *CPinsArray,  /*!< Array of digital pins for columns of the matrix */
+    const uint8_t *RPinsArray   /*!< Array of digital pins for rows of the matrix */
+  ): AbstractKeyboard(),
+    m_Columns(Columns),
+    m_Rows(Rows),
+    m_CPinsArray(CPinsArray),
+    m_RPinsArray(RPinsArray) { Init(); }
   virtual ~DigitalMatrix() override { Exit(); }
 
   virtual uint8_t GetKey() override;
 
 protected:
-  uint8_t m_Columns;
-  uint8_t m_Rows;
-  const uint8_t *m_CPinsArray;
-  const uint8_t *m_RPinsArray;
+  uint8_t m_Columns;            /*!< Number of columns of the matrix */
+  uint8_t m_Rows;               /*!< Number of rows of the matrix */
+  const uint8_t *m_CPinsArray;  /*!< Array of digital pins for columns of the matrix */
+  const uint8_t *m_RPinsArray;  /*!< Array of digital pins for rows of the matrix */
 
 private:
   bool Init();

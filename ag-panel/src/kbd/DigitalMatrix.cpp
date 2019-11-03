@@ -9,19 +9,32 @@
 #include "../../config.h"
 #include "DigitalMatrix.h"
 
+/*!
+  \brief Initialization of digital matrix
+  Configures column and row pins of the matrix.
+  \returns true
+*/
 bool DigitalMatrix::Init() {
 
   for(uint8_t c = 0; c < m_Columns; c++)
     pinMode(m_CPinsArray[c], OUTPUT);
   for(uint8_t r = 0; r < m_Rows; r++)
-    pinMode(m_RPinsArray[r], OUTPUT);
+    pinMode(m_RPinsArray[r], INPUT_PULLUP);
 
   return true;
 }
 
+/*!
+  \brief Deinitialisation of digital matrix class
+ */
 void DigitalMatrix::Exit() {
 }
 
+/*!
+  \brief Get a key of digital matrix
+  Activates sequntially column pins and reads row pins to find out what key has been pressed.
+  \returns #KeyNone if no new actions detected, else a key code
+ */
 uint8_t DigitalMatrix::GetKey() {
 
   for(uint8_t c = 0; c < m_Columns; c++) {
