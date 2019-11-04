@@ -98,7 +98,9 @@ void lcd_init_display() {
 }
 
 void lcd_init_backlight() {
-//  LCD->SetBacklight(0);
+#ifdef LCD_BL_PWM_INIT
+  LCD->SetBacklight(uint8_t(LCD_BL_PWM_INIT));
+#endif
 }
 
 void lcd_set_backlight(uint8_t brightness) {
