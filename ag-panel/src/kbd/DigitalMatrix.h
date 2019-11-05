@@ -12,7 +12,7 @@
 
 /*!
   \brief Digital Matrix class
-  This class implements digital matrix based on several buttons connected between columns and rows wires
+  This class implements digital matrix based on several buttons connected between columns and rows wires.
  */
 class DigitalMatrix: public AbstractKeyboard {
 

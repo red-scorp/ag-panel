@@ -12,14 +12,26 @@
 #include <Adafruit_RGBLCDShield.h>
 extern Adafruit_RGBLCDShield *gp_I2CRGBLCD; /* defined in I2CRGBTextLCD.cpp */
 
+/*!
+  \brief Initialization of I2C RGB keypad
+  \returns true
+*/
 bool I2CRGBKeypad::Init() {
   /* The RGB Keypad is already initialized in I2CRGBTextLCD.cpp */
   return true;
 }
 
+/*!
+  \brief Deinitialisation of I2C RGB keypad class
+ */
 void I2CRGBKeypad::Exit() {
 }
 
+/*!
+  \brief Get a key of I2C RGB keypad
+  Reads key state from I2C controller to find out what key has been pressed.
+  \returns #KeyNone if no new actions detected, else a key code
+ */
 uint8_t I2CRGBKeypad::GetKey() {
 
   uint8_t buttons = gp_I2CRGBLCD->readButtons();

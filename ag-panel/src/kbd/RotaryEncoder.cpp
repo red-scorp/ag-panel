@@ -9,6 +9,11 @@
 #include "../../config.h"
 #include "RotaryEncoder.h"
 
+/*!
+  \brief Initialization of rotary encoder
+  Configures digital pins of rotary encoder and select button.
+  \returns true
+*/
 bool RotaryEncoder::Init() {
   pinMode(m_D1Pin, INPUT_PULLUP);
   pinMode(m_D2Pin, INPUT_PULLUP);
@@ -16,9 +21,17 @@ bool RotaryEncoder::Init() {
   return true;
 }
 
+/*!
+  \brief Deinitialisation of rotary encoder class
+ */
 void RotaryEncoder::Exit() {
 }
 
+/*!
+  \brief Get a key of rotary encoder
+  Read rotary encoder and select button pins to find out what key has been pressed.
+  \returns #KeyNone if no new actions detected, else a key code
+ */
 uint8_t RotaryEncoder::GetKey() {
 
 /*action| full left | full right| left&back | right&back|

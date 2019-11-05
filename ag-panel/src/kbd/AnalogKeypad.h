@@ -14,7 +14,7 @@ const uint8_t DefaultAnalogKeypadDataPin = A0;    /*!< Default input analog pin 
 
 /*!
   \brief Analog Keypad class
-  This class implements analog keypad based on several buttons connected with different resistors
+  This class implements analog keypad based on several buttons connected with different resistors.
  */
 class AnalogKeypad: public AbstractKeyboard {
 

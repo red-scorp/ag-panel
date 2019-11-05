@@ -12,14 +12,27 @@
 #include <Adafruit_MPR121.h>
 static Adafruit_MPR121 s_I2CKbd; /* TODO: Use m_I2CAddress somewhere? */
 
+/*!
+  \brief Initialization of capacitive matrix
+  Begin communication with controller of capacitive matrix.
+  \returns true
+*/
 bool I2CCapacitiveMatrix::Init() {
   s_I2CKbd.begin();
   return true;
 }
 
+/*!
+  \brief Deinitialisation of capacitive matrix class
+ */
 void I2CCapacitiveMatrix::Exit() {
 }
 
+/*!
+  \brief Get a key of capacitive matrix
+  Reads touch status from I2C touch controller to find out what key has been pressed.
+  \returns #KeyNone if no new actions detected, else a key code
+ */
 uint8_t I2CCapacitiveMatrix::GetKey() {
 
   const uint16_t watch_mask = (uint16_t)(1l << (m_Columns * m_Rows + 1)) - 1; /* watch only lower CxR bits, ignore rest */

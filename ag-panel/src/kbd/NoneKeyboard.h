@@ -10,6 +10,10 @@
 #include "../private.h"
 #include "AbstractKeyboard.h"
 
+/*!
+  \brief None Keyboard class
+  This class implements none keyboard (missing keyboard).
+ */
 class NoneKeyboard: public AbstractKeyboard {
 
 public:
