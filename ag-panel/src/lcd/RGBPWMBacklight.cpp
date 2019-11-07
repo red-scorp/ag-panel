@@ -3,7 +3,7 @@
   \brief AG-Panel Project RGB PWM (0-255) backlight implementation
   \copyright (C) 2019 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@googlemail.com)
-*/
+ */
 
 #include "../private.h"
 #include "RGBPWMBacklight.h"

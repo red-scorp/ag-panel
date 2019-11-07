@@ -3,7 +3,7 @@
   \brief AG-Panel Project I2C 4-bit text (hd44780) LCD interface
   \copyright (C) 2019 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@googlemail.com)
-*/
+ */
 
 #pragma once
 

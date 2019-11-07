@@ -3,7 +3,7 @@
   \brief AG-Panel Project I2C capacitive matrix keyboard implementation
   \copyright (C) 2019 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@googlemail.com)
-*/
+ */
 
 #include "../private.h"
 #include "../../config.h"
@@ -16,7 +16,7 @@ static Adafruit_MPR121 s_I2CKbd; /* TODO: Use m_I2CAddress somewhere? */
   \brief Initialization of capacitive matrix
   Begin communication with controller of capacitive matrix.
   \returns true
-*/
+ */
 bool I2CCapacitiveMatrix::Init() {
   s_I2CKbd.begin();
   return true;

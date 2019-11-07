@@ -3,7 +3,7 @@
   \brief AG-Panel Project none keyboard implementation
   \copyright (C) 2019 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@googlemail.com)
-*/
+ */
 
 #include "../private.h"
 #include "NoneKeyboard.h"
@@ -11,7 +11,7 @@
 /*!
   \brief Initialization of none keyboard
   \returns true
-*/
+ */
 bool NoneKeyboard::Init() {
   return true;
 }

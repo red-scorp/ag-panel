@@ -3,7 +3,7 @@
   \brief AG-Panel Project direct hardware UART interface
   \copyright (C) 2019 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@googlemail.com)
-*/
+ */
 
 #pragma once
 

@@ -3,7 +3,7 @@
   \brief AG-Panel Project I2C RGB keypad keyboard implementation
   \copyright (C) 2019 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@googlemail.com)
-*/
+ */
 
 #include "../private.h"
 #include "../../config.h"
@@ -15,7 +15,7 @@ extern Adafruit_RGBLCDShield *gp_I2CRGBLCD; /* defined in I2CRGBTextLCD.cpp */
 /*!
   \brief Initialization of I2C RGB keypad
   \returns true
-*/
+ */
 bool I2CRGBKeypad::Init() {
   /* The RGB Keypad is already initialized in I2CRGBTextLCD.cpp */
   return true;

@@ -3,13 +3,17 @@
   \brief AG-Panel Project none backlight interface
   \copyright (C) 2019 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@googlemail.com)
-*/
+ */
 
 #pragma once
 
 #include "../private.h"
 #include "AbstractBacklight.h"
 
+/*!
+  \brief None (dummy) Backlight class
+  This class implements none backlight.
+ */
 class NoneBacklight: public AbstractBacklight {
 
 public:

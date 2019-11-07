@@ -3,7 +3,7 @@
   \brief AG-Panel Project buffered UART implementation
   \copyright (C) 2019 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@googlemail.com)
-*/
+ */
 
 #include "../private.h"
 #include "BufferedUART.h"

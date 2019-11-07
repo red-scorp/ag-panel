@@ -3,7 +3,7 @@
   \brief AG-Panel Project rotary encoder keyboard implementation
   \copyright (C) 2019 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@googlemail.com)
-*/
+ */
 
 #include "../private.h"
 #include "../../config.h"
@@ -13,7 +13,7 @@
   \brief Initialization of rotary encoder
   Configures digital pins of rotary encoder and select button.
   \returns true
-*/
+ */
 bool RotaryEncoder::Init() {
   pinMode(m_D1Pin, INPUT_PULLUP);
   pinMode(m_D2Pin, INPUT_PULLUP);

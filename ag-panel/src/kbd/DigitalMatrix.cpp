@@ -3,7 +3,7 @@
   \brief AG-Panel Project digital keypad keyboard implementation
   \copyright (C) 2019 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@googlemail.com)
-*/
+ */
 
 #include "../private.h"
 #include "../../config.h"
@@ -13,7 +13,7 @@
   \brief Initialization of digital matrix
   Configures column and row pins of the matrix.
   \returns true
-*/
+ */
 bool DigitalMatrix::Init() {
 
   for(uint8_t c = 0; c < m_Columns; c++)

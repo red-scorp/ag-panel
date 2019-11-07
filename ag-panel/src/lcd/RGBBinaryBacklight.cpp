@@ -3,7 +3,7 @@
   \brief AG-Panel Project RGB binary (8 colors) backlight implementation
   \copyright (C) 2019 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@googlemail.com)
-*/
+ */
 
 #include "../private.h"
 #include "RGBBinaryBacklight.h"

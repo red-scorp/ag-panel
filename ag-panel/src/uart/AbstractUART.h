@@ -3,21 +3,18 @@
   \brief AG-Panel Project abstract UART interface
   \copyright (C) 2019 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@googlemail.com)
-*/
+ */
 
 #pragma once
 
 #include "../private.h"
 
-/*!
-  \brief Default baud rate value used if none is specified.
- */
-const auto DefaultBaudRate = 9600;
+const auto DefaultBaudRate = 9600;    /*!< Default baud rate value used if none is specified.*/
 
 /*!
   \brief Abstract UART class
   This is a base class for all UART implementations.
-  It defines only a base interface of UART used by rest of a project code.
+  It defines only a base interface of UART used by the rest of a project code.
  */
 class AbstractUART {
 

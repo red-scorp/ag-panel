@@ -3,17 +3,24 @@
   \brief AG-Panel Project abstract text (hd44780) LCD interface
   \copyright (C) 2019 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@googlemail.com)
-*/
+ */
 
 #pragma once
 
 #include "../private.h"
 #include "AbstractLCD.h"
 
+/*!
+  \brief Abstract Text LCD class
+  This is a base class for all text LCD implementations.
+  It defines only a base interface of text LCD used by the rest of a project code.
+ */
 class AbstractTextLCD: public AbstractLCD {
 
 public:
-  AbstractTextLCD(AbstractBacklight *Backlight = nullptr): AbstractLCD(Backlight) { Init(); }
+  AbstractTextLCD(
+    AbstractBacklight *Backlight = nullptr  /*!< Pointer to a backlight instance */
+  ): AbstractLCD(Backlight) { Init(); }
   virtual ~AbstractTextLCD() override { Exit(); }
 
   using AbstractLCD::SetBacklight;
