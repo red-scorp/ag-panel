@@ -41,7 +41,7 @@ void PWMBacklight::SetOn(
 void PWMBacklight::SetBrightness(
   uint8_t brightness    /*!< Backlight brightness value */
 ) {
-  analogWrite(m_LEDPin, ScaleColor(brightness, m_ScaleBrightness) * 1024 / 256); /* TODO: the value 1024 is only valid for AVR chips, not for ARM. Use soem constant here! */
+  analogWrite(m_LEDPin, ScaleColor(brightness, m_ScaleBrightness));
 }
 
 /*!

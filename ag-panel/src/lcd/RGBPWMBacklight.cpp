@@ -55,7 +55,7 @@ void RGBPWMBacklight::SetRGB(
   uint8_t green,        /*!< Green color value */
   uint8_t blue          /*!< Blue color value */
 ) {
-  analogWrite(m_RedPin, ScaleColor(red, m_ScaleBrightness) * 1024 / 256); /* TODO: the value 1024 is only valid for AVR chips, not for ARM. Use soem constant here! */
-  analogWrite(m_GreenPin, ScaleColor(green, m_ScaleBrightness) * 1024 / 256); /* TODO: the value 1024 is only valid for AVR chips, not for ARM. Use soem constant here! */
-  analogWrite(m_BluePin, ScaleColor(blue, m_ScaleBrightness) * 1024 / 256); /* TODO: the value 1024 is only valid for AVR chips, not for ARM. Use soem constant here! */
+  analogWrite(m_RedPin, ScaleColor(red, m_ScaleBrightness));
+  analogWrite(m_GreenPin, ScaleColor(green, m_ScaleBrightness));
+  analogWrite(m_BluePin, ScaleColor(blue, m_ScaleBrightness));
 }
