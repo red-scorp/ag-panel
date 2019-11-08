@@ -8,6 +8,11 @@
 #include "../private.h"
 #include "RGBPWMBacklight.h"
 
+/*!
+  \brief Initialization of RGB PWM backlight
+  Configures RGB backlight digital pins.
+  \returns true
+ */
 bool RGBPWMBacklight::Init() {
   pinMode(m_RedPin, OUTPUT);
   pinMode(m_GreenPin, OUTPUT);
@@ -15,19 +20,42 @@ bool RGBPWMBacklight::Init() {
   return true;
 }
 
+/*!
+  \brief Deinitialisation of RGB PWM backlight class
+ */
 void RGBPWMBacklight::Exit() {
 }
 
-void RGBPWMBacklight::SetOn(bool on) {
+/*!
+  \brief Set backlight in binary (on/off) form
+  This function sets maximu brightness of RGB PWM backlight if enabled.
+ */
+void RGBPWMBacklight::SetOn(
+  bool on               /*!< Backlight state in on/off format */
+) {
   SetBrightness(on? MaxBacklightBrightness: 0);
 }
 
-void RGBPWMBacklight::SetBrightness(uint8_t brightness) {
+/*!
+  \brief Set backlight brightness if supported
+  This function sets default color of RGB backlight scaled to specified brightness.
+ */
+void RGBPWMBacklight::SetBrightness(
+  uint8_t brightness    /*!< Backlight brightness value */
+) {
   SetRGB(ScaleRGB(m_DefaultColor, brightness));
 }
 
-void RGBPWMBacklight::SetRGB(uint8_t red, uint8_t green, uint8_t blue) {
-  analogWrite(m_RedPin, ScaleColor(red, m_ScaleBrightness));
-  analogWrite(m_GreenPin, ScaleColor(green, m_ScaleBrightness));
-  analogWrite(m_BluePin, ScaleColor(blue, m_ScaleBrightness));
+/*!
+  \brief Set backlight RGB colors if supported
+  This function sets PWM color value to digital pins based on brightness values.
+ */
+void RGBPWMBacklight::SetRGB(
+  uint8_t red,          /*!< Red color value */
+  uint8_t green,        /*!< Green color value */
+  uint8_t blue          /*!< Blue color value */
+) {
+  analogWrite(m_RedPin, ScaleColor(red, m_ScaleBrightness) * 1024 / 256); /* TODO: the value 1024 is only valid for AVR chips, not for ARM. Use soem constant here! */
+  analogWrite(m_GreenPin, ScaleColor(green, m_ScaleBrightness) * 1024 / 256); /* TODO: the value 1024 is only valid for AVR chips, not for ARM. Use soem constant here! */
+  analogWrite(m_BluePin, ScaleColor(blue, m_ScaleBrightness) * 1024 / 256); /* TODO: the value 1024 is only valid for AVR chips, not for ARM. Use soem constant here! */
 }

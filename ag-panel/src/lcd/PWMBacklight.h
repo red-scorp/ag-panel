@@ -10,7 +10,7 @@
 #include "../private.h"
 #include "AbstractBacklight.h"
 
-const uint8_t DefaultPWMBacklightScaleBrightness = MaxBacklightBrightness;
+const uint8_t DefaultPWMBacklightScaleBrightness = MaxBacklightBrightness;  /*!< Default PWM backlight brightness if not specified */
 
 /*!
   \brief PWM Backlight class
