@@ -10,7 +10,7 @@
 #include "I2CRGBKeypad.h"
 
 #include <Adafruit_RGBLCDShield.h>
-extern Adafruit_RGBLCDShield *gp_I2CRGBLCD; /* defined in I2CRGBTextLCD.cpp */
+extern Adafruit_RGBLCDShield *gp_I2CRGBLCD; /* Defined in I2CRGBTextLCD.cpp */
 
 /*!
   \brief Initialization of I2C RGB keypad
