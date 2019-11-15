@@ -73,18 +73,20 @@ void LoSPanelProtocol::StampLastTx() {
  */
 void LoSPanelProtocol::Loop() {
   uint8_t rxbyte = m_UART->GetCh();
+  uint8_t nextbyte;
 
   switch(rxbyte) {
 
   case LoSPanelProtocolInstruction:
-    uint8_t nextbyte = m_UART->GetCh();
+    nextbyte = m_UART->GetCh();
     WaitFromLastTx(nextbyte < 4? 2000: 40); /* for commands 1 - 3 wait for 2 ms, otherwise 40 us */
     m_TextLCD->Command(nextbyte);
     StampLastTx();
     break;
 
   case LoSPanelProtocolBacklight:
-    m_TextLCD->SetBacklight(m_UART->GetCh());
+    nextbyte = m_UART->GetCh();
+    m_TextLCD->SetBacklight(nextbyte);
     break;
 
   default:
