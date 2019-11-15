@@ -9,6 +9,7 @@
 #include "prot.h"
 
 #include "AbstractProtocol.h"
+#include "LoSPanelProtocol.h"
 
 /* Protocol Configuration sanity check */
 #if (!defined(PROT_LOSPANEL) && !defined(PROT_RAWSERIAL)) \
