@@ -11,7 +11,7 @@
 #include "../lcd/lcd.h"
 #include "../kbd/kbd.h"
 
-#if defined(PROT_RAWSERIAL)
+#if 0 //defined(PROT_RAWSERIAL)
 
 /* Protocol commands definition */
 /* TODO! */

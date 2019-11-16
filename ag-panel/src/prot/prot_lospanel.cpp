@@ -11,7 +11,7 @@
 #include "../lcd/lcd.h"
 #include "../kbd/kbd.h"
 
-#if defined(PROT_LOSPANEL)
+#if 0 //defined(PROT_LOSPANEL)
 
 /* Protocol commands definition */
 #define LOS_INSTRUCTION     0xFE
