@@ -26,16 +26,17 @@ static AbstractKeyboard *s_Keyboard = nullptr;
 static AbstractProtocol *s_Protocol = nullptr;
 
 void print_welcome() {
-  char str[LCD_COLS + 1];
-  uint8_t center_x = (LCD_COLS - 16) / 2;
-  uint8_t center_y = (LCD_ROWS - 2) / 2;
-  memset(str, 0, sizeof(str));
+  char *str = new char[s_LCD->GetColumns() + 1];
+  uint8_t center_x = (s_LCD->GetColumns() - 16) / 2;
+  uint8_t center_y = (s_LCD->GetRows() - 2) / 2;
+  memset(str, 0, s_LCD->GetColumns() + 1);
   s_LCD->Clear();
   s_LCD->SetCursor(center_x, center_y);
   s_LCD->Print(FW_NAME " v" FW_VERSION);
   s_LCD->SetCursor(center_x, center_y + 1);
-  snprintf(str, LCD_COLS, "@%ldBd Ready", UART_BAUD);
+  snprintf(str, s_LCD->GetColumns(), "@%ldBd Ready", s_UART->GetBaudRate());
   s_LCD->Print(str);
+  delete [] str;
 }
 
 /*! \brief Main initialization function

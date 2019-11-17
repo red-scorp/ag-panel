@@ -23,9 +23,7 @@ public:
     uint8_t Columns,            /*!< Number of columns of the text LCD */
     uint8_t Rows,               /*!< Number of rows of the text LCD */
     uint8_t I2CAddress          /*!< I2C address of digital I/O expander chip */
-  ): AbstractTextLCD(nullptr),
-    m_Columns(Columns),
-    m_Rows(Rows),
+  ): AbstractTextLCD(nullptr, Columns, Rows),
     m_I2CAddress(I2CAddress) { Init(); }
   virtual ~I2CTextLCD() override { Exit(); }
 
@@ -42,8 +40,6 @@ public:
   virtual void Command(uint8_t byte) override;
 
 protected:
-  uint8_t m_Columns;            /*!< Number of columns of the text LCD */
-  uint8_t m_Rows;               /*!< Number of rows of the text LCD */
   uint8_t m_I2CAddress;         /*!< I2C address of digital I/O expander chip */
 
 private:

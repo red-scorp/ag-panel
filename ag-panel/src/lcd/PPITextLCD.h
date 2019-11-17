@@ -34,9 +34,7 @@ public:
     uint8_t D5Pin,              /*!< Data bit 5 digital pin */
     uint8_t D6Pin,              /*!< Data bit 6 digital pin */
     uint8_t D7Pin               /*!< Data bit 7 digital pin */
-  ): AbstractTextLCD(Backlight),
-    m_Columns(Columns),
-    m_Rows(Rows),
+  ): AbstractTextLCD(Backlight, Columns, Rows),
     m_RSPin(RSPin),
     m_RWPin(RWPin),
     m_EnablePin(EnablePin),
@@ -59,9 +57,7 @@ public:
     uint8_t D5Pin,              /*!< Data bit 5 digital pin */
     uint8_t D6Pin,              /*!< Data bit 6 digital pin */
     uint8_t D7Pin               /*!< Data bit 7 digital pin */
-  ): AbstractTextLCD(Backlight),
-    m_Columns(Columns),
-    m_Rows(Rows),
+  ): AbstractTextLCD(Backlight, Columns, Rows),
     m_RSPin(RSPin),
     m_RWPin(RWPin),
     m_EnablePin(EnablePin),
@@ -84,8 +80,6 @@ public:
   virtual void Command(uint8_t byte) override;
 
 protected:
-  uint8_t m_Columns;            /*!< Number of columns of the text LCD */
-  uint8_t m_Rows;               /*!< Number of rows of the text LCD */
   uint8_t m_RSPin;              /*!< Register Select (RS) digital pin */
   uint8_t m_RWPin;              /*!< Read/Write (R/W) digital pin */
   uint8_t m_EnablePin;          /*!< Clock (Enable) digital pin */

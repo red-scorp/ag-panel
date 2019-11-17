@@ -19,8 +19,12 @@ class AbstractLCD {
 
 public:
   AbstractLCD(
-    AbstractBacklight *Backlight = nullptr  /*!< Pointer to a backlight instance */
-  ): m_Backlight(Backlight) { Init(); }
+    AbstractBacklight *Backlight,  /*!< Pointer to a backlight instance */
+    uint8_t Columns,            /*!< Number of columns of the text LCD */
+    uint8_t Rows                /*!< Number of rows of the text LCD */
+  ): m_Backlight(Backlight),
+    m_Columns(Columns),
+    m_Rows(Rows) { Init(); }
   virtual ~AbstractLCD() { Exit(); }
 
   /*! Set backlight in binary (on/off) form */
@@ -46,8 +50,13 @@ public:
   virtual void SetCursor(uint8_t column, uint8_t row) = 0;
   virtual void Print(const char *str) = 0;
 
+  virtual uint8_t GetColumns() const { return m_Columns; }
+  virtual uint8_t GetRows() const { return m_Rows; }
+
 protected:
-  AbstractBacklight * m_Backlight;    /*!< Pointer to a backlight instance */
+  AbstractBacklight *m_Backlight;     /*!< Pointer to a backlight instance */
+  uint8_t m_Columns;            /*!< Number of columns of the text LCD */
+  uint8_t m_Rows;               /*!< Number of rows of the text LCD */
 
 private:
   bool Init() { return true; }

@@ -28,7 +28,7 @@ public:
   virtual uint8_t GetCh() = 0;
   virtual void Prefill() {}
   virtual uint32_t Available() { return 0; }
-  uint32_t GetBaudRate() const { return m_BaudRate; }
+  virtual uint32_t GetBaudRate() const { return m_BaudRate; }
 
 protected:
   uint32_t m_BaudRate;  /*!< UART baud rate */
