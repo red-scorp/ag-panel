@@ -8,13 +8,31 @@
 #include "HardwareUART.h"
 #include <HardwareSerial.h>
 
+static HardwareSerial *sp_UART;       /*!< Pointer to a HardwareSerial class instance */
+
 /*!
   \brief Initialization of hardware UART
   Initialize hardware UART and set baud rate.
   \return true
  */
 bool HardwareUART::Init() {
-  Serial.begin(m_BaudRate);
+  if(m_Port == 0)
+    sp_UART = &Serial;
+#if defined(HAVE_HWSERIAL1)
+  else if(m_Port == 1)
+    sp_UART = &Serial1;
+#endif
+#if defined(HAVE_HWSERIAL2)
+  else if(m_Port == 2)
+    sp_UART = &Serial2;
+#endif
+#if defined(HAVE_HWSERIAL3)
+  else if(m_Port == 3)
+    sp_UART = &Serial3;
+#endif
+  else
+    for(;;); /* TODO: Add something like exception here! */
+  sp_UART->begin(m_BaudRate);
   return true;
 }
 
@@ -31,7 +49,7 @@ void HardwareUART::Exit() {
 uint8_t HardwareUART::PutCh(
   uint8_t txbyte      /*!< Character to be writte to hardware UART */
 ) {
-  return Serial.write(txbyte);
+  return sp_UART->write(txbyte);
 }
 
 /*!
@@ -43,7 +61,7 @@ uint8_t HardwareUART::GetCh() {
     yield();
   }
 
-  return Serial.read();
+  return sp_UART->read();
 }
 
 /*!
@@ -51,5 +69,5 @@ uint8_t HardwareUART::GetCh() {
   \returns number of bytes stored in buffer of hardware UART
  */
 uint32_t HardwareUART::Available() {
-  return Serial.available();
+  return sp_UART->available();
 }

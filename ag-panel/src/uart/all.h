@@ -10,4 +10,5 @@
 #include "AbstractUART.h"
 
 #include "HardwareUART.h"
+#include "SoftwareUART.h"
 #include "BufferedUART.h"
