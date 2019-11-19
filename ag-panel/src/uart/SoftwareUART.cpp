@@ -10,6 +10,7 @@
 #if defined(__AVR__)
 #include <SoftwareSerial.h>
 
+/* TODO: make it multyinstance friendly */
 static SoftwareSerial *sp_UART;       /*!< Pointer to a SoftwareSerial class instance */
 
 /*!

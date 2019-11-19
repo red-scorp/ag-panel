@@ -8,6 +8,7 @@
 #include "HardwareUART.h"
 #include <HardwareSerial.h>
 
+/* TODO: make it multyinstance friendly */
 static HardwareSerial *sp_UART;       /*!< Pointer to a HardwareSerial class instance */
 
 /*!
