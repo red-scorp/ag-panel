@@ -24,7 +24,8 @@ public:
     uint8_t TxPin         /*!< Transmit data UART pin */
   ): AbstractUART(BaudRate),
     m_RxPin(RxPin),
-    m_TxPin(TxPin) { Init(); }
+    m_TxPin(TxPin),
+    m_Lowlevel(nullptr) { Init(); }
   virtual ~SoftwareUART() override { Exit(); }
 
   virtual uint8_t PutCh(uint8_t txbyte) override;
@@ -36,6 +37,7 @@ protected:
   uint8_t m_TxPin;        /*!< Transmit data UART pin */
 
 private:
+  void *m_Lowlevel;       /*!< Pointer to Low-Level Serial class */
   bool Init();
   void Exit();
 };

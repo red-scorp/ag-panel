@@ -19,9 +19,10 @@ class HardwareUART: public AbstractUART {
 public:
   HardwareUART(
     uint32_t BaudRate = DefaultBaudRate,  /*!< Baud rate of an UART */
-    uint8_t Port = 0  /*!< Hardware UART port number */
+    uint8_t Port = 0      /*!< Hardware UART port number */
   ): AbstractUART(BaudRate),
-    m_Port(Port) { Init(); }
+    m_Port(Port),
+    m_Lowlevel(nullptr) { Init(); }
   virtual ~HardwareUART() override { Exit(); }
 
   virtual uint8_t PutCh(uint8_t txbyte) override;
@@ -29,9 +30,10 @@ public:
   virtual uint32_t Available() override;
 
 protected:
-  uint8_t m_Port;     /*!< Hardware UART port number */
+  uint8_t m_Port;         /*!< Hardware UART port number */
 
 private:
+  void *m_Lowlevel;       /*!< Pointer to Low-Level Serial class */
   bool Init();
   void Exit();
 };

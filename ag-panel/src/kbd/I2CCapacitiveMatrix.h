@@ -20,23 +20,25 @@ class I2CCapacitiveMatrix: public AbstractKeyboard {
 
 public:
   I2CCapacitiveMatrix(
-    uint8_t Columns,        /*!< Number of columns of the matrix */
-    uint8_t Rows,           /*!< Number of rows of the matrix */
+    uint8_t Columns,      /*!< Number of columns of the matrix */
+    uint8_t Rows,         /*!< Number of rows of the matrix */
     uint8_t I2CAddress = DefaultI2CCapacitiveMatrixI2CAddress   /*!< I2C address of the touch controller */
   ): AbstractKeyboard(),
     m_Columns(Columns),
     m_Rows(Rows),
-    m_I2CAddress(I2CAddress) { Init(); }
+    m_I2CAddress(I2CAddress),
+    m_Lowlevel(nullptr) { Init(); }
   virtual ~I2CCapacitiveMatrix() override { Exit(); }
 
   virtual uint8_t GetKey() override;
 
 protected:
-  uint8_t m_Columns;        /*!< Number of columns of the matrix */
-  uint8_t m_Rows;           /*!< Number of rows of the matrix */
-  uint8_t m_I2CAddress;     /*!< I2C address of the touch controller */
+  uint8_t m_Columns;      /*!< Number of columns of the matrix */
+  uint8_t m_Rows;         /*!< Number of rows of the matrix */
+  uint8_t m_I2CAddress;   /*!< I2C address of the touch controller */
 
 private:
+  void *m_Lowlevel;       /*!< Pointer to Low-Level Kbd class */
   bool Init();
   void Exit();
 };

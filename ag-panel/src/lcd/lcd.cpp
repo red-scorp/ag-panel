@@ -11,6 +11,8 @@
 #include "../uart/uart.h"
 #include "../prot/prot.h"
 
+#if 0
+
 /* LCD Configuration sanity check */
 #if (!defined(LCD_TEXT_4BIT) && !defined(LCD_TEXT_8BIT) && !defined(LCD_TEXT_I2C) && !defined(LCD_TEXT_I2C_RGB)) \
   || (defined(LCD_TEXT_4BIT) && defined(LCD_TEXT_8BIT)) \
@@ -126,3 +128,5 @@ void lcd_set_cursor(uint8_t col, uint8_t row) {
 void lcd_print_string(const char *str) {
   LCD->Print(str);
 }
+
+#endif

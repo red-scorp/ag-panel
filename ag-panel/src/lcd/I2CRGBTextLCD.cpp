@@ -9,6 +9,7 @@
 #include "I2CRGBTextLCD.h"
 #include <Adafruit_RGBLCDShield.h>
 
+/* TODO: remove static and global varibles!! */
 Adafruit_RGBLCDShield *gp_I2CRGBLCD;  /*!< Pointer to a Adafruit_RGBLCDShield class instance, also used in I2CRGBKeypad.cpp */
 
 /*!
@@ -27,6 +28,9 @@ bool I2CRGBTextLCD::Init() {
   \brief Deinitialisation of I2C RGB text LCD display class
  */
 void I2CRGBTextLCD::Exit() {
+  if(gp_I2CRGBLCD != nullptr)
+    delete gp_I2CRGBLCD;
+  gp_I2CRGBLCD = nullptr;
 }
 
 /*!

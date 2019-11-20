@@ -8,6 +8,8 @@
 #include "private.h"
 #include "debug.h"
 
+#if 0
+
 #if defined(DEBUG_HW_SERIAL) || defined(DEBUG_HW_SERIAL1) || defined(DEBUG_HW_SERIAL2) || defined(DEBUG_HW_SERIAL3) || defined(DEBUG_SW_SERIAL)
 
 /* Debug Configuration sanity check */
@@ -86,5 +88,7 @@ void debug_putch(uint8_t txbyte) {
 void debug_puts(char *str) {
   str = str;
 }
+
+#endif
 
 #endif

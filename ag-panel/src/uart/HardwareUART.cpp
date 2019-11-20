@@ -8,32 +8,34 @@
 #include "HardwareUART.h"
 #include <HardwareSerial.h>
 
-/* TODO: make it multyinstance friendly */
-static HardwareSerial *sp_UART;       /*!< Pointer to a HardwareSerial class instance */
-
 /*!
   \brief Initialization of hardware UART
   Initialize hardware UART and set baud rate.
   \return true
  */
 bool HardwareUART::Init() {
-  if(m_Port == 0)
-    sp_UART = &Serial;
+  if(false)
+    for(;;); /* TODO: Add something like exception here! */
+#if defined(HAVE_HWSERIAL0)
+  else if(m_Port == 0)
+    m_Lowlevel = &Serial;
+#endif
 #if defined(HAVE_HWSERIAL1)
   else if(m_Port == 1)
-    sp_UART = &Serial1;
+    m_Lowlevel = &Serial1;
 #endif
 #if defined(HAVE_HWSERIAL2)
   else if(m_Port == 2)
-    sp_UART = &Serial2;
+    m_Lowlevel = &Serial2;
 #endif
 #if defined(HAVE_HWSERIAL3)
   else if(m_Port == 3)
-    sp_UART = &Serial3;
+    m_Lowlevel = &Serial3;
 #endif
   else
     for(;;); /* TODO: Add something like exception here! */
-  sp_UART->begin(m_BaudRate);
+  HardwareSerial *p_UART = (HardwareSerial*)m_Lowlevel;
+  p_UART->begin(m_BaudRate);
   return true;
 }
 
@@ -41,6 +43,7 @@ bool HardwareUART::Init() {
   \brief Deinitialization of hardware UART
  */
 void HardwareUART::Exit() {
+  m_Lowlevel = nullptr;
 }
 
 /*!
@@ -50,7 +53,8 @@ void HardwareUART::Exit() {
 uint8_t HardwareUART::PutCh(
   uint8_t txbyte      /*!< Character to be writte to hardware UART */
 ) {
-  return sp_UART->write(txbyte);
+  HardwareSerial *p_UART = (HardwareSerial*)m_Lowlevel;
+  return p_UART->write(txbyte);
 }
 
 /*!
@@ -58,11 +62,12 @@ uint8_t HardwareUART::PutCh(
   \returns Charecter (byte) read from hardware UART
  */
 uint8_t HardwareUART::GetCh() {
+  HardwareSerial *p_UART = (HardwareSerial*)m_Lowlevel;
   while(Available() == 0) {
     yield();
   }
 
-  return sp_UART->read();
+  return p_UART->read();
 }
 
 /*!
@@ -70,5 +75,6 @@ uint8_t HardwareUART::GetCh() {
   \returns number of bytes stored in buffer of hardware UART
  */
 uint32_t HardwareUART::Available() {
-  return sp_UART->available();
+  HardwareSerial *p_UART = (HardwareSerial*)m_Lowlevel;
+  return p_UART->available();
 }

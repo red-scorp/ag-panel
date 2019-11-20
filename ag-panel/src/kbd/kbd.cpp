@@ -8,6 +8,8 @@
 #include "../private.h"
 #include "kbd.h"
 
+#if 0
+
 /* Keyboard Configuration sanity check */
 #if (!defined(KBD_NONE) && !defined(KBD_D_MATRIX) && !defined(KBD_A_JOYSTICK) \
   && !defined(KBD_A_KEYPAD) && !defined(KBD_ROTARY_ENCODER) && !defined(KBD_A_MATRIX) \
@@ -122,3 +124,5 @@ uint8_t kbd_getkey() {
     return KBD_KEY(key >> 2, key & 0x3);
   }
 }
+
+#endif

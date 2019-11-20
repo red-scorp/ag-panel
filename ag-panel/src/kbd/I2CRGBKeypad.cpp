@@ -10,6 +10,7 @@
 #include "I2CRGBKeypad.h"
 
 #include <Adafruit_RGBLCDShield.h>
+/* TODO: remove static and global varibles!! */
 extern Adafruit_RGBLCDShield *gp_I2CRGBLCD; /* Defined in I2CRGBTextLCD.cpp */
 
 /*!

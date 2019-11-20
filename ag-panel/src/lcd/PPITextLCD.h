@@ -45,7 +45,8 @@ public:
     m_D4Pin(D4Pin),
     m_D5Pin(D5Pin),
     m_D6Pin(D6Pin),
-    m_D7Pin(D7Pin) { Init(); }
+    m_D7Pin(D7Pin),
+    m_Lowlevel(nullptr) { Init(); }
   PPITextLCD(
     AbstractBacklight *Backlight,     /*!< External backlight class pointer */
     uint8_t Columns,            /*!< Number of columns of the text LCD */
@@ -68,7 +69,8 @@ public:
     m_D4Pin(D4Pin),
     m_D5Pin(D5Pin),
     m_D6Pin(D6Pin),
-    m_D7Pin(D7Pin) { Init(); }
+    m_D7Pin(D7Pin),
+    m_Lowlevel(nullptr) { Init(); }
   virtual ~PPITextLCD() override { Exit(); }
 
   using AbstractTextLCD::SetBacklight;
@@ -93,6 +95,7 @@ protected:
   uint8_t m_D7Pin;              /*!< Data bit 7 digital pin */
 
 private:
+  void *m_Lowlevel;       /*!< Pointer to Low-Level LCD class */
   bool Init();
   void Exit();
 };

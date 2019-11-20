@@ -10,7 +10,6 @@
 #include "I2CCapacitiveMatrix.h"
 
 #include <Adafruit_MPR121.h>
-static Adafruit_MPR121 s_I2CKbd; /* TODO: Use m_I2CAddress somewhere? */
 
 /*!
   \brief Initialization of capacitive matrix
@@ -18,7 +17,9 @@ static Adafruit_MPR121 s_I2CKbd; /* TODO: Use m_I2CAddress somewhere? */
   \returns true
  */
 bool I2CCapacitiveMatrix::Init() {
-  s_I2CKbd.begin();
+  m_Lowlevel = new Adafruit_MPR121;   /* TODO: Use m_I2CAddress somewhere? */
+  Adafruit_MPR121 *p_I2CKbd = (Adafruit_MPR121*)m_Lowlevel;
+  p_I2CKbd->begin();
   return true;
 }
 
@@ -26,6 +27,10 @@ bool I2CCapacitiveMatrix::Init() {
   \brief Deinitialisation of capacitive matrix class
  */
 void I2CCapacitiveMatrix::Exit() {
+  Adafruit_MPR121 *p_I2CKbd = (Adafruit_MPR121*)m_Lowlevel;
+  if(p_I2CKbd != nullptr)
+    delete p_I2CKbd;
+  m_Lowlevel = nullptr;
 }
 
 /*!
@@ -35,10 +40,12 @@ void I2CCapacitiveMatrix::Exit() {
  */
 uint8_t I2CCapacitiveMatrix::GetKey() {
 
+  Adafruit_MPR121 *p_I2CKbd = (Adafruit_MPR121*)m_Lowlevel;
+
   const uint16_t watch_mask = (uint16_t)(1l << (m_Columns * m_Rows + 1)) - 1; /* watch only lower CxR bits, ignore rest */
   static uint16_t last_touched = 0;
 
-  uint16_t touched = s_I2CKbd.touched() & watch_mask;
+  uint16_t touched = p_I2CKbd->touched() & watch_mask;
   uint16_t pressed = (touched ^ last_touched) & touched;
   uint16_t released = (touched ^ last_touched) & last_touched;
 

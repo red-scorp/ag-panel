@@ -9,7 +9,7 @@
 
 #include "../private.h"
 
-const auto DefaultBaudRate = 9600;    /*!< Default baud rate value used if none is specified.*/
+const uint32_t DefaultBaudRate = 9600;    /*!< Default baud rate value used if none is specified.*/
 
 /*!
   \brief Abstract UART class

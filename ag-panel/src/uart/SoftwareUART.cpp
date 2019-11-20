@@ -10,17 +10,15 @@
 #if defined(__AVR__)
 #include <SoftwareSerial.h>
 
-/* TODO: make it multyinstance friendly */
-static SoftwareSerial *sp_UART;       /*!< Pointer to a SoftwareSerial class instance */
-
 /*!
   \brief Initialization of software UART
   Initialize software UART and set baud rate.
   \return true
  */
 bool SoftwareUART::Init() {
-  sp_UART = new SoftwareSerial(m_RxPin, m_TxPin);
-  sp_UART->begin(m_BaudRate);
+  m_Lowlevel = new SoftwareSerial(m_RxPin, m_TxPin);
+  SoftwareSerial *p_UART = (SoftwareSerial*)m_Lowlevel;
+  p_UART->begin(m_BaudRate);
   return true;
 }
 
@@ -28,6 +26,10 @@ bool SoftwareUART::Init() {
   \brief Deinitialization of software UART
  */
 void SoftwareUART::Exit() {
+  SoftwareSerial *p_UART = (SoftwareSerial*)m_Lowlevel;
+  if(p_UART != nullptr)
+    delete p_UART;
+  m_Lowlevel = nullptr;
 }
 
 /*!
@@ -37,7 +39,8 @@ void SoftwareUART::Exit() {
 uint8_t SoftwareUART::PutCh(
   uint8_t txbyte      /*!< Character to be writte to software UART */
 ) {
-  return sp_UART->write(txbyte);
+  SoftwareSerial *p_UART = (SoftwareSerial*)m_Lowlevel;
+  return p_UART->write(txbyte);
 }
 
 /*!
@@ -45,11 +48,12 @@ uint8_t SoftwareUART::PutCh(
   \returns Charecter (byte) read from software UART
  */
 uint8_t SoftwareUART::GetCh() {
+  SoftwareSerial *p_UART = (SoftwareSerial*)m_Lowlevel;
   while(Available() == 0) {
     yield();
   }
 
-  return sp_UART->read();
+  return p_UART->read();
 }
 
 /*!
@@ -57,6 +61,8 @@ uint8_t SoftwareUART::GetCh() {
   \returns number of bytes stored in buffer of software UART
  */
 uint32_t SoftwareUART::Available() {
-  return sp_UART->available();
+  SoftwareSerial *p_UART = (SoftwareSerial*)m_Lowlevel;
+  return p_UART->available();
 }
+
 #endif //__AVR__

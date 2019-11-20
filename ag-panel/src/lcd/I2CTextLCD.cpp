@@ -9,16 +9,15 @@
 #include "I2CTextLCD.h"
 #include <LiquidCrystal_I2C.h>
 
-static LiquidCrystal_I2C *sp_I2CLCD;  /*!< Pointer to a LiquidCrystal_I2C class instance */
-
 /*!
   \brief Initialization of I2C text LCD display
   Configures I2C text LCD display to work with specified geometry.
   \returns true
  */
 bool I2CTextLCD::Init() {
-  sp_I2CLCD = new LiquidCrystal_I2C(m_I2CAddress, m_Columns, m_Rows);
-  sp_I2CLCD->init();
+  m_Lowlevel = new LiquidCrystal_I2C(m_I2CAddress, m_Columns, m_Rows);
+  LiquidCrystal_I2C *p_I2CLCD = (LiquidCrystal_I2C*)m_Lowlevel;
+  p_I2CLCD->init();
   return true;
 }
 
@@ -26,6 +25,10 @@ bool I2CTextLCD::Init() {
   \brief Deinitialisation of I2C text LCD display class
  */
 void I2CTextLCD::Exit() {
+  LiquidCrystal_I2C *p_I2CLCD = (LiquidCrystal_I2C*)m_Lowlevel;
+  if(p_I2CLCD != nullptr)
+    delete p_I2CLCD;
+  m_Lowlevel = nullptr;
 }
 
 /*!
@@ -35,10 +38,11 @@ void I2CTextLCD::Exit() {
 void I2CTextLCD::SetBacklight(
   bool on               /*!< Backlight state in on/off format */
 ) {
+  LiquidCrystal_I2C *p_I2CLCD = (LiquidCrystal_I2C*)m_Lowlevel;
   if(on)
-    sp_I2CLCD->backlight();
+    p_I2CLCD->backlight();
   else
-    sp_I2CLCD->noBacklight();
+    p_I2CLCD->noBacklight();
 }
 
 /*!
@@ -78,7 +82,8 @@ void I2CTextLCD::SetBacklight(
   This function calls corresponding function of LiquidCrystal_I2C class instance.
  */
 void I2CTextLCD::Clear() {
-  sp_I2CLCD->clear();
+  LiquidCrystal_I2C *p_I2CLCD = (LiquidCrystal_I2C*)m_Lowlevel;
+  p_I2CLCD->clear();
 }
 
 /*!
@@ -89,7 +94,8 @@ void I2CTextLCD::SetCursor(
   uint8_t column,       /*!< Column to put the cursor to */
   uint8_t row           /*!< Row to put the cursor to */
 ) {
-  sp_I2CLCD->setCursor(column, row);
+  LiquidCrystal_I2C *p_I2CLCD = (LiquidCrystal_I2C*)m_Lowlevel;
+  p_I2CLCD->setCursor(column, row);
 }
 
 /*!
@@ -99,7 +105,8 @@ void I2CTextLCD::SetCursor(
 void I2CTextLCD::Print(
   const char *str       /*!< String to print */
 ) {
-  sp_I2CLCD->print(str);
+  LiquidCrystal_I2C *p_I2CLCD = (LiquidCrystal_I2C*)m_Lowlevel;
+  p_I2CLCD->print(str);
 }
 
 /*!
@@ -109,7 +116,8 @@ void I2CTextLCD::Print(
 void I2CTextLCD::Write(
   uint8_t byte          /* !< Byte to write to LCD display */
 ) {
-  sp_I2CLCD->write(byte);
+  LiquidCrystal_I2C *p_I2CLCD = (LiquidCrystal_I2C*)m_Lowlevel;
+  p_I2CLCD->write(byte);
 }
 
 /*!
@@ -119,5 +127,6 @@ void I2CTextLCD::Write(
 void I2CTextLCD::Command(
   uint8_t byte          /* !< Command to send to LCD display */
 ) {
-  sp_I2CLCD->command(byte);
+  LiquidCrystal_I2C *p_I2CLCD = (LiquidCrystal_I2C*)m_Lowlevel;
+  p_I2CLCD->command(byte);
 }

@@ -9,6 +9,7 @@
 #include "uart.h"
 #include "../debug.h"
 
+#if 0
 /* TODO: add Software UART too, as alternative to Hardware UART? */
 
 /* UART Configuration sanity check */
@@ -81,3 +82,5 @@ uint8_t uart_getch() {
 void uart_prefill() {
   return UART->Prefill();
 }
+
+#endif

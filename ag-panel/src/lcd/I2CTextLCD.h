@@ -24,7 +24,8 @@ public:
     uint8_t Rows,               /*!< Number of rows of the text LCD */
     uint8_t I2CAddress          /*!< I2C address of digital I/O expander chip */
   ): AbstractTextLCD(nullptr, Columns, Rows),
-    m_I2CAddress(I2CAddress) { Init(); }
+    m_I2CAddress(I2CAddress),
+    m_Lowlevel(nullptr) { Init(); }
   virtual ~I2CTextLCD() override { Exit(); }
 
   virtual void SetBacklight(bool on) override;
@@ -43,6 +44,7 @@ protected:
   uint8_t m_I2CAddress;         /*!< I2C address of digital I/O expander chip */
 
 private:
+  void *m_Lowlevel;       /*!< Pointer to Low-Level LCD class */
   bool Init();
   void Exit();
 };
