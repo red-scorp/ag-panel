@@ -13,12 +13,12 @@ Work in progress but already usable.
 ## Supported configurations
 - Protocols
   - [x] los-panel (lcdproc) for direct HD44780 (will be removed soon)
-  - [ ] los-panel (lcdproc) emulation of HD44780 (to be implemented)
   - [ ] rawserial (lcdproc) (to be implemented)
 - UART Serial
-  - [x] HW UART
-  - [x] HW UART with extra buffer
-  - [ ] SW UART (to be implemented)
+  - [x] Hardware UART
+  - [x] Software UART
+    [x] No (null) UART
+  - [x] Buffered UART (addition to a regualr UART)
 - LCD Display
   - [x] HD44780 in 4-bit and 8-bit modes
   - [x] HD44780 over I2C bus
@@ -37,9 +37,9 @@ Work in progress but already usable.
   - [x] Digital Keypad or Digital Joystick over I2C bus, like 'Adafruit RGB 16x2 LCD Shield'
   - [x] Capacitive Keypad attached over I2C based on MPR121
 - Development
-  - [x] HW UART port for debugging output
-  - [x] SW UART port for debugging output
-  - [x] Hex String dump of UART output
-  - [x] Hex String dump of UART input
+  - [ ] Hardware UART port for debugging output (to be implemented)
+  - [ ] Software UART port for debugging output (to be implemented)
+  - [ ] Hex String dump of UART output (to be implemented)
+  - [ ] Hex String dump of UART input (to be implemented)
 
 Please check config.h for more information.
