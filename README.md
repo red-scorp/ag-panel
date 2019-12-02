@@ -22,11 +22,13 @@ Work in progress but already usable.
 - LCD Display
   - [x] HD44780 in 4-bit and 8-bit modes
   - [x] HD44780 over I2C bus
-  - [x] HD44780 w/ RGB backlight over I2C bus, like 'Adafruit RGB 16x2 LCD Shield'
+  - [x] HD44780 w/ RGB binary backlight over I2C bus, like 'Adafruit RGB 16x2 LCD Shield'
 - LCD Backlight
   - [x] Not controlled
   - [x] ON/OFF binary backlight
-  - [x] PWM-controlled backlight
+  - [x] RGB binary (7 colors) backlight
+  - [x] PWM-controlled (monotone brightness) backlight
+  - [x] RGB PWM-controlled backlight (hue brightness) backlight
 - Keyboard
   - [x] No keyboard
   - [x] Digital Matrix up to 4x4 (on analog pins)
