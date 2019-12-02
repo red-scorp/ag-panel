@@ -57,12 +57,18 @@ void setup() {
   //
   // prot_init();
 
-#if defined(UART_DIRECT)
+#if defined(UART_HARDWARE)
   s_UART = new HardwareUART(UART_BAUD);
-#elif defined(UART_BUFFERED)
-  s_UART = new BufferedUART(new HardwareUART(UART_BAUD), UART_BUF_SIZE);
+#elif defined(UART_SOFTWARE)
+  s_UART = new SoftwareUART(UART_BAUD, UART_PIN_RX, UART_PIN_TX);
+#elif defined(UART_NONE)
+  s_UART = new NoneUART(UART_BAUD);
 #else
   #error UART is not defined!
+#endif
+
+#if defined(UART_BUFFERED)
+  s_UART = new BufferedUART(s_UART, UART_BUF_SIZE);
 #endif
 
 #if defined(LCD_TEXT_4BIT) || defined(LCD_TEXT_8BIT)

@@ -15,7 +15,10 @@
 
 /* UART Configuration */
 /* ------------------------------------------------------------------------- */
-#define UART_DIRECT
+#define UART_HARDWARE
+//#define UART_SOFTWARE
+//#define UART_NONE
+
 //#define UART_BUFFERED
 
 #define UART_BAUD           115200
@@ -47,4 +50,4 @@
 
 #include "config_adv.h"
 
-#endif//CONFIG_H
+#endif //CONFIG_H
