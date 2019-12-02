@@ -17,7 +17,7 @@ Work in progress but already usable.
 - UART Serial
   - [x] Hardware UART
   - [x] Software UART
-    [x] No (null) UART
+  - [x] No (null) UART
   - [x] Buffered UART (addition to a regualr UART)
 - LCD Display
   - [x] HD44780 in 4-bit and 8-bit modes
