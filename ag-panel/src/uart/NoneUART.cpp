@@ -47,7 +47,7 @@ uint8_t NoneUART::GetCh() {
 
 /*!
   \brief Check number of bytes in none UART buffer
-  \returns number of bytes stored in buffer of hardware UART
+  \returns Number of bytes stored in buffer of hardware UART
  */
 uint32_t NoneUART::Available() {
   return 0;

@@ -7,7 +7,7 @@
 
 #include "TextLoggingUART.h"
 
-static const char s_Numbers[] = "01234567890ABCDEF";
+static const char s_Numbers[] = "0123456789ABCDEF";
 
 /*!
   \brief Initialization of text logging UART
@@ -79,10 +79,18 @@ uint8_t TextLoggingUART::GetCh() {
 
 /*!
   \brief Check number of bytes in text logging UART buffer
-  \returns number of bytes stored in buffer of real UART
+  \returns Number of bytes stored in buffer of real UART
  */
 uint32_t TextLoggingUART::Available() {
   return m_RealUART->Available();
+}
+
+/*!
+  \brief Get baud rate of text logging UART
+  \returns Baud rate of real UART
+ */
+uint32_t TextLoggingUART::GetBaudRate() const {
+  return m_RealUART->GetBaudRate();
 }
 
 /*!

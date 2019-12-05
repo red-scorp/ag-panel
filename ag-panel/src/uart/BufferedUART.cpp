@@ -85,7 +85,7 @@ uint8_t BufferedUART::FillBuffer() {
 
 /*!
   \brief Check number of bytes in UART data buffer
-  \returns number of bytes stored in UART buffer and in buffer of real UART
+  \returns Number of bytes stored in UART buffer and in buffer of real UART
  */
 uint32_t BufferedUART::Available() {
   return m_BufferFilled + m_UART->Available();

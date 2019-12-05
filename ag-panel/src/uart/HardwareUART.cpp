@@ -72,7 +72,7 @@ uint8_t HardwareUART::GetCh() {
 
 /*!
   \brief Check number of bytes in hardware UART buffer
-  \returns number of bytes stored in buffer of hardware UART
+  \returns Number of bytes stored in buffer of hardware UART
  */
 uint32_t HardwareUART::Available() {
   HardwareSerial *p_UART = (HardwareSerial*)m_Lowlevel;

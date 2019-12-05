@@ -58,7 +58,7 @@ uint8_t SoftwareUART::GetCh() {
 
 /*!
   \brief Check number of bytes in software UART buffer
-  \returns number of bytes stored in buffer of software UART
+  \returns Number of bytes stored in buffer of software UART
  */
 uint32_t SoftwareUART::Available() {
   SoftwareSerial *p_UART = (SoftwareSerial*)m_Lowlevel;
