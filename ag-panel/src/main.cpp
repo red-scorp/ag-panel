@@ -12,8 +12,9 @@
 /*#include "prot/prot.h"
 #include "uart/uart.h"
 #include "lcd/lcd.h"
-#include "kbd/kbd.h"
-#include "debug.h"*/
+#include "kbd/kbd.h"*/
+
+#include "debug.h"
 
 #include "uart/all.h"
 #include "lcd/all.h"
@@ -69,6 +70,20 @@ void setup() {
 
 #if defined(UART_BUFFERED)
   s_UART = new BufferedUART(s_UART, UART_BUF_SIZE);
+#endif
+
+#if defined(DEBUG_UART_STR)
+  AbstractUART *DebugUART = nullptr;
+  #if defined(DEBUG_UART_HARDWARE)
+    DebugUART = new HardwareUART(DEBUG_BAUD);
+  #elif defined(DEBUG_UART_SOFTWARE)
+    DebugUART = new SoftwareUART(DEBUG_BAUD, DEBUG_PIN_RX, DEBUG_PIN_TX);
+  #elif defined(DEBUG_UART_NONE)
+    DebugUART = new NoneUART(DEBUG_BAUD);
+  #else
+    #error Debug UART is not defined!
+  #endif
+  s_UART = new TextLoggingUART(s_UART, DebugUART);
 #endif
 
 #if defined(LCD_TEXT_4BIT) || defined(LCD_TEXT_8BIT)

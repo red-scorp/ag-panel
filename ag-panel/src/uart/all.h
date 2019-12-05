@@ -13,3 +13,4 @@
 #include "SoftwareUART.h"
 #include "NoneUART.h"
 #include "BufferedUART.h"
+#include "TextLoggingUART.h"
