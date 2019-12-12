@@ -14,7 +14,12 @@
 class LoSPanelProtocol: public AbstractProtocol {
 
 public:
-  LoSPanelProtocol(AbstractUART *UART, AbstractTextLCD *TextLCD, AbstractKeyboard *Keyboard): AbstractProtocol(UART, TextLCD, Keyboard), m_TextLCD(TextLCD) { Init(); }
+  LoSPanelProtocol(
+    AbstractUART *UART,
+    AbstractTextLCD *TextLCD,
+    AbstractKeyboard *Keyboard
+  ): AbstractProtocol(UART, TextLCD, Keyboard),
+    m_TextLCD(TextLCD) { Init(); }
   virtual ~LoSPanelProtocol() { Exit(); }
 
   virtual void Loop() override;

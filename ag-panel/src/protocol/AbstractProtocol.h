@@ -15,7 +15,13 @@
 class AbstractProtocol {
 
 public:
-  AbstractProtocol(AbstractUART *UART, AbstractLCD *LCD, AbstractKeyboard *Keyboard): m_UART(UART), m_LCD(LCD), m_Keyboard(Keyboard) { Init(); }
+  AbstractProtocol(
+    AbstractUART *UART,
+    AbstractLCD *LCD,
+    AbstractKeyboard *Keyboard
+  ): m_UART(UART),
+    m_LCD(LCD),
+    m_Keyboard(Keyboard) { Init(); }
   virtual ~AbstractProtocol() { Exit(); }
 
   virtual void Loop() = 0;

@@ -19,7 +19,8 @@ class BinaryBacklight: public AbstractBacklight {
 public:
   BinaryBacklight(
     uint8_t LEDPin      /*!< Binary backlight digital pin */
-  ): AbstractBacklight(), m_LEDPin(LEDPin) { Init(); }
+  ): AbstractBacklight(),
+    m_LEDPin(LEDPin) { Init(); }
   virtual ~BinaryBacklight() override { Exit(); }
 
   virtual void SetOn(bool on) override;

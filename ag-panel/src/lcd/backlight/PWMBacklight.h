@@ -22,7 +22,9 @@ public:
   PWMBacklight(
     uint8_t LEDPin,     /*!< PWM backlight digital pin */
     uint8_t ScaleBrightness = DefaultPWMBacklightScaleBrightness  /*!< Brightness scaling (dimming) value */
-  ): AbstractBacklight(), m_LEDPin(LEDPin), m_ScaleBrightness(ScaleBrightness) { Init(); }
+  ): AbstractBacklight(),
+    m_LEDPin(LEDPin),
+    m_ScaleBrightness(ScaleBrightness) { Init(); }
   virtual ~PWMBacklight() override { Exit(); }
 
   virtual void SetOn(bool on) override;
