@@ -8,6 +8,7 @@
 #pragma once
 
 #include "AbstractBacklight.h"
+
 #include "NoneBacklight.h"
 #include "BinaryBacklight.h"
 #include "PWMBacklight.h"
