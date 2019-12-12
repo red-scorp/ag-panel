@@ -8,6 +8,8 @@
 #ifndef LCD_H
 #define LCD_H
 
+#if 0
+
 #include "../../config.h"
 
 /* Common LCD functions */
@@ -34,5 +36,7 @@ void lcd_print_string(const char *str);
 //void lcd_direction(uint8_t left2right); -> part of protocol emulator
 //void lcd_autoscroll(uint8_t on); -> part of protocol emulator
 void lcd_create_char(uint8_t pos, uint8_t *buf); // to be defined!
+
+#endif
 
 #endif//LCD_H

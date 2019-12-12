@@ -9,7 +9,7 @@
 #include "prot.h"
 #include "../uart/uart.h"
 #include "../lcd/lcd.h"
-#include "../kbd/kbd.h"
+#include "../keyboard/kbd.h"
 
 #if 0 //defined(PROT_RAWSERIAL)
 

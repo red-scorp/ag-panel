@@ -7,7 +7,7 @@
 
 #include "../private.h"
 #include "uart.h"
-#include "../prot/prot.h"
+#include "../protocol/prot.h"
 
 #if 0 //defined(UART_DIRECT)
 

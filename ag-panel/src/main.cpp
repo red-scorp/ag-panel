@@ -18,8 +18,8 @@
 
 #include "uart/all.h"
 #include "lcd/all.h"
-#include "kbd/all.h"
-#include "prot/all.h"
+#include "keyboard/all.h"
+#include "protocol/all.h"
 
 static AbstractUART *s_UART = nullptr;
 static AbstractLCD *s_LCD = nullptr;

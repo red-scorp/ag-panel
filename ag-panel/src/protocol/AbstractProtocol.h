@@ -10,7 +10,7 @@
 #include "../private.h"
 #include "../uart/AbstractUART.h"
 #include "../lcd/AbstractLCD.h"
-#include "../kbd/AbstractKeyboard.h"
+#include "../keyboard/AbstractKeyboard.h"
 
 class AbstractProtocol {
 

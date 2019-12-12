@@ -8,6 +8,8 @@
 #ifndef KBD_H
 #define KBD_H
 
+#if 0
+
 #include "../../config.h"
 
 #define KBD_KEY_NONE        0x00  /* No key is pressed */
@@ -35,5 +37,7 @@
 
 void kbd_init();
 uint8_t kbd_getkey();
+
+#endif
 
 #endif//KBD_H

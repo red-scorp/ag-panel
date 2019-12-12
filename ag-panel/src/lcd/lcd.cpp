@@ -9,7 +9,7 @@
 #include "lcd.h"
 #include "../version.h"
 #include "../uart/uart.h"
-#include "../prot/prot.h"
+#include "../protocol/prot.h"
 
 #if 0
 
