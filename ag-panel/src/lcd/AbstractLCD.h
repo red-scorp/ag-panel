@@ -8,7 +8,7 @@
 #pragma once
 
 #include "../private.h"
-#include "AbstractBacklight.h"
+#include "backlight/AbstractBacklight.h"
 
 /*!
   \brief Abstract LCD class

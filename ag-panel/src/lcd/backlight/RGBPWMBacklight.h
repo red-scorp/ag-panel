@@ -7,7 +7,7 @@
 
 #pragma once
 
-#include "../private.h"
+#include "../../private.h"
 #include "AbstractBacklight.h"
 
 const uint32_t DefaultRGBPWMBacklightDefaultColor = DefaultBacklightRGBColor;   /*!< Default RGB PWM backlight color if not specified */

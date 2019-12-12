@@ -7,7 +7,7 @@
 
 #pragma once
 
-#include "../private.h"
+#include "../../private.h"
 
 /*!
   \brief Convert 3 RGB color components in to a single integer value

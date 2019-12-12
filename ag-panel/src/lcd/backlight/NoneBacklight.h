@@ -7,7 +7,7 @@
 
 #pragma once
 
-#include "../private.h"
+#include "../../private.h"
 #include "AbstractBacklight.h"
 
 /*!
