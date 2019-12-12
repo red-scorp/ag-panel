@@ -25,8 +25,4 @@
 #define DEBUG_PIN_TX    13
 #endif
 
-//void debug_init();
-//void debug_putch(uint8_t txbyte);
-//void debug_puts(char *str);
-
 #endif//DEBUG_H

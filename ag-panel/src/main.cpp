@@ -9,11 +9,6 @@
 #include "../config.h"
 #include "version.h"
 
-/*#include "prot/prot.h"
-#include "uart/uart.h"
-#include "lcd/lcd.h"
-#include "kbd/kbd.h"*/
-
 #include "debug.h"
 
 #include "uart/all.h"
@@ -48,15 +43,6 @@ void print_welcome() {
  * - setup protocol
  */
 void setup() {
-
-  // debug_init();
-  //
-  // uart_init();
-  // lcd_init();
-  // lcd_welcome();
-  // kbd_init();
-  //
-  // prot_init();
 
 #if defined(UART_HARDWARE)
   s_UART = new HardwareUART(UART_BAUD);
@@ -187,17 +173,12 @@ void setup() {
  */
 void loop() {
 
-  // prot_loop();
-  // prot_yield();
-
   s_Protocol->Loop();
   s_Protocol->Yield();
 }
 
 /*! \brief Background task function */
 void yield() {
-
-  // prot_yield();
 
   s_Protocol->Yield();
 }
