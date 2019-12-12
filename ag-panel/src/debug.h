@@ -11,7 +11,6 @@
 /* Drop UART input and output data to debug port as hex string */
 //#define DEBUG_UART_STR
 
-
 //#define DEBUG_UART_HARDWARE
 //#define DEBUG_UART_HARDWARE1
 //#define DEBUG_UART_HARDWARE2

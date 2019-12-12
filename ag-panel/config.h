@@ -16,6 +16,9 @@
 /* UART Configuration */
 /* ------------------------------------------------------------------------- */
 #define UART_HARDWARE
+//#define UART_HARDWARE1
+//#define UART_HARDWARE2
+//#define UART_HARDWARE3
 //#define UART_SOFTWARE
 //#define UART_NONE
 
