@@ -10,6 +10,7 @@
 
 /*!
   \brief Initialization of binary backlight
+
   Configures binary backlight digital pin.
   \returns true
  */
@@ -26,6 +27,7 @@ void BinaryBacklight::Exit() {
 
 /*!
   \brief Set backlight in binary (on/off) form
+
   This function sets state of backlight pin.
  */
 void BinaryBacklight::SetOn(
@@ -36,6 +38,7 @@ void BinaryBacklight::SetOn(
 
 /*!
   \brief Set backlight brightness if supported
+
   This function enables binary backlight if brightness is non-zero.
  */
 void BinaryBacklight::SetBrightness(
@@ -46,6 +49,7 @@ void BinaryBacklight::SetBrightness(
 
 /*!
   \brief Set backlight RGB colors if supported
+
   This function enables binary backlight if RGB is non-zero.
  */
 void BinaryBacklight::SetRGB(

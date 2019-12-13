@@ -10,6 +10,7 @@
 
 /*!
   \brief Initialization of none keyboard
+
   \returns true
  */
 bool NoneKeyboard::Init() {
@@ -24,6 +25,7 @@ void NoneKeyboard::Exit() {
 
 /*!
   \brief Get a key of none keyboard
+
   \returns #KeyNone allways
  */
 uint8_t NoneKeyboard::GetKey() {

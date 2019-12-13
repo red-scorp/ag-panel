@@ -16,6 +16,7 @@ const uint8_t DefaultRotaryEncoderButtonPin = 11; /*!< Default digital pin of se
 
 /*!
   \brief Digital Matrix class
+
   This class implements rotary encoder based on two digital pins for encoder an simgle digital pin for select key.
  */
 class RotaryEncoder: public AbstractKeyboard {

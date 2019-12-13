@@ -22,7 +22,8 @@ constexpr uint8_t LoSPanelKeypadCode(uint8_t row, uint8_t col) {
 
 /*!
   \brief Initialization of los-panel protocol
-  Configures ...
+
+  Configures los-panel protocol class.
   \note https://mlf.home.xs4all.nl/los/
   \returns true
  */
@@ -69,7 +70,8 @@ void LoSPanelProtocol::StampLastTx() {
 
 /*!
   \brief Main loop of los-panel protocol
-  This function calls ...
+
+  This function reads UART and interpret the input based on los-panel protocol rules.
  */
 void LoSPanelProtocol::Loop() {
   uint8_t rxbyte = m_UART->GetCh();
@@ -99,7 +101,8 @@ void LoSPanelProtocol::Loop() {
 
 /*!
   \brief Background job of los-panel protocol
-  This function calls ...
+
+  This function reads keyboard input and puts it to UART.
  */
 void LoSPanelProtocol::Yield() {
   static uint8_t old_key = KeyNone;

@@ -11,6 +11,7 @@
 
 /*!
   \brief Initialization of digital matrix
+
   Configures column and row pins of the matrix.
   \returns true
  */
@@ -32,6 +33,7 @@ void DigitalMatrix::Exit() {
 
 /*!
   \brief Get a key of digital matrix
+
   Activates sequntially column pins and reads row pins to find out what key has been pressed.
   \returns #KeyNone if no new actions detected, else a key code
  */

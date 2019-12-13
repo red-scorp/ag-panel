@@ -10,6 +10,7 @@
 
 /*!
   \brief Initialization of PWM backlight
+
   Configures binary backlight digital pin.
   \returns true
  */
@@ -26,6 +27,7 @@ void PWMBacklight::Exit() {
 
 /*!
   \brief Set backlight in binary (on/off) form
+
   This function sets maximum brightness of PWM backlight if enabled.
  */
 void PWMBacklight::SetOn(
@@ -36,6 +38,7 @@ void PWMBacklight::SetOn(
 
 /*!
   \brief Set backlight brightness if supported
+
   This function writes brightness value to PWM pin.
  */
 void PWMBacklight::SetBrightness(
@@ -46,6 +49,7 @@ void PWMBacklight::SetBrightness(
 
 /*!
   \brief Set backlight RGB colors if supported
+
   This function sets PWM backlight brightness based on RGB value.
  */
 void PWMBacklight::SetRGB(

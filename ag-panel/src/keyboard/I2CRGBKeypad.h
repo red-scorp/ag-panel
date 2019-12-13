@@ -12,6 +12,7 @@
 
 /*!
   \brief I2C RGB Keypad class
+
   This class implements RGB display keypad attached with I2C MCP23017 I/O expander controller.
  */
 class I2CRGBKeypad: public AbstractKeyboard {

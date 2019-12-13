@@ -14,6 +14,7 @@ const uint8_t DefaultI2CCapacitiveMatrixI2CAddress = 0x5A;    /*!< Default I2C a
 
 /*!
   \brief I2C Capacitive Matrix class
+
   This class implements capacitive matrix based on MPR121 I2C touch controller.
  */
 class I2CCapacitiveMatrix: public AbstractKeyboard {

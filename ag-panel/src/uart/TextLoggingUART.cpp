@@ -11,6 +11,7 @@ static const char s_Numbers[] = "0123456789ABCDEF";
 
 /*!
   \brief Initialization of text logging UART
+
   Initialize text logging UART.
   \return true
  */
@@ -58,6 +59,7 @@ void TextLoggingUART::Exit() {
 
 /*!
   \brief Write a character to text logging UART
+
   \returns Number of bytes written to real UART
  */
 uint8_t TextLoggingUART::PutCh(
@@ -69,6 +71,7 @@ uint8_t TextLoggingUART::PutCh(
 
 /*!
   \brief Read a character from text logging UART
+
   \returns Charecter (byte) read from real UART
  */
 uint8_t TextLoggingUART::GetCh() {
@@ -79,6 +82,7 @@ uint8_t TextLoggingUART::GetCh() {
 
 /*!
   \brief Check number of bytes in text logging UART buffer
+
   \returns Number of bytes stored in buffer of real UART
  */
 uint32_t TextLoggingUART::Available() {
@@ -87,6 +91,7 @@ uint32_t TextLoggingUART::Available() {
 
 /*!
   \brief Get baud rate of text logging UART
+
   \returns Baud rate of real UART
  */
 uint32_t TextLoggingUART::GetBaudRate() const {
@@ -95,6 +100,7 @@ uint32_t TextLoggingUART::GetBaudRate() const {
 
 /*!
   \brief Print a byte
+
   This function prints given byte in specified format to a debug UART.
  */
 void TextLoggingUART::PrintByte(

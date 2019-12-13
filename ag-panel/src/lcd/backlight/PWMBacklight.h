@@ -14,6 +14,7 @@ const uint8_t DefaultPWMBacklightScaleBrightness = MaxBacklightBrightness;  /*!<
 
 /*!
   \brief PWM Backlight class
+
   This class implements PWM backlight based on a single digital pin.
  */
 class PWMBacklight: public AbstractBacklight {

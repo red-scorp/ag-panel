@@ -19,6 +19,7 @@ const uint8_t KeyDefaultSelect = 5;   /* KeyMatrix_2_1=Enter */
 
 /*!
   \brief Abstract keyboard class
+
   This is a base class for all keyboard implementations.
   It defines only a base interface of keyboard used by the rest of a project code.
  */

@@ -12,6 +12,7 @@
 
 /*!
   \brief I2C Text LCD class
+
   This class implements a 4-bit text LCD display based on HD44780 and connected
   with a help of PCF8574(T/AT) I2C 8-bit digital I/O expander chip.
   This class implements it's own backlight control.

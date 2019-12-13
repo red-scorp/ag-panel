@@ -10,6 +10,7 @@
 
 /*!
   \brief Initialization of RGB backlight
+
   Configures RGB backlight digital pins.
   \returns true
  */
@@ -28,6 +29,7 @@ void RGBBinaryBacklight::Exit() {
 
 /*!
   \brief Set backlight in binary (on/off) form
+
   This function sets default color of RGB backlight if enabled.
  */
 void RGBBinaryBacklight::SetOn(
@@ -38,6 +40,7 @@ void RGBBinaryBacklight::SetOn(
 
 /*!
   \brief Set backlight brightness if supported
+
   This function sets default color of RGB backlight if brightness is non-zero.
  */
 void RGBBinaryBacklight::SetBrightness(
@@ -48,6 +51,7 @@ void RGBBinaryBacklight::SetBrightness(
 
 /*!
   \brief Set backlight RGB colors if supported
+
   This function sets color pins based on brightness values.
  */
 void RGBBinaryBacklight::SetRGB(

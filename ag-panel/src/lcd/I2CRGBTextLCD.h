@@ -14,6 +14,7 @@ const uint32_t DefaultI2CRGBTextLCDDefaultColor = DefaultBacklightRGBColor;
 
 /*!
   \brief I2C RGB Text LCD class
+
   This class implements a 4-bit text LCD display based on HD44780 and connected
   with a help of MCP23017 I2C 16-bit digital I/O expander chip.
   This class implements it's own backlight control.

@@ -12,6 +12,7 @@
 
 /*!
   \brief PPI (Parallel) Text LCD class
+
   This class implements a parallel 8- and 4-bit text LCD display based on HD44780
   and connected with several digital pins.
   This class uses a backlight implementation given by a pointer.

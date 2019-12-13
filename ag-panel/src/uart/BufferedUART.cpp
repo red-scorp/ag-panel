@@ -10,6 +10,7 @@
 
 /*!
   \brief Initialization of buffered UART
+
   Initialize buffered UART and allocate data buffer.
   \return true
  */
@@ -28,6 +29,7 @@ void BufferedUART::Exit() {
 
 /*!
   \brief Write a character to real UART
+
   \returns Number of bytes written to real UART
  */
 uint8_t BufferedUART::PutCh(
@@ -38,6 +40,7 @@ uint8_t BufferedUART::PutCh(
 
 /*!
   \brief Read a character from UART buffer
+
   \returns Charecter (byte) read from UART buffer
  */
 uint8_t BufferedUART::GetCh() {
@@ -57,6 +60,7 @@ void BufferedUART::Prefill() {
 
 /*!
   \brief Push a character from UART data buffer
+
   \returns Caracter (byte) from top of a buffer (oldest)
  */
 uint8_t BufferedUART::PushBuffer() {
@@ -72,6 +76,7 @@ uint8_t BufferedUART::PushBuffer() {
 
 /*!
   \brief Fill UART data buffer from real UART
+
   \return Number of bytes in UART data buffer
  */
 uint8_t BufferedUART::FillBuffer() {
@@ -85,6 +90,7 @@ uint8_t BufferedUART::FillBuffer() {
 
 /*!
   \brief Check number of bytes in UART data buffer
+
   \returns Number of bytes stored in UART buffer and in buffer of real UART
  */
 uint32_t BufferedUART::Available() {

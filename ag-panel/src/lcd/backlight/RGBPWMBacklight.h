@@ -15,6 +15,7 @@ const uint8_t DefaultRGBPWMBacklightScaleBrightness = MaxBacklightBrightness;   
 
 /*!
   \brief RGB PWM Backlight class
+
   This class implements RGB PWM backlight based on a 3 digital pin, one per LED color.
  */
 class RGBPWMBacklight: public AbstractBacklight {

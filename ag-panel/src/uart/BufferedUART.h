@@ -17,6 +17,7 @@ const auto DefaultBufferedUARTBufferSize = 512;
 
 /*!
   \brief Hardware UART class
+
   This is a class which implements buffred UART filter.
   This class requires another UART class for I/O operations.
  */

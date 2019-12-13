@@ -13,6 +13,7 @@
 
 /*!
   \brief Initialization of parallel text LCD display
+
   Configures parallel text LCD display to work in 8- or 4-bit mode according to specified pins and geometry.
   \note https://en.wikipedia.org/wiki/Hitachi_HD44780_LCD_controller
   \returns true
@@ -39,6 +40,7 @@ void PPITextLCD::Exit() {
 
 /*!
   \brief Clear LCD display
+
   This function calls corresponding function of LiquidCrystal class instance.
  */
 void PPITextLCD::Clear() {
@@ -48,6 +50,7 @@ void PPITextLCD::Clear() {
 
 /*!
   \brief Set Cursor on LCD display
+
   This function calls corresponding function of LiquidCrystal class instance.
  */
 void PPITextLCD::SetCursor(
@@ -60,6 +63,7 @@ void PPITextLCD::SetCursor(
 
 /*!
   \brief Print a text on LCD display
+
   This function calls corresponding function of LiquidCrystal class instance.
  */
 void PPITextLCD::Print(
@@ -71,6 +75,7 @@ void PPITextLCD::Print(
 
 /*!
   \brief Write a byte (RS = 1) to LCD display
+
   This function calls corresponding function of LiquidCrystal class instance.
  */
 void PPITextLCD::Write(
@@ -82,6 +87,7 @@ void PPITextLCD::Write(
 
 /*!
   \brief Send a command byte (RS = 0) to LCD display
+
   This function calls corresponding function of LiquidCrystal class instance.
  */
 void PPITextLCD::Command(

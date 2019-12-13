@@ -34,12 +34,14 @@ void print_welcome() {
   s_LCD->Print(str);
 }
 
-/*! \brief Main initialization function
- * - setup debugging
- * - setup UART
- * - setup LCD
- * - setup keyboard
- * - setup protocol
+/*!
+  \brief Main initialization function
+
+ - setup debugging
+ - setup UART
+ - setup LCD
+ - setup keyboard
+ - setup protocol
  */
 void setup() {
 
@@ -178,9 +180,11 @@ void setup() {
   print_welcome();
 }
 
-/*! \brief Main loop function
- * - run protocol
- * - start background task
+/*!
+  \brief Main loop function
+
+ - run protocol
+ - start background task
  */
 void loop() {
 
@@ -188,7 +192,9 @@ void loop() {
   s_Protocol->Yield();
 }
 
-/*! \brief Background task function */
+/*!
+  \brief Background task function
+ */
 void yield() {
 
   s_Protocol->Yield();

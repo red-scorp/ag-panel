@@ -14,6 +14,7 @@ const uint32_t DefaultRGBBinaryBacklightDefaultColor = DefaultBacklightRGBColor;
 
 /*!
   \brief RGB Binary (7 colors) Backlight class
+
   This class implements RGB binary backlight based on a 3 digital pin, one per LED color.
  */
 class RGBBinaryBacklight: public AbstractBacklight {

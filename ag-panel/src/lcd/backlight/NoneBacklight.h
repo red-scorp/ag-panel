@@ -12,6 +12,7 @@
 
 /*!
   \brief None (dummy) Backlight class
+
   This class implements none backlight.
  */
 class NoneBacklight: public AbstractBacklight {

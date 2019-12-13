@@ -13,6 +13,7 @@ const uint32_t DefaultBaudRate = 9600;    /*!< Default baud rate value used if n
 
 /*!
   \brief Abstract UART class
+
   This is a base class for all UART implementations.
   It defines only a base interface of UART used by the rest of a project code.
  */

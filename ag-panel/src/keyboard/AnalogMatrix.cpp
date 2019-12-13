@@ -22,6 +22,7 @@
 
 /*!
   \brief Initialization of analog matrix
+
   \returns true
 */
 bool AnalogMatrix::Init() {
@@ -37,6 +38,7 @@ void AnalogMatrix::Exit() {
 
 /*!
   \brief Get a key of analog matrix
+
   Reads analog pin and deduces what key has been pressed.
   \returns #KeyNone if no new actions detected, else a key code
  */

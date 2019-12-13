@@ -14,6 +14,7 @@ Adafruit_RGBLCDShield *gp_I2CRGBLCD;  /*!< Pointer to a Adafruit_RGBLCDShield cl
 
 /*!
   \brief Initialization of I2C RGB text LCD display
+
   Configures I2C RGB text LCD display to work with specified geometry.
   \returns true
  */
@@ -35,6 +36,7 @@ void I2CRGBTextLCD::Exit() {
 
 /*!
   \brief Set backlight in binary (on/off) form
+
   This function sets default color of RGB backlight if enabled.
  */
 void I2CRGBTextLCD::SetBacklight(
@@ -45,6 +47,7 @@ void I2CRGBTextLCD::SetBacklight(
 
 /*!
   \brief Set backlight brightness if supported
+
   This function sets default color of RGB backlight if brightness is non-zero.
  */
 void I2CRGBTextLCD::SetBacklight(
@@ -55,6 +58,7 @@ void I2CRGBTextLCD::SetBacklight(
 
 /*!
   \brief Set backlight RGB colors if supported
+
   This function calls corresponding function of Adafruit_RGBLCDShield class instance.
  */
 void I2CRGBTextLCD::SetBacklight(
@@ -67,6 +71,7 @@ void I2CRGBTextLCD::SetBacklight(
 
 /*!
   \brief Set backlight RGB colors if supported
+
   This function sets RGB color based on given integer value.
  */
 void I2CRGBTextLCD::SetBacklight(
@@ -77,6 +82,7 @@ void I2CRGBTextLCD::SetBacklight(
 
 /*!
   \brief Clear LCD display
+
   This function calls corresponding function of Adafruit_RGBLCDShield class instance.
  */
 void I2CRGBTextLCD::Clear() {
@@ -85,6 +91,7 @@ void I2CRGBTextLCD::Clear() {
 
 /*!
   \brief Set Cursor on LCD display
+
   This function calls corresponding function of Adafruit_RGBLCDShield class instance.
  */
 void I2CRGBTextLCD::SetCursor(
@@ -96,6 +103,7 @@ void I2CRGBTextLCD::SetCursor(
 
 /*!
   \brief Print a text on LCD display
+
   This function calls corresponding function of Adafruit_RGBLCDShield class instance.
  */
 void I2CRGBTextLCD::Print(
@@ -106,6 +114,7 @@ void I2CRGBTextLCD::Print(
 
 /*!
   \brief Write a byte (RS = 1) to LCD display
+
   This function calls corresponding function of Adafruit_RGBLCDShield class instance.
  */
 void I2CRGBTextLCD::Write(
@@ -116,6 +125,7 @@ void I2CRGBTextLCD::Write(
 
 /*!
   \brief Send a command byte (RS = 0) to LCD display
+
   This function calls corresponding function of Adafruit_RGBLCDShield class instance.
  */
 void I2CRGBTextLCD::Command(

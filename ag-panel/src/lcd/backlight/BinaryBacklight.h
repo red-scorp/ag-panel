@@ -12,6 +12,7 @@
 
 /*!
   \brief Binary (on/off) Backlight class
+
   This class implements binary backlight based on a single digital pin.
  */
 class BinaryBacklight: public AbstractBacklight {

@@ -12,6 +12,7 @@
 
 /*!
   \brief Hardware UART class
+
   This is a class which implements hardware UART of arduino boards.
  */
 class HardwareUART: public AbstractUART {

@@ -10,6 +10,7 @@
 
 /*!
   \brief Initialization of hardware UART
+
   Initialize hardware UART and set baud rate.
   \return true
  */
@@ -48,6 +49,7 @@ void HardwareUART::Exit() {
 
 /*!
   \brief Write a character to hardware UART
+
   \returns Number of bytes written to hardware UART
  */
 uint8_t HardwareUART::PutCh(
@@ -59,6 +61,7 @@ uint8_t HardwareUART::PutCh(
 
 /*!
   \brief Read a character from hardware UART
+
   \returns Charecter (byte) read from hardware UART
  */
 uint8_t HardwareUART::GetCh() {
@@ -72,6 +75,7 @@ uint8_t HardwareUART::GetCh() {
 
 /*!
   \brief Check number of bytes in hardware UART buffer
+
   \returns Number of bytes stored in buffer of hardware UART
  */
 uint32_t HardwareUART::Available() {

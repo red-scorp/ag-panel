@@ -11,6 +11,7 @@
 
 /*!
   \brief Initialization of I2C text LCD display
+
   Configures I2C text LCD display to work with specified geometry.
   \returns true
  */
@@ -33,6 +34,7 @@ void I2CTextLCD::Exit() {
 
 /*!
   \brief Set backlight in binary (on/off) form
+
   This function calls corresponding function of LiquidCrystal_I2C class instance.
  */
 void I2CTextLCD::SetBacklight(
@@ -47,6 +49,7 @@ void I2CTextLCD::SetBacklight(
 
 /*!
   \brief Set backlight brightness if supported
+
   This function enables LCD backlight if brightness is non-zero.
  */
 void I2CTextLCD::SetBacklight(
@@ -57,6 +60,7 @@ void I2CTextLCD::SetBacklight(
 
 /*!
   \brief Set backlight RGB colors if supported
+
   This function enables LCD backlight if RGB is non-zero.
  */
 void I2CTextLCD::SetBacklight(
@@ -69,6 +73,7 @@ void I2CTextLCD::SetBacklight(
 
 /*!
   \brief Set backlight RGB colors if supported
+
   This function enables LCD backlight if RGB is non-zero.
  */
 void I2CTextLCD::SetBacklight(
@@ -79,6 +84,7 @@ void I2CTextLCD::SetBacklight(
 
 /*!
   \brief Clear LCD display
+
   This function calls corresponding function of LiquidCrystal_I2C class instance.
  */
 void I2CTextLCD::Clear() {
@@ -88,6 +94,7 @@ void I2CTextLCD::Clear() {
 
 /*!
   \brief Set Cursor on LCD display
+
   This function calls corresponding function of LiquidCrystal_I2C class instance.
  */
 void I2CTextLCD::SetCursor(
@@ -100,6 +107,7 @@ void I2CTextLCD::SetCursor(
 
 /*!
   \brief Print a text on LCD display
+
   This function calls corresponding function of LiquidCrystal_I2C class instance.
  */
 void I2CTextLCD::Print(
@@ -111,6 +119,7 @@ void I2CTextLCD::Print(
 
 /*!
   \brief Write a byte (RS = 1) to LCD display
+
   This function calls corresponding function of LiquidCrystal_I2C class instance.
  */
 void I2CTextLCD::Write(
@@ -122,6 +131,7 @@ void I2CTextLCD::Write(
 
 /*!
   \brief Send a command byte (RS = 0) to LCD display
+
   This function calls corresponding function of LiquidCrystal_I2C class instance.
  */
 void I2CTextLCD::Command(

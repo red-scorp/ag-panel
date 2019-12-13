@@ -14,6 +14,7 @@ const uint8_t DefaultAnalogMatrixDataPin = A0;    /*!< Default analog matrix inp
 
 /*!
   \brief Analog Matrix class
+
   This class implements analog matrix based on several buttons connected with different resistors.
  */
 class AnalogMatrix: public AbstractKeyboard {

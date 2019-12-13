@@ -12,6 +12,7 @@
 
 /*!
   \brief None UART class
+
   This is a class which implements none UART.
  */
 class NoneUART: public AbstractUART {

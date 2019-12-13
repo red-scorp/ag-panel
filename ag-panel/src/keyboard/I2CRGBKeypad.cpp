@@ -15,6 +15,7 @@ extern Adafruit_RGBLCDShield *gp_I2CRGBLCD; /* Defined in I2CRGBTextLCD.cpp */
 
 /*!
   \brief Initialization of I2C RGB keypad
+
   \returns true
  */
 bool I2CRGBKeypad::Init() {
@@ -30,6 +31,7 @@ void I2CRGBKeypad::Exit() {
 
 /*!
   \brief Get a key of I2C RGB keypad
+
   Reads key state from I2C controller to find out what key has been pressed.
   \returns #KeyNone if no new actions detected, else a key code
  */

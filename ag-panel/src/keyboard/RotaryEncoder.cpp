@@ -11,6 +11,7 @@
 
 /*!
   \brief Initialization of rotary encoder
+
   Configures digital pins of rotary encoder and select button.
   \returns true
  */
@@ -29,6 +30,7 @@ void RotaryEncoder::Exit() {
 
 /*!
   \brief Get a key of rotary encoder
+
   Read rotary encoder and select button pins to find out what key has been pressed.
   \returns #KeyNone if no new actions detected, else a key code
  */

@@ -11,13 +11,18 @@
 #include "AbstractProtocol.h"
 #include "../lcd/AbstractTextLCD.h"
 
+/*!
+  \brief LoS Panel class
+
+  This class implements a LoS (LCD over Serial) panel protocol.
+ */
 class LoSPanelProtocol: public AbstractProtocol {
 
 public:
   LoSPanelProtocol(
-    AbstractUART *UART,
-    AbstractTextLCD *TextLCD,
-    AbstractKeyboard *Keyboard
+    AbstractUART *UART,           /*!< Pointer to UART implementation */
+    AbstractTextLCD *TextLCD,     /*!< Pointer to text LCD implementation */
+    AbstractKeyboard *Keyboard    /*!< Pointer to keyboard implementation */
   ): AbstractProtocol(UART, TextLCD, Keyboard),
     m_TextLCD(TextLCD) { Init(); }
   virtual ~LoSPanelProtocol() { Exit(); }
@@ -26,7 +31,7 @@ public:
   virtual void Yield() override;
 
 protected:
-  AbstractTextLCD *m_TextLCD;
+  AbstractTextLCD *m_TextLCD;     /*!< Pointer to text LCD implementation */
 
 private:
   uint32_t m_LCDLastTxMicros;     /*!< Last LCD transfer microseconds time stamp value */

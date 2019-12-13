@@ -12,6 +12,7 @@
 
 /*!
   \brief Abstract LCD class
+
   This is a base class for all LCD implementations.
   It defines only a base interface of LCD used by the rest of a project code.
  */

@@ -13,6 +13,7 @@
 
 /*!
   \brief Initialization of capacitive matrix
+
   Begin communication with controller of capacitive matrix.
   \returns true
  */
@@ -35,6 +36,7 @@ void I2CCapacitiveMatrix::Exit() {
 
 /*!
   \brief Get a key of capacitive matrix
+
   Reads touch status from I2C touch controller to find out what key has been pressed.
   \returns #KeyNone if no new actions detected, else a key code
  */

@@ -25,6 +25,7 @@
 
 /*!
   \brief Initialization of analog keypad
+
   \returns true
  */
 bool AnalogKeypad::Init() {
@@ -40,6 +41,7 @@ void AnalogKeypad::Exit() {
 
 /*!
   \brief Get a key of analog keypad
+
   Reads analog pin and deduces what key has been pressed.
   \returns #KeyNone if no new actions detected, else a key code
  */

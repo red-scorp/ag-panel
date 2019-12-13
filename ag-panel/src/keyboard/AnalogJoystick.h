@@ -16,6 +16,7 @@ const uint8_t DefaultAnalogJoystickButtonPin = 12;  /*!< Default select button d
 
 /*!
   \brief Analog Joystick class
+
   This class implements analog joystick based on two 10k potentiometers and a button.
  */
 class AnalogJoystick: public AbstractKeyboard {

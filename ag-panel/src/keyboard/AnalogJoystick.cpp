@@ -16,6 +16,7 @@
 
 /*!
   \brief Initialization of analog joystick
+
   Configures select button pin.
   \returns true
  */
@@ -32,6 +33,7 @@ void AnalogJoystick::Exit() {
 
 /*!
   \brief Get a key of analog joystick
+
   Reads X- and Y-direction analog pins and a select button digital pin.
   \returns #KeyNone if no new actions detected, else a key code
  */

@@ -12,6 +12,7 @@
 
 /*!
   \brief Initialization of software UART
+
   Initialize software UART and set baud rate.
   \return true
  */
@@ -34,6 +35,7 @@ void SoftwareUART::Exit() {
 
 /*!
   \brief Write a character to software UART
+
   \returns Number of bytes written to software UART
  */
 uint8_t SoftwareUART::PutCh(
@@ -45,6 +47,7 @@ uint8_t SoftwareUART::PutCh(
 
 /*!
   \brief Read a character from software UART
+
   \returns Charecter (byte) read from software UART
  */
 uint8_t SoftwareUART::GetCh() {
@@ -58,6 +61,7 @@ uint8_t SoftwareUART::GetCh() {
 
 /*!
   \brief Check number of bytes in software UART buffer
+
   \returns Number of bytes stored in buffer of software UART
  */
 uint32_t SoftwareUART::Available() {

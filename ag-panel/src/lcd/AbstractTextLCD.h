@@ -12,6 +12,7 @@
 
 /*!
   \brief Abstract Text LCD class
+
   This is a base class for all text LCD implementations.
   It defines only a base interface of text LCD used by the rest of a project code.
  */

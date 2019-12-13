@@ -9,6 +9,7 @@
 
 /*!
   \brief Initialization of none UART
+
   Initialize none UART.
   \return true
  */
@@ -24,6 +25,7 @@ void NoneUART::Exit() {
 
 /*!
   \brief Write a character to none UART
+
   \returns Number of bytes written to hardware UART
  */
 uint8_t NoneUART::PutCh(
@@ -34,6 +36,7 @@ uint8_t NoneUART::PutCh(
 
 /*!
   \brief Read a character from none UART
+
   \returns Charecter (byte) read from hardware UART
  */
 uint8_t NoneUART::GetCh() {
@@ -47,6 +50,7 @@ uint8_t NoneUART::GetCh() {
 
 /*!
   \brief Check number of bytes in none UART buffer
+
   \returns Number of bytes stored in buffer of hardware UART
  */
 uint32_t NoneUART::Available() {

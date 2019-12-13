@@ -10,6 +10,7 @@
 
 /*!
   \brief Initialization of none backlight
+
   \returns true
  */
 bool NoneBacklight::Init() {

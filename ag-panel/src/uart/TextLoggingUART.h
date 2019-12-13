@@ -18,6 +18,7 @@ const uint8_t DefaultNumbersBase = NumbersBaseHexadecimal;
 
 /*!
   \brief Text Logging UART class
+
   This is a class which implements logging of UART communication to another UART in text form.
  */
 class TextLoggingUART: public AbstractUART {

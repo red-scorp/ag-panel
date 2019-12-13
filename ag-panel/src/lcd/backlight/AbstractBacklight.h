@@ -11,6 +11,7 @@
 
 /*!
   \brief Convert 3 RGB color components in to a single integer value
+
   \returns Integer value for RGB
  */
 constexpr inline uint32_t RGBColor2Uint(
@@ -23,6 +24,7 @@ constexpr inline uint32_t RGBColor2Uint(
 
 /*!
   \brief Extract red component from integer RGB value
+
   \returns Brightness of red color
  */
 constexpr inline uint8_t RGBUint2Red(
@@ -33,6 +35,7 @@ constexpr inline uint8_t RGBUint2Red(
 
 /*!
   \brief Extract green component from integer RGB value
+
   \returns Brightness of green color
  */
 constexpr inline uint8_t RGBUint2Green(
@@ -43,6 +46,7 @@ constexpr inline uint8_t RGBUint2Green(
 
 /*!
   \brief Extract blue component from integer RGB value
+
   \returns Brightness of blue color
  */
 constexpr inline uint8_t RGBUint2Blue(
@@ -53,6 +57,7 @@ constexpr inline uint8_t RGBUint2Blue(
 
 /*!
   /brief Scale a brightness value relative to maximum value
+
   /returns Scaled color/brightness value
  */
 constexpr inline uint8_t ScaleColor(
@@ -64,6 +69,7 @@ constexpr inline uint8_t ScaleColor(
 
 /*!
   /brief Scale an RGB value relative to maximum value
+
   /returns Scaled RGB value
  */
 constexpr inline uint32_t ScaleRGB(
@@ -79,6 +85,7 @@ const uint32_t DefaultBacklightRGBColor = RGBColor2Uint(0, 0, MaxBacklightBright
 
 /*!
   \brief Abstract Backlight class
+
   This is a base class for all backlight implementations.
   It defines only a base interface of backlight used by the rest of a project code.
  */
