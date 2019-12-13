@@ -19,7 +19,7 @@ class NoneUART: public AbstractUART {
 
 public:
   NoneUART(
-    uint32_t BaudRate = DefaultBaudRate   /*!< Baud rate of an UART */
+    uint32_t BaudRate = DefaultUARTBaudRate   /*!< Baud rate of an UART */
   ): AbstractUART(BaudRate) { Init(); }
   virtual ~NoneUART() override { Exit(); }
 

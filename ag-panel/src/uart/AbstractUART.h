@@ -9,7 +9,7 @@
 
 #include "../private.h"
 
-const uint32_t DefaultBaudRate = 9600;    /*!< Default baud rate value used if none is specified.*/
+const uint32_t DefaultUARTBaudRate = 9600;    /*!< Default baud rate value used if none is specified.*/
 
 /*!
   \brief Abstract UART class
@@ -21,7 +21,7 @@ class AbstractUART {
 
 public:
   AbstractUART(
-    uint32_t BaudRate = DefaultBaudRate /*!< Baud rate of an UART */
+    uint32_t BaudRate = DefaultUARTBaudRate /*!< Baud rate of an UART */
   ): m_BaudRate(BaudRate) { Init(); }
   virtual ~AbstractUART() { Exit(); }
 
@@ -30,6 +30,8 @@ public:
   virtual void Prefill() {}
   virtual uint32_t Available() { return 0; }
   virtual uint32_t GetBaudRate() const { return m_BaudRate; }
+
+  virtual void PutStr(char *str) { while(*str != '\0') PutCh(*str++); }
 
 protected:
   uint32_t m_BaudRate;  /*!< UART baud rate */

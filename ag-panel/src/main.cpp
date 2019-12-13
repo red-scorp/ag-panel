@@ -16,11 +16,17 @@
 #include "keyboard/all.h"
 #include "protocol/all.h"
 
+static AbstractUART *s_DebugUART = nullptr;
 static AbstractUART *s_UART = nullptr;
 static AbstractLCD *s_LCD = nullptr;
 static AbstractKeyboard *s_Keyboard = nullptr;
 static AbstractProtocol *s_Protocol = nullptr;
 
+/*!
+  \brief Print welcome message to the LCD
+
+  This function prints project name, project version and UART baud rate to the attached LCD.
+ */
 void print_welcome() {
   char str[s_LCD->GetColumns() + 1];
   uint8_t center_x = (s_LCD->GetColumns() - 16) / 2;
@@ -28,10 +34,13 @@ void print_welcome() {
   memset(str, 0, sizeof(str));
   s_LCD->Clear();
   s_LCD->SetCursor(center_x, center_y);
-  s_LCD->Print(FW_NAME " v" FW_VERSION);
-  s_LCD->SetCursor(center_x, center_y + 1);
-  snprintf(str, s_LCD->GetColumns(), "@%ldBd Ready", s_UART->GetBaudRate());
+  snprintf(str, sizeof(str) - 1, FW_NAME " v" FW_VERSION);
   s_LCD->Print(str);
+  DEBUG_STR("LCD> "); DEBUG_STR(str); DEBUG_STR("\n");
+  s_LCD->SetCursor(center_x, center_y + 1);
+  snprintf(str, sizeof(str) - 1, "@%ldBd Ready", s_UART->GetBaudRate());
+  s_LCD->Print(str);
+  DEBUG_STR("LCD> "); DEBUG_STR(str); DEBUG_STR("\n");
 }
 
 /*!
@@ -44,6 +53,24 @@ void print_welcome() {
  - setup protocol
  */
 void setup() {
+
+#if defined(DEBUG_UART_HARDWARE)
+  s_DebugUART = new HardwareUART(DEBUG_BAUD);
+#elif defined(DEBUG_UART_HARDWARE1)
+  s_DebugUART = new HardwareUART(DEBUG_BAUD, 1);
+#elif defined(DEBUG_UART_HARDWARE2)
+  s_DebugUART = new HardwareUART(DEBUG_BAUD, 2);
+#elif defined(DEBUG_UART_HARDWARE3)
+  s_DebugUART = new HardwareUART(DEBUG_BAUD, 3);
+#elif defined(DEBUG_UART_SOFTWARE)
+  s_DebugUART = new SoftwareUART(DEBUG_BAUD, DEBUG_PIN_RX, DEBUG_PIN_TX);
+#elif defined(DEBUG_UART_NONE)
+  s_DebugUART = new NoneUART(DEBUG_BAUD);
+#else
+  #error Debug UART is not defined!
+#endif
+
+DEBUG_STR("Starting Up...\n");
 
 #if defined(UART_HARDWARE)
   s_UART = new HardwareUART(UART_BAUD);
@@ -66,23 +93,7 @@ void setup() {
 #endif
 
 #if defined(DEBUG_UART_STR)
-  AbstractUART *DebugUART = nullptr;
-  #if defined(DEBUG_UART_HARDWARE)
-    DebugUART = new HardwareUART(DEBUG_BAUD);
-  #elif defined(DEBUG_UART_HARDWARE1)
-    DebugUART = new HardwareUART(DEBUG_BAUD, 1);
-  #elif defined(DEBUG_UART_HARDWARE2)
-    DebugUART = new HardwareUART(DEBUG_BAUD, 2);
-  #elif defined(DEBUG_UART_HARDWARE3)
-    DebugUART = new HardwareUART(DEBUG_BAUD, 3);
-  #elif defined(DEBUG_UART_SOFTWARE)
-    DebugUART = new SoftwareUART(DEBUG_BAUD, DEBUG_PIN_RX, DEBUG_PIN_TX);
-  #elif defined(DEBUG_UART_NONE)
-    DebugUART = new NoneUART(DEBUG_BAUD);
-  #else
-    #error Debug UART is not defined!
-  #endif
-  s_UART = new TextLoggingUART(s_UART, DebugUART);
+  s_UART = new TextLoggingUART(s_UART, s_DebugUART);
 #endif
 
 #if defined(LCD_TEXT_4BIT) || defined(LCD_TEXT_8BIT)
