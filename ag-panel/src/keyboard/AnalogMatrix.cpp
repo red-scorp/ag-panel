@@ -26,7 +26,7 @@
   \returns true
 */
 bool AnalogMatrix::Init() {
-  /* no initialization needed for analog pins */
+  /* No initialization needed for analog pins */
   return true;
 }
 
@@ -43,7 +43,6 @@ void AnalogMatrix::Exit() {
   \returns #KeyNone if no new actions detected, else a key code
  */
 uint8_t AnalogMatrix::GetKey() {
-
   uint16_t data = analogRead(m_DataPin);
 
   for(uint8_t c = 0; c < m_Columns; c++)

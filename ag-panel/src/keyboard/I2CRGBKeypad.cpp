@@ -8,10 +8,9 @@
 #include "../private.h"
 #include "../../config.h"
 #include "I2CRGBKeypad.h"
+#include "../lcd/I2CRGBTextLCD.h"
 
 #include <Adafruit_RGBLCDShield.h>
-/* TODO: remove static and global varibles!! */
-extern Adafruit_RGBLCDShield *gp_I2CRGBLCD; /* Defined in I2CRGBTextLCD.cpp */
 
 /*!
   \brief Initialization of I2C RGB keypad
@@ -19,7 +18,9 @@ extern Adafruit_RGBLCDShield *gp_I2CRGBLCD; /* Defined in I2CRGBTextLCD.cpp */
   \returns true
  */
 bool I2CRGBKeypad::Init() {
-  /* The RGB Keypad is already initialized in I2CRGBTextLCD.cpp */
+  /* The RGB Keypad is already initialized in I2CRGBTextLCD.cpp but we should retrive a pointer */
+  I2CRGBTextLCD *p_I2CRGBTextLCD = (I2CRGBTextLCD*)m_LCD;
+  m_Lowlevel = p_I2CRGBTextLCD->GetLowLevel();
   return true;
 }
 
@@ -36,8 +37,8 @@ void I2CRGBKeypad::Exit() {
   \returns #KeyNone if no new actions detected, else a key code
  */
 uint8_t I2CRGBKeypad::GetKey() {
-
-  uint8_t buttons = gp_I2CRGBLCD->readButtons();
+  Adafruit_RGBLCDShield *p_I2CRGBLCD = (Adafruit_RGBLCDShield*)m_Lowlevel;
+  uint8_t buttons = p_I2CRGBLCD->readButtons();
 
   if(buttons & BUTTON_UP)
     return KeyDefaultUp;

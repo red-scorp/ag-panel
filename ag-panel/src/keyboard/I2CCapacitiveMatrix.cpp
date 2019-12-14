@@ -18,7 +18,7 @@
   \returns true
  */
 bool I2CCapacitiveMatrix::Init() {
-  m_Lowlevel = new Adafruit_MPR121;   /* TODO: Use m_I2CAddress somewhere? */
+  m_Lowlevel = new Adafruit_MPR121;   /* TODO: Use m_I2CAddress somewhere, currently it is ignored! */
   Adafruit_MPR121 *p_I2CKbd = (Adafruit_MPR121*)m_Lowlevel;
   p_I2CKbd->begin();
   return true;
@@ -41,9 +41,7 @@ void I2CCapacitiveMatrix::Exit() {
   \returns #KeyNone if no new actions detected, else a key code
  */
 uint8_t I2CCapacitiveMatrix::GetKey() {
-
   Adafruit_MPR121 *p_I2CKbd = (Adafruit_MPR121*)m_Lowlevel;
-
   const uint16_t watch_mask = (uint16_t)(1l << (m_Columns * m_Rows + 1)) - 1; /* watch only lower CxR bits, ignore rest */
   static uint16_t last_touched = 0;
 

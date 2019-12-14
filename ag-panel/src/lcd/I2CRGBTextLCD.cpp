@@ -9,9 +9,6 @@
 #include "I2CRGBTextLCD.h"
 #include <Adafruit_RGBLCDShield.h>
 
-/* TODO: remove static and global varibles!! */
-Adafruit_RGBLCDShield *gp_I2CRGBLCD;  /*!< Pointer to a Adafruit_RGBLCDShield class instance, also used in I2CRGBKeypad.cpp */
-
 /*!
   \brief Initialization of I2C RGB text LCD display
 
@@ -19,9 +16,10 @@ Adafruit_RGBLCDShield *gp_I2CRGBLCD;  /*!< Pointer to a Adafruit_RGBLCDShield cl
   \returns true
  */
 bool I2CRGBTextLCD::Init() {
-  gp_I2CRGBLCD = new Adafruit_RGBLCDShield;
-  gp_I2CRGBLCD->begin(m_Columns, m_Rows);
-  /* TODO: add usage of m_I2CAddress */
+  m_Lowlevel = new Adafruit_RGBLCDShield;
+  Adafruit_RGBLCDShield *p_I2CRGBLCD = (Adafruit_RGBLCDShield*)m_Lowlevel;
+  p_I2CRGBLCD->begin(m_Columns, m_Rows);
+  /* TODO: add usage of m_I2CAddress, currently it is ignored! */
   return true;
 }
 
@@ -29,9 +27,10 @@ bool I2CRGBTextLCD::Init() {
   \brief Deinitialisation of I2C RGB text LCD display class
  */
 void I2CRGBTextLCD::Exit() {
-  if(gp_I2CRGBLCD != nullptr)
-    delete gp_I2CRGBLCD;
-  gp_I2CRGBLCD = nullptr;
+  Adafruit_RGBLCDShield *p_I2CRGBLCD = (Adafruit_RGBLCDShield*)m_Lowlevel;
+  if(p_I2CRGBLCD != nullptr)
+    delete p_I2CRGBLCD;
+  p_I2CRGBLCD = nullptr;
 }
 
 /*!
@@ -66,7 +65,8 @@ void I2CRGBTextLCD::SetBacklight(
   uint8_t green,        /*!< Green color value */
   uint8_t blue          /*!< Blue color value */
 ) {
-  gp_I2CRGBLCD->setBacklight((red > 0? 0x01: 0x00) | (green > 0? 0x02: 0x00) | (blue > 0? 0x04: 0x00));
+  Adafruit_RGBLCDShield *p_I2CRGBLCD = (Adafruit_RGBLCDShield*)m_Lowlevel;
+  p_I2CRGBLCD->setBacklight((red > 0? 0x01: 0x00) | (green > 0? 0x02: 0x00) | (blue > 0? 0x04: 0x00));
 }
 
 /*!
@@ -86,7 +86,8 @@ void I2CRGBTextLCD::SetBacklight(
   This function calls corresponding function of Adafruit_RGBLCDShield class instance.
  */
 void I2CRGBTextLCD::Clear() {
-  gp_I2CRGBLCD->clear();
+  Adafruit_RGBLCDShield *p_I2CRGBLCD = (Adafruit_RGBLCDShield*)m_Lowlevel;
+  p_I2CRGBLCD->clear();
 }
 
 /*!
@@ -98,7 +99,8 @@ void I2CRGBTextLCD::SetCursor(
   uint8_t column,       /*!< Column to put the cursor to */
   uint8_t row           /*!< Row to put the cursor to */
 ) {
-  gp_I2CRGBLCD->setCursor(column, row);
+  Adafruit_RGBLCDShield *p_I2CRGBLCD = (Adafruit_RGBLCDShield*)m_Lowlevel;
+  p_I2CRGBLCD->setCursor(column, row);
 }
 
 /*!
@@ -109,7 +111,8 @@ void I2CRGBTextLCD::SetCursor(
 void I2CRGBTextLCD::Print(
   const char *str       /*!< String to print */
 ) {
-  gp_I2CRGBLCD->print(str);
+  Adafruit_RGBLCDShield *p_I2CRGBLCD = (Adafruit_RGBLCDShield*)m_Lowlevel;
+  p_I2CRGBLCD->print(str);
 }
 
 /*!
@@ -120,7 +123,8 @@ void I2CRGBTextLCD::Print(
 void I2CRGBTextLCD::Write(
   uint8_t byte          /* !< Byte to write to LCD display */
 ) {
-  gp_I2CRGBLCD->write(byte);
+  Adafruit_RGBLCDShield *p_I2CRGBLCD = (Adafruit_RGBLCDShield*)m_Lowlevel;
+  p_I2CRGBLCD->write(byte);
 }
 
 /*!
@@ -131,5 +135,6 @@ void I2CRGBTextLCD::Write(
 void I2CRGBTextLCD::Command(
   uint8_t byte          /* !< Command to send to LCD display */
 ) {
-  gp_I2CRGBLCD->command(byte);
+  Adafruit_RGBLCDShield *p_I2CRGBLCD = (Adafruit_RGBLCDShield*)m_Lowlevel;
+  p_I2CRGBLCD->command(byte);
 }

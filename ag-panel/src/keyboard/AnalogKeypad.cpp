@@ -29,7 +29,7 @@
   \returns true
  */
 bool AnalogKeypad::Init() {
-  /* no initialization needed for analog pins */
+  /* No initialization needed for analog pins */
   return true;
 }
 
@@ -46,7 +46,6 @@ void AnalogKeypad::Exit() {
   \returns #KeyNone if no new actions detected, else a key code
  */
 uint8_t AnalogKeypad::GetKey() {
-
   uint16_t data = analogRead(m_DataPin);
 
   if(data >= KBD_DATA_UP_MIN && data < KBD_DATA_UP_MAX)

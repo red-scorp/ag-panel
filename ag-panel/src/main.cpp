@@ -175,7 +175,10 @@ DEBUG_STR("Starting Up...\n");
   static const uint16_t data_array[KBD_ROWS * KBD_COLS] = KBD_DATA_ARRAY;
   s_Keyboard = new AnalogMatrix(KBD_COLS, KBD_ROWS, data_array, KBD_PIN_DATA);
 #elif defined(KBD_I2C_RGB)
-  s_Keyboard = new I2CRGBKeypad();
+  #if !defined(LCD_TEXT_I2C_RGB)
+    #error 'KBD_I2C_RGB' must be defined togather with `LCD_TEXT_I2C_RGB`!
+  #endif
+  s_Keyboard = new I2CRGBKeypad(s_LCD);
 #elif defined(KBD_I2C_C_MATRIX)
   s_Keyboard = new I2CCapacitiveMatrix(KBD_COLS, KBD_ROWS, KBD_I2C_ADDR);
 #else

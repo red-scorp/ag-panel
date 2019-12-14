@@ -38,7 +38,6 @@ void AnalogJoystick::Exit() {
   \returns #KeyNone if no new actions detected, else a key code
  */
 uint8_t AnalogJoystick::GetKey() {
-
   uint16_t x = analogRead(m_XPin);
   uint16_t y = analogRead(m_YPin);
   uint8_t button = digitalRead(m_ButtonPin);

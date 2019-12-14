@@ -38,7 +38,6 @@ void DigitalMatrix::Exit() {
   \returns #KeyNone if no new actions detected, else a key code
  */
 uint8_t DigitalMatrix::GetKey() {
-
   for(uint8_t c = 0; c < m_Columns; c++) {
     delayMicroseconds(5);
     for(uint8_t i = 0; i < m_Columns; i++) {

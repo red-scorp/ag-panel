@@ -29,7 +29,8 @@ public:
     uint32_t DefaultColor = DefaultI2CRGBTextLCDDefaultColor    /*!< Default color if not specified */
   ): AbstractTextLCD(nullptr, Columns, Rows),
     m_I2CAddress(I2CAddress),
-    m_DefaultColor(DefaultColor) { Init(); }
+    m_DefaultColor(DefaultColor),
+    m_Lowlevel(nullptr) { Init(); }
   virtual ~I2CRGBTextLCD() override { Exit(); }
 
   virtual void SetBacklight(bool on) override;
@@ -44,11 +45,14 @@ public:
   virtual void Write(uint8_t byte) override;
   virtual void Command(uint8_t byte) override;
 
+  void *GetLowLevel() const { return m_Lowlevel; }
+
 protected:
   uint8_t m_I2CAddress;         /*!< I2C address of digital I/O expander chip */
   uint32_t m_DefaultColor;      /*!< Default color if not specified */
 
 private:
+  void *m_Lowlevel;       /*!< Pointer to Low-Level LCD class */
   bool Init();
   void Exit();
 };

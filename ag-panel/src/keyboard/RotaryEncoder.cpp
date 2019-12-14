@@ -35,7 +35,6 @@ void RotaryEncoder::Exit() {
   \returns #KeyNone if no new actions detected, else a key code
  */
 uint8_t RotaryEncoder::GetKey() {
-
 /*action| full left | full right| left&back | right&back|
   ------+-----------+-----------+-----------+-----------+
   !d1   | 0 1 1 0 0 | 0 0 1 1 0 | 0 1 1 1 0 | 0 0 1 0 0 |
