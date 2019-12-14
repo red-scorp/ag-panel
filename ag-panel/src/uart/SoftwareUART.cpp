@@ -7,7 +7,7 @@
 
 #include "SoftwareUART.h"
 
-#if defined(__AVR__)
+#if defined(__AVR__) || defined(STM32F0xx) || defined(STM32F1xx) || defined(STM32F2xx) || defined(STM32F3xx) || defined(STM32F4xx) || defined(STM32F7xx) || defined(STM32G0xx) || defined(STM32G4xx) || defined(STM32H7xx) || defined(STM32L0xx) || defined(STM32L1xx) || defined(STM32L4xx) || defined(STM32WBxx)
 #include <SoftwareSerial.h>
 
 /*!
@@ -69,4 +69,6 @@ uint32_t SoftwareUART::Available() {
   return p_UART->available();
 }
 
-#endif //__AVR__
+#else
+#warning 'SoftwareUART' is not implemented for your platform. Use 'HardwareUART' or 'NoneUART' instead!
+#endif //__AVR__ || STM32
