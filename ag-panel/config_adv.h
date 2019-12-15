@@ -24,11 +24,6 @@
 /* LCD Configuration */
 /* ------------------------------------------------------------------------- */
 #if defined(LCD_TEXT_4BIT) || defined(LCD_TEXT_8BIT)
-//#define LCD_BACKLIGHT_NONE
-//#define LCD_BACKLIGHT_ONOFF
-#define LCD_BACKLIGHT_PWM
-/* Add 'Backlight=yes' to '[hd44780]' section of your '/etc/LCDd.conf' if you use any other value LCD_BACKLIGHT_NONE */
-
 #define LCD_PIN_RS          8
 #define LCD_PIN_RW          255
 #define LCD_PIN_ENABLE      9

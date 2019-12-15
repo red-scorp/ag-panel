@@ -38,6 +38,11 @@
 #define LCD_COLS            16
 /* Add proper 'Size=?x?' to '[hd44780]' section of your '/etc/LCDd.conf' for selected LCD_ROWS and LCD_COLS */
 
+//#define LCD_BACKLIGHT_NONE
+//#define LCD_BACKLIGHT_ONOFF
+#define LCD_BACKLIGHT_PWM
+/* Add 'Backlight=yes' to '[hd44780]' section of your '/etc/LCDd.conf' if you use any other value LCD_BACKLIGHT_NONE */
+
 /* Keyboard Configuration */
 /* ------------------------------------------------------------------------- */
 //#define KBD_NONE
