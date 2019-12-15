@@ -186,6 +186,8 @@ void setup() {
     #error Keyboard is not defined!
   #endif
 
+  /* TODO: Add AbstractSpeaker and other classes for notice, warning and error sounds??? */
+
   #if defined(PROT_LOSPANEL)
     s_Protocol = new LoSPanelProtocol(s_UART, (AbstractTextLCD*)s_LCD, s_Keyboard);
   #else
