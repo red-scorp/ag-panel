@@ -129,4 +129,10 @@
 #define KBD_I2C_ADDR        0x5A
 #endif //KBD_I2C_C_MATRIX
 
+#if defined(KBD_S_BUTTON)
+#define KBD_NUM             4
+
+#define KBD_PIN_ARRAY       {A0, A2, A3, A4}
+#endif //KBD_S_BUTTON
+
 #endif //CONFIG_ADV_H
