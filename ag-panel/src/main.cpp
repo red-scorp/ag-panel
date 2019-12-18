@@ -182,7 +182,7 @@ void setup() {
     s_Keyboard = new I2CRGBKeypad(s_LCD);
   #elif defined(KBD_I2C_C_MATRIX)
     s_Keyboard = new I2CCapacitiveMatrix(KBD_COLS, KBD_ROWS, KBD_I2C_ADDR);
-  #elif defined(KBD_S_BUTTON)
+  #elif defined(KBD_BUTTON)
     static const uint8_t pins[] = KBD_PIN_ARRAY;
     s_Keyboard = new SimpleButton(KBD_NUM, pins);
   #else

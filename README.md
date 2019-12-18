@@ -27,7 +27,7 @@ Work in progress but already usable.
   - [x] Not controlled
   - [x] ON/OFF binary backlight
   - [x] RGB binary (7 colors) backlight
-  - [x] PWM-controlled (monotone brightness) backlight
+  - [x] PWM-controlled (monochrome brightness) backlight
   - [x] RGB PWM-controlled backlight (hue brightness) backlight
 - Keyboard
   - [x] No keyboard
