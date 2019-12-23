@@ -78,3 +78,12 @@ uint8_t RotaryEncoder::GetKey() {
 
   return KeyNone;
 }
+
+/*!
+  \brief Get number of keys supported by rotary encoder
+
+  \returns Number of supported keys
+ */
+uint8_t RotaryEncoder::GetKeyCount() {
+  return 5; // we skip up and down here, but still use select key code
+}

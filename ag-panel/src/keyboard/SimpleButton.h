@@ -6,7 +6,7 @@
  */
 
 #pragma once
-  
+
 #include "../private.h"
 #include "AbstractKeyboard.h"
 
@@ -27,6 +27,7 @@ public:
   virtual ~SimpleButton() override { Exit(); }
 
   virtual uint8_t GetKey() override;
+  virtual uint8_t GetKeyCount() override;
 
 protected:
   uint8_t m_Number;             /*!< Number of buttons (pins) */

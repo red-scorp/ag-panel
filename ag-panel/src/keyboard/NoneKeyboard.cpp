@@ -31,3 +31,12 @@ void NoneKeyboard::Exit() {
 uint8_t NoneKeyboard::GetKey() {
   return KeyNone;
 }
+
+/*!
+  \brief Get number of keys supported by none keyboard
+
+  \returns Number of supported keys
+ */
+uint8_t NoneKeyboard::GetKeyCount() {
+  return 0;
+}

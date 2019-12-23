@@ -28,7 +28,9 @@
 #endif
 
 #if defined(DEBUG_STR_ENABLED)
-#define DEBUG_STR(str) s_DebugUART->PutStr(str)
+#include "uart/AbstractUART.h"
+extern AbstractUART *g_DebugUART;
+#define DEBUG_STR(str) g_DebugUART->PutStr(str)
 #else
 #define DEBUG_STR(str) /* Nothig */
 #endif

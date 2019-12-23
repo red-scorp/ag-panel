@@ -31,6 +31,7 @@ void NoneUART::Exit() {
 uint8_t NoneUART::PutCh(
   uint8_t txbyte      /*!< Character to be writte to hardware UART */
 ) {
+  txbyte = txbyte; /* remove 'unused parameter ...' warning */
   return 1;
 }
 

@@ -27,6 +27,7 @@ public:
   virtual ~I2CRGBKeypad() override { Exit(); }
 
   virtual uint8_t GetKey() override;
+  virtual uint8_t GetKeyCount() override;
 
 protected:
   AbstractLCD *m_LCD;

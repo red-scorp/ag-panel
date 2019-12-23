@@ -54,6 +54,7 @@
 //#define KBD_I2C_RGB /* this option is added automatically if LCD_I2C_RGB is selected */
 //#define KBD_I2C_C_MATRIX
 //#define KBD_BUTTON
+//#define KBD_JOINED /* Enables use of several keyboards at once */
 /* Add 'Keypad=yes' to '[hd44780]' section of your '/etc/LCDd.conf' if you use any other value then KBD_NONE */
 /* Check for proper 'KeyMatrix_?_?=???' values for your '/etc/LCDd.conf' in kbd.h */
 

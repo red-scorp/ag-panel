@@ -18,3 +18,4 @@
 #include "DigitalMatrix.h"
 #include "I2CRGBKeypad.h"
 #include "SimpleButton.h"
+#include "JoinedKeyboard.h"

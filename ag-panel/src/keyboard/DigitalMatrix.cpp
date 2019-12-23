@@ -59,3 +59,12 @@ uint8_t DigitalMatrix::GetKey() {
   }
   return KeyNone;
 }
+
+/*!
+  \brief Get number of keys supported by digital matrix
+
+  \returns Number of supported keys
+ */
+uint8_t DigitalMatrix::GetKeyCount() {
+  return m_Columns * m_Rows;
+}

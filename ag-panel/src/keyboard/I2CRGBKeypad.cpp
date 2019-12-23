@@ -53,3 +53,12 @@ uint8_t I2CRGBKeypad::GetKey() {
 
   return KeyNone;
 }
+
+/*!
+  \brief Get number of keys supported by I2C RGB keypad
+
+  \returns Number of supported keys
+ */
+uint8_t I2CRGBKeypad::GetKeyCount() {
+  return 5;
+}

@@ -60,3 +60,12 @@ uint8_t AnalogKeypad::GetKey() {
     return KeyDefaultSelect;
   return KeyNone;
 }
+
+/*!
+  \brief Get number of keys supported by analog leybad
+
+  \returns Number of supported keys
+ */
+uint8_t AnalogKeypad::GetKeyCount() {
+  return 5;
+}

@@ -18,7 +18,7 @@
 bool SimpleButton::Init() {
 
   for(uint8_t i = 0; i < m_Number; i++)
-    pinMode(m_PinsArray[i], OUTPUT);
+    pinMode(m_PinsArray[i], INPUT_PULLUP);
 
   return true;
 }
@@ -43,4 +43,13 @@ uint8_t SimpleButton::GetKey() {
     }
   }
   return KeyNone;
+}
+
+/*!
+  \brief Get number of keys supported by rotary encoder
+
+  \returns Number of supported keys
+ */
+uint8_t SimpleButton::GetKeyCount() {
+  return m_Number;
 }

@@ -54,3 +54,12 @@ uint8_t AnalogMatrix::GetKey() {
     }
   return KeyNone;
 }
+
+/*!
+  \brief Get number of keys supported by analog matrix
+
+  \returns Number of supported keys
+ */
+uint8_t AnalogMatrix::GetKeyCount() {
+  return m_Columns * m_Rows;
+}

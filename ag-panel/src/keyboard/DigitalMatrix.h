@@ -31,6 +31,7 @@ public:
   virtual ~DigitalMatrix() override { Exit(); }
 
   virtual uint8_t GetKey() override;
+  virtual uint8_t GetKeyCount() override;
 
 protected:
   uint8_t m_Columns;            /*!< Number of columns of the matrix */

@@ -16,7 +16,7 @@ const uint8_t LoSPanelProtocolBacklight = 0xFD;     /*!< LCD Backlight control p
 const uint8_t LoSPanelProtocolBacklightOff = 0x00;  /*!< Enable LCD Backlight code */
 const uint8_t LoSPanelProtocolBacklightOn = 0xFF;   /*!< Disable LCD Backlight code */
 
-constexpr uint8_t LoSPanelKeypadCode(uint8_t row, uint8_t col) {
+constexpr uint8_t LoSPanelKeypadCode(uint8_t col, uint8_t row) {
   return ((col) << 4) | (1 << (row));
 }
 

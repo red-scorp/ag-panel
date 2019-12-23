@@ -16,7 +16,7 @@
 #include "keyboard/all.h"
 #include "protocol/all.h"
 
-static AbstractUART *s_DebugUART = nullptr;
+AbstractUART *g_DebugUART = nullptr;
 static AbstractUART *s_UART = nullptr;
 static AbstractLCD *s_LCD = nullptr;
 static AbstractKeyboard *s_Keyboard = nullptr;
@@ -55,22 +55,23 @@ void print_welcome() {
 void setup() {
 
   #if defined(DEBUG_UART_HARDWARE)
-    s_DebugUART = new HardwareUART(DEBUG_BAUD);
+    g_DebugUART = new HardwareUART(DEBUG_BAUD);
   #elif defined(DEBUG_UART_HARDWARE1)
-    s_DebugUART = new HardwareUART(DEBUG_BAUD, 1);
+    g_DebugUART = new HardwareUART(DEBUG_BAUD, 1);
   #elif defined(DEBUG_UART_HARDWARE2)
-    s_DebugUART = new HardwareUART(DEBUG_BAUD, 2);
+    g_DebugUART = new HardwareUART(DEBUG_BAUD, 2);
   #elif defined(DEBUG_UART_HARDWARE3)
-    s_DebugUART = new HardwareUART(DEBUG_BAUD, 3);
+    g_DebugUART = new HardwareUART(DEBUG_BAUD, 3);
   #elif defined(DEBUG_UART_SOFTWARE)
-    s_DebugUART = new SoftwareUART(DEBUG_BAUD, DEBUG_PIN_RX, DEBUG_PIN_TX);
+    g_DebugUART = new SoftwareUART(DEBUG_BAUD, DEBUG_PIN_RX, DEBUG_PIN_TX);
   #elif defined(DEBUG_UART_NONE)
-    s_DebugUART = new NoneUART(DEBUG_BAUD);
+    g_DebugUART = new NoneUART(DEBUG_BAUD);
   #else
     #error Debug UART is not defined!
   #endif
 
   DEBUG_STR("Starting Up...\n");
+  DEBUG_STR("Initializing UART...\n");
 
   #if defined(UART_HARDWARE)
     s_UART = new HardwareUART(UART_BAUD);
@@ -93,8 +94,10 @@ void setup() {
   #endif
 
   #if defined(DEBUG_UART_STR)
-    s_UART = new TextLoggingUART(s_UART, s_DebugUART);
+    s_UART = new TextLoggingUART(s_UART, g_DebugUART);
   #endif
+
+  DEBUG_STR("Initializing Backlight...\n");
 
   AbstractBacklight *Backlight = nullptr;
   #if defined(LCD_BACKLIGHT_NONE)
@@ -108,6 +111,8 @@ void setup() {
       Backlight = new PWMBacklight(LCD_PIN_BACKLIGHT);
     #endif
   #endif
+
+  DEBUG_STR("Initializing LCD...\n");
 
   #if defined(LCD_TEXT_4BIT) || defined(LCD_TEXT_8BIT)
     #if defined(LCD_TEXT_4BIT)
@@ -128,9 +133,20 @@ void setup() {
     #error LCD is not defined!
   #endif
 
+  DEBUG_STR("Initializing Keyboard...\n");
+
+  #if defined(KBD_JOINED)
+    JoinedKeyboard *p_JoinedKeyboard = new JoinedKeyboard();
+  #endif
+
   #if defined(KBD_NONE)
     s_Keyboard = new NoneKeyboard();
-  #elif defined(KBD_D_MATRIX)
+    #if defined(KBD_JOINED)
+      p_JoinedKeyboard->AddKeyboard(s_Keyboard);
+      s_Keyboard = nullptr;
+    #endif
+  #endif
+  #if defined(KBD_D_MATRIX)
     static const uint8_t cols[] = {
     #if KBD_COLS >= 1
       KBD_PIN_C1,
@@ -166,30 +182,76 @@ void setup() {
     #endif
     };
     s_Keyboard = new DigitalMatrix(KBD_COLS, KBD_ROWS, cols, rows);
-  #elif defined(KBD_A_JOYSTICK)
+    #if defined(KBD_JOINED)
+      p_JoinedKeyboard->AddKeyboard(s_Keyboard);
+      s_Keyboard = nullptr;
+    #endif
+  #endif
+  #if defined(KBD_A_JOYSTICK)
     s_Keyboard = new AnalogJoystick(KBD_PIN_X, KBD_PIN_Y, KBD_PIN_BTN);
-  #elif defined(KBD_A_KEYPAD)
+    #if defined(KBD_JOINED)
+      p_JoinedKeyboard->AddKeyboard(s_Keyboard);
+      s_Keyboard = nullptr;
+    #endif
+  #endif
+  #if defined(KBD_A_KEYPAD)
     s_Keyboard = new AnalogKeypad(KBD_PIN_DATA);
-  #elif defined(KBD_ROTARY_ENCODER)
+    #if defined(KBD_JOINED)
+      p_JoinedKeyboard->AddKeyboard(s_Keyboard);
+      s_Keyboard = nullptr;
+    #endif
+  #endif
+  #if defined(KBD_ROTARY_ENCODER)
     s_Keyboard = new RotaryEncoder(KBD_PIN_D1, KBD_PIN_D2, KBD_PIN_BTN);
-  #elif defined(KBD_A_MATRIX)
+    #if defined(KBD_JOINED)
+      p_JoinedKeyboard->AddKeyboard(s_Keyboard);
+      s_Keyboard = nullptr;
+    #endif
+  #endif
+  #if defined(KBD_A_MATRIX)
     static const uint16_t data_array[KBD_ROWS * KBD_COLS] = KBD_DATA_ARRAY;
     s_Keyboard = new AnalogMatrix(KBD_COLS, KBD_ROWS, data_array, KBD_PIN_DATA);
-  #elif defined(KBD_I2C_RGB)
+    #if defined(KBD_JOINED)
+      p_JoinedKeyboard->AddKeyboard(s_Keyboard);
+      s_Keyboard = nullptr;
+    #endif
+  #endif
+  #if defined(KBD_I2C_RGB)
     #if !defined(LCD_TEXT_I2C_RGB)
       #error 'KBD_I2C_RGB' must be defined together with 'LCD_TEXT_I2C_RGB'!
     #endif
     s_Keyboard = new I2CRGBKeypad(s_LCD);
-  #elif defined(KBD_I2C_C_MATRIX)
+    #if defined(KBD_JOINED)
+      p_JoinedKeyboard->AddKeyboard(s_Keyboard);
+      s_Keyboard = nullptr;
+    #endif
+  #endif
+  #if defined(KBD_I2C_C_MATRIX)
     s_Keyboard = new I2CCapacitiveMatrix(KBD_COLS, KBD_ROWS, KBD_I2C_ADDR);
-  #elif defined(KBD_BUTTON)
+    #if defined(KBD_JOINED)
+      p_JoinedKeyboard->AddKeyboard(s_Keyboard);
+      s_Keyboard = nullptr;
+    #endif
+  #endif
+  #if defined(KBD_BUTTON)
     static const uint8_t pins[] = KBD_PIN_ARRAY;
     s_Keyboard = new SimpleButton(KBD_NUM, pins);
-  #else
-    #error Keyboard is not defined!
+    #if defined(KBD_JOINED)
+      p_JoinedKeyboard->AddKeyboard(s_Keyboard);
+      s_Keyboard = nullptr;
+    #endif
+  #endif
+//  #else
+//    #error Keyboard is not defined!
+//  #endif
+
+  #if defined(KBD_JOINED)
+    s_Keyboard = p_JoinedKeyboard;
   #endif
 
   /* TODO: Add AbstractSpeaker and other classes for notice, warning and error sounds??? */
+
+  DEBUG_STR("Initializing Protocol...\n");
 
   #if defined(PROT_LOSPANEL)
     s_Protocol = new LoSPanelProtocol(s_UART, (AbstractTextLCD*)s_LCD, s_Keyboard);

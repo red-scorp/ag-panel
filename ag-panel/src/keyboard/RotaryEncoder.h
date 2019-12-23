@@ -33,6 +33,7 @@ public:
   virtual ~RotaryEncoder() override { Exit(); }
 
   virtual uint8_t GetKey() override;
+  virtual uint8_t GetKeyCount() override;
 
 protected:
   uint8_t m_D1Pin;        /*!< First digital pin of rotary encoder */

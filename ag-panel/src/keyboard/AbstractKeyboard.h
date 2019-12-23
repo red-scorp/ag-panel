@@ -30,6 +30,7 @@ public:
   virtual ~AbstractKeyboard() { Exit(); }
 
   virtual uint8_t GetKey() = 0;
+  virtual uint8_t GetKeyCount() = 0;
 
 protected:
 

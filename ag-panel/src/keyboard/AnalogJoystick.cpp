@@ -54,3 +54,12 @@ uint8_t AnalogJoystick::GetKey() {
     return KeyDefaultUp;
   return KeyNone;
 }
+
+/*!
+  \brief Get number of keys supported by analog joystick
+
+  \returns Number of supported keys
+ */
+uint8_t AnalogJoystick::GetKeyCount() {
+  return 5;
+}

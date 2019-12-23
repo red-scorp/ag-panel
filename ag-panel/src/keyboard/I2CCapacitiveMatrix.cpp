@@ -63,3 +63,12 @@ uint8_t I2CCapacitiveMatrix::GetKey() {
 
   return KeyNone;
 }
+
+/*!
+  \brief Get number of keys supported by capacitive matrix
+
+  \returns Number of supported keys
+ */
+uint8_t I2CCapacitiveMatrix::GetKeyCount() {
+  return m_Columns * m_Rows;
+}
