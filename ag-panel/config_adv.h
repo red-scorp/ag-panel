@@ -25,15 +25,15 @@
 /* ------------------------------------------------------------------------- */
 #if defined(LCD_TEXT_4BIT) || defined(LCD_TEXT_8BIT)
 #define LCD_PIN_RS          8
-#define LCD_PIN_RW          255
+#define LCD_PIN_RW          InvalidPin
 #define LCD_PIN_ENABLE      9
 #define LCD_PIN_BACKLIGHT   10
 
 #if defined(LCD_TEXT_8BIT)
-#define LCD_PIN_D0          255
-#define LCD_PIN_D1          255
-#define LCD_PIN_D2          255
-#define LCD_PIN_D3          255
+#define LCD_PIN_D0          A0
+#define LCD_PIN_D1          A1
+#define LCD_PIN_D2          A2
+#define LCD_PIN_D3          A3
 #endif //LCD_TEXT_8BIT
 
 #define LCD_PIN_D4          4
@@ -47,7 +47,8 @@
 #endif //LCD_TEXT_I2C
 
 #if defined(LCD_TEXT_I2C_RGB)
-#define LCD_BACKLIGHT_COLOR 0x1 /* Bitmask: 0x01 - red, 0x02 - green, 0x04 - blue */
+//#define LCD_I2C_ADDR        0x57
+#define LCD_BACKLIGHT_COLOR 0xFFFFFF /* Bitmask: 0xBBGGRR - red, green, blue */
 #define KBD_I2C_RGB
 #endif //LCD_TEXT_I2C_RGB
 

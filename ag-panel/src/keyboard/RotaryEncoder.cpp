@@ -48,7 +48,7 @@ uint8_t RotaryEncoder::GetKey() {
 
   uint8_t d1 = !digitalRead(m_D1Pin);
   uint8_t d2 = !digitalRead(m_D2Pin);
-  uint8_t btn = digitalRead(m_ButtonPin);
+  uint8_t button = digitalRead(m_ButtonPin);
   uint8_t d = (d1 << 0) | (d2 << 1);
 
   static uint8_t p_d = 0;
@@ -73,7 +73,7 @@ uint8_t RotaryEncoder::GetKey() {
     }
   }
 
-  if(btn == LOW)
+  if(button == LOW)
     return KeyDefaultSelect;
 
   return KeyNone;

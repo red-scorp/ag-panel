@@ -33,7 +33,7 @@ void print_welcome() {
   uint8_t center_y = (s_LCD->GetRows() - 2) / 2;
   memset(str, 0, sizeof(str));
   s_LCD->Clear();
-  s_LCD->SetBacklight(true);
+  s_LCD->SetBacklight(bool(true));
   s_LCD->SetCursor(center_x, center_y);
   snprintf(str, sizeof(str) - 1, FW_NAME " v" FW_VERSION);
   s_LCD->Print(str);
@@ -129,7 +129,7 @@ void setup() {
   #elif defined(LCD_TEXT_I2C)
     s_LCD = new I2CTextLCD(LCD_COLS, LCD_ROWS, LCD_I2C_ADDR);
   #elif defined(LCD_TEXT_I2C_RGB)
-    s_LCD = new I2CRGBTextLCD(LCD_COLS, LCD_ROWS, 123);
+    s_LCD = new I2CRGBTextLCD(LCD_COLS, LCD_ROWS, 123, LCD_BACKLIGHT_COLOR);
   #else
     #error LCD is not defined!
   #endif
