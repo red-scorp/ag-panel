@@ -33,6 +33,7 @@ void print_welcome() {
   uint8_t center_y = (s_LCD->GetRows() - 2) / 2;
   memset(str, 0, sizeof(str));
   s_LCD->Clear();
+  s_LCD->SetBacklight(true);
   s_LCD->SetCursor(center_x, center_y);
   snprintf(str, sizeof(str) - 1, FW_NAME " v" FW_VERSION);
   s_LCD->Print(str);
