@@ -270,8 +270,10 @@ void setup() {
  */
 void loop() {
 
-  s_Protocol->Loop();
-  s_Protocol->Yield();
+  if(s_Protocol != nullptr) {
+    s_Protocol->Loop();
+    s_Protocol->Yield();
+  }
 }
 
 /*!
@@ -279,5 +281,6 @@ void loop() {
  */
 void yield() {
 
-  s_Protocol->Yield();
+  if(s_Protocol != nullptr)
+    s_Protocol->Yield();
 }
