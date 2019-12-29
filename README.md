@@ -15,6 +15,7 @@ Work in progress but already usable.
 - Protocols
   - [x] los-panel (lcdproc) for direct HD44780 (will support **only** HD44780 displays)
   - [ ] rawserial (lcdproc) (to be implemented)
+  - [ ] own protocol TBD (lcdproc) (to be implemented)
 - UART Serial
   - [x] Hardware UART
   - [x] Software UART
