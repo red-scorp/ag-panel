@@ -1,13 +1,13 @@
 /*!
-  \file I2CCapacitiveMatrix.cpp
-  \brief AG-Panel Project I2C capacitive matrix keyboard implementation
+  \file I2CMPR121CapacitiveKeypad.cpp
+  \brief AG-Panel Project I2C MPR121 capacitive matrix keyboard implementation
   \copyright (C) 2019 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@googlemail.com)
  */
 
 #include "../private.h"
 #include "../../config.h"
-#include "I2CCapacitiveMatrix.h"
+#include "I2CMPR121CapacitiveKeypad.h"
 
 #include <Adafruit_MPR121.h>
 
@@ -17,17 +17,17 @@
   Begin communication with controller of capacitive matrix.
   \returns true
  */
-bool I2CCapacitiveMatrix::Init() {
-  m_Lowlevel = new Adafruit_MPR121;   /* TODO: Use m_I2CAddress somewhere, currently it is ignored! */
+bool I2CMPR121CapacitiveKeypad::Init() {
+  m_Lowlevel = new Adafruit_MPR121;
   Adafruit_MPR121 *p_I2CKbd = (Adafruit_MPR121*)m_Lowlevel;
-  p_I2CKbd->begin();
+  p_I2CKbd->begin(m_I2CAddress);
   return true;
 }
 
 /*!
   \brief Deinitialisation of capacitive matrix class
  */
-void I2CCapacitiveMatrix::Exit() {
+void I2CMPR121CapacitiveKeypad::Exit() {
   Adafruit_MPR121 *p_I2CKbd = (Adafruit_MPR121*)m_Lowlevel;
   if(p_I2CKbd != nullptr)
     delete p_I2CKbd;
@@ -40,9 +40,9 @@ void I2CCapacitiveMatrix::Exit() {
   Reads touch status from I2C touch controller to find out what key has been pressed.
   \returns #KeyNone if no new actions detected, else a key code
  */
-uint8_t I2CCapacitiveMatrix::GetKey() {
+uint8_t I2CMPR121CapacitiveKeypad::GetKey() {
   Adafruit_MPR121 *p_I2CKbd = (Adafruit_MPR121*)m_Lowlevel;
-  const uint16_t watch_mask = (uint16_t)(1l << (m_Columns * m_Rows + 1)) - 1; /* watch only lower CxR bits, ignore rest */
+  const uint16_t watch_mask = (uint16_t)(1l << (m_Number + 1)) - 1; /* watch only lower CxR bits, ignore rest */
   static uint16_t last_touched = 0;
 
   uint16_t touched = p_I2CKbd->touched() & watch_mask;
@@ -51,12 +51,10 @@ uint8_t I2CCapacitiveMatrix::GetKey() {
 
   last_touched ^= released; /* remove all released keys */
   if(pressed != 0) {
-    for(uint8_t i = 0; i < (m_Columns * m_Rows); i++) {
+    for(uint8_t i = 0; i < m_Number; i++) {
       if(pressed & (1 << i)) {
         last_touched ^= (1 << i); /* remember only one pressed key we are going to send to a host */
-        uint8_t c = i % m_Columns;
-        uint8_t r = i / m_Columns;
-        return r * m_Columns + c + 1;
+        return i + 1;
       }
     }
   }
@@ -69,6 +67,6 @@ uint8_t I2CCapacitiveMatrix::GetKey() {
 
   \returns Number of supported keys
  */
-uint8_t I2CCapacitiveMatrix::GetKeyCount() {
-  return m_Columns * m_Rows;
+uint8_t I2CMPR121CapacitiveKeypad::GetKeyCount() {
+  return m_Number;
 }

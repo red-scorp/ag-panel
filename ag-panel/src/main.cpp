@@ -242,6 +242,13 @@ void setup() {
       s_Keyboard = nullptr;
     #endif
   #endif
+  #if defined(KBD_I2C_C_TTP229_KEYPAD)
+    s_Keyboard = new I2CTTP229CapacitiveKeypad(KBD_KEYS, KBD_I2C_ADDR);
+    #if defined(KBD_JOINED)
+      p_JoinedKeyboard->AddKeyboard(s_Keyboard);
+      s_Keyboard = nullptr;
+    #endif
+  #endif
   #if defined(KBD_BUTTON)
     static const uint8_t pins[] = KBD_PIN_ARRAY;
     s_Keyboard = new SimpleButton(KBD_NUM, pins);

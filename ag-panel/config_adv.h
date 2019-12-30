@@ -139,7 +139,13 @@
 #define KBD_KEYS            12
 
 #define KBD_I2C_ADDR        0x5A
-#endif //KBD_I2C_C_MATRIX
+#endif //KBD_I2C_C_MPR121_KEYPAD
+
+#if defined(KBD_I2C_C_TTP229_KEYPAD)
+#define KBD_KEYS            16
+
+#define KBD_I2C_ADDR        0x57
+#endif //KBD_I2C_C_TTP229_KEYPAD
 
 #if defined(KBD_BUTTON)
 #define KBD_NUM             1
