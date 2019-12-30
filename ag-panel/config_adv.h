@@ -27,7 +27,6 @@
 #define LCD_PIN_RS          8
 #define LCD_PIN_RW          InvalidPin
 #define LCD_PIN_ENABLE      9
-#define LCD_PIN_BACKLIGHT   10
 
 #if defined(LCD_TEXT_8BIT)
 #define LCD_PIN_D0          A0
@@ -48,11 +47,24 @@
 
 #if defined(LCD_TEXT_I2C_RGB)
 //#define LCD_I2C_ADDR        0x57
-#define LCD_BACKLIGHT_COLOR 0xFFFFFF /* Bitmask: 0xBBGGRR - red, green, blue */
 #define KBD_I2C_RGB
 #endif //LCD_TEXT_I2C_RGB
 
-#if defined(LCD_BACKLIGHT_PWM)
+#if defined(LCD_BACKLIGHT_RGB_ONOFF) || defined(LCD_BACKLIGHT_RGB_PWM) || defined(LCD_TEXT_I2C_RGB)
+#define LCD_BACKLIGHT_COLOR 0x00FFFFFF /* Bitmask: 0x00BBGGRR - red, green, blue */
+#endif //LCD_BACKLIGHT_RGB_ONOFF || LCD_BACKLIGHT_RGB_PWM || LCD_TEXT_I2C_RGB
+
+#if defined(LCD_BACKLIGHT_ONOFF) || defined(LCD_BACKLIGHT_PWM)
+#define LCD_PIN_BACKLIGHT   10
+#endif //LCD_BACKLIGHT_ONOFF || LCD_BACKLIGHT_PWM
+
+#if defined(LCD_BACKLIGHT_RGB_ONOFF) || defined(LCD_BACKLIGHT_RGB_PWM)
+#define LCD_PIN_BACKLIGHT_R 10
+#define LCD_PIN_BACKLIGHT_G 11
+#define LCD_PIN_BACKLIGHT_B 3
+#endif //LCD_BACKLIGHT_RGB_ONOFF || LCD_BACKLIGHT_RGB_PWM
+
+#if defined(LCD_BACKLIGHT_PWM) || defined(LCD_BACKLIGHT_RGB_PWM)
 #define LCD_BL_PWM_INIT     0x20
 //#define LCD_BL_PWM_MAX      0x80
 #endif //LCD_BACKLIGHT_PWM
@@ -134,6 +146,6 @@
 #define KBD_NUM             1
 
 #define KBD_PIN_ARRAY       {A1}
-#endif //KBD_S_BUTTON
+#endif //KBD_BUTTON
 
 #endif //CONFIG_ADV_H

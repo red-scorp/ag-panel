@@ -111,6 +111,14 @@ void setup() {
     #else
       Backlight = new PWMBacklight(LCD_PIN_BACKLIGHT);
     #endif
+  #elif defined(LCD_BACKLIGHT_RGB_ONOFF)
+    Backlight = new RGBBinaryBacklight(LCD_PIN_BACKLIGHT_R, LCD_PIN_BACKLIGHT_G, LCD_PIN_BACKLIGHT_B);
+  #elif defined(LCD_BACKLIGHT_RGB_PWM)
+    #if defined(LCD_BL_PWM_MAX)
+      Backlight = new RGBPWMBacklight(LCD_PIN_BACKLIGHT_R, LCD_PIN_BACKLIGHT_G, LCD_PIN_BACKLIGHT_B, LCD_BACKLIGHT_COLOR, LCD_BL_PWM_MAX);
+    #else
+      Backlight = new RGBPWMBacklight(LCD_PIN_BACKLIGHT_R, LCD_PIN_BACKLIGHT_G, LCD_PIN_BACKLIGHT_B, LCD_BACKLIGHT_COLOR);
+    #endif
   #endif
 
   DEBUG_STR("Initializing LCD...\n");

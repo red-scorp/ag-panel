@@ -64,7 +64,7 @@ constexpr inline uint8_t ScaleColor(
   uint8_t color,    /*!< Initial color/brightness value */
   uint8_t max       /*!< Maximum value for scaling */
 ) {
-  return (uint16_t(color) * (max + 1)) >> 8;
+  return ((uint16_t(color) * uint16_t(max + 1)) >> 8) & 0xFF;
 }
 
 /*!

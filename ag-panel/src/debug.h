@@ -11,6 +11,7 @@
 /* Drop UART input and output data to debug port as hex string */
 //#define DEBUG_UART_STR
 
+/* Enable DEBUG_STR() macro for basic UART text logging */
 //#define DEBUG_STR_ENABLED
 
 //#define DEBUG_UART_HARDWARE
