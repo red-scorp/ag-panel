@@ -135,9 +135,8 @@
                              540, 510, 490}*/
 #endif //KBD_A_MATRIX
 
-#if defined(KBD_I2C_C_MATRIX)
-#define KBD_ROWS            3
-#define KBD_COLS            4
+#if defined(KBD_I2C_C_MPR121_KEYPAD)
+#define KBD_KEYS            12
 
 #define KBD_I2C_ADDR        0x5A
 #endif //KBD_I2C_C_MATRIX

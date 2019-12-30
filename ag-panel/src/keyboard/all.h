@@ -14,7 +14,7 @@
 #include "AnalogJoystick.h"
 #include "AnalogMatrix.h"
 #include "RotaryEncoder.h"
-#include "I2CCapacitiveMatrix.h"
+#include "I2CMPR121CapacitiveKeypad.h"
 #include "DigitalMatrix.h"
 #include "I2CRGBKeypad.h"
 #include "SimpleButton.h"

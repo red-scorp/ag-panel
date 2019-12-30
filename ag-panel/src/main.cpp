@@ -235,8 +235,8 @@ void setup() {
       s_Keyboard = nullptr;
     #endif
   #endif
-  #if defined(KBD_I2C_C_MATRIX)
-    s_Keyboard = new I2CCapacitiveMatrix(KBD_COLS, KBD_ROWS, KBD_I2C_ADDR);
+  #if defined(KBD_I2C_C_MPR121_KEYPAD)
+    s_Keyboard = new I2CMPR121CapacitiveKeypad(KBD_KEYS, KBD_I2C_ADDR);
     #if defined(KBD_JOINED)
       p_JoinedKeyboard->AddKeyboard(s_Keyboard);
       s_Keyboard = nullptr;
