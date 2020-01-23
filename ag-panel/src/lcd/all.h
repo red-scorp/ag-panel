@@ -13,5 +13,5 @@
 #include "AbstractTextLCD.h"
 
 #include "PPITextLCD.h"
-#include "I2CTextLCD.h"
+#include "I2CPCF8574TextLCD.h"
 #include "I2CRGBTextLCD.h"

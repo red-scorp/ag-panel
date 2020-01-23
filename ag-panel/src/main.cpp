@@ -134,8 +134,8 @@ void setup() {
         LCD_PIN_D0, LCD_PIN_D1, LCD_PIN_D2, LCD_PIN_D3,
         LCD_PIN_D4, LCD_PIN_D5, LCD_PIN_D6, LCD_PIN_D7);
     #endif
-  #elif defined(LCD_TEXT_I2C)
-    s_LCD = new I2CTextLCD(LCD_COLS, LCD_ROWS, LCD_I2C_ADDR);
+  #elif defined(LCD_TEXT_I2C_PCF8574)
+    s_LCD = new I2CPCF8574TextLCD(LCD_COLS, LCD_ROWS, LCD_I2C_ADDR);
   #elif defined(LCD_TEXT_I2C_RGB)
     s_LCD = new I2CRGBTextLCD(LCD_COLS, LCD_ROWS, 123, LCD_BACKLIGHT_COLOR);
   #else
