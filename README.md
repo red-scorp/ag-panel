@@ -22,9 +22,10 @@ Work in progress but already usable.
   - [x] No (null) UART
   - [x] Buffered UART (addition to a regular UART)
 - LCD Display
-  - [x] HD44780 in 4-bit and 8-bit modes
-  - [x] HD44780 w/ binary (on/off) backlight over I2C bus
+  - [x] HD44780 and clones in 4-bit and 8-bit modes
+  - [x] HD44780 w/ binary (on/off) backlight over I2C bus, based on 'I2C LCD backpack'
   - [x] HD44780 w/ RGB binary (7 colors) backlight over I2C bus, like 'Adafruit RGB 16x2 LCD Shield'
+  - [x] AIP31068, HD44780-like w/ I2C and SPI interface
 - LCD Backlight
   - [x] Not controlled
   - [x] ON/OFF binary backlight
@@ -54,4 +55,5 @@ Please check 'config.h' and 'config_adv.h' for up-to-date information.
 ## How to help
 Your contributions are welcome!
 Please contact me directly over e-mail andriy.golovnya@googlemail.com or over [GitHub](https://github.com/red-scorp).
+Link for [Paypal donations](http://paypal.me/redscorp).
 Thanks in advance!

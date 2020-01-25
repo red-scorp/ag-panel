@@ -32,6 +32,7 @@
 #define LCD_TEXT_4BIT
 //#define LCD_TEXT_8BIT
 //#define LCD_TEXT_I2C_PCF8574
+//#define LCD_TEXT_I2C_AIP31068
 //#define LCD_TEXT_I2C_RGB
 
 #define LCD_ROWS            2

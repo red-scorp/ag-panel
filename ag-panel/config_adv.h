@@ -41,9 +41,13 @@
 #define LCD_PIN_D7          7
 #endif //LCD_TEXT_4BIT || LCD_TEXT_8BIT
 
-#if defined(LCD_TEXT_I2C)
+#if defined(LCD_TEXT_I2C_PCF8574)
 #define LCD_I2C_ADDR        0x27
-#endif //LCD_TEXT_I2C
+#endif //LCD_TEXT_I2C_PCF8574
+
+#if defined(LCD_TEXT_I2C_AIP31068)
+#define LCD_I2C_ADDR        0x3E
+#endif //LCD_TEXT_I2C_AIP31068
 
 #if defined(LCD_TEXT_I2C_RGB)
 //#define LCD_I2C_ADDR        0x57
