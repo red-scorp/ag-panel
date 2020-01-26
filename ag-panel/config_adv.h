@@ -54,9 +54,9 @@
 #define KBD_I2C_RGB
 #endif //LCD_TEXT_I2C_RGB
 
-#if defined(LCD_BACKLIGHT_RGB_ONOFF) || defined(LCD_BACKLIGHT_RGB_PWM) || defined(LCD_TEXT_I2C_RGB)
+#if defined(LCD_BACKLIGHT_RGB_ONOFF) || defined(LCD_BACKLIGHT_RGB_PWM) || defined(LCD_BACKLIGHT_I2C_RGB_PWM) || defined(LCD_TEXT_I2C_RGB)
 #define LCD_BACKLIGHT_COLOR 0x00FFFFFF /* Bitmask: 0x00BBGGRR - red, green, blue */
-#endif //LCD_BACKLIGHT_RGB_ONOFF || LCD_BACKLIGHT_RGB_PWM || LCD_TEXT_I2C_RGB
+#endif //LCD_BACKLIGHT_RGB_ONOFF || LCD_BACKLIGHT_RGB_PWM || LCD_BACKLIGHT_I2C_RGB_PWM || LCD_TEXT_I2C_RGB
 
 #if defined(LCD_BACKLIGHT_ONOFF) || defined(LCD_BACKLIGHT_PWM)
 #define LCD_PIN_BACKLIGHT   10
@@ -71,7 +71,14 @@
 #if defined(LCD_BACKLIGHT_PWM) || defined(LCD_BACKLIGHT_RGB_PWM)
 #define LCD_BL_PWM_INIT     0x20
 //#define LCD_BL_PWM_MAX      0x80
-#endif //LCD_BACKLIGHT_PWM
+#endif //LCD_BACKLIGHT_PWM || LCD_BACKLIGHT_RGB_PWM
+
+#if defined(LCD_BACKLIGHT_I2C_RGB_PWM)
+#define LCD_BACKLIGHT_I2C_ADDR  0x60
+#define LCD_BACKLIGHT_CHAN_R    2
+#define LCD_BACKLIGHT_CHAN_G    1
+#define LCD_BACKLIGHT_CHAN_B    0
+#endif //LCD_BACKLIGHT_I2C_RGB_PWM
 
 /* Keyboard Configuration */
 /* ------------------------------------------------------------------------- */

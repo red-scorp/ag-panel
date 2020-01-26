@@ -34,6 +34,7 @@ void print_welcome() {
   memset(str, 0, sizeof(str));
   s_LCD->Clear();
   s_LCD->SetBacklight(bool(true));
+  DEBUG_STR("Backlight> "); DEBUG_STR("true"); DEBUG_STR("\n");
   s_LCD->SetCursor(center_x, center_y);
   snprintf(str, sizeof(str) - 1, FW_NAME " v" FW_VERSION);
   s_LCD->Print(str);
@@ -119,6 +120,12 @@ void setup() {
     #else
       Backlight = new RGBPWMBacklight(LCD_PIN_BACKLIGHT_R, LCD_PIN_BACKLIGHT_G, LCD_PIN_BACKLIGHT_B, LCD_BACKLIGHT_COLOR);
     #endif
+  #elif defined(LCD_BACKLIGHT_I2C_RGB_PWM)
+    #if defined(LCD_BL_PWM_MAX)
+      Backlight = new I2CRGBPWMBacklight(LCD_BACKLIGHT_CHAN_R, LCD_BACKLIGHT_CHAN_G, LCD_BACKLIGHT_CHAN_B, LCD_BACKLIGHT_I2C_ADDR, LCD_BACKLIGHT_COLOR, LCD_BL_PWM_MAX);
+    #else
+      Backlight = new I2CRGBPWMBacklight(LCD_BACKLIGHT_CHAN_R, LCD_BACKLIGHT_CHAN_G, LCD_BACKLIGHT_CHAN_B, LCD_BACKLIGHT_I2C_ADDR, LCD_BACKLIGHT_COLOR);
+    #endif
   #endif
 
   DEBUG_STR("Initializing LCD...\n");
@@ -139,7 +146,7 @@ void setup() {
   #elif defined(LCD_TEXT_I2C_RGB)
     s_LCD = new I2CRGBTextLCD(LCD_COLS, LCD_ROWS, 123, LCD_BACKLIGHT_COLOR);
   #elif defined(LCD_TEXT_I2C_AIP31068)
-    s_LCD = new I2CAIP31068TextLCD(LCD_COLS, LCD_ROWS, LCD_I2C_ADDR);
+    s_LCD = new I2CAIP31068TextLCD(Backlight, LCD_COLS, LCD_ROWS, LCD_I2C_ADDR);
   #else
     #error LCD is not defined!
   #endif

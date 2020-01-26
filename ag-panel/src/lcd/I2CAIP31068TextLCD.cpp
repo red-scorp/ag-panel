@@ -34,56 +34,6 @@ void I2CAIP31068TextLCD::Exit() {
 }
 
 /*!
-  \brief Set backlight in binary (on/off) form
-
-  This function calls corresponding function of LiquidCrystal_I2C class instance.
- */
-void I2CAIP31068TextLCD::SetBacklight(
-  bool on               /*!< Backlight state in on/off format */
-) {
-  LiquidCrystal_AIP31068_I2C *p_I2CLCD = (LiquidCrystal_AIP31068_I2C*)m_Lowlevel;
-  if(on)
-    p_I2CLCD->backlight();
-  else
-    p_I2CLCD->noBacklight();
-}
-
-/*!
-  \brief Set backlight brightness if supported
-
-  This function enables LCD backlight if brightness is non-zero.
- */
-void I2CAIP31068TextLCD::SetBacklight(
-  uint8_t brightness    /*!< Backlight brightness value */
-) {
-  SetBacklight(bool(brightness > 0? true: false));
-}
-
-/*!
-  \brief Set backlight RGB colors if supported
-
-  This function enables LCD backlight if RGB is non-zero.
- */
-void I2CAIP31068TextLCD::SetBacklight(
-  uint8_t red,          /*!< Red color value */
-  uint8_t green,        /*!< Green color value */
-  uint8_t blue          /*!< Blue color value */
-) {
-  SetBacklight(bool(red > 0 || green > 0 || blue > 0? true: false));
-}
-
-/*!
-  \brief Set backlight RGB colors if supported
-
-  This function enables LCD backlight if RGB is non-zero.
- */
-void I2CAIP31068TextLCD::SetBacklight(
-  uint32_t rgb          /*!< RGB integer value */
-) {
-  SetBacklight(bool(rgb > 0? true: false));
-}
-
-/*!
   \brief Clear LCD display
 
   This function calls corresponding function of LiquidCrystal_I2C class instance.

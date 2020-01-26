@@ -14,3 +14,4 @@
 #include "PWMBacklight.h"
 #include "RGBPWMBacklight.h"
 #include "RGBBinaryBacklight.h"
+#include "I2CRGBPWMBacklight.h"

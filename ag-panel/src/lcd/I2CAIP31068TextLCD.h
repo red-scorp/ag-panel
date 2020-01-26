@@ -13,7 +13,7 @@
 /*!
   \brief I2C Text LCD class
 
-  This class implements a 8-bit text LCD display based on AIP31068, similar to
+  This class implements a 8-bit text LCD display based on AIP31068 chip, similar to
   HD44780 but with I2C and SPI interface.
   This class implements it's own backlight control.
  */
@@ -21,18 +21,14 @@ class I2CAIP31068TextLCD: public AbstractTextLCD {
 
 public:
   I2CAIP31068TextLCD(
+    AbstractBacklight *Backlight,     /*!< External backlight class pointer */
     uint8_t Columns,            /*!< Number of columns of the text LCD */
     uint8_t Rows,               /*!< Number of rows of the text LCD */
-    uint8_t I2CAddress          /*!< I2C address of digital I/O expander chip */
-  ): AbstractTextLCD(nullptr, Columns, Rows),
+    uint8_t I2CAddress          /*!< I2C address of LCD controller chip */
+  ): AbstractTextLCD(Backlight, Columns, Rows),
     m_I2CAddress(I2CAddress),
     m_Lowlevel(nullptr) { Init(); }
   virtual ~I2CAIP31068TextLCD() override { Exit(); }
-
-  virtual void SetBacklight(bool on) override;
-  virtual void SetBacklight(uint8_t brightness) override;
-  virtual void SetBacklight(uint8_t red, uint8_t green, uint8_t blue) override;
-  virtual void SetBacklight(uint32_t rgb) override;
 
   virtual void Clear() override;
   virtual void SetCursor(uint8_t row, uint8_t col) override;
@@ -42,7 +38,7 @@ public:
   virtual void Command(uint8_t byte) override;
 
 protected:
-  uint8_t m_I2CAddress;         /*!< I2C address of digital I/O expander chip */
+  uint8_t m_I2CAddress;         /*!< I2C address of LCD controller chip */
 
 private:
   void *m_Lowlevel;       /*!< Pointer to Low-Level LCD class */
