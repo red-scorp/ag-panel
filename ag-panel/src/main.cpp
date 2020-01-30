@@ -304,8 +304,10 @@ void loop() {
 /*!
   \brief Background task function
  */
+#if !defined(ARDUINO_ARCH_ESP32)
 void yield() {
 
   if(s_Protocol != nullptr)
     s_Protocol->Yield();
 }
+#endif

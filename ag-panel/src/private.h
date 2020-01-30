@@ -9,6 +9,9 @@
 #define PRIVATE_H
 
 #include <Arduino.h>
+#if defined(ARDUINO_ARCH_ESP32)
+#include <analogWrite.h>
+#endif
 
 #undef UART /* Requered to compile for DUE board */
 
