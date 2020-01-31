@@ -17,4 +17,19 @@
 
 const uint8_t InvalidPin = 255;
 
+const uint8_t PWMResolution = 8;
+const int MaxPWMValue = (1 << PWMResolution) - 1;
+
+#if defined(ARDUINO_ARCH_AVR) || defined(ARDUINO_ARCH_ESP8266)
+  const uint8_t AnalogResolution = 10;
+#elif defined(ARDUINO_ARCH_SAMD) || defined(ARDUINO_ARCH_ESP32)
+  const uint8_t AnalogResolution = 12;
+#else
+  #warning The value of 'AnalogResolution' is not defined for this platform yet! Assuming 10-bit!
+  const uint8_t AnalogResolution = 10;
+#endif
+
+const int MaxAnalogValue = (1 << AnalogResolution) - 1;
+
+
 #endif//PRIVATE_H
