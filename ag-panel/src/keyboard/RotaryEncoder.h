@@ -10,10 +10,6 @@
 #include "../private.h"
 #include "AbstractKeyboard.h"
 
-const uint8_t DefaultRotaryEncoderD1Pin = 2;      /*!< Default first digital pin of rotary encoder */
-const uint8_t DefaultRotaryEncoderD2Pin = 3;      /*!< Default second digital pin of rotary encoder */
-const uint8_t DefaultRotaryEncoderButtonPin = 11; /*!< Default digital pin of select button */
-
 /*!
   \brief Digital Matrix class
 
@@ -23,9 +19,9 @@ class RotaryEncoder: public AbstractKeyboard {
 
 public:
   RotaryEncoder(
-    uint8_t D1Pin = DefaultRotaryEncoderD1Pin,        /*!< First digital pin of rotary encoder */
-    uint8_t D2Pin = DefaultRotaryEncoderD1Pin,        /*!< Second digital pin of rotary encoder */
-    uint8_t ButtonPin = DefaultRotaryEncoderButtonPin /*!< Digital pin of select button */
+    uint8_t D1Pin,        /*!< First digital pin of rotary encoder */
+    uint8_t D2Pin,        /*!< Second digital pin of rotary encoder */
+    uint8_t ButtonPin     /*!< Digital pin of select button */
   ): AbstractKeyboard(),
     m_D1Pin(D1Pin),
     m_D2Pin(D2Pin),

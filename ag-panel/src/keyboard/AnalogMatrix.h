@@ -10,8 +10,6 @@
 #include "../private.h"
 #include "AbstractKeyboard.h"
 
-const uint8_t DefaultAnalogMatrixDataPin = A0;    /*!< Default analog matrix input analog pin */
-
 /*!
   \brief Analog Matrix class
 
@@ -24,7 +22,7 @@ public:
     uint8_t Columns,            /*!< Number of columns of the matrix */
     uint8_t Rows,               /*!< Number of rows of the matrix */
     const uint16_t *DataArray,  /*!< Array of analog values for all different keys of the matrix */
-    uint8_t DataPin = DefaultAnalogMatrixDataPin  /*!< Matrix input analog pin */
+    uint8_t DataPin             /*!< Matrix input analog pin */
   ): AbstractKeyboard(),
     m_Columns(Columns),
     m_Rows(Rows),

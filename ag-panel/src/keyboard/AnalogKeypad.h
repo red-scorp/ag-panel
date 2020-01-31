@@ -10,8 +10,6 @@
 #include "../private.h"
 #include "AbstractKeyboard.h"
 
-const uint8_t DefaultAnalogKeypadDataPin = A0;    /*!< Default input analog pin */
-
 /*!
   \brief Analog Keypad class
 
@@ -21,7 +19,7 @@ class AnalogKeypad: public AbstractKeyboard {
 
 public:
   AnalogKeypad(
-    uint8_t DataPin = DefaultAnalogKeypadDataPin    /*!< Keypad input analog pin */
+    uint8_t DataPin     /*!< Keypad input analog pin */
   ): AbstractKeyboard(),
     m_DataPin(DataPin) { Init(); }
   virtual ~AnalogKeypad() override { Exit(); }

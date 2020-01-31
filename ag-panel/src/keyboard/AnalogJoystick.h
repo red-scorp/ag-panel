@@ -10,10 +10,6 @@
 #include "../private.h"
 #include "AbstractKeyboard.h"
 
-const uint8_t DefaultAnalogJoystickXPin = A0;       /*!< Default X-direction analog pin */
-const uint8_t DefaultAnalogJoystickYPin = A1;       /*!< Default Y-direction analog pin */
-const uint8_t DefaultAnalogJoystickButtonPin = 12;  /*!< Default select button digital pin */
-
 /*!
   \brief Analog Joystick class
 
@@ -23,9 +19,9 @@ class AnalogJoystick: public AbstractKeyboard {
 
 public:
   AnalogJoystick(
-    uint8_t XPin = DefaultAnalogJoystickXPin,         /*!< X-direction potentiometer analog pin */
-    uint8_t YPin = DefaultAnalogJoystickYPin,         /*!< Y-direction potentiometer analog pin */
-    uint8_t ButtonPin = DefaultAnalogJoystickButtonPin  /*!< Select button digital pin */
+    uint8_t XPin,       /*!< X-direction potentiometer analog pin */
+    uint8_t YPin,       /*!< Y-direction potentiometer analog pin */
+    uint8_t ButtonPin   /*!< Select button digital pin */
   ): AbstractKeyboard(),
     m_XPin(XPin),
     m_YPin(YPin),
