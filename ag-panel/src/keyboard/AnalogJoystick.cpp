@@ -9,10 +9,11 @@
 #include "../../config.h"
 #include "AnalogJoystick.h"
 
-/* TODO: Change KBD_*_CENTER and KBD_THRESHOLD macros to constants */
-#define KBD_X_CENTER        512
-#define KBD_Y_CENTER        512
-#define KBD_THRESHOLD       50
+static const int s_AnalogJoystickXCenter = MaxAnalogValue / 2;      /*!< Center position of analog input scale for X axis */
+static const int s_AnalogJoystickYCenter = MaxAnalogValue / 2;      /*!< Center position of analog input scale for X axis */
+static const int s_AnalogJoystickThreshold = MaxAnalogValue / 20;   /*!< Insensitive area (resting position) around center of X and Y axis */
+
+static const uint8_t s_AnalogJoystickKeysMax = 5;   /*!< Maximum of detectable keys for the class */
 
 /*!
   \brief Initialization of analog joystick
@@ -44,13 +45,13 @@ uint8_t AnalogJoystick::GetKey() {
 
   if(button == LOW)
     return KeyDefaultSelect;
-  if(x < (KBD_X_CENTER - KBD_THRESHOLD))
+  if(x < (s_AnalogJoystickXCenter - s_AnalogJoystickThreshold))
     return KeyDefaultLeft;
-  if(x > (KBD_X_CENTER + KBD_THRESHOLD))
+  if(x > (s_AnalogJoystickXCenter + s_AnalogJoystickThreshold))
     return KeyDefaultRight;
-  if(y < (KBD_Y_CENTER - KBD_THRESHOLD))
+  if(y < (s_AnalogJoystickYCenter - s_AnalogJoystickThreshold))
     return KeyDefaultDown;
-  if(y > (KBD_Y_CENTER + KBD_THRESHOLD))
+  if(y > (s_AnalogJoystickYCenter + s_AnalogJoystickThreshold))
     return KeyDefaultUp;
   return KeyNone;
 }
@@ -61,5 +62,5 @@ uint8_t AnalogJoystick::GetKey() {
   \returns Number of supported keys
  */
 uint8_t AnalogJoystick::GetKeyCount() {
-  return 5;
+  return s_AnalogJoystickKeysMax;
 }
