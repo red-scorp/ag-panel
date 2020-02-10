@@ -266,9 +266,6 @@ void setup() {
       s_Keyboard = nullptr;
     #endif
   #endif
-//  #else
-//    #error Keyboard is not defined!
-//  #endif
 
   #if defined(KBD_JOINED)
     s_Keyboard = p_JoinedKeyboard;
@@ -290,8 +287,8 @@ void setup() {
 /*!
   \brief Main loop function
 
- - run protocol
- - start background task
+ - run protocol main task
+ - start protocol background task
  */
 void loop() {
 
@@ -301,10 +298,12 @@ void loop() {
   }
 }
 
+#if !defined(ARDUINO_ARCH_ESP32)
 /*!
   \brief Background task function
+
+  - start protocol background task
  */
-#if !defined(ARDUINO_ARCH_ESP32)
 void yield() {
 
   if(s_Protocol != nullptr)

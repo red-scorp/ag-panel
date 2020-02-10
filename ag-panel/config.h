@@ -34,6 +34,7 @@
 //#define LCD_TEXT_I2C_PCF8574
 //#define LCD_TEXT_I2C_AIP31068
 //#define LCD_TEXT_I2C_RGB
+//TODO: add LCD_TEXT_SPI_AIP31068
 
 #define LCD_ROWS            2
 #define LCD_COLS            16
