@@ -36,7 +36,7 @@ void I2CAIP31068TextLCD::Exit() {
 /*!
   \brief Clear LCD display
 
-  This function calls corresponding function of LiquidCrystal_I2C class instance.
+  This function calls corresponding function of LiquidCrystal_AIP31068_I2C class instance.
  */
 void I2CAIP31068TextLCD::Clear() {
   LiquidCrystal_AIP31068_I2C *p_I2CLCD = (LiquidCrystal_AIP31068_I2C*)m_Lowlevel;
@@ -46,7 +46,7 @@ void I2CAIP31068TextLCD::Clear() {
 /*!
   \brief Set Cursor on LCD display
 
-  This function calls corresponding function of LiquidCrystal_I2C class instance.
+  This function calls corresponding function of LiquidCrystal_AIP31068_I2C class instance.
  */
 void I2CAIP31068TextLCD::SetCursor(
   uint8_t column,       /*!< Column to put the cursor to */
@@ -59,7 +59,7 @@ void I2CAIP31068TextLCD::SetCursor(
 /*!
   \brief Print a text on LCD display
 
-  This function calls corresponding function of LiquidCrystal_I2C class instance.
+  This function calls corresponding function of LiquidCrystal_AIP31068_I2C class instance.
  */
 void I2CAIP31068TextLCD::Print(
   const char *str       /*!< String to print */
@@ -71,7 +71,7 @@ void I2CAIP31068TextLCD::Print(
 /*!
   \brief Write a byte (RS = 1) to LCD display
 
-  This function calls corresponding function of LiquidCrystal_I2C class instance.
+  This function calls corresponding function of LiquidCrystal_AIP31068_I2C class instance.
  */
 void I2CAIP31068TextLCD::Write(
   uint8_t byte          /* !< Byte to write to LCD display */
@@ -83,7 +83,7 @@ void I2CAIP31068TextLCD::Write(
 /*!
   \brief Send a command byte (RS = 0) to LCD display
 
-  This function calls corresponding function of LiquidCrystal_I2C class instance.
+  This function calls corresponding function of LiquidCrystal_AIP31068_I2C class instance.
  */
 void I2CAIP31068TextLCD::Command(
   uint8_t byte          /* !< Command to send to LCD display */
