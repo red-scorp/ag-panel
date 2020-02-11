@@ -16,3 +16,4 @@
 #include "I2CPCF8574TextLCD.h"
 #include "I2CRGBTextLCD.h"
 #include "I2CAIP31068TextLCD.h"
+#include "SPIAIP31068TextLCD.h"

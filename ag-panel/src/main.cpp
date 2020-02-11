@@ -147,6 +147,8 @@ void setup() {
     s_LCD = new I2CRGBTextLCD(LCD_COLS, LCD_ROWS, 123, LCD_BACKLIGHT_COLOR);
   #elif defined(LCD_TEXT_I2C_AIP31068)
     s_LCD = new I2CAIP31068TextLCD(Backlight, LCD_COLS, LCD_ROWS, LCD_I2C_ADDR);
+  #elif defined(LCD_TEXT_SPI_AIP31068)
+    s_LCD = new SPIAIP31068TextLCD(Backlight, LCD_COLS, LCD_ROWS, LCD_PIN_SS, LCD_PIN_SCLK, LCD_PIN_MOSI, LCD_PIN_MISO);
   #else
     #error LCD is not defined!
   #endif

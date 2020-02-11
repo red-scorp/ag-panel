@@ -25,7 +25,7 @@ Work in progress but already usable.
   - [x] HD44780 and clones in 4-bit and 8-bit modes
   - [x] HD44780 w/ binary (on/off) backlight over I2C bus, based on 'I2C LCD backpack'
   - [x] HD44780 w/ RGB binary (7 colors) backlight over I2C bus, like 'Adafruit RGB 16x2 LCD Shield'
-  - [x] AIP31068, HD44780-like w/ I2C (TODO: and SPI) interface
+  - [x] AIP31068, HD44780-like w/ I2C and SPI interface
 - LCD Backlight
   - [x] Not controlled
   - [x] ON/OFF binary backlight

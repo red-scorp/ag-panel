@@ -54,6 +54,13 @@
 #define KBD_I2C_RGB
 #endif //LCD_TEXT_I2C_RGB
 
+#if defined(LCD_TEXT_SPI_AIP31068)
+#define LCD_PIN_SS          13
+#define LCD_PIN_SCLK        SCK
+#define LCD_PIN_MOSI        MOSI
+#define LCD_PIN_MISO        MISO
+#endif //LCD_TEXT_SPI_AIP31068
+
 #if defined(LCD_BACKLIGHT_RGB_ONOFF) || defined(LCD_BACKLIGHT_RGB_PWM) || defined(LCD_BACKLIGHT_I2C_RGB_PWM) || defined(LCD_TEXT_I2C_RGB)
 #define LCD_BACKLIGHT_COLOR 0x00FFFFFF /* Bitmask: 0x00BBGGRR - red, green, blue */
 #endif //LCD_BACKLIGHT_RGB_ONOFF || LCD_BACKLIGHT_RGB_PWM || LCD_BACKLIGHT_I2C_RGB_PWM || LCD_TEXT_I2C_RGB
