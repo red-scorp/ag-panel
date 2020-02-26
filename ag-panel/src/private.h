@@ -1,7 +1,7 @@
 /*!
   \file private.h
   \brief AG-Panel Project private header
-  \copyright (C) 2019 Andriy Golovnya
+  \copyright (C) 2019-2020 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@googlemail.com)
 */
 
@@ -31,5 +31,6 @@ const int MaxPWMValue = (1 << PWMResolution) - 1;
 
 const int MaxAnalogValue = (1 << AnalogResolution) - 1;
 
+#define ITEMS_OF_ARRAY(arr)     (sizeof(arr) / sizeof(arr[0]))
 
 #endif//PRIVATE_H

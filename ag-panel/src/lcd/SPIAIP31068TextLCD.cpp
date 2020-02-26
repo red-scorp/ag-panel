@@ -1,7 +1,7 @@
 /*!
   \file SPIAIP31068TextLCD.cpp
   \brief AG-Panel Project SPI 8-bit text (AIP31068) LCD implmentation
-  \copyright (C) 2019 Andriy Golovnya
+  \copyright (C) 2020 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@googlemail.com)
  */
 

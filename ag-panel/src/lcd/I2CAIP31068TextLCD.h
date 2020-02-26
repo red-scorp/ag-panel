@@ -1,7 +1,7 @@
 /*!
   \file I2CAIP31068TextLCD.h
   \brief AG-Panel Project I2C 8-bit text (AIP31068) LCD interface
-  \copyright (C) 2019 Andriy Golovnya
+  \copyright (C) 2020 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@googlemail.com)
  */
 

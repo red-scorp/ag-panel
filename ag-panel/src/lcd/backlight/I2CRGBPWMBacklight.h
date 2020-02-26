@@ -1,7 +1,7 @@
 /*!
   \file I2CRGBPWMBacklight.h
   \brief AG-Panel Project I2C RGB PWM (0-255) backlight interface
-  \copyright (C) 2019 Andriy Golovnya
+  \copyright (C) 2020 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@googlemail.com)
  */
 
