@@ -5,8 +5,7 @@
   \author Andriy Golovnya (andriy.golovnya@googlemail.com)
 */
 
-#ifndef CONFIG_ADV_H
-#define CONFIG_ADV_H
+#pragma once
 
 #include "config.h"
 
@@ -170,5 +169,3 @@
 
 #define KBD_PIN_ARRAY       {A1}
 #endif //KBD_BUTTON
-
-#endif //CONFIG_ADV_H

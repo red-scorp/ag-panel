@@ -1,12 +1,11 @@
 /*!
   \file version.h
   \brief AG-Panel Project version header
-  \copyright (C) 2019 Andriy Golovnya
+  \copyright (C) 2019-2020 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@googlemail.com)
 */
 
-#ifndef VERSION_H
-#define VERSION_H
+#pragma once
 
 /* Version Configuration */
 #define VER_MAJOR           "0"
@@ -21,5 +20,3 @@
 #else
 #define FW_VERSION          VER_MAJOR "." VER_MINOR
 #endif
-
-#endif//VERSION_H

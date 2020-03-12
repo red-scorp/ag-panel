@@ -5,8 +5,7 @@
   \author Andriy Golovnya (andriy.golovnya@googlemail.com)
 */
 
-#ifndef CONFIG_H
-#define CONFIG_H
+#pragma once
 
 /* Protocol Configuration */
 /* ------------------------------------------------------------------------- */
@@ -65,5 +64,3 @@
 /* Check for proper 'KeyMatrix_?_?=???' values for your '/etc/LCDd.conf' in kbd.h */
 
 #include "config_adv.h"
-
-#endif //CONFIG_H

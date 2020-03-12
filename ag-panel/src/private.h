@@ -5,8 +5,7 @@
   \author Andriy Golovnya (andriy.golovnya@googlemail.com)
 */
 
-#ifndef PRIVATE_H
-#define PRIVATE_H
+#pragma once
 
 #include <Arduino.h>
 #if defined(ARDUINO_ARCH_ESP32)
@@ -32,5 +31,3 @@ const int MaxPWMValue = (1 << PWMResolution) - 1;
 const int MaxAnalogValue = (1 << AnalogResolution) - 1;
 
 #define ITEMS_OF_ARRAY(arr)     (sizeof(arr) / sizeof(arr[0]))
-
-#endif//PRIVATE_H
