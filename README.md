@@ -2,7 +2,7 @@
 
 A Next generation of [lcdproc](http://lcdproc.sourceforge.net/) display panel based on Arduino and similar HW.
 This project is based on my earlier code [Arduino LCD over Serial Panel (alos-panel)](https://github.com/red-scorp/alos-panel).
-The original code was fully rewritten for C++ for better maintainability and expansion.
+The original code was fully rewritten on C++ for better maintainability and expansion.
 Documentation is pending!
 
 This project **will** support different connections and different types of displays, including HD44780 based.

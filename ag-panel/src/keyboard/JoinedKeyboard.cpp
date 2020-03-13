@@ -115,5 +115,5 @@ uint8_t JoinedKeyboard::GetKeyCount() {
     p_ListEntry = p_ListEntry->m_Next;
   }
 
-  return 0;
+  return KeySum;
 }

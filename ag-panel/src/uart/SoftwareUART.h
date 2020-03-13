@@ -14,7 +14,7 @@
   \brief Software UART class
 
   This is a class which implements software UART of arduino boards.
-  This class works with AVR ICUs only (for now).
+  This class works with AVR and STM32 ICUs only (for now).
  */
 class SoftwareUART: public AbstractUART {
 
