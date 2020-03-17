@@ -278,7 +278,7 @@ void setup() {
   DEBUG_STR("Initializing Protocol...\n");
 
   #if defined(PROT_LOSPANEL)
-    s_Protocol = new LoSPanelProtocol(s_UART, (AbstractTextLCD*)s_LCD, s_Keyboard);
+    s_Protocol = new LoSPanelProtocol(s_UART, reinterpret_cast<AbstractTextLCD*>(s_LCD), s_Keyboard);
   #else
     #error Protocol is not defined!
   #endif

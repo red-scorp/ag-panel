@@ -23,7 +23,7 @@ bool PPITextLCD::Init() {
     m_Lowlevel = new LiquidCrystal(m_RSPin, m_RWPin, m_EnablePin, m_D0Pin, m_D1Pin, m_D2Pin, m_D3Pin, m_D4Pin, m_D5Pin, m_D6Pin, m_D7Pin);
   else
     m_Lowlevel = new LiquidCrystal(m_RSPin, m_RWPin, m_EnablePin, m_D4Pin, m_D5Pin, m_D6Pin, m_D7Pin);
-  LiquidCrystal *p_PPILCD = (LiquidCrystal*)m_Lowlevel;
+  LiquidCrystal *p_PPILCD = reinterpret_cast<LiquidCrystal*>(m_Lowlevel);
   p_PPILCD->begin(m_Columns, m_Rows);
   return true;
 }
@@ -32,7 +32,7 @@ bool PPITextLCD::Init() {
   \brief Deinitialisation of parallel text LCD display class
  */
 void PPITextLCD::Exit() {
-  LiquidCrystal *p_PPILCD = (LiquidCrystal*)m_Lowlevel;
+  LiquidCrystal *p_PPILCD = reinterpret_cast<LiquidCrystal*>(m_Lowlevel);
   if(p_PPILCD != nullptr)
     delete p_PPILCD;
   m_Lowlevel = nullptr;
@@ -44,7 +44,7 @@ void PPITextLCD::Exit() {
   This function calls corresponding function of LiquidCrystal class instance.
  */
 void PPITextLCD::Clear() {
-  LiquidCrystal *p_PPILCD = (LiquidCrystal*)m_Lowlevel;
+  LiquidCrystal *p_PPILCD = reinterpret_cast<LiquidCrystal*>(m_Lowlevel);
   p_PPILCD->clear();
 }
 
@@ -57,7 +57,7 @@ void PPITextLCD::SetCursor(
   uint8_t column,       /*!< Column to put the cursor to */
   uint8_t row           /*!< Row to put the cursor to */
 ) {
-  LiquidCrystal *p_PPILCD = (LiquidCrystal*)m_Lowlevel;
+  LiquidCrystal *p_PPILCD = reinterpret_cast<LiquidCrystal*>(m_Lowlevel);
   p_PPILCD->setCursor(column, row);
 }
 
@@ -69,7 +69,7 @@ void PPITextLCD::SetCursor(
 void PPITextLCD::Print(
   const char *str       /*!< String to print */
 ) {
-  LiquidCrystal *p_PPILCD = (LiquidCrystal*)m_Lowlevel;
+  LiquidCrystal *p_PPILCD = reinterpret_cast<LiquidCrystal*>(m_Lowlevel);
   p_PPILCD->print(str);
 }
 
@@ -81,7 +81,7 @@ void PPITextLCD::Print(
 void PPITextLCD::Write(
   uint8_t byte          /* !< Byte to write to LCD display */
 ) {
-  LiquidCrystal *p_PPILCD = (LiquidCrystal*)m_Lowlevel;
+  LiquidCrystal *p_PPILCD = reinterpret_cast<LiquidCrystal*>(m_Lowlevel);
   p_PPILCD->write(byte);
 }
 
@@ -93,6 +93,6 @@ void PPITextLCD::Write(
 void PPITextLCD::Command(
   uint8_t byte          /* !< Command to send to LCD display */
 ) {
-  LiquidCrystal *p_PPILCD = (LiquidCrystal*)m_Lowlevel;
+  LiquidCrystal *p_PPILCD = reinterpret_cast<LiquidCrystal*>(m_Lowlevel);
   p_PPILCD->command(byte);
 }

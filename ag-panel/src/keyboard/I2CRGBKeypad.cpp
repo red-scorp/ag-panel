@@ -19,7 +19,7 @@
  */
 bool I2CRGBKeypad::Init() {
   /* The RGB Keypad is already initialized in I2CRGBTextLCD.cpp but we should retrive a pointer */
-  I2CRGBTextLCD *p_I2CRGBTextLCD = (I2CRGBTextLCD*)m_LCD;
+  I2CRGBTextLCD *p_I2CRGBTextLCD = reinterpret_cast<I2CRGBTextLCD*>(m_LCD);
   m_Lowlevel = p_I2CRGBTextLCD->GetLowLevel();
   return true;
 }
@@ -37,7 +37,7 @@ void I2CRGBKeypad::Exit() {
   \returns #KeyNone if no new actions detected, else a key code
  */
 uint8_t I2CRGBKeypad::GetKey() {
-  Adafruit_RGBLCDShield *p_I2CRGBLCD = (Adafruit_RGBLCDShield*)m_Lowlevel;
+  Adafruit_RGBLCDShield *p_I2CRGBLCD = reinterpret_cast<Adafruit_RGBLCDShield*>(m_Lowlevel);
   uint8_t buttons = p_I2CRGBLCD->readButtons();
 
   if(buttons & BUTTON_UP)

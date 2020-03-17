@@ -18,7 +18,7 @@
  */
 bool SPIAIP31068TextLCD::Init() {
   m_Lowlevel = new LiquidCrystal_AIP31068_SPI(m_SSPin, m_Columns, m_Rows, m_SCLKPin, m_MOSIPin, m_MISOPin);
-  LiquidCrystal_AIP31068_SPI *p_SPILCD = (LiquidCrystal_AIP31068_SPI*)m_Lowlevel;
+  LiquidCrystal_AIP31068_SPI *p_SPILCD = reinterpret_cast<LiquidCrystal_AIP31068_SPI*>(m_Lowlevel);
   p_SPILCD->init();
   return true;
 }
@@ -27,7 +27,7 @@ bool SPIAIP31068TextLCD::Init() {
   \brief Deinitialisation of I2C text LCD display class
  */
 void SPIAIP31068TextLCD::Exit() {
-  LiquidCrystal_AIP31068_SPI *p_SPILCD = (LiquidCrystal_AIP31068_SPI*)m_Lowlevel;
+  LiquidCrystal_AIP31068_SPI *p_SPILCD = reinterpret_cast<LiquidCrystal_AIP31068_SPI*>(m_Lowlevel);
   if(p_SPILCD != nullptr)
     delete p_SPILCD;
   m_Lowlevel = nullptr;
@@ -39,7 +39,7 @@ void SPIAIP31068TextLCD::Exit() {
   This function calls corresponding function of LiquidCrystal_AIP31068_SPI class instance.
  */
 void SPIAIP31068TextLCD::Clear() {
-  LiquidCrystal_AIP31068_SPI *p_SPILCD = (LiquidCrystal_AIP31068_SPI*)m_Lowlevel;
+  LiquidCrystal_AIP31068_SPI *p_SPILCD = reinterpret_cast<LiquidCrystal_AIP31068_SPI*>(m_Lowlevel);
   p_SPILCD->clear();
 }
 
@@ -52,7 +52,7 @@ void SPIAIP31068TextLCD::SetCursor(
   uint8_t column,       /*!< Column to put the cursor to */
   uint8_t row           /*!< Row to put the cursor to */
 ) {
-  LiquidCrystal_AIP31068_SPI *p_SPILCD = (LiquidCrystal_AIP31068_SPI*)m_Lowlevel;
+  LiquidCrystal_AIP31068_SPI *p_SPILCD = reinterpret_cast<LiquidCrystal_AIP31068_SPI*>(m_Lowlevel);
   p_SPILCD->setCursor(column, row);
 }
 
@@ -64,7 +64,7 @@ void SPIAIP31068TextLCD::SetCursor(
 void SPIAIP31068TextLCD::Print(
   const char *str       /*!< String to print */
 ) {
-  LiquidCrystal_AIP31068_SPI *p_SPILCD = (LiquidCrystal_AIP31068_SPI*)m_Lowlevel;
+  LiquidCrystal_AIP31068_SPI *p_SPILCD = reinterpret_cast<LiquidCrystal_AIP31068_SPI*>(m_Lowlevel);
   p_SPILCD->print(str);
 }
 
@@ -76,7 +76,7 @@ void SPIAIP31068TextLCD::Print(
 void SPIAIP31068TextLCD::Write(
   uint8_t byte          /* !< Byte to write to LCD display */
 ) {
-  LiquidCrystal_AIP31068_SPI *p_SPILCD = (LiquidCrystal_AIP31068_SPI*)m_Lowlevel;
+  LiquidCrystal_AIP31068_SPI *p_SPILCD = reinterpret_cast<LiquidCrystal_AIP31068_SPI*>(m_Lowlevel);
   p_SPILCD->write(byte);
 }
 
@@ -88,6 +88,6 @@ void SPIAIP31068TextLCD::Write(
 void SPIAIP31068TextLCD::Command(
   uint8_t byte          /* !< Command to send to LCD display */
 ) {
-  LiquidCrystal_AIP31068_SPI *p_SPILCD = (LiquidCrystal_AIP31068_SPI*)m_Lowlevel;
+  LiquidCrystal_AIP31068_SPI *p_SPILCD = reinterpret_cast<LiquidCrystal_AIP31068_SPI*>(m_Lowlevel);
   p_SPILCD->command(byte);
 }

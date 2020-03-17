@@ -52,7 +52,7 @@ bool JoinedKeyboard::Init() {
  */
 void JoinedKeyboard::Exit() {
   if(m_Privat != nullptr) {
-    JoinedKeyboardList *p_ListEntry = (JoinedKeyboardList*)m_Privat;
+    JoinedKeyboardList *p_ListEntry = reinterpret_cast<JoinedKeyboardList*>(m_Privat);
     delete p_ListEntry;
   }
 }
@@ -65,7 +65,7 @@ void JoinedKeyboard::Exit() {
   \returns #KeyNone if no new actions detected, else a key code
  */
 uint8_t JoinedKeyboard::GetKey() {
-  JoinedKeyboardList *p_ListEntry = (JoinedKeyboardList*)m_Privat;
+  JoinedKeyboardList *p_ListEntry = reinterpret_cast<JoinedKeyboardList*>(m_Privat);
 
   while(p_ListEntry != nullptr) {
     uint8_t Key = p_ListEntry->m_Keyboard->GetKey();
@@ -86,8 +86,8 @@ uint8_t JoinedKeyboard::GetKey() {
 void JoinedKeyboard::AddKeyboard(
   AbstractKeyboard *Keyboard      /*!< Keyboard class instance we want to inlist */
 ) {
-  JoinedKeyboardList *p_ListEntry = (JoinedKeyboardList*)m_Privat;
-  JoinedKeyboardList **pp_LastNext = (JoinedKeyboardList **)&m_Privat;
+  JoinedKeyboardList *p_ListEntry = reinterpret_cast<JoinedKeyboardList*>(m_Privat);
+  JoinedKeyboardList **pp_LastNext = reinterpret_cast<JoinedKeyboardList**>(&m_Privat);
   uint8_t KeyOffset = 0;
 
   /* Fild last linked list entry */
@@ -107,7 +107,7 @@ void JoinedKeyboard::AddKeyboard(
   \returns Number of supported keys
  */
 uint8_t JoinedKeyboard::GetKeyCount() {
-  JoinedKeyboardList *p_ListEntry = (JoinedKeyboardList*)m_Privat;
+  JoinedKeyboardList *p_ListEntry = reinterpret_cast<JoinedKeyboardList*>(m_Privat);
   uint8_t KeySum = 0;
 
   while(p_ListEntry != nullptr) {

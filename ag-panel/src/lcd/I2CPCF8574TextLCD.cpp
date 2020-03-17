@@ -17,7 +17,7 @@
  */
 bool I2CPCF8574TextLCD::Init() {
   m_Lowlevel = new LiquidCrystal_I2C(m_I2CAddress, m_Columns, m_Rows);
-  LiquidCrystal_I2C *p_I2CLCD = (LiquidCrystal_I2C*)m_Lowlevel;
+  LiquidCrystal_I2C *p_I2CLCD = reinterpret_cast<LiquidCrystal_I2C*>(m_Lowlevel);
   p_I2CLCD->init();
   return true;
 }
@@ -26,7 +26,7 @@ bool I2CPCF8574TextLCD::Init() {
   \brief Deinitialisation of I2C text LCD display class
  */
 void I2CPCF8574TextLCD::Exit() {
-  LiquidCrystal_I2C *p_I2CLCD = (LiquidCrystal_I2C*)m_Lowlevel;
+  LiquidCrystal_I2C *p_I2CLCD = reinterpret_cast<LiquidCrystal_I2C*>(m_Lowlevel);
   if(p_I2CLCD != nullptr)
     delete p_I2CLCD;
   m_Lowlevel = nullptr;
@@ -40,7 +40,7 @@ void I2CPCF8574TextLCD::Exit() {
 void I2CPCF8574TextLCD::SetBacklight(
   bool on               /*!< Backlight state in on/off format */
 ) {
-  LiquidCrystal_I2C *p_I2CLCD = (LiquidCrystal_I2C*)m_Lowlevel;
+  LiquidCrystal_I2C *p_I2CLCD = reinterpret_cast<LiquidCrystal_I2C*>(m_Lowlevel);
   if(on)
     p_I2CLCD->backlight();
   else
@@ -88,7 +88,7 @@ void I2CPCF8574TextLCD::SetBacklight(
   This function calls corresponding function of LiquidCrystal_I2C class instance.
  */
 void I2CPCF8574TextLCD::Clear() {
-  LiquidCrystal_I2C *p_I2CLCD = (LiquidCrystal_I2C*)m_Lowlevel;
+  LiquidCrystal_I2C *p_I2CLCD = reinterpret_cast<LiquidCrystal_I2C*>(m_Lowlevel);
   p_I2CLCD->clear();
 }
 
@@ -101,7 +101,7 @@ void I2CPCF8574TextLCD::SetCursor(
   uint8_t column,       /*!< Column to put the cursor to */
   uint8_t row           /*!< Row to put the cursor to */
 ) {
-  LiquidCrystal_I2C *p_I2CLCD = (LiquidCrystal_I2C*)m_Lowlevel;
+  LiquidCrystal_I2C *p_I2CLCD = reinterpret_cast<LiquidCrystal_I2C*>(m_Lowlevel);
   p_I2CLCD->setCursor(column, row);
 }
 
@@ -113,7 +113,7 @@ void I2CPCF8574TextLCD::SetCursor(
 void I2CPCF8574TextLCD::Print(
   const char *str       /*!< String to print */
 ) {
-  LiquidCrystal_I2C *p_I2CLCD = (LiquidCrystal_I2C*)m_Lowlevel;
+  LiquidCrystal_I2C *p_I2CLCD = reinterpret_cast<LiquidCrystal_I2C*>(m_Lowlevel);
   p_I2CLCD->print(str);
 }
 
@@ -125,7 +125,7 @@ void I2CPCF8574TextLCD::Print(
 void I2CPCF8574TextLCD::Write(
   uint8_t byte          /* !< Byte to write to LCD display */
 ) {
-  LiquidCrystal_I2C *p_I2CLCD = (LiquidCrystal_I2C*)m_Lowlevel;
+  LiquidCrystal_I2C *p_I2CLCD = reinterpret_cast<LiquidCrystal_I2C*>(m_Lowlevel);
   p_I2CLCD->write(byte);
 }
 
@@ -137,6 +137,6 @@ void I2CPCF8574TextLCD::Write(
 void I2CPCF8574TextLCD::Command(
   uint8_t byte          /* !< Command to send to LCD display */
 ) {
-  LiquidCrystal_I2C *p_I2CLCD = (LiquidCrystal_I2C*)m_Lowlevel;
+  LiquidCrystal_I2C *p_I2CLCD = reinterpret_cast<LiquidCrystal_I2C*>(m_Lowlevel);
   p_I2CLCD->command(byte);
 }

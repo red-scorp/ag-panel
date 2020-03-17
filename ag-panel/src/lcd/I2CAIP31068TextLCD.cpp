@@ -18,7 +18,7 @@
  */
 bool I2CAIP31068TextLCD::Init() {
   m_Lowlevel = new LiquidCrystal_AIP31068_I2C(m_I2CAddress, m_Columns, m_Rows);
-  LiquidCrystal_AIP31068_I2C *p_I2CLCD = (LiquidCrystal_AIP31068_I2C*)m_Lowlevel;
+  LiquidCrystal_AIP31068_I2C *p_I2CLCD = reinterpret_cast<LiquidCrystal_AIP31068_I2C*>(m_Lowlevel);
   p_I2CLCD->init();
   return true;
 }
@@ -27,7 +27,7 @@ bool I2CAIP31068TextLCD::Init() {
   \brief Deinitialisation of I2C text LCD display class
  */
 void I2CAIP31068TextLCD::Exit() {
-  LiquidCrystal_AIP31068_I2C *p_I2CLCD = (LiquidCrystal_AIP31068_I2C*)m_Lowlevel;
+  LiquidCrystal_AIP31068_I2C *p_I2CLCD = reinterpret_cast<LiquidCrystal_AIP31068_I2C*>(m_Lowlevel);
   if(p_I2CLCD != nullptr)
     delete p_I2CLCD;
   m_Lowlevel = nullptr;
@@ -39,7 +39,7 @@ void I2CAIP31068TextLCD::Exit() {
   This function calls corresponding function of LiquidCrystal_AIP31068_I2C class instance.
  */
 void I2CAIP31068TextLCD::Clear() {
-  LiquidCrystal_AIP31068_I2C *p_I2CLCD = (LiquidCrystal_AIP31068_I2C*)m_Lowlevel;
+  LiquidCrystal_AIP31068_I2C *p_I2CLCD = reinterpret_cast<LiquidCrystal_AIP31068_I2C*>(m_Lowlevel);
   p_I2CLCD->clear();
 }
 
@@ -52,7 +52,7 @@ void I2CAIP31068TextLCD::SetCursor(
   uint8_t column,       /*!< Column to put the cursor to */
   uint8_t row           /*!< Row to put the cursor to */
 ) {
-  LiquidCrystal_AIP31068_I2C *p_I2CLCD = (LiquidCrystal_AIP31068_I2C*)m_Lowlevel;
+  LiquidCrystal_AIP31068_I2C *p_I2CLCD = reinterpret_cast<LiquidCrystal_AIP31068_I2C*>(m_Lowlevel);
   p_I2CLCD->setCursor(column, row);
 }
 
@@ -64,7 +64,7 @@ void I2CAIP31068TextLCD::SetCursor(
 void I2CAIP31068TextLCD::Print(
   const char *str       /*!< String to print */
 ) {
-  LiquidCrystal_AIP31068_I2C *p_I2CLCD = (LiquidCrystal_AIP31068_I2C*)m_Lowlevel;
+  LiquidCrystal_AIP31068_I2C *p_I2CLCD = reinterpret_cast<LiquidCrystal_AIP31068_I2C*>(m_Lowlevel);
   p_I2CLCD->print(str);
 }
 
@@ -76,7 +76,7 @@ void I2CAIP31068TextLCD::Print(
 void I2CAIP31068TextLCD::Write(
   uint8_t byte          /* !< Byte to write to LCD display */
 ) {
-  LiquidCrystal_AIP31068_I2C *p_I2CLCD = (LiquidCrystal_AIP31068_I2C*)m_Lowlevel;
+  LiquidCrystal_AIP31068_I2C *p_I2CLCD = reinterpret_cast<LiquidCrystal_AIP31068_I2C*>(m_Lowlevel);
   p_I2CLCD->write(byte);
 }
 
@@ -88,6 +88,6 @@ void I2CAIP31068TextLCD::Write(
 void I2CAIP31068TextLCD::Command(
   uint8_t byte          /* !< Command to send to LCD display */
 ) {
-  LiquidCrystal_AIP31068_I2C *p_I2CLCD = (LiquidCrystal_AIP31068_I2C*)m_Lowlevel;
+  LiquidCrystal_AIP31068_I2C *p_I2CLCD = reinterpret_cast<LiquidCrystal_AIP31068_I2C*>(m_Lowlevel);
   p_I2CLCD->command(byte);
 }

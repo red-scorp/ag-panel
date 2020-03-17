@@ -35,7 +35,7 @@ bool HardwareUART::Init() {
 #endif
   else
     for(;;); /* TODO: Add something like exception here! */
-  HardwareSerial *p_UART = (HardwareSerial*)m_Lowlevel;
+  HardwareSerial *p_UART = reinterpret_cast<HardwareSerial*>(m_Lowlevel);
   p_UART->begin(m_BaudRate);
   return true;
 }
@@ -55,7 +55,7 @@ void HardwareUART::Exit() {
 uint8_t HardwareUART::PutCh(
   uint8_t txbyte      /*!< Character to be writte to hardware UART */
 ) {
-  HardwareSerial *p_UART = (HardwareSerial*)m_Lowlevel;
+  HardwareSerial *p_UART = reinterpret_cast<HardwareSerial*>(m_Lowlevel);
   return p_UART->write(txbyte);
 }
 
@@ -65,7 +65,7 @@ uint8_t HardwareUART::PutCh(
   \returns Charecter (byte) read from hardware UART
  */
 uint8_t HardwareUART::GetCh() {
-  HardwareSerial *p_UART = (HardwareSerial*)m_Lowlevel;
+  HardwareSerial *p_UART = reinterpret_cast<HardwareSerial*>(m_Lowlevel);
   while(Available() == 0) {
     yield();
   }
@@ -79,6 +79,6 @@ uint8_t HardwareUART::GetCh() {
   \returns Number of bytes stored in buffer of hardware UART
  */
 uint32_t HardwareUART::Available() {
-  HardwareSerial *p_UART = (HardwareSerial*)m_Lowlevel;
+  HardwareSerial *p_UART = reinterpret_cast<HardwareSerial*>(m_Lowlevel);
   return p_UART->available();
 }

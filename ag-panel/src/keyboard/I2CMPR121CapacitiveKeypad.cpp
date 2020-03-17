@@ -19,7 +19,7 @@
  */
 bool I2CMPR121CapacitiveKeypad::Init() {
   m_Lowlevel = new Adafruit_MPR121;
-  Adafruit_MPR121 *p_I2CKbd = (Adafruit_MPR121*)m_Lowlevel;
+  Adafruit_MPR121 *p_I2CKbd = reinterpret_cast<Adafruit_MPR121*>(m_Lowlevel);
   p_I2CKbd->begin(m_I2CAddress);
   return true;
 }
@@ -28,7 +28,7 @@ bool I2CMPR121CapacitiveKeypad::Init() {
   \brief Deinitialisation of capacitive matrix class
  */
 void I2CMPR121CapacitiveKeypad::Exit() {
-  Adafruit_MPR121 *p_I2CKbd = (Adafruit_MPR121*)m_Lowlevel;
+  Adafruit_MPR121 *p_I2CKbd = reinterpret_cast<Adafruit_MPR121*>(m_Lowlevel);
   if(p_I2CKbd != nullptr)
     delete p_I2CKbd;
   m_Lowlevel = nullptr;
@@ -41,7 +41,7 @@ void I2CMPR121CapacitiveKeypad::Exit() {
   \returns #KeyNone if no new actions detected, else a key code
  */
 uint8_t I2CMPR121CapacitiveKeypad::GetKey() {
-  Adafruit_MPR121 *p_I2CKbd = (Adafruit_MPR121*)m_Lowlevel;
+  Adafruit_MPR121 *p_I2CKbd = reinterpret_cast<Adafruit_MPR121*>(m_Lowlevel);
   const uint16_t watch_mask = (uint16_t)(1l << (m_Number + 1)) - 1; /* watch only lower CxR bits, ignore rest */
   static uint16_t last_touched = 0;
 

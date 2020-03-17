@@ -18,7 +18,7 @@
  */
 bool SoftwareUART::Init() {
   m_Lowlevel = new SoftwareSerial(m_RxPin, m_TxPin);
-  SoftwareSerial *p_UART = (SoftwareSerial*)m_Lowlevel;
+  SoftwareSerial *p_UART = reinterpret_cast<SoftwareSerial*>(m_Lowlevel);
   p_UART->begin(m_BaudRate);
   return true;
 }
@@ -27,7 +27,7 @@ bool SoftwareUART::Init() {
   \brief Deinitialization of software UART
  */
 void SoftwareUART::Exit() {
-  SoftwareSerial *p_UART = (SoftwareSerial*)m_Lowlevel;
+  SoftwareSerial *p_UART = reinterpret_cast<SoftwareSerial*>(m_Lowlevel);
   if(p_UART != nullptr)
     delete p_UART;
   m_Lowlevel = nullptr;
@@ -41,7 +41,7 @@ void SoftwareUART::Exit() {
 uint8_t SoftwareUART::PutCh(
   uint8_t txbyte      /*!< Character to be writte to software UART */
 ) {
-  SoftwareSerial *p_UART = (SoftwareSerial*)m_Lowlevel;
+  SoftwareSerial *p_UART = reinterpret_cast<SoftwareSerial*>(m_Lowlevel);
   return p_UART->write(txbyte);
 }
 
@@ -51,7 +51,7 @@ uint8_t SoftwareUART::PutCh(
   \returns Charecter (byte) read from software UART
  */
 uint8_t SoftwareUART::GetCh() {
-  SoftwareSerial *p_UART = (SoftwareSerial*)m_Lowlevel;
+  SoftwareSerial *p_UART = reinterpret_cast<SoftwareSerial*>(m_Lowlevel);
   while(Available() == 0) {
     yield();
   }
@@ -65,7 +65,7 @@ uint8_t SoftwareUART::GetCh() {
   \returns Number of bytes stored in buffer of software UART
  */
 uint32_t SoftwareUART::Available() {
-  SoftwareSerial *p_UART = (SoftwareSerial*)m_Lowlevel;
+  SoftwareSerial *p_UART = reinterpret_cast<SoftwareSerial*>(m_Lowlevel);
   return p_UART->available();
 }
 

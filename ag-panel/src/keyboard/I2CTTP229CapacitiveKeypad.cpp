@@ -21,7 +21,7 @@
 bool I2CTTP229CapacitiveKeypad::Init() {
   Wire.begin();
   m_Lowlevel = new TTP229(m_I2CAddress);
-  TTP229 *p_I2CKbd = (TTP229*)m_Lowlevel;
+//  TTP229 *p_I2CKbd = reinterpret_cast<TTP229*>(m_Lowlevel);
   return true;
 }
 
@@ -29,7 +29,7 @@ bool I2CTTP229CapacitiveKeypad::Init() {
   \brief Deinitialisation of capacitive matrix class
  */
 void I2CTTP229CapacitiveKeypad::Exit() {
-  TTP229 *p_I2CKbd = (TTP229*)m_Lowlevel;
+  TTP229 *p_I2CKbd = reinterpret_cast<TTP229*>(m_Lowlevel);
   if(p_I2CKbd != nullptr)
     delete p_I2CKbd;
   m_Lowlevel = nullptr;
@@ -42,7 +42,7 @@ void I2CTTP229CapacitiveKeypad::Exit() {
   \returns #KeyNone if no new actions detected, else a key code
  */
 uint8_t I2CTTP229CapacitiveKeypad::GetKey() {
-  TTP229 *p_I2CKbd = (TTP229*)m_Lowlevel;
+  TTP229 *p_I2CKbd = reinterpret_cast<TTP229*>(m_Lowlevel);
   const uint16_t watch_mask = (uint16_t)(1l << (m_Number + 1)) - 1; /* watch only lower CxR bits, ignore rest */
   static uint16_t last_touched = 0;
 
