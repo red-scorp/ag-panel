@@ -63,7 +63,7 @@ void TextLoggingUART::Exit() {
   \returns Number of bytes written to real UART
  */
 uint8_t TextLoggingUART::PutCh(
-  uint8_t txbyte      /*!< Character to be writte to text logging UART */
+  uint8_t txbyte      /*!< Character to be written to text logging UART */
 ) {
   PrintByte(txbyte, 0);
   return m_RealUART->PutCh(txbyte);
@@ -105,7 +105,7 @@ uint32_t TextLoggingUART::GetBaudRate() const {
  */
 void TextLoggingUART::PrintByte(
   uint8_t byte,       /*!< byte to be printed */
-  uint8_t direction   /*!< firection it goes to */
+  uint8_t direction   /*!< direction it goes to */
 ) {
   char str[m_NumberLength + 1];
   char *p;
@@ -127,10 +127,10 @@ void TextLoggingUART::PrintByte(
 
   m_DebugUART->PutCh(' ');
   for(int i = 0; i < m_NumberLength; i++) {
+    bool meet_nonzero = false;
     if(m_LeadingZeros)
       m_DebugUART->PutCh(str[i]);
     else {
-      bool meet_nonzero = false;
       if(meet_nonzero || str[i] != '\0' || i == m_NumberLength - 1) {
         m_DebugUART->PutCh(str[i]);
         meet_nonzero = true;

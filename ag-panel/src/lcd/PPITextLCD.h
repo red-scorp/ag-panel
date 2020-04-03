@@ -76,7 +76,7 @@ public:
 
   using AbstractTextLCD::SetBacklight;
   virtual void Clear() override;
-  virtual void SetCursor(uint8_t row, uint8_t col) override;
+  virtual void SetCursor(uint8_t column, uint8_t row) override;
   virtual void Print(const char *str) override;
 
   virtual void Write(uint8_t byte) override;
