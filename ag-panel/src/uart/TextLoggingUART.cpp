@@ -7,6 +7,11 @@
 
 #include "TextLoggingUART.h"
 
+const uint8_t NumbersLineBinary = 2;
+const uint8_t NumbersLineOctal = 8;
+const uint8_t NumbersLineDecimal = 10;
+const uint8_t NumbersLineHexadecimal = 16;
+
 static const char s_Numbers[] = "0123456789ABCDEF";
 
 /*!
@@ -32,18 +37,22 @@ bool TextLoggingUART::Init() {
   switch(m_NumbersBase) {
   case NumbersBaseBinary:
     m_NumberLength = 8;
+    m_WrapLineLength = NumbersLineBinary;
     m_LeadingZeros = 1;
     break;
   case NumbersBaseOctal:
     m_NumberLength = 3;
+    m_WrapLineLength = NumbersLineOctal;
     m_LeadingZeros = 1;
     break;
   case NumbersBaseDecimal:
     m_NumberLength = 3;
+    m_WrapLineLength = NumbersLineDecimal;
     m_LeadingZeros = 0;
     break;
   case NumbersBaseHexadecimal:
     m_NumberLength = 2;
+    m_WrapLineLength = NumbersLineHexadecimal;
     m_LeadingZeros = 1;
     break;
   }
@@ -109,6 +118,7 @@ void TextLoggingUART::PrintByte(
 ) {
   char str[m_NumberLength + 1];
   char *p;
+  uint8_t meet_nonzero = 0;
 
   if(m_Direction != direction) {
     m_DebugUART->PutCh('\n');
@@ -119,22 +129,31 @@ void TextLoggingUART::PrintByte(
 
   p = &str[m_NumberLength];
   *p-- = '\0';
-  for(int i = 0; i < m_NumberLength; i++) {
+  for(uint8_t i = 0; i < m_NumberLength; i++) {
     uint8_t digit = byte % m_NumbersBase;
     byte = byte / m_NumbersBase;
     *p-- = s_Numbers[digit];
   }
 
   m_DebugUART->PutCh(' ');
-  for(int i = 0; i < m_NumberLength; i++) {
-    bool meet_nonzero = false;
-    if(m_LeadingZeros)
+  for(uint8_t i = 0; i < m_NumberLength; i++) {
+    if(m_LeadingZeros) {
       m_DebugUART->PutCh(str[i]);
-    else {
-      if(meet_nonzero || str[i] != '\0' || i == m_NumberLength - 1) {
+    } else {
+      if(meet_nonzero || i == m_NumberLength - 1 || str[i] != '0') {
         m_DebugUART->PutCh(str[i]);
-        meet_nonzero = true;
+        meet_nonzero = 1;
+      } else {
+        m_DebugUART->PutCh(' ');
       }
+    }
+  }
+
+  if(m_LineWrap) {
+    m_CurrentLineLength++;
+    if(m_CurrentLineLength >= m_WrapLineLength) {
+      m_Direction = 2;
+      m_CurrentLineLength = 0;
     }
   }
 }
