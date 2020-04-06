@@ -64,6 +64,8 @@ void setup() {
     g_DebugUART = new HardwareUART(DEBUG_BAUD, 2);
   #elif defined(DEBUG_UART_HARDWARE3)
     g_DebugUART = new HardwareUART(DEBUG_BAUD, 3);
+  #elif defined(DEBUG_UART_HARDWAREUSB)
+    g_DebugUART = new HardwareUART(DEBUG_BAUD, 4);
   #elif defined(DEBUG_UART_SOFTWARE)
     g_DebugUART = new SoftwareUART(DEBUG_BAUD, DEBUG_PIN_RX, DEBUG_PIN_TX);
   #elif defined(DEBUG_UART_NONE)
@@ -83,6 +85,8 @@ void setup() {
     s_UART = new HardwareUART(UART_BAUD, 2);
   #elif defined(UART_HARDWARE3)
     s_UART = new HardwareUART(UART_BAUD, 3);
+  #elif defined(UART_HARDWAREUSB)
+    s_UART = new HardwareUART(UART_BAUD, 4);
   #elif defined(UART_SOFTWARE)
     s_UART = new SoftwareUART(UART_BAUD, UART_PIN_RX, UART_PIN_TX);
   #elif defined(UART_NONE)
