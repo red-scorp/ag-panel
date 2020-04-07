@@ -1,7 +1,7 @@
 /*!
   \file HardwareUART.cpp
   \brief AG-Panel Project direct hardware UART implementation
-  \copyright (C) 2019 Andriy Golovnya
+  \copyright (C) 2019-2020 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@googlemail.com)
  */
 

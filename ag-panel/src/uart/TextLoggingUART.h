@@ -1,7 +1,7 @@
 /*!
   \file TextLoggingUART.h
   \brief AG-Panel Project text logging UART interface
-  \copyright (C) 2019 Andriy Golovnya
+  \copyright (C) 2019-2020 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@googlemail.com)
  */
 
