@@ -7,6 +7,8 @@
 
 #include "USBVirtualUART.h"
 
+/* TODO: add also STM32's implementation (USBSerial.h) */
+
 #if defined(ARDUINO_ARCH_SAMD) || defined(ARDUINO_ARCH_SAM)
 
 #if defined(ARDUINO_ARCH_SAMD)
