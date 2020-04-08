@@ -14,3 +14,4 @@
 #include "NoneUART.h"
 #include "BufferedUART.h"
 #include "TextLoggingUART.h"
+#include "USBVirtualUART.h"

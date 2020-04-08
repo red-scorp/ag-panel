@@ -18,7 +18,8 @@ Work in progress but already usable.
   - [ ] own protocol TBD (lcdproc) (to be implemented)
 - UART Serial
   - [x] Hardware UART
-  - [x] Software UART
+  - [x] USB Virtual UART (for SAMD and SAM platforms)
+  - [x] Software UART (for AVR and STM32 platforms)
   - [x] No (null) UART
   - [x] Buffered UART (addition to a regular UART)
 - LCD Display

@@ -8,10 +8,6 @@
 #include "HardwareUART.h"
 #include <HardwareSerial.h>
 
-#if defined(ARDUINO_ARCH_SAMD)
-#include <USB/CDC.h>
-#endif
-
 /*!
   \brief Initialization of hardware UART
 
@@ -36,12 +32,6 @@ bool HardwareUART::Init() {
 #if defined(HAVE_HWSERIAL3)
   else if(m_Port == 3)
     m_Lowlevel = &Serial3;
-#endif
-#if defined(ARDUINO_ARCH_SAMD)
-  else if(m_Port == 4) {
-    m_Lowlevel = &SerialUSB;
-    while(!SerialUSB);
-  }
 #endif
   else
     for(;;); /* TODO: Add something like exception here! */
