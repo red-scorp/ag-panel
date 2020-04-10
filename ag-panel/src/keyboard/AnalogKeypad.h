@@ -18,7 +18,7 @@
 class AnalogKeypad: public AbstractKeyboard {
 
 public:
-  AnalogKeypad(
+  explicit AnalogKeypad(
     uint8_t DataPin     /*!< Keypad input analog pin */
   ): AbstractKeyboard(),
     m_DataPin(DataPin) { Init(); }

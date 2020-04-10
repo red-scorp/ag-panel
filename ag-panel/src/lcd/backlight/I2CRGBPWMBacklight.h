@@ -21,7 +21,7 @@ const uint8_t DefaultI2CRGBPWMBacklightScaleBrightness = MaxBacklightBrightness;
 class I2CRGBPWMBacklight: public AbstractBacklight {
 
 public:
-  I2CRGBPWMBacklight(
+  explicit I2CRGBPWMBacklight(
     uint8_t RedChannel,       /*!< Red LED digital channel */
     uint8_t GreenChannel,     /*!< Green LED digital channel */
     uint8_t BlueChannel,      /*!< Blue LED digital channel */

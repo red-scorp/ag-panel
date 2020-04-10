@@ -19,7 +19,7 @@
 class LoSPanelProtocol: public AbstractProtocol {
 
 public:
-  LoSPanelProtocol(
+  explicit LoSPanelProtocol(
     AbstractUART *UART,           /*!< Pointer to UART implementation */
     AbstractTextLCD *TextLCD,     /*!< Pointer to text LCD implementation */
     AbstractKeyboard *Keyboard    /*!< Pointer to keyboard implementation */

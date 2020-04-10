@@ -18,7 +18,7 @@
 class DigitalMatrix: public AbstractKeyboard {
 
 public:
-  DigitalMatrix(
+  explicit DigitalMatrix(
     uint8_t Columns,            /*!< Number of columns of the matrix */
     uint8_t Rows,               /*!< Number of rows of the matrix */
     const uint8_t *CPinsArray,  /*!< Array of digital pins for columns of the matrix */

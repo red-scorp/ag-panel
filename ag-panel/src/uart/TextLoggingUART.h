@@ -24,7 +24,7 @@ const uint8_t DefaultNumbersBase = NumbersBaseHexadecimal;
 class TextLoggingUART: public AbstractUART {
 
 public:
-  TextLoggingUART(
+  explicit TextLoggingUART(
     AbstractUART *RealUART,       /*!< Real (communication) UART */
     AbstractUART *DebugUART,      /*!< Debug (logging) UART */
     uint8_t NumbersBase = NumbersBaseHexadecimal, /*!< Base to convert numbers */

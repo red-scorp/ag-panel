@@ -20,7 +20,7 @@ const uint32_t DefaultUARTBaudRate = 9600;    /*!< Default baud rate value used 
 class AbstractUART {
 
 public:
-  AbstractUART(
+  explicit AbstractUART(
     uint32_t BaudRate = DefaultUARTBaudRate /*!< Baud rate of an UART */
   ): m_BaudRate(BaudRate) { Init(); }
   virtual ~AbstractUART() { Exit(); }

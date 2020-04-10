@@ -20,7 +20,7 @@ const uint8_t DefaultI2CMPR121CapacitiveKeypadI2CAddress = 0x5A;    /*!< Default
 class I2CMPR121CapacitiveKeypad: public AbstractKeyboard {
 
 public:
-  I2CMPR121CapacitiveKeypad(
+  explicit I2CMPR121CapacitiveKeypad(
     uint8_t Number,       /*!< Number of keys in keys in keypad */
     uint8_t I2CAddress = DefaultI2CMPR121CapacitiveKeypadI2CAddress   /*!< I2C address of the touch controller */
   ): AbstractKeyboard(),

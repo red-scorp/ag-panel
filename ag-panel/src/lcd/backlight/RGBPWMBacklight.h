@@ -21,7 +21,7 @@ const uint8_t DefaultRGBPWMBacklightScaleBrightness = MaxBacklightBrightness;   
 class RGBPWMBacklight: public AbstractBacklight {
 
 public:
-  RGBPWMBacklight(
+  explicit RGBPWMBacklight(
     uint8_t RedPin,         /*!< Red LED digital pin */
     uint8_t GreenPin,       /*!< Green LED digital pin */
     uint8_t BluePin,        /*!< Blue LED digital pin */

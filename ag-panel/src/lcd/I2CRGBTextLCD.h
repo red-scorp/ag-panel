@@ -22,7 +22,7 @@ const uint32_t DefaultI2CRGBTextLCDDefaultColor = DefaultBacklightRGBColor;
 class I2CRGBTextLCD: public AbstractTextLCD {
 
 public:
-  I2CRGBTextLCD(
+  explicit I2CRGBTextLCD(
     uint8_t Columns,            /*!< Number of columns of the text LCD */
     uint8_t Rows,               /*!< Number of rows of the text LCD */
     uint8_t I2CAddress,         /*!< I2C address of digital I/O expander chip */

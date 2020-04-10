@@ -20,7 +20,7 @@ const uint32_t DefaultRGBBinaryBacklightDefaultColor = DefaultBacklightRGBColor;
 class RGBBinaryBacklight: public AbstractBacklight {
 
 public:
-  RGBBinaryBacklight(
+  explicit RGBBinaryBacklight(
     uint8_t RedPin,         /*!< Red LED digital pin */
     uint8_t GreenPin,       /*!< Green LED digital pin */
     uint8_t BluePin,        /*!< Blue LED digital pin */

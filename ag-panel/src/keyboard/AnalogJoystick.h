@@ -18,7 +18,7 @@
 class AnalogJoystick: public AbstractKeyboard {
 
 public:
-  AnalogJoystick(
+  explicit AnalogJoystick(
     uint8_t XPin,       /*!< X-direction potentiometer analog pin */
     uint8_t YPin,       /*!< Y-direction potentiometer analog pin */
     uint8_t ButtonPin   /*!< Select button digital pin */

@@ -92,7 +92,7 @@ const uint32_t DefaultBacklightRGBColor = RGBColor2Uint(0, 0, MaxBacklightBright
 class AbstractBacklight {
 
 public:
-  AbstractBacklight() { Init(); }
+  explicit AbstractBacklight() { Init(); }
   virtual ~AbstractBacklight() { Exit(); }
 
   virtual void SetOn(bool on) = 0;

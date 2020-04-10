@@ -20,7 +20,7 @@
 class PPITextLCD: public AbstractTextLCD {
 
 public:
-  PPITextLCD(
+  explicit PPITextLCD(
     AbstractBacklight *Backlight,     /*!< External backlight class pointer */
     uint8_t Columns,            /*!< Number of columns of the text LCD */
     uint8_t Rows,               /*!< Number of rows of the text LCD */
@@ -48,7 +48,7 @@ public:
     m_D6Pin(D6Pin),
     m_D7Pin(D7Pin),
     m_Lowlevel(nullptr) { Init(); }
-  PPITextLCD(
+  explicit PPITextLCD(
     AbstractBacklight *Backlight,     /*!< External backlight class pointer */
     uint8_t Columns,            /*!< Number of columns of the text LCD */
     uint8_t Rows,               /*!< Number of rows of the text LCD */

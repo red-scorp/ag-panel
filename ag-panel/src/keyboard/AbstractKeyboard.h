@@ -26,7 +26,7 @@ const uint8_t KeyDefaultSelect = 5;   /* KeyMatrix_2_1=Enter */
 class AbstractKeyboard {
 
 public:
-  AbstractKeyboard() { Init(); }
+  explicit AbstractKeyboard() { Init(); }
   virtual ~AbstractKeyboard() { Exit(); }
 
   virtual uint8_t GetKey() = 0;

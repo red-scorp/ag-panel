@@ -21,7 +21,7 @@
 class AbstractProtocol {
 
 public:
-  AbstractProtocol(
+  explicit AbstractProtocol(
     AbstractUART *UART,         /*!< Pointer to UART implementation */
     AbstractLCD *LCD,           /*!< Pointer to LCD implementation */
     AbstractKeyboard *Keyboard  /*!< Pointer to keyboard implementation */

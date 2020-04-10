@@ -19,7 +19,7 @@
 class SoftwareUART: public AbstractUART {
 
 public:
-  SoftwareUART(
+  explicit SoftwareUART(
     uint32_t BaudRate,    /*!< Baud rate of an UART */
     uint8_t RxPin,        /*!< Receive data UART pin */
     uint8_t TxPin         /*!< Transmit data UART pin */

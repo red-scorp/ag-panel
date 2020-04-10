@@ -18,7 +18,7 @@
 class AnalogMatrix: public AbstractKeyboard {
 
 public:
-  AnalogMatrix(
+  explicit AnalogMatrix(
     uint8_t Columns,            /*!< Number of columns of the matrix */
     uint8_t Rows,               /*!< Number of rows of the matrix */
     const uint16_t *DataArray,  /*!< Array of analog values for all different keys of the matrix */

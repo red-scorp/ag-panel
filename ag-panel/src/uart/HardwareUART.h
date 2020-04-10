@@ -18,7 +18,7 @@
 class HardwareUART: public AbstractUART {
 
 public:
-  HardwareUART(
+  explicit HardwareUART(
     uint32_t BaudRate = DefaultUARTBaudRate,  /*!< Baud rate of an UART */
     uint8_t Port = 0      /*!< Hardware UART port number */
   ): AbstractUART(BaudRate),

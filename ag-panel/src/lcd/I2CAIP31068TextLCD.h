@@ -20,7 +20,7 @@
 class I2CAIP31068TextLCD: public AbstractTextLCD {
 
 public:
-  I2CAIP31068TextLCD(
+  explicit I2CAIP31068TextLCD(
     AbstractBacklight *Backlight,     /*!< External backlight class pointer */
     uint8_t Columns,            /*!< Number of columns of the text LCD */
     uint8_t Rows,               /*!< Number of rows of the text LCD */

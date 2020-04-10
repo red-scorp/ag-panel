@@ -18,7 +18,7 @@
 class SimpleButton: public AbstractKeyboard {
 
 public:
-  SimpleButton(
+  explicit SimpleButton(
     uint8_t Number,             /*!< Number of buttons (pins) */
     const uint8_t *PinsArray    /*!< Array of digital pins for buttons */
   ): AbstractKeyboard(),

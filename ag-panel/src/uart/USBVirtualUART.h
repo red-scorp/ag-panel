@@ -18,7 +18,7 @@
 class USBVirtualUART: public AbstractUART {
 
 public:
-  USBVirtualUART(
+  explicit USBVirtualUART(
     uint32_t BaudRate = DefaultUARTBaudRate   /*!< Baud rate of an UART */
   ): AbstractUART(BaudRate),
     m_Lowlevel(nullptr) { Init(); }

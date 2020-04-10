@@ -20,7 +20,7 @@ const uint8_t DefaultPWMBacklightScaleBrightness = MaxBacklightBrightness;  /*!<
 class PWMBacklight: public AbstractBacklight {
 
 public:
-  PWMBacklight(
+  explicit PWMBacklight(
     uint8_t LEDPin,     /*!< PWM backlight digital pin */
     uint8_t ScaleBrightness = DefaultPWMBacklightScaleBrightness  /*!< Brightness scaling (dimming) value */
   ): AbstractBacklight(),

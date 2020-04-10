@@ -18,17 +18,17 @@
 class JoinedKeyboard: public AbstractKeyboard {
 
 public:
-  JoinedKeyboard():
+  explicit JoinedKeyboard():
     AbstractKeyboard(),
     m_Privat(nullptr) { Init(); }
-  JoinedKeyboard(
+  explicit JoinedKeyboard(
     AbstractKeyboard *Keyboard          /*!< Keyboard class instance we want to inlist first */
   ): AbstractKeyboard(),
     m_Privat(nullptr) {
     Init();
     AddKeyboard(Keyboard);
   }
-  JoinedKeyboard(
+  explicit JoinedKeyboard(
     AbstractKeyboard *Keyboard1,        /*!< Keyboard class instance we want to inlist first */
     AbstractKeyboard *Keyboard2         /*!< Keyboard class instance we want to inlist second */
   ): AbstractKeyboard(),
@@ -37,7 +37,7 @@ public:
     AddKeyboard(Keyboard1);
     AddKeyboard(Keyboard2);
   }
-  JoinedKeyboard(
+  explicit JoinedKeyboard(
     AbstractKeyboard *Keyboard1,        /*!< Keyboard class instance we want to inlist first */
     AbstractKeyboard *Keyboard2,        /*!< Keyboard class instance we want to inlist second */
     AbstractKeyboard *Keyboard3         /*!< Keyboard class instance we want to inlist 3rd */
@@ -48,7 +48,7 @@ public:
     AddKeyboard(Keyboard2);
     AddKeyboard(Keyboard3);
   }
-  JoinedKeyboard(
+  explicit JoinedKeyboard(
     AbstractKeyboard *Keyboard1,        /*!< Keyboard class instance we want to inlist first */
     AbstractKeyboard *Keyboard2,        /*!< Keyboard class instance we want to inlist second */
     AbstractKeyboard *Keyboard3,        /*!< Keyboard class instance we want to inlist 3rd */
@@ -61,7 +61,7 @@ public:
     AddKeyboard(Keyboard3);
     AddKeyboard(Keyboard4);
   }
-  JoinedKeyboard(
+  explicit JoinedKeyboard(
     AbstractKeyboard *Keyboard1,        /*!< Keyboard class instance we want to inlist first */
     AbstractKeyboard *Keyboard2,        /*!< Keyboard class instance we want to inlist second */
     AbstractKeyboard *Keyboard3,        /*!< Keyboard class instance we want to inlist 3rd */

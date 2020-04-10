@@ -19,7 +19,7 @@
 class I2CRGBKeypad: public AbstractKeyboard {
 
 public:
-  I2CRGBKeypad(
+  explicit I2CRGBKeypad(
     AbstractLCD *LCD      /*!< Pointer to LCD class, should be of #I2CRGBTextLCD type */
   ): AbstractKeyboard(),
     m_LCD(LCD),

@@ -18,7 +18,7 @@
 class NoneBacklight: public AbstractBacklight {
 
 public:
-  NoneBacklight(): AbstractBacklight() { Init(); }
+  explicit NoneBacklight(): AbstractBacklight() { Init(); }
   virtual ~NoneBacklight() override { Exit(); }
 
   virtual void SetOn(bool on) override;

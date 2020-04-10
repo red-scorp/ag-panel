@@ -18,7 +18,7 @@
 class RotaryEncoder: public AbstractKeyboard {
 
 public:
-  RotaryEncoder(
+  explicit RotaryEncoder(
     uint8_t D1Pin,        /*!< First digital pin of rotary encoder */
     uint8_t D2Pin,        /*!< Second digital pin of rotary encoder */
     uint8_t ButtonPin     /*!< Digital pin of select button */

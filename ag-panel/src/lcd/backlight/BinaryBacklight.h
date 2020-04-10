@@ -18,7 +18,7 @@
 class BinaryBacklight: public AbstractBacklight {
 
 public:
-  BinaryBacklight(
+  explicit BinaryBacklight(
     uint8_t LEDPin      /*!< Binary backlight digital pin */
   ): AbstractBacklight(),
     m_LEDPin(LEDPin) { Init(); }

@@ -18,7 +18,7 @@
 class NoneKeyboard: public AbstractKeyboard {
 
 public:
-  NoneKeyboard(): AbstractKeyboard() { Init(); }
+  explicit NoneKeyboard(): AbstractKeyboard() { Init(); }
   virtual ~NoneKeyboard() override { Exit(); }
 
   virtual uint8_t GetKey() override;

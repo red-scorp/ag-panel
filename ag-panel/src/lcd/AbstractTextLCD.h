@@ -19,7 +19,7 @@
 class AbstractTextLCD: public AbstractLCD {
 
 public:
-  AbstractTextLCD(
+  explicit AbstractTextLCD(
     AbstractBacklight *Backlight,   /*!< Pointer to a backlight instance */
     uint8_t Columns,            /*!< Number of columns of the text LCD */
     uint8_t Rows                /*!< Number of rows of the text LCD */

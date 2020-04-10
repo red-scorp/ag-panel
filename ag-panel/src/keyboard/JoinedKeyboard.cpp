@@ -16,14 +16,13 @@
 class JoinedKeyboardList {
 
 public:
-  JoinedKeyboardList(
+  explicit JoinedKeyboardList(
     AbstractKeyboard *Keyboard,     /*!< Pointer to a keyboard to add in the list */
     uint8_t KeyOffset               /*!< Offset of the first key this keyboard generates */
   ): m_Keyboard(Keyboard),
     m_KeyOffset(KeyOffset),
-    m_Next(nullptr) {
-    m_KeyCount = Keyboard->GetKeyCount();
-  };
+    m_KeyCount(Keyboard->GetKeyCount()),
+    m_Next(nullptr) {};
 
   ~JoinedKeyboardList() {
     if(m_Keyboard != nullptr)

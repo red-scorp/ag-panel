@@ -20,7 +20,7 @@
 class I2CPCF8574TextLCD: public AbstractTextLCD {
 
 public:
-  I2CPCF8574TextLCD(
+  explicit I2CPCF8574TextLCD(
     uint8_t Columns,            /*!< Number of columns of the text LCD */
     uint8_t Rows,               /*!< Number of rows of the text LCD */
     uint8_t I2CAddress          /*!< I2C address of digital I/O expander chip */

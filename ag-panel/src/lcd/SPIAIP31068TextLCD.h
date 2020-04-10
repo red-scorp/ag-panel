@@ -20,7 +20,7 @@
 class SPIAIP31068TextLCD: public AbstractTextLCD {
 
 public:
-  SPIAIP31068TextLCD(
+  explicit SPIAIP31068TextLCD(
     AbstractBacklight *Backlight,     /*!< External backlight class pointer */
     uint8_t Columns,            /*!< Number of columns of the text LCD */
     uint8_t Rows,               /*!< Number of rows of the text LCD */
@@ -31,7 +31,7 @@ public:
     m_MOSIPin(MOSI),
     m_MISOPin(MISO),
     m_Lowlevel(nullptr) { Init(); }
-  SPIAIP31068TextLCD(
+  explicit SPIAIP31068TextLCD(
     AbstractBacklight *Backlight,     /*!< External backlight class pointer */
     uint8_t Columns,            /*!< Number of columns of the text LCD */
     uint8_t Rows,               /*!< Number of rows of the text LCD */

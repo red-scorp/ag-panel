@@ -24,7 +24,7 @@ const auto DefaultBufferedUARTBufferSize = 512;
 class BufferedUART: public AbstractUART {
 
 public:
-  BufferedUART(
+  explicit BufferedUART(
     AbstractUART *UART,     /*!< Real UART for I/O operations */
     uint32_t BufferSize = DefaultBufferedUARTBufferSize /*!< Size of UART Buffer */
   ): AbstractUART(),
