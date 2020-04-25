@@ -10,3 +10,4 @@
 #include "AbstractProtocol.h"
 
 #include "LoSPanelProtocol.h"
+#include "RawSerialProtocol.h"
