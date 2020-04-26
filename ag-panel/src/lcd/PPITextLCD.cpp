@@ -74,6 +74,18 @@ void PPITextLCD::Print(
 }
 
 /*!
+  \brief Print a character on LCD display
+
+  This function calls corresponding function of LiquidCrystal class instance.
+ */
+void PPITextLCD::Print(
+  char character        /*!< Character to print */
+) {
+  LiquidCrystal *p_PPILCD = reinterpret_cast<LiquidCrystal*>(m_Lowlevel);
+  p_PPILCD->print(character);
+}
+
+/*!
   \brief Write a byte (RS = 1) to LCD display
 
   This function calls corresponding function of LiquidCrystal class instance.

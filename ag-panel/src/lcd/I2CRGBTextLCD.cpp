@@ -116,6 +116,18 @@ void I2CRGBTextLCD::Print(
 }
 
 /*!
+  \brief Print a character on LCD display
+
+  This function calls corresponding function of Adafruit_RGBLCDShield class instance.
+ */
+void I2CRGBTextLCD::Print(
+  char character        /*!< Chcracter to print */
+) {
+  Adafruit_RGBLCDShield *p_I2CRGBLCD = reinterpret_cast<Adafruit_RGBLCDShield*>(m_Lowlevel);
+  p_I2CRGBLCD->print(character);
+}
+
+/*!
   \brief Write a byte (RS = 1) to LCD display
 
   This function calls corresponding function of Adafruit_RGBLCDShield class instance.

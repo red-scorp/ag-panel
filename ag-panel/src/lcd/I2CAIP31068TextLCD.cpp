@@ -69,6 +69,18 @@ void I2CAIP31068TextLCD::Print(
 }
 
 /*!
+  \brief Print a character on LCD display
+
+  This function calls corresponding function of LiquidCrystal_AIP31068_I2C class instance.
+ */
+void I2CAIP31068TextLCD::Print(
+  char character        /*!< Character to print */
+) {
+  LiquidCrystal_AIP31068_I2C *p_I2CLCD = reinterpret_cast<LiquidCrystal_AIP31068_I2C*>(m_Lowlevel);
+  p_I2CLCD->print(character);
+}
+
+/*!
   \brief Write a byte (RS = 1) to LCD display
 
   This function calls corresponding function of LiquidCrystal_AIP31068_I2C class instance.

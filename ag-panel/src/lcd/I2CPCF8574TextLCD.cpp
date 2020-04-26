@@ -118,6 +118,18 @@ void I2CPCF8574TextLCD::Print(
 }
 
 /*!
+  \brief Print a character on LCD display
+
+  This function calls corresponding function of LiquidCrystal_I2C class instance.
+ */
+void I2CPCF8574TextLCD::Print(
+  char character        /*!< Character to print */
+) {
+  LiquidCrystal_I2C *p_I2CLCD = reinterpret_cast<LiquidCrystal_I2C*>(m_Lowlevel);
+  p_I2CLCD->print(character);
+}
+
+/*!
   \brief Write a byte (RS = 1) to LCD display
 
   This function calls corresponding function of LiquidCrystal_I2C class instance.

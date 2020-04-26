@@ -50,6 +50,7 @@ public:
   virtual void Clear() = 0;
   virtual void SetCursor(uint8_t column, uint8_t row) = 0;
   virtual void Print(const char *str) = 0;
+  virtual void Print(char ch) = 0;
 
   virtual uint8_t GetColumns() const { return m_Columns; }
   virtual uint8_t GetRows() const { return m_Rows; }

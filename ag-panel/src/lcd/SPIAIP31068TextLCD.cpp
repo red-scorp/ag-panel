@@ -69,6 +69,18 @@ void SPIAIP31068TextLCD::Print(
 }
 
 /*!
+  \brief Print a character on LCD display
+
+  This function calls corresponding function of LiquidCrystal_AIP31068_SPI class instance.
+ */
+void SPIAIP31068TextLCD::Print(
+  char character        /*!< Character to print */
+) {
+  LiquidCrystal_AIP31068_SPI *p_SPILCD = reinterpret_cast<LiquidCrystal_AIP31068_SPI*>(m_Lowlevel);
+  p_SPILCD->print(character);
+}
+
+/*!
   \brief Write a byte (RS = 1) to LCD display
 
   This function calls corresponding function of LiquidCrystal_AIP31068_SPI class instance.

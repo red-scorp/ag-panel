@@ -8,6 +8,9 @@
 #include "../private.h"
 #include "RawSerialProtocol.h"
 
+/* Protocol commands definition */
+const uint8_t RawSerialProtocolEndOfBuffer = '\n';    /*!< End of buffer code, comes from host to target */
+
 /*!
   \brief Initialization of rawserial protocol
 
@@ -31,9 +34,13 @@ void RawSerialProtocol::Exit() {
  */
 void RawSerialProtocol::Loop() {
   uint8_t rxbyte = m_UART->GetCh();
-  // uint8_t nextbyte;
+  char ch = rxbyte;
 
-  // m_LCD->Print(rxbyte);
+  if(rxbyte == RawSerialProtocolEndOfBuffer) {
+    m_LCD->SetCursor(0, 0);
+  } else {
+    m_LCD->Print(ch);
+  }
 }
 
 /*!

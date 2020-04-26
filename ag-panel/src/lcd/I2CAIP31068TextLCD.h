@@ -33,6 +33,7 @@ public:
   virtual void Clear() override;
   virtual void SetCursor(uint8_t column, uint8_t row) override;
   virtual void Print(const char *str) override;
+  virtual void Print(char character) override;
 
   virtual void Write(uint8_t byte) override;
   virtual void Command(uint8_t byte) override;
