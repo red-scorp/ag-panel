@@ -34,12 +34,20 @@ void RawSerialProtocol::Exit() {
  */
 void RawSerialProtocol::Loop() {
   uint8_t rxbyte = m_UART->GetCh();
-  char ch = rxbyte;
 
-  if(rxbyte == RawSerialProtocolEndOfBuffer) {
-    m_LCD->SetCursor(0, 0);
+  if(rxbyte == RawSerialProtocolEndOfBuffer) { /* end of buffer condition -> go to beginning of a screen */
+    m_XPos = 0;
+    m_YPos = 0;
+    m_LCD->SetCursor(m_XPos, m_YPos);
   } else {
-    m_LCD->Print(ch);
+    if(m_XPos >= m_LCD->GetColumns()) { /* end of line condition -> go to new line */
+      m_XPos = 0;
+      m_YPos++;
+      if(m_YPos < m_LCD->GetRows())
+        m_LCD->SetCursor(m_XPos, m_YPos);
+    }
+    char character = rxbyte;
+    m_LCD->Print(character);
   }
 }
 

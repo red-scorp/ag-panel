@@ -22,7 +22,9 @@ public:
     AbstractUART *UART,           /*!< Pointer to UART implementation */
     AbstractLCD *LCD,             /*!< Pointer to LCD implementation */
     AbstractKeyboard *Keyboard    /*!< Pointer to keyboard implementation */
-  ): AbstractProtocol(UART, LCD, Keyboard) { Init(); }
+  ): AbstractProtocol(UART, LCD, Keyboard),
+    m_XPos(0),
+    m_YPos(0) { Init(); }
   virtual ~RawSerialProtocol() { Exit(); }
 
   virtual void Loop() override;
@@ -31,6 +33,8 @@ public:
 protected:
 
 private:
+  uint32_t m_XPos;      /*!< Current X postion on display */
+  uint32_t m_YPos;      /*!< Current Y postion on display */
   bool Init();
   void Exit();
 };
