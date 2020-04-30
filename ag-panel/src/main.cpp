@@ -283,6 +283,8 @@ void setup() {
 
   #if defined(PROT_LOSPANEL)
     s_Protocol = new LoSPanelProtocol(s_UART, reinterpret_cast<AbstractTextLCD*>(s_LCD), s_Keyboard);
+  #elif defined(PROT_RAWSERIAL)
+    s_Protocol = new RawSerialProtocol(s_UART, s_LCD, s_Keyboard);
   #else
     #error Protocol is not defined!
   #endif
