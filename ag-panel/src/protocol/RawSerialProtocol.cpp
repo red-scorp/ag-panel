@@ -48,6 +48,7 @@ void RawSerialProtocol::Loop() {
     }
     char character = rxbyte;
     m_LCD->Print(character);
+    m_XPos++;
   }
 }
 

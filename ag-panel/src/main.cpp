@@ -40,7 +40,7 @@ void print_welcome() {
   s_LCD->Print(str);
   DEBUG_STR("LCD> "); DEBUG_STR(str); DEBUG_STR("\n");
   s_LCD->SetCursor(center_x, center_y + 1);
-  snprintf(str, sizeof(str) - 1, "@%uBd Ready", s_UART->GetBaudRate());
+  snprintf(str, sizeof(str) - 1, "@%luBd Ready", (unsigned long)s_UART->GetBaudRate());
   s_LCD->Print(str);
   DEBUG_STR("LCD> "); DEBUG_STR(str); DEBUG_STR("\n");
 }
