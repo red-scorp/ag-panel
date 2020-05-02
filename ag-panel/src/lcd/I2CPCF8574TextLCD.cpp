@@ -7,6 +7,9 @@
 
 #include "../private.h"
 #include "I2CPCF8574TextLCD.h"
+
+#if !defined(ARDUINO_ARCH_GD32V)
+
 #include <LiquidCrystal_I2C.h>
 
 /*!
@@ -152,3 +155,7 @@ void I2CPCF8574TextLCD::Command(
   LiquidCrystal_I2C *p_I2CLCD = reinterpret_cast<LiquidCrystal_I2C*>(m_Lowlevel);
   p_I2CLCD->command(byte);
 }
+
+#else
+#warning 'I2CPCF8574TextLCD' is not implemented for GD32V platform bacause it lacks of standard header 'Wire.h'!
+#endif /* !ARDUINO_ARCH_GD32V */

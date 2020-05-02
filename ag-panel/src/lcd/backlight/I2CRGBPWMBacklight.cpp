@@ -7,6 +7,9 @@
 
 #include "../../private.h"
 #include "I2CRGBPWMBacklight.h"
+
+#if !defined(ARDUINO_ARCH_GD32V)
+
 #include <pca9633.h>
 #include <Wire.h>
 
@@ -71,3 +74,7 @@ void I2CRGBPWMBacklight::SetRGB(
   p_I2CBacklight->setpwm(m_GreenChannel, MaxBacklightBrightness - ScaleColor(green, m_ScaleBrightness));
   p_I2CBacklight->setpwm(m_BlueChannel, MaxBacklightBrightness - ScaleColor(blue, m_ScaleBrightness));
 }
+
+#else
+#warning 'I2CRGBPWMBacklight' is not implemented for GD32V platform bacause it lacks of standard header 'Wire.h'!
+#endif /* !ARDUINO_ARCH_GD32V */

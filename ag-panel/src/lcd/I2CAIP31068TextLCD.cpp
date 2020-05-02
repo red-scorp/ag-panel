@@ -7,7 +7,10 @@
 
 #include "../private.h"
 #include "I2CAIP31068TextLCD.h"
-#include <SoftSPIB.h>
+
+#if !defined(ARDUINO_ARCH_GD32V)
+
+//#include <SoftSPIB.h>
 #include <LiquidCrystal_AIP31068_I2C.h>
 
 /*!
@@ -103,3 +106,7 @@ void I2CAIP31068TextLCD::Command(
   LiquidCrystal_AIP31068_I2C *p_I2CLCD = reinterpret_cast<LiquidCrystal_AIP31068_I2C*>(m_Lowlevel);
   p_I2CLCD->command(byte);
 }
+
+#else
+#warning 'I2CAIP31068TextLCD' is not implemented for GD32V platform bacause it lacks of standard header 'Wire.h'!
+#endif /* !ARDUINO_ARCH_GD32V */

@@ -7,6 +7,9 @@
 
 #include "../private.h"
 #include "SPIAIP31068TextLCD.h"
+
+#if !defined(ARDUINO_ARCH_GD32V)
+
 #include <SoftSPIB.h>
 #include <LiquidCrystal_AIP31068_SPI.h>
 
@@ -103,3 +106,7 @@ void SPIAIP31068TextLCD::Command(
   LiquidCrystal_AIP31068_SPI *p_SPILCD = reinterpret_cast<LiquidCrystal_AIP31068_SPI*>(m_Lowlevel);
   p_SPILCD->command(byte);
 }
+
+#else
+#warning 'SPIAIP31068TextLCD' is not implemented for GD32V platform bacause it lacks of standard header 'SPI.h'!
+#endif /* !ARDUINO_ARCH_GD32V */

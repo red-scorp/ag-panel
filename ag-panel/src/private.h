@@ -12,6 +12,15 @@
 #include <analogWrite.h>
 #endif
 
+#if defined(__riscv)
+#define ARDUINO_ARCH_GD32V
+/* TODO: add implementation of 'Wire.h' and 'SPI.h' for RISC-V */
+#define SCK   1     /* TODO: find out the real value */
+#define MOSI  1     /* TODO: find out the real value */
+#define MISO  1     /* TODO: find out the real value */
+#define A0    0     /* TODO: find out the real value */
+#endif
+
 #undef UART /* Requered to compile for DUE board */
 
 const uint8_t InvalidPin = 255;

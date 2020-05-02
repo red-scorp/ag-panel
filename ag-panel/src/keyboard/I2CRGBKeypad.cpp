@@ -10,6 +10,8 @@
 #include "I2CRGBKeypad.h"
 #include "../lcd/I2CRGBTextLCD.h"
 
+#if !defined(ARDUINO_ARCH_GD32V)
+
 #include <Adafruit_RGBLCDShield.h>
 
 /*!
@@ -62,3 +64,7 @@ uint8_t I2CRGBKeypad::GetKey() {
 uint8_t I2CRGBKeypad::GetKeyCount() {
   return 5;
 }
+
+#else
+#warning 'I2CRGBKeypad' is not implemented for GD32V platform bacause it lacks of standard header 'Wire.h'!
+#endif /* !ARDUINO_ARCH_GD32V */

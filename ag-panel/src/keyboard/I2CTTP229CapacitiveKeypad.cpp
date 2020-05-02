@@ -9,6 +9,8 @@
 #include "../../config.h"
 #include "I2CTTP229CapacitiveKeypad.h"
 
+#if !defined(ARDUINO_ARCH_GD32V)
+
 #include <Wire.h>
 #include <TTP229.h>
 
@@ -71,3 +73,7 @@ uint8_t I2CTTP229CapacitiveKeypad::GetKey() {
 uint8_t I2CTTP229CapacitiveKeypad::GetKeyCount() {
   return m_Number;
 }
+
+#else
+#warning 'I2CTTP229CapacitiveKeypad' is not implemented for GD32V platform bacause it lacks of standard header 'Wire.h'!
+#endif /* !ARDUINO_ARCH_GD32V */

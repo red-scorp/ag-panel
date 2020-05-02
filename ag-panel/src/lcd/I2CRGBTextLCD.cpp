@@ -7,6 +7,9 @@
 
 #include "../private.h"
 #include "I2CRGBTextLCD.h"
+
+#if !defined(ARDUINO_ARCH_GD32V)
+
 #include <Adafruit_RGBLCDShield.h>
 
 /*!
@@ -150,3 +153,7 @@ void I2CRGBTextLCD::Command(
   Adafruit_RGBLCDShield *p_I2CRGBLCD = reinterpret_cast<Adafruit_RGBLCDShield*>(m_Lowlevel);
   p_I2CRGBLCD->command(byte);
 }
+
+#else
+#warning 'I2CRGBTextLCD' is not implemented for GD32V platform bacause it lacks of standard header 'Wire.h'!
+#endif /* !ARDUINO_ARCH_GD32V */

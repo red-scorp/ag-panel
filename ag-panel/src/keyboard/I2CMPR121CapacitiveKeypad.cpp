@@ -9,6 +9,8 @@
 #include "../../config.h"
 #include "I2CMPR121CapacitiveKeypad.h"
 
+#if !defined(ARDUINO_ARCH_GD32V)
+
 #include <Adafruit_MPR121.h>
 
 /*!
@@ -70,3 +72,7 @@ uint8_t I2CMPR121CapacitiveKeypad::GetKey() {
 uint8_t I2CMPR121CapacitiveKeypad::GetKeyCount() {
   return m_Number;
 }
+
+#else
+#warning 'I2CMPR121CapacitiveKeypad' is not implemented for GD32V platform bacause it lacks of standard header 'Wire.h'!
+#endif /* !ARDUINO_ARCH_GD32V */
