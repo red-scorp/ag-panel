@@ -1,7 +1,7 @@
 /*!
   \file I2CTTP229CapacitiveKeypad.cpp
   \brief AG-Panel Project I2C TTP229 capacitive matrix keyboard implementation
-  \copyright (C) 2019 Andriy Golovnya
+  \copyright (C) 2019-2020 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@googlemail.com)
  */
 
