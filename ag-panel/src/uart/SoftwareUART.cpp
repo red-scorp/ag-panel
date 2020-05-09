@@ -7,7 +7,7 @@
 
 #include "SoftwareUART.h"
 
-#if defined(__AVR__) || defined(STM32F0xx) || defined(STM32F1xx) || defined(STM32F2xx) || defined(STM32F3xx) || defined(STM32F4xx) || defined(STM32F7xx) || defined(STM32G0xx) || defined(STM32G4xx) || defined(STM32H7xx) || defined(STM32L0xx) || defined(STM32L1xx) || defined(STM32L4xx) || defined(STM32WBxx)
+#if defined(ARDUINO_ARCH_AVR) || defined(ARDUINO_ARCH_STM32) || defined(ARDUINO_ARCH_ESP32) || defined(ARDUINO_ARCH_ESP8266)
 #include <SoftwareSerial.h>
 
 /*!
@@ -71,4 +71,4 @@ uint32_t SoftwareUART::Available() {
 
 #else
 #warning 'SoftwareUART' is not implemented for your platform. Use 'HardwareUART' or 'NoneUART' instead!
-#endif //__AVR__ || STM32
+#endif
