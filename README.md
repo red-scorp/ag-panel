@@ -14,12 +14,13 @@ Work in progress but already usable.
 ## Supported configurations
 - Protocols
   - [x] los-panel (lcdproc) for direct HD44780 (will support **only** HD44780 displays)
-  - [ ] rawserial (lcdproc) (to be implemented)
+  - [ ] rawserial (lcdproc) (in progress)
   - [ ] own protocol TBD (lcdproc) (to be implemented)
 - UART Serial
   - [x] Hardware UART
   - [x] USB Virtual UART (for SAMD and SAM platforms)
   - [x] Software UART (for AVR, STM32, ESP8266 and ESP32 platforms)
+  - [ ] Bluetooth UART (to be implemented)
   - [x] No (null) UART
   - [x] Buffered UART (addition to a regular UART)
 - LCD Display
@@ -32,7 +33,8 @@ Work in progress but already usable.
   - [x] ON/OFF binary backlight
   - [x] RGB binary (7 colors) backlight
   - [x] PWM-controlled (monochrome brightness) backlight
-  - [x] RGB PWM-controlled backlight (hue brightness) backlight
+  - [x] RGB PWM-controlled (hue brightness) backlight
+  - [x] RGB PWM-controlled backlight attached over I2C bus w/ help of PCA9633 LED controller
 - Keyboard
   - [x] No keyboard
   - [x] Digital Matrix up to 4x4 (on analog pins)
@@ -41,8 +43,8 @@ Work in progress but already usable.
   - [x] Rotary Encoder
   - [x] Analog Matrix 4x4 and 3x4 from RobotDyn
   - [x] Digital Keypad or Digital Joystick over I2C bus, like 'Adafruit RGB 16x2 LCD Shield'
-  - [x] Capacitive Keypad attached over I2C based on MPR121
-  - [x] Capacitive Keypad attached over I2C based on TTP229
+  - [x] Capacitive Keypad attached over I2C based on MPR121 controller
+  - [x] Capacitive Keypad attached over I2C based on TTP229 controller
   - [x] Single pin button
   - [x] Joined keyboard for combining several supported keyboards/keypads together in a single unit
 - Development
