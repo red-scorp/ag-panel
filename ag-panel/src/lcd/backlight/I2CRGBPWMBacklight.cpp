@@ -14,9 +14,9 @@
 #include <Wire.h>
 
 /*!
-  \brief Initialization of RGB PWM backlight
+  \brief Initialization of I2C RGB PWM backlight
 
-  Configures I2C RGB backlight digital pins.
+  Configures I2C LED controller to work as RGB backlight.
   \returns true
  */
 bool I2CRGBPWMBacklight::Init() {
@@ -28,7 +28,7 @@ bool I2CRGBPWMBacklight::Init() {
 }
 
 /*!
-  \brief Deinitialisation of RGB PWM backlight class
+  \brief Deinitialisation of I2C RGB PWM backlight class
  */
 void I2CRGBPWMBacklight::Exit() {
   PCA9633 *p_I2CBacklight = reinterpret_cast<PCA9633*>(m_Lowlevel);
