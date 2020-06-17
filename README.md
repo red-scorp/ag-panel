@@ -1,12 +1,13 @@
 # Arduino Graphic Panel for lcdproc (ag-panel)
 
 A Next generation of [lcdproc](http://lcdproc.sourceforge.net/) display panel based on Arduino and similar HW.
-This project is based on my earlier code [Arduino LCD over Serial Panel (alos-panel)](https://github.com/red-scorp/alos-panel).
-The original code was fully rewritten on C++ for better maintainability and expansion.
+This project is based on my earlier code of [Arduino LCD over Serial Panel (alos-panel)](https://github.com/red-scorp/alos-panel).
+The original alos-panel C code was fully rewritten on C++ for better maintainability and expansion.
 Documentation is pending!
 
 This project **will** support different connections and different types of displays, including HD44780 based.
 Main platform for this project is Arduino Uno and Nano boards but it should certainly work on another Arduino boards as well.
+One of the topics of this project is portability between different CPUs, though you can expect it working with SAM, SAMD, STM32, ESP32, RISC-V and other hoddy platforms as well.
 
 ## Current status
 Work in progress but already usable.
@@ -21,6 +22,7 @@ Work in progress but already usable.
   - [x] USB Virtual UART (for SAMD and SAM platforms)
   - [x] Software UART (for AVR, STM32, ESP8266 and ESP32 platforms)
   - [ ] Bluetooth UART (to be implemented)
+  - [ ] LAN/WLAN TCP/IP socket (to be implemented)
   - [x] No (null) UART
   - [x] Buffered UART (addition to a regular UART)
 - LCD Display
@@ -56,7 +58,7 @@ Work in progress but already usable.
 Please check 'config.h' and 'config_adv.h' for up-to-date information.
 
 ## How to help
-Your contributions are welcome!
-Please contact me directly over e-mail andriy.golovnya@googlemail.com or over [GitHub](https://github.com/red-scorp).
-Link for [Paypal donations](http://paypal.me/redscorp).
+Your contributions as code, resources or finances are welcome!
+Please contact me directly over e-mail andriy.golovnya@googlemail.com or over [GitHub profile](https://github.com/red-scorp).
+Link for [Paypal donations](http://paypal.me/redscorp), which are always welcome.
 Thanks in advance!
