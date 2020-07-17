@@ -7,7 +7,7 @@ Documentation is pending!
 
 This project **will** support different connections and different types of displays, including HD44780 based.
 Main platform for this project is Arduino Uno and Nano boards but it should certainly work on another Arduino boards as well.
-One of the topics of this project is portability between different CPUs, though you can expect it working with SAM, SAMD, STM32, ESP32, RISC-V and other hoddy platforms as well.
+One of the topics of this project is portability between different CPUs, though you can expect it working with AVR, SAM, SAMD, STM32, ESP32, RISC-V and other hoddy platforms as well.
 
 ## Current status
 Work in progress but already usable.
@@ -56,6 +56,72 @@ Work in progress but already usable.
   - [x] Hex String dump of UART input
 
 Please check 'config.h' and 'config_adv.h' for up-to-date information.
+
+## Design
+
+The code of ag-panel is written on C++ and based purely on Arduino Framework.
+The code compiles and run on several embedded CPU platforms:
+- [x] AVR Atmega328, Atmega2560
+- [ ] AVR SAMD and SAM (to be tested)
+- [ ] STM32 and ESP8266 (to be tested)
+- [ ] ESP32 (to be tested)
+- [ ] RISC-V (planned)
+
+Basic calss diagram is shown below:
+
+```nomnoml
+
+[<abstract>AbstractProtocol]
+[AbstractProtocol] o-> [AbstractLCD]
+[AbstractProtocol] o-> [AbstractUART]
+[AbstractProtocol] o-> [AbstractKeyboard]
+[LoSPanelProtocol] -:> [AbstractProtocol]
+[RawSerialProtocol] -:> [AbstractProtocol]
+
+[<abstract>AbstractUART]
+[BufferedUART] -:> [AbstractUART]
+[BufferedUART] --> 1 [AbstractUART]
+[HardwareUART] -:> [AbstractUART]
+[NoneUART] -:> [AbstractUART]
+[SoftwareUART] -:> [AbstractUART]
+[USBVirtualUART] -:> [AbstractUART]
+[TextLoggingUART] -:> [AbstractUART]
+[TextLoggingUART] --> 2 [AbstractUART]
+
+[<abstract>AbstractLCD]
+[AbstractLCD] o-> [AbstractBacklight]
+
+[<abstract>AbstractTextLCD]
+[AbstractTextLCD] -:> [AbstractLCD]
+[I2CAIP31068TextLCD] -:> [AbstractTextLCD]
+[I2CPCF8574TextLCD] -:> [AbstractTextLCD]
+[I2CRGBTextLCD] -:> [AbstractTextLCD]
+[PPITextLCD] -:> [AbstractTextLCD]
+[SPIAIP31068TextLCD] -:> [AbstractTextLCD]
+
+[<abstract>AbstractBacklight]
+[BinaryBacklight] -:> [AbstractBacklight]
+[I2CRGBPWMBacklight] -:> [AbstractBacklight]
+[NoneBacklight] -:> [AbstractBacklight]
+[PWMBacklight] -:> [AbstractBacklight]
+[RGBBinaryBacklight] -:> [AbstractBacklight]
+[RGBPWMBacklight] -:> [AbstractBacklight]
+
+[<abstract>AbstractKeyboard]
+[AnalogJoystick] -:> [AbstractKeyboard]
+[AnalogKeypad] -:> [AbstractKeyboard]
+[AnalogMatrix] -:> [AbstractKeyboard]
+[DigitalMatrix] -:> [AbstractKeyboard]
+[I2CMPR121CapacitiveKeypad] -:> [AbstractKeyboard]
+[I2CRGBKeypad] -:> [AbstractKeyboard]
+[I2CTTP229CapacitiveKeypad] -:> [AbstractKeyboard]
+[JoinedKeyboard] -:> [AbstractKeyboard]
+[JoinedKeyboard] o-> 1..* [AbstractKeyboard]
+[NoneKeyboard] -:> [AbstractKeyboard]
+[RotaryEncoder] -:> [AbstractKeyboard]
+[SimpleButton] -:> [AbstractKeyboard]
+
+```
 
 ## How to help
 Your contributions as code, resources or finances are welcome!
