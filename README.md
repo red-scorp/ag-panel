@@ -71,14 +71,32 @@ Basic class diagram is shown below:
 
 ```nomnoml
 
-[<abstract>AbstractProtocol]
+[<abstract>AbstractProtocol|
+  *m_UART
+  *m_LCD
+  *m_Keyboard|
+  +Loop()
+  +Yield()
+  -Init()
+  -Exit()
+]
 [AbstractProtocol] o-> [AbstractLCD]
 [AbstractProtocol] o-> [AbstractUART]
 [AbstractProtocol] o-> [AbstractKeyboard]
 [LoSPanelProtocol] -:> [AbstractProtocol]
 [RawSerialProtocol] -:> [AbstractProtocol]
 
-[<abstract>AbstractUART]
+[<abstract>AbstractUART|
+  *m_BaudRate|
+  +PutCh()
+  +GetCh()
+  +Prefill()
+  +Available()
+  +GetBaudRate()
+  +PutStr()
+  -Init()
+  -Exit()
+]
 [BufferedUART] -:> [AbstractUART]
 [BufferedUART] --> 1 [AbstractUART]
 [HardwareUART] -:> [AbstractUART]
@@ -88,10 +106,36 @@ Basic class diagram is shown below:
 [TextLoggingUART] -:> [AbstractUART]
 [TextLoggingUART] --> 2 [AbstractUART]
 
-[<abstract>AbstractLCD]
+[<abstract>AbstractLCD|
+  *m_Backlight
+  *m_Columns
+  *m_Rows|
+  +SetBacklight()
+  +Clear()
+  +SetCursor()
+  +Print()
+  +GetColumns()
+  +GetRows()
+  -Init()
+  -Exit()
+]
 [AbstractLCD] o-> [AbstractBacklight]
 
-[<abstract>AbstractTextLCD]
+[<abstract>AbstractTextLCD|
+  *m_Backlight
+  *m_Columns
+  *m_Rows|
+  +SetBacklight()
+  +Clear()
+  +SetCursor()
+  +Print()
+  +GetColumns()
+  +GetRows()
+  +Write()
+  +Command()
+  -Init()
+  -Exit()
+]
 [AbstractTextLCD] -:> [AbstractLCD]
 [I2CAIP31068TextLCD] -:> [AbstractTextLCD]
 [I2CPCF8574TextLCD] -:> [AbstractTextLCD]
@@ -99,7 +143,13 @@ Basic class diagram is shown below:
 [PPITextLCD] -:> [AbstractTextLCD]
 [SPIAIP31068TextLCD] -:> [AbstractTextLCD]
 
-[<abstract>AbstractBacklight]
+[<abstract>AbstractBacklight||
+  +SetOn()
+  +SetBrightness()
+  +SetRGB()
+  -Init()
+  -Exit()
+]
 [BinaryBacklight] -:> [AbstractBacklight]
 [I2CRGBPWMBacklight] -:> [AbstractBacklight]
 [NoneBacklight] -:> [AbstractBacklight]
@@ -107,7 +157,12 @@ Basic class diagram is shown below:
 [RGBBinaryBacklight] -:> [AbstractBacklight]
 [RGBPWMBacklight] -:> [AbstractBacklight]
 
-[<abstract>AbstractKeyboard]
+[<abstract>AbstractKeyboard||
+  +GetKey()
+  +GetKeyCount()
+  -Init()
+  -Exit()
+]
 [AnalogJoystick] -:> [AbstractKeyboard]
 [AnalogKeypad] -:> [AbstractKeyboard]
 [AnalogMatrix] -:> [AbstractKeyboard]
