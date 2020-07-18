@@ -59,15 +59,15 @@ Please check 'config.h' and 'config_adv.h' for up-to-date information.
 
 ## Design
 
-The code of ag-panel is written on C++ and based purely on Arduino Framework.
-The code compiles and run on several embedded CPU platforms:
+The code of ag-panel is written on C++ with Arduino Framework.
+The code compiles and runs on several embedded CPU platforms:
 - [x] AVR Atmega328, Atmega2560
 - [ ] AVR SAMD and SAM (to be tested)
-- [ ] STM32 and ESP8266 (to be tested)
-- [ ] ESP32 (to be tested)
+- [ ] ESP32 and ESP8266 (to be tested)
+- [ ] STM32 (to be tested)
 - [ ] RISC-V (planned)
 
-Basic calss diagram is shown below:
+Basic class diagram is shown below:
 
 ```nomnoml
 
@@ -122,6 +122,19 @@ Basic calss diagram is shown below:
 [SimpleButton] -:> [AbstractKeyboard]
 
 ```
+The code of ag-panel can be compiled with Arduino IDE or PlatformIO (Atom or VS Code).
+Following libraries might be required:
+- LiquidCrystal (887)
+- LiquidCrystal_I2C (576)
+- AdaFruit_RGBLCDShield (3121)
+- Adafruit MPR121 (839)
+- Adafruit RGB LCD Shield Library (762)
+- TTP229 (6690)
+- LiquidCrystal_AIP31068 (6972)
+- SoftSPIB (6971)
+- pca9633 (6980)
+- EspSoftwareSerial (168)
+- ESP32 AnalogWrite (5819)
 
 ## How to help
 Your contributions as code, resources or finances are welcome!
