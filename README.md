@@ -71,55 +71,25 @@ Basic class diagram is shown below:
 
 ```nomnoml
 
-[<abstract>AbstractProtocol|
-  *m_UART
-  *m_LCD
-  *m_Keyboard|
-  +Loop()
-  +Yield()
-  -Init()
-  -Exit()
-]
-[AbstractProtocol] o-> [AbstractLCD]
-[AbstractProtocol] o-> [AbstractUART]
-[AbstractProtocol] o-> [AbstractKeyboard]
-[LoSPanelProtocol] -:> [AbstractProtocol]
-[RawSerialProtocol] -:> [AbstractProtocol]
+#fill: #eee
+#background: transparent
+#font: Calibri
+#.abstract: fill=#fff
+#.note: fill=#ffd
 
-[<abstract>AbstractUART|
-  *m_BaudRate|
-  +PutCh()
-  +GetCh()
-  +Prefill()
-  +Available()
-  +GetBaudRate()
-  +PutStr()
+[<abstract>AbstractBacklight||
+  +SetOn()
+  +SetBrightness()
+  +SetRGB()
   -Init()
   -Exit()
 ]
-[BufferedUART] -:> [AbstractUART]
-[BufferedUART] --> 1 [AbstractUART]
-[HardwareUART] -:> [AbstractUART]
-[NoneUART] -:> [AbstractUART]
-[SoftwareUART] -:> [AbstractUART]
-[USBVirtualUART] -:> [AbstractUART]
-[TextLoggingUART] -:> [AbstractUART]
-[TextLoggingUART] --> 2 [AbstractUART]
-
-[<abstract>AbstractLCD|
-  *m_Backlight
-  *m_Columns
-  *m_Rows|
-  +SetBacklight()
-  +Clear()
-  +SetCursor()
-  +Print()
-  +GetColumns()
-  +GetRows()
-  -Init()
-  -Exit()
-]
-[AbstractLCD] o-> [AbstractBacklight]
+[AbstractBacklight] <:-- [BinaryBacklight]
+[AbstractBacklight] <:-- [I2CRGBPWMBacklight]
+[AbstractBacklight] <:-- [NoneBacklight]
+[AbstractBacklight] <:-- [PWMBacklight]
+[AbstractBacklight] <:-- [RGBBinaryBacklight]
+[AbstractBacklight] <:-- [RGBPWMBacklight]
 
 [<abstract>AbstractTextLCD|
   *m_Backlight
@@ -136,26 +106,49 @@ Basic class diagram is shown below:
   -Init()
   -Exit()
 ]
-[AbstractTextLCD] -:> [AbstractLCD]
-[I2CAIP31068TextLCD] -:> [AbstractTextLCD]
-[I2CPCF8574TextLCD] -:> [AbstractTextLCD]
-[I2CRGBTextLCD] -:> [AbstractTextLCD]
-[PPITextLCD] -:> [AbstractTextLCD]
-[SPIAIP31068TextLCD] -:> [AbstractTextLCD]
+[AbstractLCD] <:- [AbstractTextLCD]
+[AbstractTextLCD] <:-- [I2CAIP31068TextLCD]
+[AbstractTextLCD] <:-- [I2CPCF8574TextLCD]
+[AbstractTextLCD] <:-- [I2CRGBTextLCD]
+[AbstractTextLCD] <:-- [PPITextLCD]
+[AbstractTextLCD] <:-- [SPIAIP31068TextLCD]
 
-[<abstract>AbstractBacklight||
-  +SetOn()
-  +SetBrightness()
-  +SetRGB()
+[<abstract>AbstractLCD|
+  *m_Backlight
+  *m_Columns
+  *m_Rows|
+  +SetBacklight()
+  +Clear()
+  +SetCursor()
+  +Print()
+  +GetColumns()
+  +GetRows()
   -Init()
   -Exit()
 ]
-[BinaryBacklight] -:> [AbstractBacklight]
-[I2CRGBPWMBacklight] -:> [AbstractBacklight]
-[NoneBacklight] -:> [AbstractBacklight]
-[PWMBacklight] -:> [AbstractBacklight]
-[RGBBinaryBacklight] -:> [AbstractBacklight]
-[RGBPWMBacklight] -:> [AbstractBacklight]
+[AbstractLCD] o-> 1 [AbstractBacklight]
+
+[<abstract>AbstractUART|
+  *m_BaudRate|
+  +PutCh()
+  +GetCh()
+  +Prefill()
+  +Available()
+  +GetBaudRate()
+  +PutStr()
+  -Init()
+  -Exit()
+]
+[AbstractUART] <:-- [BufferedUART]
+[BufferedUART] o-> 1 [AbstractUART]
+[BufferedUART] -- [<note>Uses another UART class and implements an extra buffer for it]
+[AbstractUART] <:-- [HardwareUART]
+[AbstractUART] <:-- [NoneUART]
+[AbstractUART] <:-- [SoftwareUART]
+[AbstractUART] <:-- [USBVirtualUART]
+[AbstractUART] <:-- [TextLoggingUART]
+[TextLoggingUART] o-> 2 [AbstractUART]
+[TextLoggingUART] -- [<note>Uses first UART as transparent input/output and second UART for logging of trafic in text form]
 
 [<abstract>AbstractKeyboard||
   +GetKey()
@@ -163,18 +156,34 @@ Basic class diagram is shown below:
   -Init()
   -Exit()
 ]
-[AnalogJoystick] -:> [AbstractKeyboard]
-[AnalogKeypad] -:> [AbstractKeyboard]
-[AnalogMatrix] -:> [AbstractKeyboard]
-[DigitalMatrix] -:> [AbstractKeyboard]
-[I2CMPR121CapacitiveKeypad] -:> [AbstractKeyboard]
-[I2CRGBKeypad] -:> [AbstractKeyboard]
-[I2CTTP229CapacitiveKeypad] -:> [AbstractKeyboard]
-[JoinedKeyboard] -:> [AbstractKeyboard]
+[AbstractKeyboard] <:-- [AnalogJoystick]
+[AbstractKeyboard] <:-- [AnalogKeypad]
+[AbstractKeyboard] <:-- [AnalogMatrix]
+[AbstractKeyboard] <:-- [DigitalMatrix]
+[AbstractKeyboard] <:-- [I2CMPR121CapacitiveKeypad]
+[AbstractKeyboard] <:-- [I2CRGBKeypad]
+[AbstractKeyboard] <:-- [I2CTTP229CapacitiveKeypad]
+[AbstractKeyboard] <:-- [JoinedKeyboard]
 [JoinedKeyboard] o-> 1..* [AbstractKeyboard]
-[NoneKeyboard] -:> [AbstractKeyboard]
-[RotaryEncoder] -:> [AbstractKeyboard]
-[SimpleButton] -:> [AbstractKeyboard]
+[JoinedKeyboard] -- [<note>Combines several keyboard and presentds them as a single keyboard]
+[AbstractKeyboard] <:-- [NoneKeyboard]
+[AbstractKeyboard] <:-- [RotaryEncoder]
+[AbstractKeyboard] <:-- [SimpleButton]
+
+[<abstract>AbstractProtocol|
+  *m_UART
+  *m_LCD
+  *m_Keyboard|
+  +Loop()
+  +Yield()
+  -Init()
+  -Exit()
+]
+[AbstractProtocol] o-> 1 [AbstractLCD]
+[AbstractProtocol] o-> 1 [AbstractUART]
+[AbstractProtocol] o-> 1 [AbstractKeyboard]
+[AbstractProtocol] <:-- [LoSPanelProtocol]
+[AbstractProtocol] <:-- [RawSerialProtocol]
 
 ```
 The code of ag-panel can be compiled with Arduino IDE or PlatformIO (Atom or VS Code).
