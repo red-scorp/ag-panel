@@ -9,7 +9,7 @@
 #include "RawSerialProtocol.h"
 
 /* Protocol commands definition */
-const uint8_t RawSerialProtocolEndOfBuffer = '\n';    /*!< End of buffer code, comes from host to target */
+const uint8_t RawSerialProtocolEndOfBuffer = '\n';    /*!< End of buffer command, comes from host to target */
 
 /*!
   \brief Initialization of rawserial protocol
@@ -44,8 +44,8 @@ void RawSerialProtocol::Loop() {
     if(m_XPos >= m_LCD->GetColumns()) { /* end of line condition -> go to new line */
       m_XPos = 0;
       m_YPos++;
-      if(m_YPos >= m_LCD->GetRows()) 
-        m_OutOfRange = true; /* end of buffer reached -> print nothing untill proper command received */
+      if(m_YPos >= m_LCD->GetRows()) /* end of buffer reached -> print nothing untill proper command is received */
+        m_OutOfRange = true;
       if(!m_OutOfRange)
         m_LCD->SetCursor(m_XPos, m_YPos);
     }
