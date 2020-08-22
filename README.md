@@ -165,7 +165,7 @@ Basic class diagram is shown below:
 [AbstractKeyboard] <:-- [I2CTTP229CapacitiveKeypad]
 [AbstractKeyboard] <:-- [JoinedKeyboard]
 [JoinedKeyboard] o-> 1..* [AbstractKeyboard]
-[JoinedKeyboard] -- [<note>Combines several keyboard and presentds them as a single keyboard]
+[JoinedKeyboard] -- [<note>Combines several keyboards and presents them as a single keyboard]
 [AbstractKeyboard] <:-- [NoneKeyboard]
 [AbstractKeyboard] <:-- [RotaryEncoder]
 [AbstractKeyboard] <:-- [SimpleButton]
