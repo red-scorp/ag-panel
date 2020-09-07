@@ -25,7 +25,6 @@
  */
 bool USBVirtualUART::Init() {
   m_Lowlevel = &SerialUSB;
-  while(!SerialUSB);
   Serial_ *p_UART = reinterpret_cast<Serial_*>(m_Lowlevel);
   p_UART->begin(m_BaudRate);
   return true;
