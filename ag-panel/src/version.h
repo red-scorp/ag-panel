@@ -10,8 +10,8 @@
 /* Version Configuration */
 #define VER_MAJOR           "0"
 #define VER_MINOR           "2"
-#define VER_STATUS          "\xE0" // alpha
-//#define VER_STATUS          "\xE2" // beta
+#define VER_STATUS          "a" // alpha
+//#define VER_STATUS          "b" // beta
 
 /* FirmWare Configuration */
 #define FW_NAME             "AG-Panel" /* Arduino Graphic Panel for lcdproc */
