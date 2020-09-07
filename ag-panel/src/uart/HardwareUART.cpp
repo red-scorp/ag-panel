@@ -33,6 +33,34 @@ bool HardwareUART::Init() {
   else if(m_Port == 3)
     m_Lowlevel = &Serial3;
 #endif
+#if defined(HAVE_HWSERIAL4)
+  else if(m_Port == 4)
+    m_Lowlevel = &Serial4;
+#endif
+#if defined(HAVE_HWSERIAL5)
+  else if(m_Port == 5)
+    m_Lowlevel = &Serial5;
+#endif
+#if defined(HAVE_HWSERIAL6)
+  else if(m_Port == 6)
+    m_Lowlevel = &Serial6;
+#endif
+#if defined(HAVE_HWSERIAL7)
+  else if(m_Port == 7)
+    m_Lowlevel = &Serial7;
+#endif
+#if defined(HAVE_HWSERIAL8)
+  else if(m_Port == 8)
+    m_Lowlevel = &Serial8;
+#endif
+#if defined(HAVE_HWSERIAL9)
+  else if(m_Port == 9)
+    m_Lowlevel = &Serial9;
+#endif
+#if defined(HAVE_HWSERIAL10)
+  else if(m_Port == 10)
+    m_Lowlevel = &Serial10;
+#endif
   else
     for(;;); /* TODO: Add something like exception here! */
   HardwareSerial *p_UART = reinterpret_cast<HardwareSerial*>(m_Lowlevel);

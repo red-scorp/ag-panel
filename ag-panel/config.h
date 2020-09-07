@@ -18,6 +18,13 @@
 //#define UART_HARDWARE1
 //#define UART_HARDWARE2
 //#define UART_HARDWARE3
+//#define UART_HARDWARE4
+//#define UART_HARDWARE5
+//#define UART_HARDWARE6
+//#define UART_HARDWARE7
+//#define UART_HARDWARE8
+//#define UART_HARDWARE9
+//#define UART_HARDWARE10
 //#define UART_HARDWAREUSB
 //#define UART_SOFTWARE
 //#define UART_NONE

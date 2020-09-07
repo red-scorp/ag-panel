@@ -64,6 +64,20 @@ void setup() {
     g_DebugUART = new HardwareUART(DEBUG_BAUD, 2);
   #elif defined(DEBUG_UART_HARDWARE3)
     g_DebugUART = new HardwareUART(DEBUG_BAUD, 3);
+  #elif defined(DEBUG_UART_HARDWARE4)
+    g_DebugUART = new HardwareUART(DEBUG_BAUD, 4);
+  #elif defined(DEBUG_UART_HARDWARE5)
+    g_DebugUART = new HardwareUART(DEBUG_BAUD, 5);
+  #elif defined(DEBUG_UART_HARDWARE6)
+    g_DebugUART = new HardwareUART(DEBUG_BAUD, 6);
+  #elif defined(DEBUG_UART_HARDWARE7)
+    g_DebugUART = new HardwareUART(DEBUG_BAUD, 7);
+  #elif defined(DEBUG_UART_HARDWARE8)
+    g_DebugUART = new HardwareUART(DEBUG_BAUD, 8);
+  #elif defined(DEBUG_UART_HARDWARE9)
+    g_DebugUART = new HardwareUART(DEBUG_BAUD, 9);
+  #elif defined(DEBUG_UART_HARDWARE10)
+    g_DebugUART = new HardwareUART(DEBUG_BAUD, 10);
   #elif defined(DEBUG_UART_HARDWAREUSB)
     g_DebugUART = new USBVirtualUART(DEBUG_BAUD);
   #elif defined(DEBUG_UART_SOFTWARE)
@@ -85,6 +99,20 @@ void setup() {
     s_UART = new HardwareUART(UART_BAUD, 2);
   #elif defined(UART_HARDWARE3)
     s_UART = new HardwareUART(UART_BAUD, 3);
+  #elif defined(UART_HARDWARE4)
+    s_UART = new HardwareUART(UART_BAUD, 4);
+  #elif defined(UART_HARDWARE5)
+    s_UART = new HardwareUART(UART_BAUD, 5);
+  #elif defined(UART_HARDWARE6)
+    s_UART = new HardwareUART(UART_BAUD, 6);
+  #elif defined(UART_HARDWARE7)
+    s_UART = new HardwareUART(UART_BAUD, 7);
+  #elif defined(UART_HARDWARE8)
+    s_UART = new HardwareUART(UART_BAUD, 8);
+  #elif defined(UART_HARDWARE9)
+    s_UART = new HardwareUART(UART_BAUD, 9);
+  #elif defined(UART_HARDWARE10)
+    s_UART = new HardwareUART(UART_BAUD, 10);
   #elif defined(UART_HARDWAREUSB)
     s_UART = new USBVirtualUART(UART_BAUD);
   #elif defined(UART_SOFTWARE)

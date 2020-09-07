@@ -18,7 +18,7 @@ Work in progress but already usable.
   - [ ] rawserial (lcdproc) (in progress)
   - [ ] own protocol TBD (lcdproc) (to be implemented)
 - UART Serial
-  - [x] Hardware UART
+  - [x] Hardware UART (up to 10 if supported)
   - [x] USB Virtual UART (for SAMD and SAM platforms)
   - [x] Software UART (for AVR, STM32, ESP8266 and ESP32 platforms)
   - [ ] Bluetooth UART (to be implemented)
