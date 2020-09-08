@@ -11,10 +11,10 @@
 
 #if defined(ARDUINO_ARCH_SAMD)
 #include <USB/CDC.h>
-typedef _Serial USBVirtualUART_Lowlevel_t;
+typedef Serial_ USBVirtualUART_Lowlevel_t;
 #elif defined(ARDUINO_ARCH_SAM)
 #include <USB/USBAPI.h>
-typedef _Serial USBVirtualUART_Lowlevel_t;
+typedef Serial_ USBVirtualUART_Lowlevel_t;
 #elif defined(ARDUINO_ARCH_STM32)
 #include <USBSerial.h>
 typedef USBSerial USBVirtualUART_Lowlevel_t;
