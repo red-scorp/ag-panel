@@ -19,7 +19,7 @@ Work in progress but already usable.
   - [ ] own protocol TBD (lcdproc) (to be implemented)
 - UART Serial
   - [x] Hardware UART (up to 10 if supported)
-  - [x] USB Virtual UART (for SAMD and SAM platforms)
+  - [x] USB Virtual UART (for SAMD, SAM and STM32 platforms)
   - [x] Software UART (for AVR, STM32, ESP8266 and ESP32 platforms)
   - [ ] Bluetooth UART (to be implemented)
   - [ ] LAN/WLAN TCP/IP socket (to be implemented)
@@ -62,9 +62,9 @@ Please check 'config.h' and 'config_adv.h' for up-to-date information.
 The code of ag-panel is written on C++ with Arduino Framework.
 The code compiles and runs on several embedded CPU platforms:
 - [x] AVR Atmega328, Atmega2560
-- [ ] AVR SAMD and SAM (to be tested)
+- [ ] AVR SAMD and SAM (in test)
 - [ ] ESP32 and ESP8266 (to be tested)
-- [ ] STM32 (to be tested)
+- [ ] STM32 (in test)
 - [ ] RISC-V (planned)
 
 Basic class diagram is shown below:

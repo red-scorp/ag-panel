@@ -14,6 +14,7 @@
   \brief USB virtual UART class
 
   This is a class which implements USB virtual UART of arduino boards.
+  This class works with SAM, SAMD and STM32 ICUs only (for now).
  */
 class USBVirtualUART: public AbstractUART {
 
