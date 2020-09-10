@@ -18,6 +18,7 @@ const uint8_t RawSerialProtocolEndOfBuffer = '\n';    /*!< End of buffer command
   \returns true
  */
 bool RawSerialProtocol::Init() {
+  m_LCD->SetCursor(m_XPos, m_YPos);
   return true;
 }
 
