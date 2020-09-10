@@ -16,10 +16,30 @@
 #include "keyboard/all.h"
 #include "protocol/all.h"
 
+/*!
+  \brief Globally available debugging UART class pointer
+  \todo Move it to a separete file ('debug.c') to free some space if debug output is disabled.
+ */
 AbstractUART *g_DebugUART = nullptr;
+
+/*!
+  \brief Main communication UART class pointer
+ */
 static AbstractUART *s_UART = nullptr;
+
+/*!
+  \brief Main display class pointer
+ */
 static AbstractLCD *s_LCD = nullptr;
+
+/*!
+  \brief Main input class pointer
+ */
 static AbstractKeyboard *s_Keyboard = nullptr;
+
+/*!
+  \brief Main data exchange protocol class pointer
+ */
 static AbstractProtocol *s_Protocol = nullptr;
 
 /*!
@@ -48,14 +68,17 @@ void print_welcome() {
 /*!
   \brief Main initialization function
 
- - setup debugging
- - setup UART
- - setup LCD
- - setup keyboard
- - setup protocol
+  - setup debugging
+  - setup UART
+  - setup LCD
+  - setup keyboard
+  - setup protocol
  */
 void setup() {
 
+  /* 1. First we will initialize debug UART to enable debug output as early as possible */
+  /*! \todo Disable with macro if debug output is disabled */
+  /*! \todo Move this code to a separate file ('debug.c') to make @main function better readable */
   #if defined(DEBUG_UART_HARDWARE)
     g_DebugUART = new HardwareUART(DEBUG_BAUD);
   #elif defined(DEBUG_UART_HARDWARE1)
@@ -88,6 +111,8 @@ void setup() {
     #error Debug UART is not defined!
   #endif
 
+  /* 2. As second step we should initialize communication UART */
+  /*! \todo Move this code to a separate file ('uart/init.c') to make @main function better readable */
   DEBUG_STR("Starting Up...\n");
   DEBUG_STR("Initializing UART...\n");
 
@@ -123,14 +148,20 @@ void setup() {
     #error UART is not defined!
   #endif
 
+  /* Enable UART extra buffering after main uart is initialized */
   #if defined(UART_BUFFERED)
     s_UART = new BufferedUART(s_UART, UART_BUF_SIZE);
   #endif
 
+  /* Now we inject UART debugging layer to be able to spy after UART data */
   #if defined(DEBUG_UART_STR)
     s_UART = new TextLoggingUART(s_UART, g_DebugUART);
   #endif
 
+  /* 3. Third step is to initialize display output */
+
+  /* 3.1. Initializing LCD backlight class */
+  /*! \todo Move this code to a separate file ('lcd/backlight/init.c') to make @main function better readable */
   DEBUG_STR("Initializing Backlight...\n");
 
   AbstractBacklight *Backlight = nullptr;
@@ -160,6 +191,8 @@ void setup() {
     #endif
   #endif
 
+  /* 3.2. Initialize LCD itself */
+  /*! \todo Move this code to a separate file ('lcd/init.c') to make @main function better readable */
   DEBUG_STR("Initializing LCD...\n");
 
   #if defined(LCD_TEXT_4BIT) || defined(LCD_TEXT_8BIT)
@@ -185,6 +218,8 @@ void setup() {
     #error LCD is not defined!
   #endif
 
+  /* 4. Now we should initilize keyboard for input to be ready */
+  /*! \todo Move this code to a separate file ('keyboard/init.c') to make @main function better readable */
   DEBUG_STR("Initializing Keyboard...\n");
 
   #if defined(KBD_JOINED)
@@ -301,12 +336,15 @@ void setup() {
     #endif
   #endif
 
+  /* Substitute last keyboard class with joined keyboard if enabled */
   #if defined(KBD_JOINED)
     s_Keyboard = p_JoinedKeyboard;
   #endif
 
-  /* TODO: Add AbstractSpeaker and other classes for notice, warning and error sounds??? */
+  /*! \todo Add AbstractSpeaker and other classes for notice, warning and error sounds??? */
 
+  /* 5. Now it's time for protocol itself. Remember the protocol class defines how all other elements communicate with each other */
+  /*! \todo Move this code to a separate file ('ptotocol/init.c') to make @main function better readable */
   DEBUG_STR("Initializing Protocol...\n");
 
   #if defined(PROT_LOSPANEL)
@@ -317,14 +355,15 @@ void setup() {
     #error Protocol is not defined!
   #endif
 
+  /*! 6. Print a splash screen/welcome message. */
   print_welcome();
 }
 
 /*!
   \brief Main loop function
 
- - run protocol main task
- - start protocol background task
+  - run protocol main task
+  - start protocol background task
  */
 void loop() {
 
