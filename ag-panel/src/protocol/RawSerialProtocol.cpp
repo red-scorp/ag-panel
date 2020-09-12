@@ -18,7 +18,6 @@ const uint8_t RawSerialProtocolEndOfBuffer = '\n';    /*!< End of buffer command
   \returns true
  */
 bool RawSerialProtocol::Init() {
-  m_LCD->SetCursor(m_XPos, m_YPos);
   return true;
 }
 
@@ -35,6 +34,14 @@ void RawSerialProtocol::Exit() {
  */
 void RawSerialProtocol::Loop() {
   uint8_t rxbyte = m_UART->GetCh();
+
+  if(!m_ShowRealData) { /* first real data received -> clear screen and reset output coordinates */
+    m_XPos = 0;
+    m_YPos = 0;
+    m_LCD->Clear();
+    m_LCD->SetCursor(m_XPos, m_YPos);
+    m_ShowRealData = true;
+  }
 
   if(rxbyte == RawSerialProtocolEndOfBuffer) { /* end of buffer command -> go to beginning of a screen */
     m_XPos = 0;

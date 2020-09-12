@@ -25,7 +25,8 @@ public:
   ): AbstractProtocol(UART, LCD, Keyboard),
     m_XPos(0),
     m_YPos(0),
-    m_OutOfRange(false) { Init(); }
+    m_OutOfRange(false),
+    m_ShowRealData(false) { Init(); }
   virtual ~RawSerialProtocol() { Exit(); }
 
   virtual void Loop() override;
@@ -37,6 +38,7 @@ private:
   uint32_t m_XPos;      /*!< Current X postion on display */
   uint32_t m_YPos;      /*!< Current Y postion on display */
   bool m_OutOfRange;    /*!< Out Of character buffer Range condition */
+  bool m_ShowRealData;  /*!< We already have real data on LCD condition (in opposite to splash screen mode) */
   bool Init();
   void Exit();
 };
