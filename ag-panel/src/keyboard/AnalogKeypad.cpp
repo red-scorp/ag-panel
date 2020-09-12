@@ -10,7 +10,7 @@
 #include "AnalogKeypad.h"
 
 /* TODO: Change all KBD_DATA_* macros to constants */
-#define KBD_DATA_NONE_MIN   700
+#define KBD_DATA_NONE_MIN   800
 #define KBD_DATA_NONE_MAX   1023
 #define KBD_DATA_UP_MIN     50
 #define KBD_DATA_UP_MAX     150
@@ -21,7 +21,7 @@
 #define KBD_DATA_RIGHT_MIN  0
 #define KBD_DATA_RIGHT_MAX  50
 #define KBD_DATA_SELECT_MIN 550
-#define KBD_DATA_SELECT_MAX 700
+#define KBD_DATA_SELECT_MAX 800
 
 /*!
   \brief Initialization of analog keypad
