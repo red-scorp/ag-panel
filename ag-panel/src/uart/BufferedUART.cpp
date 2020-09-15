@@ -12,7 +12,7 @@
   \brief Initialization of buffered UART
 
   Initialize buffered UART and allocate data buffer.
-  \return true
+  \returns true
  */
 bool BufferedUART::Init() {
   m_Buffer = new uint8_t[m_BufferSize];
@@ -77,7 +77,7 @@ uint8_t BufferedUART::PushBuffer() {
 /*!
   \brief Fill UART data buffer from real UART
 
-  \return Number of bytes in UART data buffer
+  \returns Number of bytes in UART data buffer
  */
 uint8_t BufferedUART::FillBuffer() {
   while(m_BufferFilled < m_BufferSize && m_UART->Available()) {

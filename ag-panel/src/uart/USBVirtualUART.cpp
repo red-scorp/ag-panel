@@ -24,7 +24,7 @@ typedef USBSerial USBVirtualUART_Lowlevel_t;
   \brief Initialization of USB virtual UART
 
   Initialize USB virtual UART and set baud rate.
-  \return true
+  \returns true
  */
 bool USBVirtualUART::Init() {
   m_Lowlevel = &SerialUSB;

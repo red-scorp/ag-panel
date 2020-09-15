@@ -18,7 +18,7 @@ static const char s_Numbers[] = "0123456789ABCDEF";
   \brief Initialization of text logging UART
 
   Initialize text logging UART.
-  \return true
+  \returns true
  */
 bool TextLoggingUART::Init() {
 

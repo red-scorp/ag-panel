@@ -11,7 +11,7 @@
   \brief Initialization of none UART
 
   Initialize none UART.
-  \return true
+  \returns true
  */
 bool NoneUART::Init() {
   return true;

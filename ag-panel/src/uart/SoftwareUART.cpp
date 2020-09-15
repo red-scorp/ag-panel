@@ -14,7 +14,7 @@
   \brief Initialization of software UART
 
   Initialize software UART and set baud rate.
-  \return true
+  \returns true
  */
 bool SoftwareUART::Init() {
   m_Lowlevel = new SoftwareSerial(m_RxPin, m_TxPin);

@@ -12,7 +12,7 @@
   \brief Initialization of hardware UART
 
   Initialize hardware UART and set baud rate.
-  \return true
+  \returns true
  */
 bool HardwareUART::Init() {
   if(false)
