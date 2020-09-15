@@ -20,3 +20,5 @@
 #include "I2CRGBKeypad.h"
 #include "SimpleButton.h"
 #include "JoinedKeyboard.h"
+
+AbstractKeyboard *initKeyboard();

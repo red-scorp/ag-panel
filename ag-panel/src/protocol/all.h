@@ -11,3 +11,5 @@
 
 #include "LoSPanelProtocol.h"
 #include "RawSerialProtocol.h"
+
+AbstractProtocol *initProtocol(AbstractUART *UART, AbstractLCD *LCD, AbstractKeyboard *Keyboard);

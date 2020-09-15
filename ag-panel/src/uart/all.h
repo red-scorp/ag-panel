@@ -15,3 +15,5 @@
 #include "BufferedUART.h"
 #include "TextLoggingUART.h"
 #include "USBVirtualUART.h"
+
+AbstractUART *initUART();

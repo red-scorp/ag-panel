@@ -3,9 +3,11 @@
   \brief AG-Panel Project debugging header
   \copyright (C) 2019-2020 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@googlemail.com)
-*/
+ */
 
 #pragma once
+
+#include "uart/all.h"
 
 /* Drop UART input and output data to debug port as hex string */
 //#define DEBUG_UART_STR
@@ -42,3 +44,5 @@ extern AbstractUART *g_DebugUART;
 #else
 #define DEBUG_STR(str) /* Nothig */
 #endif
+
+AbstractUART* initDebug();

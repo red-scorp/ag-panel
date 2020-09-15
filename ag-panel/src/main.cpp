@@ -3,7 +3,7 @@
   \brief AG-Panel Project main code
   \copyright (C) 2019-2020 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@googlemail.com)
-*/
+ */
 
 #include "private.h"
 #include "../config.h"
@@ -18,7 +18,7 @@
 
 /*!
   \brief Globally available debugging UART class pointer
-  \todo Move it to a separete file ('debug.c') to free some space if debug output is disabled.
+  \todo Move it to a separete file ('debug.cpp') to free some space if debug output is disabled.
  */
 AbstractUART *g_DebugUART = nullptr;
 
@@ -78,282 +78,32 @@ void setup() {
 
   /* 1. First we will initialize debug UART to enable debug output as early as possible */
   /*! \todo Disable with macro if debug output is disabled */
-  /*! \todo Move this code to a separate file ('debug.c') to make @main function better readable */
-  #if defined(DEBUG_UART_HARDWARE)
-    g_DebugUART = new HardwareUART(DEBUG_BAUD);
-  #elif defined(DEBUG_UART_HARDWARE1)
-    g_DebugUART = new HardwareUART(DEBUG_BAUD, 1);
-  #elif defined(DEBUG_UART_HARDWARE2)
-    g_DebugUART = new HardwareUART(DEBUG_BAUD, 2);
-  #elif defined(DEBUG_UART_HARDWARE3)
-    g_DebugUART = new HardwareUART(DEBUG_BAUD, 3);
-  #elif defined(DEBUG_UART_HARDWARE4)
-    g_DebugUART = new HardwareUART(DEBUG_BAUD, 4);
-  #elif defined(DEBUG_UART_HARDWARE5)
-    g_DebugUART = new HardwareUART(DEBUG_BAUD, 5);
-  #elif defined(DEBUG_UART_HARDWARE6)
-    g_DebugUART = new HardwareUART(DEBUG_BAUD, 6);
-  #elif defined(DEBUG_UART_HARDWARE7)
-    g_DebugUART = new HardwareUART(DEBUG_BAUD, 7);
-  #elif defined(DEBUG_UART_HARDWARE8)
-    g_DebugUART = new HardwareUART(DEBUG_BAUD, 8);
-  #elif defined(DEBUG_UART_HARDWARE9)
-    g_DebugUART = new HardwareUART(DEBUG_BAUD, 9);
-  #elif defined(DEBUG_UART_HARDWARE10)
-    g_DebugUART = new HardwareUART(DEBUG_BAUD, 10);
-  #elif defined(DEBUG_UART_HARDWAREUSB)
-    g_DebugUART = new USBVirtualUART(DEBUG_BAUD);
-  #elif defined(DEBUG_UART_SOFTWARE)
-    g_DebugUART = new SoftwareUART(DEBUG_BAUD, DEBUG_PIN_RX, DEBUG_PIN_TX);
-  #elif defined(DEBUG_UART_NONE)
-    g_DebugUART = new NoneUART(DEBUG_BAUD);
-  #else
-    #error Debug UART is not defined!
-  #endif
+  g_DebugUART = initDebug();
+
+  DEBUG_STR("Starting Up...\n");
 
   /* 2. As second step we should initialize communication UART */
-  /*! \todo Move this code to a separate file ('uart/init.c') to make @main function better readable */
-  DEBUG_STR("Starting Up...\n");
   DEBUG_STR("Initializing UART...\n");
-
-  #if defined(UART_HARDWARE)
-    s_UART = new HardwareUART(UART_BAUD);
-  #elif defined(UART_HARDWARE1)
-    s_UART = new HardwareUART(UART_BAUD, 1);
-  #elif defined(UART_HARDWARE2)
-    s_UART = new HardwareUART(UART_BAUD, 2);
-  #elif defined(UART_HARDWARE3)
-    s_UART = new HardwareUART(UART_BAUD, 3);
-  #elif defined(UART_HARDWARE4)
-    s_UART = new HardwareUART(UART_BAUD, 4);
-  #elif defined(UART_HARDWARE5)
-    s_UART = new HardwareUART(UART_BAUD, 5);
-  #elif defined(UART_HARDWARE6)
-    s_UART = new HardwareUART(UART_BAUD, 6);
-  #elif defined(UART_HARDWARE7)
-    s_UART = new HardwareUART(UART_BAUD, 7);
-  #elif defined(UART_HARDWARE8)
-    s_UART = new HardwareUART(UART_BAUD, 8);
-  #elif defined(UART_HARDWARE9)
-    s_UART = new HardwareUART(UART_BAUD, 9);
-  #elif defined(UART_HARDWARE10)
-    s_UART = new HardwareUART(UART_BAUD, 10);
-  #elif defined(UART_HARDWAREUSB)
-    s_UART = new USBVirtualUART(UART_BAUD);
-  #elif defined(UART_SOFTWARE)
-    s_UART = new SoftwareUART(UART_BAUD, UART_PIN_RX, UART_PIN_TX);
-  #elif defined(UART_NONE)
-    s_UART = new NoneUART(UART_BAUD);
-  #else
-    #error UART is not defined!
-  #endif
-
-  /* Enable UART extra buffering after main uart is initialized */
-  #if defined(UART_BUFFERED)
-    s_UART = new BufferedUART(s_UART, UART_BUF_SIZE);
-  #endif
-
-  /* Now we inject UART debugging layer to be able to spy after UART data */
-  #if defined(DEBUG_UART_STR)
-    s_UART = new TextLoggingUART(s_UART, g_DebugUART);
-  #endif
+  s_UART = initUART();
 
   /* 3. Third step is to initialize display output */
-
   /* 3.1. Initializing LCD backlight class */
-  /*! \todo Move this code to a separate file ('lcd/backlight/init.c') to make @main function better readable */
   DEBUG_STR("Initializing Backlight...\n");
-
-  AbstractBacklight *Backlight = nullptr;
-  #if defined(LCD_BACKLIGHT_NONE)
-    Backlight = new NoneBacklight();
-  #elif defined(LCD_BACKLIGHT_ONOFF)
-    Backlight = new BinaryBacklight(LCD_PIN_BACKLIGHT);
-  #elif defined(LCD_BACKLIGHT_PWM)
-    #if defined(LCD_BL_PWM_MAX)
-      Backlight = new PWMBacklight(LCD_PIN_BACKLIGHT, LCD_BL_PWM_MAX);
-    #else
-      Backlight = new PWMBacklight(LCD_PIN_BACKLIGHT);
-    #endif
-  #elif defined(LCD_BACKLIGHT_RGB_ONOFF)
-    Backlight = new RGBBinaryBacklight(LCD_PIN_BACKLIGHT_R, LCD_PIN_BACKLIGHT_G, LCD_PIN_BACKLIGHT_B);
-  #elif defined(LCD_BACKLIGHT_RGB_PWM)
-    #if defined(LCD_BL_PWM_MAX)
-      Backlight = new RGBPWMBacklight(LCD_PIN_BACKLIGHT_R, LCD_PIN_BACKLIGHT_G, LCD_PIN_BACKLIGHT_B, LCD_BACKLIGHT_COLOR, LCD_BL_PWM_MAX);
-    #else
-      Backlight = new RGBPWMBacklight(LCD_PIN_BACKLIGHT_R, LCD_PIN_BACKLIGHT_G, LCD_PIN_BACKLIGHT_B, LCD_BACKLIGHT_COLOR);
-    #endif
-  #elif defined(LCD_BACKLIGHT_I2C_RGB_PWM)
-    #if defined(LCD_BL_PWM_MAX)
-      Backlight = new I2CRGBPWMBacklight(LCD_BACKLIGHT_CHAN_R, LCD_BACKLIGHT_CHAN_G, LCD_BACKLIGHT_CHAN_B, LCD_BACKLIGHT_I2C_ADDR, LCD_BACKLIGHT_COLOR, LCD_BL_PWM_MAX);
-    #else
-      Backlight = new I2CRGBPWMBacklight(LCD_BACKLIGHT_CHAN_R, LCD_BACKLIGHT_CHAN_G, LCD_BACKLIGHT_CHAN_B, LCD_BACKLIGHT_I2C_ADDR, LCD_BACKLIGHT_COLOR);
-    #endif
-  #endif
+  AbstractBacklight *Backlight = initBacklight();
 
   /* 3.2. Initialize LCD itself */
-  /*! \todo Move this code to a separate file ('lcd/init.c') to make @main function better readable */
   DEBUG_STR("Initializing LCD...\n");
-
-  #if defined(LCD_TEXT_4BIT) || defined(LCD_TEXT_8BIT)
-    #if defined(LCD_TEXT_4BIT)
-      s_LCD = new PPITextLCD(Backlight, LCD_COLS, LCD_ROWS,
-        LCD_PIN_RS, LCD_PIN_RW, LCD_PIN_ENABLE,
-        LCD_PIN_D4, LCD_PIN_D5, LCD_PIN_D6, LCD_PIN_D7);
-    #elif defined(LCD_TEXT_8BIT)
-      s_LCD = new PPITextLCD(Backlight, LCD_COLS, LCD_ROWS,
-        LCD_PIN_RS, LCD_PIN_RW, LCD_PIN_ENABLE,
-        LCD_PIN_D0, LCD_PIN_D1, LCD_PIN_D2, LCD_PIN_D3,
-        LCD_PIN_D4, LCD_PIN_D5, LCD_PIN_D6, LCD_PIN_D7);
-    #endif
-  #elif defined(LCD_TEXT_I2C_PCF8574)
-    s_LCD = new I2CPCF8574TextLCD(LCD_COLS, LCD_ROWS, LCD_I2C_ADDR);
-  #elif defined(LCD_TEXT_I2C_RGB)
-    s_LCD = new I2CRGBTextLCD(LCD_COLS, LCD_ROWS, 123, LCD_BACKLIGHT_COLOR);
-  #elif defined(LCD_TEXT_I2C_AIP31068)
-    s_LCD = new I2CAIP31068TextLCD(Backlight, LCD_COLS, LCD_ROWS, LCD_I2C_ADDR);
-  #elif defined(LCD_TEXT_SPI_AIP31068)
-    s_LCD = new SPIAIP31068TextLCD(Backlight, LCD_COLS, LCD_ROWS, LCD_PIN_SS, LCD_PIN_SCLK, LCD_PIN_MOSI, LCD_PIN_MISO);
-  #else
-    #error LCD is not defined!
-  #endif
+  s_LCD = initLCD(Backlight);
 
   /* 4. Now we should initilize keyboard for input to be ready */
-  /*! \todo Move this code to a separate file ('keyboard/init.c') to make @main function better readable */
   DEBUG_STR("Initializing Keyboard...\n");
-
-  #if defined(KBD_JOINED)
-    JoinedKeyboard *p_JoinedKeyboard = new JoinedKeyboard();
-  #endif
-
-  #if defined(KBD_NONE)
-    s_Keyboard = new NoneKeyboard();
-    #if defined(KBD_JOINED)
-      p_JoinedKeyboard->AddKeyboard(s_Keyboard);
-      s_Keyboard = nullptr;
-    #endif
-  #endif
-  #if defined(KBD_D_MATRIX)
-    static const uint8_t cols[] = {
-    #if KBD_COLS >= 1
-      KBD_PIN_C1,
-      #if KBD_COLS >= 2
-        KBD_PIN_C2,
-        #if KBD_COLS >= 3
-          KBD_PIN_C3,
-          #if KBD_COLS >= 4
-            KBD_PIN_C4,
-            #if KBD_COLS >= 5
-              #error Only 4 Columns are supported for now
-            #endif
-          #endif
-        #endif
-      #endif
-    #endif
-    };
-    static const uint8_t rows[] = {
-    #if KBD_ROWS >= 1
-      KBD_PIN_R1,
-      #if KBD_ROWS >= 2
-        KBD_PIN_R2,
-        #if KBD_ROWS >= 3
-          KBD_PIN_R3,
-          #if KBD_ROWS >= 4
-            KBD_PIN_R4,
-            #if KBD_ROWS >= 5
-              #error Only 4 Rows are supported for now
-            #endif
-          #endif
-        #endif
-      #endif
-    #endif
-    };
-    s_Keyboard = new DigitalMatrix(KBD_COLS, KBD_ROWS, cols, rows);
-    #if defined(KBD_JOINED)
-      p_JoinedKeyboard->AddKeyboard(s_Keyboard);
-      s_Keyboard = nullptr;
-    #endif
-  #endif
-  #if defined(KBD_A_JOYSTICK)
-    s_Keyboard = new AnalogJoystick(KBD_PIN_X, KBD_PIN_Y, KBD_PIN_BTN);
-    #if defined(KBD_JOINED)
-      p_JoinedKeyboard->AddKeyboard(s_Keyboard);
-      s_Keyboard = nullptr;
-    #endif
-  #endif
-  #if defined(KBD_A_KEYPAD)
-    s_Keyboard = new AnalogKeypad(KBD_PIN_DATA);
-    #if defined(KBD_JOINED)
-      p_JoinedKeyboard->AddKeyboard(s_Keyboard);
-      s_Keyboard = nullptr;
-    #endif
-  #endif
-  #if defined(KBD_ROTARY_ENCODER)
-    s_Keyboard = new RotaryEncoder(KBD_PIN_D1, KBD_PIN_D2, KBD_PIN_BTN);
-    #if defined(KBD_JOINED)
-      p_JoinedKeyboard->AddKeyboard(s_Keyboard);
-      s_Keyboard = nullptr;
-    #endif
-  #endif
-  #if defined(KBD_A_MATRIX)
-    static const uint16_t data_array[KBD_ROWS * KBD_COLS] = KBD_DATA_ARRAY;
-    s_Keyboard = new AnalogMatrix(KBD_COLS, KBD_ROWS, data_array, KBD_PIN_DATA);
-    #if defined(KBD_JOINED)
-      p_JoinedKeyboard->AddKeyboard(s_Keyboard);
-      s_Keyboard = nullptr;
-    #endif
-  #endif
-  #if defined(KBD_I2C_RGB)
-    #if !defined(LCD_TEXT_I2C_RGB)
-      #error 'KBD_I2C_RGB' must be defined together with 'LCD_TEXT_I2C_RGB'!
-    #endif
-    s_Keyboard = new I2CRGBKeypad(s_LCD);
-    #if defined(KBD_JOINED)
-      p_JoinedKeyboard->AddKeyboard(s_Keyboard);
-      s_Keyboard = nullptr;
-    #endif
-  #endif
-  #if defined(KBD_I2C_C_MPR121_KEYPAD)
-    s_Keyboard = new I2CMPR121CapacitiveKeypad(KBD_KEYS, KBD_I2C_ADDR);
-    #if defined(KBD_JOINED)
-      p_JoinedKeyboard->AddKeyboard(s_Keyboard);
-      s_Keyboard = nullptr;
-    #endif
-  #endif
-  #if defined(KBD_I2C_C_TTP229_KEYPAD)
-    s_Keyboard = new I2CTTP229CapacitiveKeypad(KBD_KEYS, KBD_I2C_ADDR);
-    #if defined(KBD_JOINED)
-      p_JoinedKeyboard->AddKeyboard(s_Keyboard);
-      s_Keyboard = nullptr;
-    #endif
-  #endif
-  #if defined(KBD_BUTTON)
-    static const uint8_t pins[] = KBD_PIN_ARRAY;
-    s_Keyboard = new SimpleButton(KBD_NUM, pins);
-    #if defined(KBD_JOINED)
-      p_JoinedKeyboard->AddKeyboard(s_Keyboard);
-      s_Keyboard = nullptr;
-    #endif
-  #endif
-
-  /* Substitute last keyboard class with joined keyboard if enabled */
-  #if defined(KBD_JOINED)
-    s_Keyboard = p_JoinedKeyboard;
-  #endif
+  s_Keyboard = initKeyboard();
 
   /*! \todo Add AbstractSpeaker and other classes for notice, warning and error sounds??? */
 
   /* 5. Now it's time for protocol itself. Remember the protocol class defines how all other elements communicate with each other */
-  /*! \todo Move this code to a separate file ('ptotocol/init.c') to make @main function better readable */
   DEBUG_STR("Initializing Protocol...\n");
-
-  #if defined(PROT_LOSPANEL)
-    s_Protocol = new LoSPanelProtocol(s_UART, reinterpret_cast<AbstractTextLCD*>(s_LCD), s_Keyboard);
-  #elif defined(PROT_RAWSERIAL)
-    s_Protocol = new RawSerialProtocol(s_UART, s_LCD, s_Keyboard);
-  #else
-    #error Protocol is not defined!
-  #endif
+  s_Protocol = initProtocol(s_UART, s_LCD, s_Keyboard);
 
   /*! 6. Print a splash screen/welcome message. */
   print_welcome();
