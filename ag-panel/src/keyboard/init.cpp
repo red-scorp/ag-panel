@@ -17,19 +17,19 @@
   \returns Pointer to keyboard class
  */
 AbstractKeyboard *initKeyboard() {
-  AbstractKeyboard *Keyboard = nullptr;
+  AbstractKeyboard *p_Keyboard = nullptr;
 
-  /* Initializae joined keyboard subsystem */
+  /* Initialize joined keyboard subsystem */
   #if defined(KBD_JOINED)
-    JoinedKeyboard *JoinedKeyboard = new JoinedKeyboard();
+    JoinedKeyboard *p_JoinedKeyboard = new JoinedKeyboard();
   #endif
 
-  /* Initialize rael keyboard classes and join if it is wished to be done */
+  /* Initialize real keyboard classes and join if it is wished to be done */
   #if defined(KBD_NONE)
-    Keyboard = new NoneKeyboard();
+    p_Keyboard = new NoneKeyboard();
     #if defined(KBD_JOINED)
-      JoinedKeyboard->AddKeyboard(Keyboard);
-      Keyboard = nullptr;
+      p_JoinedKeyboard->AddKeyboard(p_Keyboard);
+      p_Keyboard = nullptr;
     #endif
   #endif
   #if defined(KBD_D_MATRIX)
@@ -67,78 +67,78 @@ AbstractKeyboard *initKeyboard() {
       #endif
     #endif
     };
-    Keyboard = new DigitalMatrix(KBD_COLS, KBD_ROWS, cols, rows);
+    p_Keyboard = new DigitalMatrix(KBD_COLS, KBD_ROWS, cols, rows);
     #if defined(KBD_JOINED)
-      JoinedKeyboard->AddKeyboard(Keyboard);
-      Keyboard = nullptr;
+      p_JoinedKeyboard->AddKeyboard(p_Keyboard);
+      p_Keyboard = nullptr;
     #endif
   #endif
   #if defined(KBD_A_JOYSTICK)
-    Keyboard = new AnalogJoystick(KBD_PIN_X, KBD_PIN_Y, KBD_PIN_BTN);
+    p_Keyboard = new AnalogJoystick(KBD_PIN_X, KBD_PIN_Y, KBD_PIN_BTN);
     #if defined(KBD_JOINED)
-      JoinedKeyboard->AddKeyboard(Keyboard);
-      Keyboard = nullptr;
+      p_JoinedKeyboard->AddKeyboard(p_Keyboard);
+      p_Keyboard = nullptr;
     #endif
   #endif
   #if defined(KBD_A_KEYPAD)
-    Keyboard = new AnalogKeypad(KBD_PIN_DATA);
+    p_Keyboard = new AnalogKeypad(KBD_PIN_DATA);
     #if defined(KBD_JOINED)
-      JoinedKeyboard->AddKeyboard(Keyboard);
-      Keyboard = nullptr;
+      p_JoinedKeyboard->AddKeyboard(p_Keyboard);
+      p_Keyboard = nullptr;
     #endif
   #endif
   #if defined(KBD_ROTARY_ENCODER)
-    Keyboard = new RotaryEncoder(KBD_PIN_D1, KBD_PIN_D2, KBD_PIN_BTN);
+    p_Keyboard = new RotaryEncoder(KBD_PIN_D1, KBD_PIN_D2, KBD_PIN_BTN);
     #if defined(KBD_JOINED)
-      JoinedKeyboard->AddKeyboard(Keyboard);
-      Keyboard = nullptr;
+      p_JoinedKeyboard->AddKeyboard(p_Keyboard);
+      p_Keyboard = nullptr;
     #endif
   #endif
   #if defined(KBD_A_MATRIX)
     static const uint16_t data_array[KBD_ROWS * KBD_COLS] = KBD_DATA_ARRAY;
-    Keyboard = new AnalogMatrix(KBD_COLS, KBD_ROWS, data_array, KBD_PIN_DATA);
+    p_Keyboard = new AnalogMatrix(KBD_COLS, KBD_ROWS, data_array, KBD_PIN_DATA);
     #if defined(KBD_JOINED)
-      JoinedKeyboard->AddKeyboard(Keyboard);
-      Keyboard = nullptr;
+      p_JoinedKeyboard->AddKeyboard(p_Keyboard);
+      p_Keyboard = nullptr;
     #endif
   #endif
   #if defined(KBD_I2C_RGB)
     #if !defined(LCD_TEXT_I2C_RGB)
       #error 'KBD_I2C_RGB' must be defined together with 'LCD_TEXT_I2C_RGB'!
     #endif
-    Keyboard = new I2CRGBKeypad(s_LCD);
+    p_Keyboard = new I2CRGBKeypad(s_LCD);
     #if defined(KBD_JOINED)
-      JoinedKeyboard->AddKeyboard(Keyboard);
-      Keyboard = nullptr;
+      p_JoinedKeyboard->AddKeyboard(p_Keyboard);
+      p_Keyboard = nullptr;
     #endif
   #endif
   #if defined(KBD_I2C_C_MPR121_KEYPAD)
-    Keyboard = new I2CMPR121CapacitiveKeypad(KBD_KEYS, KBD_I2C_ADDR);
+    p_Keyboard = new I2CMPR121CapacitiveKeypad(KBD_KEYS, KBD_I2C_ADDR);
     #if defined(KBD_JOINED)
-      JoinedKeyboard->AddKeyboard(Keyboard);
-      Keyboard = nullptr;
+      p_JoinedKeyboard->AddKeyboard(p_Keyboard);
+      p_Keyboard = nullptr;
     #endif
   #endif
   #if defined(KBD_I2C_C_TTP229_KEYPAD)
-    Keyboard = new I2CTTP229CapacitiveKeypad(KBD_KEYS, KBD_I2C_ADDR);
+    p_Keyboard = new I2CTTP229CapacitiveKeypad(KBD_KEYS, KBD_I2C_ADDR);
     #if defined(KBD_JOINED)
-      JoinedKeyboard->AddKeyboard(Keyboard);
-      Keyboard = nullptr;
+      p_JoinedKeyboard->AddKeyboard(p_Keyboard);
+      p_Keyboard = nullptr;
     #endif
   #endif
   #if defined(KBD_BUTTON)
     static const uint8_t pins[] = KBD_PIN_ARRAY;
-    Keyboard = new SimpleButton(KBD_NUM, pins);
+    p_Keyboard = new SimpleButton(KBD_NUM, pins);
     #if defined(KBD_JOINED)
-      JoinedKeyboard->AddKeyboard(Keyboard);
-      Keyboard = nullptr;
+      p_JoinedKeyboard->AddKeyboard(p_Keyboard);
+      p_Keyboard = nullptr;
     #endif
   #endif
 
   /* Substitute last keyboard class with joined keyboard if enabled */
   #if defined(KBD_JOINED)
-    Keyboard = JoinedKeyboard;
+    p_Keyboard = p_JoinedKeyboard;
   #endif
 
-  return Keyboard;
+  return p_Keyboard;
 }

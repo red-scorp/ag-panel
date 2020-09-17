@@ -95,7 +95,7 @@ void setup() {
   DEBUG_STR("Initializing LCD...\n");
   s_LCD = initLCD(Backlight);
 
-  /* 4. Now we should initilize keyboard for input to be ready */
+  /* 4. Now we should initialize keyboard for input to be ready */
   DEBUG_STR("Initializing Keyboard...\n");
   s_Keyboard = initKeyboard();
 

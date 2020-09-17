@@ -17,15 +17,15 @@
   \returns Pointer to protocol class
  */
 AbstractProtocol *initProtocol(AbstractUART *UART, AbstractLCD *LCD, AbstractKeyboard *Keyboard) {
-  AbstractProtocol *Protocol = nullptr;
+  AbstractProtocol *p_Protocol = nullptr;
 
   #if defined(PROT_LOSPANEL)
-    Protocol = new LoSPanelProtocol(UART, reinterpret_cast<AbstractTextLCD*>(LCD), Keyboard);
+    p_Protocol = new LoSPanelProtocol(UART, reinterpret_cast<AbstractTextLCD*>(LCD), Keyboard);
   #elif defined(PROT_RAWSERIAL)
-    Protocol = new RawSerialProtocol(UART, LCD, Keyboard);
+    p_Protocol = new RawSerialProtocol(UART, LCD, Keyboard);
   #else
     #error Protocol is not defined!
   #endif
 
-  return Protocol;
+  return p_Protocol;
 }
