@@ -62,9 +62,9 @@ Please check 'config.h' and 'config_adv.h' for up-to-date information.
 The code of ag-panel is written on C++ with Arduino Framework.
 The code compiles and runs on several embedded CPU platforms:
 - [x] AVR Atmega328, Atmega2560
-- [ ] AVR SAMD and SAM (in test)
+- [x] AVR SAMD and SAM
 - [ ] ESP32 and ESP8266 (to be tested)
-- [ ] STM32 (in test)
+- [x] STM32
 - [ ] RISC-V (planned)
 
 Basic class diagram is shown below:
