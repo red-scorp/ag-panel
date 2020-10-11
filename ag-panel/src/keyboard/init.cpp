@@ -16,7 +16,7 @@
   This function chooses one or more keyboard classes to use based on configuration defined in config.h
   \returns Pointer to keyboard class
  */
-AbstractKeyboard *initKeyboard() {
+AbstractKeyboard *initKeyboard(AbstractLCD *p_LCD) {
   AbstractKeyboard *p_Keyboard = nullptr;
 
   /* Initialize joined keyboard subsystem */
@@ -81,7 +81,14 @@ AbstractKeyboard *initKeyboard() {
     #endif
   #endif
   #if defined(KBD_A_KEYPAD)
-    p_Keyboard = new AnalogKeypad(KBD_PIN_DATA);
+    static const AnalogDataRange ranges[AbstractKeyboardAnalogDataRangeIndexMax] = {
+      {KBD_DATA_UP_MIN, KBD_DATA_UP_MAX},
+      {KBD_DATA_DOWN_MIN, KBD_DATA_DOWN_MAX},
+      {KBD_DATA_LEFT_MIN, KBD_DATA_LEFT_MAX},
+      {KBD_DATA_RIGHT_MIN, KBD_DATA_RIGHT_MAX},
+      {KBD_DATA_SELECT_MIN, KBD_DATA_SELECT_MAX},
+    };
+    p_Keyboard = new AnalogKeypad(KBD_PIN_DATA, ranges);
     #if defined(KBD_JOINED)
       p_JoinedKeyboard->AddKeyboard(p_Keyboard);
       p_Keyboard = nullptr;
@@ -106,7 +113,7 @@ AbstractKeyboard *initKeyboard() {
     #if !defined(LCD_TEXT_I2C_RGB)
       #error 'KBD_I2C_RGB' must be defined together with 'LCD_TEXT_I2C_RGB'!
     #endif
-    p_Keyboard = new I2CRGBKeypad(s_LCD);
+    p_Keyboard = new I2CRGBKeypad(p_LCD);
     #if defined(KBD_JOINED)
       p_JoinedKeyboard->AddKeyboard(p_Keyboard);
       p_Keyboard = nullptr;

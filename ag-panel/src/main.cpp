@@ -97,7 +97,7 @@ void setup() {
 
   /* 4. Now we should initialize keyboard for input to be ready */
   DEBUG_STR("Initializing Keyboard...\n");
-  s_Keyboard = initKeyboard();
+  s_Keyboard = initKeyboard(s_LCD);
 
   /*! \todo Add AbstractSpeaker and other classes for notice, warning and error sounds??? */
 

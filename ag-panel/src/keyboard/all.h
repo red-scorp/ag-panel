@@ -21,4 +21,4 @@
 #include "SimpleButton.h"
 #include "JoinedKeyboard.h"
 
-AbstractKeyboard *initKeyboard();
+AbstractKeyboard *initKeyboard(AbstractLCD *p_LCD);

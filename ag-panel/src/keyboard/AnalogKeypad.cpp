@@ -34,15 +34,20 @@ void AnalogKeypad::Exit() {
 uint8_t AnalogKeypad::GetKey() {
   uint16_t data = analogRead(m_DataPin);
 
-  if(data >= KBD_DATA_UP_MIN && data < KBD_DATA_UP_MAX)
+  if(data >= m_DataRangeArray[AbstractKeyboardAnalogDataRangeIndexUp].min &&
+    data < m_DataRangeArray[AbstractKeyboardAnalogDataRangeIndexUp].max)
     return KeyDefaultUp;
-  if(data >= KBD_DATA_DOWN_MIN && data < KBD_DATA_DOWN_MAX)
+  if(data >= m_DataRangeArray[AbstractKeyboardAnalogDataRangeIndexDown].min &&
+    data < m_DataRangeArray[AbstractKeyboardAnalogDataRangeIndexDown].max)
     return KeyDefaultDown;
-  if(data >= KBD_DATA_LEFT_MIN && data < KBD_DATA_LEFT_MAX)
+  if(data >= m_DataRangeArray[AbstractKeyboardAnalogDataRangeIndexLeft].min &&
+    data < m_DataRangeArray[AbstractKeyboardAnalogDataRangeIndexLeft].max)
     return KeyDefaultLeft;
-  if(data >= KBD_DATA_RIGHT_MIN && data < KBD_DATA_RIGHT_MAX)
+  if(data >= m_DataRangeArray[AbstractKeyboardAnalogDataRangeIndexRight].min &&
+    data < m_DataRangeArray[AbstractKeyboardAnalogDataRangeIndexRight].max)
     return KeyDefaultRight;
-  if(data >= KBD_DATA_SELECT_MIN && data < KBD_DATA_SELECT_MAX)
+  if(data >= m_DataRangeArray[AbstractKeyboardAnalogDataRangeIndexSelect].min &&
+    data < m_DataRangeArray[AbstractKeyboardAnalogDataRangeIndexSelect].max)
     return KeyDefaultSelect;
   return KeyNone;
 }
