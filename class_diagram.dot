@@ -1,137 +1,128 @@
 digraph class_diagram {
+
     node [
-        shape=record
+        shape = record
+    ]
+
+    /* Header with version information */
+    main_note [
+        shape = note
+        style = filled
+        fillcolor = yellow
+        label = "AG-Panel Project Class Diagramm v0.2a\n(C) 2020 Andriy Golovnya\nAuthor: Andriy Golovnya (andriy.golovnya@googlemail.com)"
     ]
 
     /* Main classes description */
     AbstractProtocol [
-        label="{
+        label = "{
             AbstractProtocol|
-            *m_UART\n
-            *m_LCD\n
-            *m_Keyboard|
-            +Loop()\n
-            +Yield()\n
-            -Init()\n
-            -Exit()
+            *m_UART\n*m_LCD\n*m_Keyboard|
+            +Loop()\n+Yield()\n-Init()\n-Exit()
         }"
     ]
     AbstractKeyboard [
-        label="{
-            AbstractKeyboard||
-            +GetKey()\n
-            +GetKeyCount()\n
-            -Init()\n
-            -Exit()
+        label = "{
+            AbstractKeyboard|
+            |
+            +GetKey()\n+GetKeyCount()\n-Init()\n-Exit()
         }"
     ]
     AbstractUART [
-        label="{
+        label = "{
             AbstractUART|
             *m_BaudRate|
-            +PutCh()\n
-            +GetCh()\n
-            +Prefill()\n
-            +Available()\n
-            +GetBaudRate()\n
-            +PutStr()\n
-            -Init()\n
-            -Exit()
+            +PutCh()\n+GetCh()\n+Prefill()\n+Available()\n+GetBaudRate()\n+PutStr()\n-Init()\n-Exit()
         }"
     ]
     AbstractLCD [
-        label="{
+        label = "{
             AbstractLCD|
-            *m_Backlight\n
-            *m_Columns\n
-            *m_Rows|
-            +SetBacklight()\n
-            +Clear()\n
-            +SetCursor()\n
-            +Print()\n
-            +GetColumns()\n
-            +GetRows()\n
-            -Init()\n
-            -Exit()
+            *m_Backlight\n*m_Columns\n*m_Rows|
+            +SetBacklight()\n+Clear()\n+SetCursor()\n+Print()\n+GetColumns()\n+GetRows()\n-Init()\n-Exit()
         }"
     ]
     AbstractTextLCD [
-        label="{
+        label = "{
             AbstractTextLCD|
-            *m_Backlight\n
-            *m_Columns\n
-            *m_Rows|
-            +SetBacklight()\n
-            +Clear()\n
-            +SetCursor()\n
-            +Print()\n
-            +GetColumns()\n
-            +GetRows()\n
-            +Write()\n
-            +Command()\n
-            -Init()\n
-            -Exit()
+            *m_Backlight\n*m_Columns\n*m_Rows|
+            +SetBacklight()\n+Clear()\n+SetCursor()\n+Print()\n+GetColumns()\n+GetRows()\n+Write()\n+Command()\n-Init()\n-Exit()
         }"
     ]
     AbstractBacklight [
-        label="{
-            AbstractBacklight||
-            +SetOn()\n
-            +SetBrightness()\n
-            +SetRGB()\n
-            -Init()\n
-            -Exit()
+        label = "{
+            AbstractBacklight|
+            |
+            +SetOn()\n+SetBrightness()\n+SetRGB()\n-Init()\n-Exit()
         }"
     ]
 
-    /* Relationships */
-    BinaryBacklight->AbstractBacklight [style=dashed]
-    I2CRGBPWMBacklight->AbstractBacklight [style=dashed]
-    NoneBacklight->AbstractBacklight [style=dashed]
-    PWMBacklight->AbstractBacklight [style=dashed]
-    RGBBinaryBacklight->AbstractBacklight [style=dashed]
-    RGBPWMBacklight->AbstractBacklight [style=dashed]
+    /* Relationships with other classes */
+    BinaryBacklight -> AbstractBacklight [style = dashed]
+    I2CRGBPWMBacklight -> AbstractBacklight [style = dashed]
+    NoneBacklight -> AbstractBacklight [style = dashed]
+    PWMBacklight -> AbstractBacklight [style = dashed]
+    RGBBinaryBacklight -> AbstractBacklight [style = dashed]
+    RGBPWMBacklight -> AbstractBacklight [style = dashed]
 
-    AbstractTextLCD->AbstractLCD [style=solid]
-    I2CAIP31068TextLCD->AbstractTextLCD [style=dashed]
-    I2CPCF8574TextLCD->AbstractTextLCD [style=dashed]
-    I2CRGBTextLCD->AbstractTextLCD [style=dashed]
-    PPITextLCD->AbstractTextLCD [style=dashed]
-    SPIAIP31068TextLCD->AbstractTextLCD [style=dashed]
+    AbstractTextLCD -> AbstractLCD [style = solid]
+    I2CAIP31068TextLCD -> AbstractTextLCD [style = dashed]
+    I2CPCF8574TextLCD -> AbstractTextLCD [style = dashed]
+    I2CRGBTextLCD -> AbstractTextLCD [style = dashed]
+    PPITextLCD -> AbstractTextLCD [style = dashed]
+    SPIAIP31068TextLCD -> AbstractTextLCD [style = dashed]
 
-    AbstractLCD->AbstractBacklight [style=solid dir=both arrowhead=open arrowtail=ediamond headlabel="1"]
+    AbstractLCD -> AbstractBacklight [style = solid, dir = both, arrowhead = open, arrowtail = ediamond, headlabel = "1"]
 
-    BufferedUART->AbstractUART [style=dashed]
-    BufferedUART->AbstractUART [style=solid dir=both arrowhead=open arrowtail=ediamond headlabel="1"]
-    note_for_BufferedUART [shape=note style=filled fillcolor=yellow label="Uses another UART\nclass and implements\nan extra buffer for it"]
-    note_for_BufferedUART->BufferedUART [style=dashed dir=none]
-    HardwareUART->AbstractUART [style=dashed]
-    NoneUART->AbstractUART [style=dashed]
-    SoftwareUART->AbstractUART [style=dashed]
-    USBVirtualUART->AbstractUART [style=dashed]
-    TextLoggingUART->AbstractUART [style=dashed]
-    TextLoggingUART->AbstractUART [style=solid dir=both arrowhead=open arrowtail=ediamond headlabel="2"]
-    note_for_TextLoggingUART [shape=note style=filled fillcolor=yellow label="Uses first UART as\ntransparent input/output\nand second UART for logging\nof trafic in text form"]
-    note_for_TextLoggingUART->TextLoggingUART [style=dashed dir=none]
+    BufferedUART -> AbstractUART [style = dashed]
+    BufferedUART -> AbstractUART [style = solid, dir = both, arrowhead = open, arrowtail = ediamond, headlabel = "1"]
+    HardwareUART -> AbstractUART [style = dashed]
+    NoneUART -> AbstractUART [style = dashed]
+    SoftwareUART -> AbstractUART [style = dashed]
+    USBVirtualUART -> AbstractUART [style = dashed]
+    TextLoggingUART -> AbstractUART [style = dashed]
+    TextLoggingUART -> AbstractUART [style = solid, dir = both, arrowhead = open, arrowtail = ediamond, headlabel = "2"]
 
-    AnalogJoystick->AbstractKeyboard [style=dashed]
-    AnalogKeypad->AbstractKeyboard [style=dashed]
-    AnalogMatrix->AbstractKeyboard [style=dashed]
-    DigitalMatrix->AbstractKeyboard [style=dashed]
-    I2CMPR121CapacitiveKeypad->AbstractKeyboard [style=dashed]
-    I2CRGBKeypad->AbstractKeyboard [style=dashed]
-    I2CTTP229CapacitiveKeypad->AbstractKeyboard [style=dashed]
-    JoinedKeyboard->AbstractKeyboard [style=dashed]
-    JoinedKeyboard->AbstractKeyboard [style=solid dir=both arrowhead=open arrowtail=ediamond headlabel="1.."]
-    note_for_JoinedKeyboard [shape=note style=filled fillcolor=yellow label="Combines several keyboards\nand presents them as\na single keyboard unit"]
-    note_for_JoinedKeyboard->JoinedKeyboard [style=dashed dir=none]
-    NoneKeyboard->AbstractKeyboard [style=dashed]
-    RotaryEncoder->AbstractKeyboard [style=dashed]
-    SimpleButton->AbstractKeyboard [style=dashed]
+    AnalogJoystick -> AbstractKeyboard [style = dashed]
+    AnalogKeypad -> AbstractKeyboard [style = dashed]
+    AnalogMatrix -> AbstractKeyboard [style = dashed]
+    DigitalMatrix -> AbstractKeyboard [style = dashed]
+    I2CMPR121CapacitiveKeypad -> AbstractKeyboard [style = dashed]
+    I2CRGBKeypad -> AbstractKeyboard [style = dashed]
+    I2CTTP229CapacitiveKeypad -> AbstractKeyboard [style = dashed]
+    JoinedKeyboard -> AbstractKeyboard [style = dashed]
+    JoinedKeyboard -> AbstractKeyboard [style = solid, dir = both, arrowhead = open, arrowtail = ediamond, headlabel = "1.."]
+    NoneKeyboard -> AbstractKeyboard [style = dashed]
+    RotaryEncoder -> AbstractKeyboard [style = dashed]
+    SimpleButton -> AbstractKeyboard [style = dashed]
 
-    AbstractProtocol->AbstractLCD [style=solid dir=both arrowhead=open arrowtail=ediamond headlabel="1"]
-    AbstractProtocol->AbstractUART [style=solid dir=both arrowhead=open arrowtail=ediamond headlabel="1"]
-    AbstractProtocol->AbstractKeyboard [style=solid dir=both arrowhead=open arrowtail=ediamond headlabel="1"]
-    LoSPanelProtocol->AbstractProtocol [style=dashed]
-    RawSerialProtocol->AbstractProtocol [style=dashed]
+    AbstractProtocol -> AbstractLCD [style = solid, dir = both, arrowhead = open, arrowtail = ediamond, headlabel = "1"]
+    AbstractProtocol -> AbstractUART [style = solid, dir = both, arrowhead = open, arrowtail = ediamond, headlabel = "1"]
+    AbstractProtocol -> AbstractKeyboard [style = solid, dir = both, arrowhead = open, arrowtail = ediamond, headlabel = "1"]
+    LoSPanelProtocol -> AbstractProtocol [style = dashed]
+    RawSerialProtocol -> AbstractProtocol [style = dashed]
+
+    /* Notes */
+    note_for_BufferedUART [
+        shape = note
+        style = filled
+        fillcolor = yellow
+        label = "Uses another UART\nclass and implements\nan extra buffer for it"
+    ]
+    note_for_BufferedUART -> BufferedUART [style = dashed, dir = none]
+
+    note_for_TextLoggingUART [
+        shape = note
+        style = filled
+        fillcolor = yellow
+        label = "Uses first UART as\ntransparent input/output\nand second UART for logging\nof trafic in text form"
+    ]
+    note_for_TextLoggingUART -> TextLoggingUART [style = dashed, dir = none]
+
+    note_for_JoinedKeyboard [
+        shape = note
+        style = filled
+        fillcolor = yellow
+        label = "Combines several keyboards\nand presents them as\na single keyboard unit"
+    ]
+    note_for_JoinedKeyboard -> JoinedKeyboard [style = dashed, dir = none]
 }
