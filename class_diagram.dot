@@ -3,6 +3,7 @@ digraph class_diagram {
     node [
         shape = record
     ]
+    compound = true
 
     /* Header with version information */
     main_note [
@@ -12,117 +13,152 @@ digraph class_diagram {
         label = "AG-Panel Project Class Diagramm v0.2a\n(C) 2020 Andriy Golovnya\nAuthor: Andriy Golovnya (andriy.golovnya@googlemail.com)"
     ]
 
-    /* Main classes description */
-    AbstractProtocol [
-        label = "{
-            AbstractProtocol|
-            *m_UART\n*m_LCD\n*m_Keyboard|
-            +Loop()\n+Yield()\n-Init()\n-Exit()
-        }"
-    ]
-    AbstractKeyboard [
-        label = "{
-            AbstractKeyboard|
-            |
-            +GetKey()\n+GetKeyCount()\n-Init()\n-Exit()
-        }"
-    ]
-    AbstractUART [
-        label = "{
-            AbstractUART|
-            *m_BaudRate|
-            +PutCh()\n+GetCh()\n+Prefill()\n+Available()\n+GetBaudRate()\n+PutStr()\n-Init()\n-Exit()
-        }"
-    ]
-    AbstractLCD [
-        label = "{
-            AbstractLCD|
-            *m_Backlight\n*m_Columns\n*m_Rows|
-            +SetBacklight()\n+Clear()\n+SetCursor()\n+Print()\n+GetColumns()\n+GetRows()\n-Init()\n-Exit()
-        }"
-    ]
-    AbstractTextLCD [
-        label = "{
-            AbstractTextLCD|
-            *m_Backlight\n*m_Columns\n*m_Rows|
-            +SetBacklight()\n+Clear()\n+SetCursor()\n+Print()\n+GetColumns()\n+GetRows()\n+Write()\n+Command()\n-Init()\n-Exit()
-        }"
-    ]
-    AbstractBacklight [
-        label = "{
-            AbstractBacklight|
-            |
-            +SetOn()\n+SetBrightness()\n+SetRGB()\n-Init()\n-Exit()
-        }"
-    ]
+    /* Backlights group of classes */
+    subgraph cluster_backlights {
+        node [
+            style = filled
+            fillcolor = "pink"
+        ]
+        style = dotted
+        label = "Backlights"
+        AbstractBacklight [
+            label = "{\<abstract\>AbstractBacklight||+SetOn()\n+SetBrightness()\n+SetRGB()\n-Init()\n-Exit()}"
+        ]
+        BinaryBacklight -> AbstractBacklight [style = dashed]
+        I2CRGBPWMBacklight -> AbstractBacklight [style = dashed]
+        NoneBacklight -> AbstractBacklight [style = dashed]
+        PWMBacklight -> AbstractBacklight [style = dashed]
+        RGBBinaryBacklight -> AbstractBacklight [style = dashed]
+        RGBPWMBacklight -> AbstractBacklight [style = dashed]
+    }
 
-    /* Relationships with other classes */
-    BinaryBacklight -> AbstractBacklight [style = dashed]
-    I2CRGBPWMBacklight -> AbstractBacklight [style = dashed]
-    NoneBacklight -> AbstractBacklight [style = dashed]
-    PWMBacklight -> AbstractBacklight [style = dashed]
-    RGBBinaryBacklight -> AbstractBacklight [style = dashed]
-    RGBPWMBacklight -> AbstractBacklight [style = dashed]
+    /* LCDs group of classes */
+    subgraph cluster_lcds {
+        node [
+            style = filled
+            fillcolor = "lightblue"
+        ]
+        style = dotted
+        label = "LCDs"
+        AbstractLCD [
+            label = "{\<abstract\>AbstractLCD|*m_Backlight\n*m_Columns\n*m_Rows|+SetBacklight()\n+Clear()\n+SetCursor()\n+Print()\n+GetColumns()\n+GetRows()\n-Init()\n-Exit()}"
+        ]
+        AbstractTextLCD [
+            label = "{\<abstract\>AbstractTextLCD|*m_Backlight\n*m_Columns\n*m_Rows|+SetBacklight()\n+Clear()\n+SetCursor()\n+Print()\n+GetColumns()\n+GetRows()\n+Write()\n+Command()\n-Init()\n-Exit()}"
+        ]
+        AbstractTextLCD -> AbstractLCD [style = solid]
+        I2CAIP31068TextLCD -> AbstractTextLCD [style = dashed]
+        I2CPCF8574TextLCD -> AbstractTextLCD [style = dashed]
+        I2CRGBTextLCD -> AbstractTextLCD [style = dashed]
+        PPITextLCD -> AbstractTextLCD [style = dashed]
+        SPIAIP31068TextLCD -> AbstractTextLCD [style = dashed]
+    }
 
-    AbstractTextLCD -> AbstractLCD [style = solid]
-    I2CAIP31068TextLCD -> AbstractTextLCD [style = dashed]
-    I2CPCF8574TextLCD -> AbstractTextLCD [style = dashed]
-    I2CRGBTextLCD -> AbstractTextLCD [style = dashed]
-    PPITextLCD -> AbstractTextLCD [style = dashed]
-    SPIAIP31068TextLCD -> AbstractTextLCD [style = dashed]
+    /* UARTSs group of classes */
+    subgraph cluster_uarts {
+        node [
+            style = filled
+            fillcolor = "cyan"
+        ]
+        style = dotted
+        label = "UARTs"
+        AbstractUART [
+            label = "{\<abstract\>AbstractUART|*m_BaudRate|+PutCh()\n+GetCh()\n+Prefill()\n+Available()\n+GetBaudRate()\n+PutStr()\n-Init()\n-Exit()}"
+        ]
+        BufferedUART -> AbstractUART [style = dashed]
+        BufferedUART -> AbstractUART [style = solid, dir = both, arrowhead = open, arrowtail = ediamond, headlabel = "1"]
+        BufferedUART -> note_for_BufferedUART [style = dashed, dir = none]
+        HardwareUART -> AbstractUART [style = dashed]
+        NoneUART -> AbstractUART [style = dashed]
+        SoftwareUART -> AbstractUART [style = dashed]
+        USBVirtualUART -> AbstractUART [style = dashed]
+        TextLoggingUART -> AbstractUART [style = dashed]
+        TextLoggingUART -> AbstractUART [style = solid, dir = both, arrowhead = open, arrowtail = ediamond, headlabel = "2"]
+        TextLoggingUART -> note_for_TextLoggingUART [style = dashed, dir = none]
+        /* UARTs Notes */
+        note_for_BufferedUART [
+            shape = note
+            style = filled
+            fillcolor = yellow
+            label = "Uses another UART\nclass and implements\nan extra buffer for it"
+        ]
+        note_for_TextLoggingUART [
+            shape = note
+            style = filled
+            fillcolor = yellow
+            label = "Uses first UART as\ntransparent input/output\nand second UART for logging\nof trafic in text form"
+        ]
+    }
 
+    /* Keyboards group of classes */
+    subgraph cluster_keyboards {
+        node [
+            style = filled
+            fillcolor = "magenta"
+        ]
+        style = dotted
+        label = "Keyboards"
+        AbstractKeyboard [
+            label = "{\<abstract\>AbstractKeyboard||+GetKey()\n+GetKeyCount()\n-Init()\n-Exit()}"
+        ]
+        AnalogJoystick -> AbstractKeyboard [style = dashed]
+        AnalogKeypad -> AbstractKeyboard [style = dashed]
+        AnalogMatrix -> AbstractKeyboard [style = dashed]
+        DigitalMatrix -> AbstractKeyboard [style = dashed]
+        I2CMPR121CapacitiveKeypad -> AbstractKeyboard [style = dashed]
+        I2CRGBKeypad -> AbstractKeyboard [style = dashed]
+        I2CTTP229CapacitiveKeypad -> AbstractKeyboard [style = dashed]
+        JoinedKeyboard -> AbstractKeyboard [style = dashed]
+        JoinedKeyboard -> AbstractKeyboard [style = solid, dir = both, arrowhead = open, arrowtail = ediamond, headlabel = "1..*"]
+        JoinedKeyboard -> note_for_JoinedKeyboard [style = dashed, dir = none]
+        NoneKeyboard -> AbstractKeyboard [style = dashed]
+        RotaryEncoder -> AbstractKeyboard [style = dashed]
+        SimpleButton -> AbstractKeyboard [style = dashed]
+        /* Keybords notes */
+        note_for_JoinedKeyboard [
+            shape = note
+            style = filled
+            fillcolor = yellow
+            label = "Combines several keyboards\nand presents them as\na single keyboard unit"
+        ]
+    }
+
+    /* Protocols group of classes */
+    subgraph cluster_protocols {
+        node [
+            style = filled
+            fillcolor = "antiquewhite"
+        ]
+        style = dotted
+        label = "Protocols"
+        AbstractProtocol [
+            label = "{\<abstract\>AbstractProtocol|*m_UART\n*m_LCD\n*m_Keyboard|+Loop()\n+Yield()\n-Init()\n-Exit()}"
+        ]
+        LoSPanelProtocol -> AbstractProtocol [style = dashed]
+        RawSerialProtocol -> AbstractProtocol [style = dashed]
+    }
+
+    /* Relationships of main classes */
     AbstractLCD -> AbstractBacklight [style = solid, dir = both, arrowhead = open, arrowtail = ediamond, headlabel = "1"]
-
-    BufferedUART -> AbstractUART [style = dashed]
-    BufferedUART -> AbstractUART [style = solid, dir = both, arrowhead = open, arrowtail = ediamond, headlabel = "1"]
-    HardwareUART -> AbstractUART [style = dashed]
-    NoneUART -> AbstractUART [style = dashed]
-    SoftwareUART -> AbstractUART [style = dashed]
-    USBVirtualUART -> AbstractUART [style = dashed]
-    TextLoggingUART -> AbstractUART [style = dashed]
-    TextLoggingUART -> AbstractUART [style = solid, dir = both, arrowhead = open, arrowtail = ediamond, headlabel = "2"]
-
-    AnalogJoystick -> AbstractKeyboard [style = dashed]
-    AnalogKeypad -> AbstractKeyboard [style = dashed]
-    AnalogMatrix -> AbstractKeyboard [style = dashed]
-    DigitalMatrix -> AbstractKeyboard [style = dashed]
-    I2CMPR121CapacitiveKeypad -> AbstractKeyboard [style = dashed]
-    I2CRGBKeypad -> AbstractKeyboard [style = dashed]
-    I2CTTP229CapacitiveKeypad -> AbstractKeyboard [style = dashed]
-    JoinedKeyboard -> AbstractKeyboard [style = dashed]
-    JoinedKeyboard -> AbstractKeyboard [style = solid, dir = both, arrowhead = open, arrowtail = ediamond, headlabel = "1.."]
-    NoneKeyboard -> AbstractKeyboard [style = dashed]
-    RotaryEncoder -> AbstractKeyboard [style = dashed]
-    SimpleButton -> AbstractKeyboard [style = dashed]
-
     AbstractProtocol -> AbstractLCD [style = solid, dir = both, arrowhead = open, arrowtail = ediamond, headlabel = "1"]
     AbstractProtocol -> AbstractUART [style = solid, dir = both, arrowhead = open, arrowtail = ediamond, headlabel = "1"]
     AbstractProtocol -> AbstractKeyboard [style = solid, dir = both, arrowhead = open, arrowtail = ediamond, headlabel = "1"]
-    LoSPanelProtocol -> AbstractProtocol [style = dashed]
-    RawSerialProtocol -> AbstractProtocol [style = dashed]
 
-    /* Notes */
-    note_for_BufferedUART [
+    main [
+        style = filled
+        fillcolor = "crimson"
+        label = "setup() and loop()"
+    ]
+    main -> AbstractBacklight [lhead = cluster_backlights, style = solid, dir = both, arrowhead = open, arrowtail = diamond, headlabel = "1"]
+    main -> AbstractLCD [lhead = cluster_lcds, style = solid, dir = both, arrowhead = open, arrowtail = diamond, headlabel = "1"]
+    main -> AbstractKeyboard [lhead = cluster_keyboards, style = solid, dir = both, arrowhead = open, arrowtail = diamond, headlabel = "1"]
+    main -> AbstractProtocol [lhead = cluster_protocols, style = solid, dir = both, arrowhead = open, arrowtail = diamond, headlabel = "1"]
+
+    main -> note_for_main [style = dashed, dir = none]
+    note_for_main [
         shape = note
         style = filled
         fillcolor = yellow
-        label = "Uses another UART\nclass and implements\nan extra buffer for it"
+        label = "Create instances of\nproper classes based on\nuser defined configuration,\nlinks all classes together\nand starts the protocol execution"
     ]
-    note_for_BufferedUART -> BufferedUART [style = dashed, dir = none]
-
-    note_for_TextLoggingUART [
-        shape = note
-        style = filled
-        fillcolor = yellow
-        label = "Uses first UART as\ntransparent input/output\nand second UART for logging\nof trafic in text form"
-    ]
-    note_for_TextLoggingUART -> TextLoggingUART [style = dashed, dir = none]
-
-    note_for_JoinedKeyboard [
-        shape = note
-        style = filled
-        fillcolor = yellow
-        label = "Combines several keyboards\nand presents them as\na single keyboard unit"
-    ]
-    note_for_JoinedKeyboard -> JoinedKeyboard [style = dashed, dir = none]
 }
