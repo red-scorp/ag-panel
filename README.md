@@ -77,7 +77,6 @@ The code of ag-panel can be compiled with Arduino IDE or PlatformIO (Atom or VS 
 Following libraries might be required:
 - LiquidCrystal (887)
 - LiquidCrystal_I2C (576)
-- AdaFruit_RGBLCDShield (3121)
 - Adafruit MPR121 (839)
 - Adafruit RGB LCD Shield Library (762)
 - TTP229 (6690)
