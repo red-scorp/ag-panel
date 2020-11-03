@@ -2,7 +2,7 @@
   \file init.cpp
   \brief AG-Panel Project UART initialization
   \copyright (C) 2020 Andriy Golovnya
-  \author Andriy Golovnya (andriy.golovnya@googlemail.com)
+  \author Andriy Golovnya (andriy.golovnya@gmail.com)
 */
 
 #include "../private.h"

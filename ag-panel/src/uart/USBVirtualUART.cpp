@@ -2,7 +2,7 @@
   \file USBVirtualUART.cpp
   \brief AG-Panel Project direct USB virtual UART implementation
   \copyright (C) 2020 Andriy Golovnya
-  \author Andriy Golovnya (andriy.golovnya@googlemail.com)
+  \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
 #include "USBVirtualUART.h"

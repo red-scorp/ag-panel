@@ -2,7 +2,7 @@
   \file debug.cpp
   \brief AG-Panel Project debugging helper functions
   \copyright (C) 2020 Andriy Golovnya
-  \author Andriy Golovnya (andriy.golovnya@googlemail.com)
+  \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
 #include "private.h"

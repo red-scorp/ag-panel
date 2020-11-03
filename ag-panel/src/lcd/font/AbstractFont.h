@@ -2,7 +2,7 @@
   \file AbstractFont.h
   \brief AG-Panel Project abstract font interface
   \copyright (C) 2020 Andriy Golovnya
-  \author Andriy Golovnya (andriy.golovnya@googlemail.com)
+  \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
 #pragma once

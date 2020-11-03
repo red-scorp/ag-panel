@@ -1,8 +1,8 @@
 /*!
   \file PPITextLCD.h
   \brief AG-Panel Project PPI (parallel) 4 and 8-bit text (hd44780) LCD interface
-  \copyright (C) 2019 Andriy Golovnya
-  \author Andriy Golovnya (andriy.golovnya@googlemail.com)
+  \copyright (C) 2019-2020 Andriy Golovnya
+  \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
 #pragma once

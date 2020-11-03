@@ -2,7 +2,7 @@
   \file I2CMPR121CapacitiveKeypad.cpp
   \brief AG-Panel Project I2C MPR121 capacitive matrix keyboard implementation
   \copyright (C) 2019-2020 Andriy Golovnya
-  \author Andriy Golovnya (andriy.golovnya@googlemail.com)
+  \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
 #include "../private.h"

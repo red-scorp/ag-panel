@@ -1,8 +1,8 @@
 /*!
   \file PWMBacklight.h
   \brief AG-Panel Project PWM (0-255) backlight interface
-  \copyright (C) 2019 Andriy Golovnya
-  \author Andriy Golovnya (andriy.golovnya@googlemail.com)
+  \copyright (C) 2019-2020 Andriy Golovnya
+  \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
 #pragma once

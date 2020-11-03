@@ -2,7 +2,7 @@
   \file private.h
   \brief AG-Panel Project private header
   \copyright (C) 2019-2020 Andriy Golovnya
-  \author Andriy Golovnya (andriy.golovnya@googlemail.com)
+  \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
 #pragma once

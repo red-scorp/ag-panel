@@ -1,8 +1,8 @@
 /*!
   \file LoSPanelProtocol.cpp
   \brief AG-Panel Project LoS-panel protocol implmentation
-  \copyright (C) 2019 Andriy Golovnya
-  \author Andriy Golovnya (andriy.golovnya@googlemail.com)
+  \copyright (C) 2019-2020 Andriy Golovnya
+  \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
 #include "../private.h"
