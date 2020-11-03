@@ -8,6 +8,7 @@
 #pragma once
 
 #include "backlight/all.h"
+#include "font/all.h"
 
 #include "AbstractLCD.h"
 #include "AbstractTextLCD.h"
