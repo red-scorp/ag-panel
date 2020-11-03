@@ -25,7 +25,8 @@ public:
     m_GlyphData(nullptr),
     m_DataRangeBegin(0),
     m_DataRangeEnd(0),
-    m_DefaultGlyph(0) { Init(); }
+    m_DefaultGlyph(0),
+    m_Glyph() { Init(); }
   virtual ~AbstractFixedFont() { Exit(); }
 
   /*! Get normal X size of font glyphs in pixels */
@@ -33,7 +34,23 @@ public:
   /*! Get normal Y size of font glyphs in pixels */
   virtual uint8_t GetGlyphYSize(void) const override { return m_GlyphYSize; };
 
-  virtual const Glyph *GetGlyph(uint8_t number) override { /* TODO: do a magic here! */ };
+  virtual const Glyph *GetGlyph(uint8_t number) override {
+
+    if(m_GlyphData == nullptr)
+      return nullptr;
+
+    m_Glyph.m_GlyphXSize = m_GlyphXSize;
+    m_Glyph.m_GlyphYSize = m_GlyphYSize;
+    m_Glyph.m_LineWidth = (m_Glyph.m_GlyphXSize + 7) / 8;
+    m_Glyph.m_NumberLines = m_Glyph.m_GlyphYSize;
+
+    if(number < m_DataRangeBegin || number > m_DataRangeEnd)
+      number = m_DefaultGlyph + m_DataRangeBegin;
+
+    m_Glyph.m_PixelBuffer = &m_GlyphData[(number - m_DataRangeBegin) * m_Glyph.m_LineWidth * m_Glyph.m_NumberLines];
+
+    return &m_Glyph;
+  };
 
 protected:
   uint8_t m_GlyphXSize;       /*!< Size of a glyph in X direction */
@@ -42,6 +59,7 @@ protected:
   uint16_t m_DataRangeBegin;  /*!< Number of first glyph in data array */
   uint16_t m_DataRangeEnd;    /*!< Number of last glyph in data array */
   uint16_t m_DefaultGlyph;    /*!< Default 'missing' glyph number */
+  Glyph m_Glyph;              /*!< Glyph data returned by #GetGlyph */
 
 private:
   bool Init() { return true; }

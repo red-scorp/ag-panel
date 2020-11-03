@@ -16,8 +16,16 @@
  */
 class Glyph {
 public:
-  uint8_t m_GlyphXSize;     /*!< Size of glyph in X direction in pixels */
-  uint8_t m_GlyphYSize;     /*!< Size of glyph in Y direction in pixels */
+  Glyph():
+    m_GlyphXSize(0),
+    m_GlyphYSize(0),
+    m_LineWidth(0),
+    m_NumberLines(0),
+    m_PixelBuffer(nullptr) {}
+
+public:
+  uint8_t m_GlyphXSize;     /*!< Size of the glyph in X direction in pixels */
+  uint8_t m_GlyphYSize;     /*!< Size of the glyph in Y direction in pixels */
   uint8_t m_LineWidth;      /*!< Horisontal width of glyphs in bytes */
   uint8_t m_NumberLines;    /*!< Vertical number of lines in this glyph */
   const uint8_t *m_PixelBuffer;   /*!< Pointer to an array of bytes which holds glyph data */
