@@ -33,8 +33,12 @@ public:
   virtual uint8_t GetGlyphXSize(void) const override { return m_GlyphXSize; };
   /*! Get normal Y size of font glyphs in pixels */
   virtual uint8_t GetGlyphYSize(void) const override { return m_GlyphYSize; };
-
-  virtual const Glyph *GetGlyph(uint8_t number) override {
+  /*! Get a glyph data from raw pixel data array addressed by glyph number
+    \returns Glyph description record in case of success, \a nullptr in case of error
+  */
+  virtual const Glyph *GetGlyph(
+    uint8_t number      /*!< Glyph number */
+  ) override {
 
     if(m_GlyphData == nullptr)
       return nullptr;
