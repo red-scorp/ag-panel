@@ -24,12 +24,35 @@ digraph class_diagram {
         AbstractBacklight [
             label = "{\<abstract\>AbstractBacklight||+SetOn()\n+SetBrightness()\n+SetRGB()\n-Init()\n-Exit()}"
         ]
-        BinaryBacklight -> AbstractBacklight [style = dashed]
-        I2CRGBPWMBacklight -> AbstractBacklight [style = dashed]
-        NoneBacklight -> AbstractBacklight [style = dashed]
-        PWMBacklight -> AbstractBacklight [style = dashed]
-        RGBBinaryBacklight -> AbstractBacklight [style = dashed]
-        RGBPWMBacklight -> AbstractBacklight [style = dashed]
+        BinaryBacklight -> AbstractBacklight [style = dashed, arrowhead = onormal]
+        I2CRGBPWMBacklight -> AbstractBacklight [style = dashed, arrowhead = onormal]
+        NoneBacklight -> AbstractBacklight [style = dashed, arrowhead = onormal]
+        PWMBacklight -> AbstractBacklight [style = dashed, arrowhead = onormal]
+        RGBBinaryBacklight -> AbstractBacklight [style = dashed, arrowhead = onormal]
+        RGBPWMBacklight -> AbstractBacklight [style = dashed, arrowhead = onormal]
+    }
+
+    /* Fonts group of classes */
+    subgraph cluster_fonts {
+        node [
+            style = filled
+            fillcolor = "gray90"
+        ]
+        style = dotted
+        label = "Fonts"
+        Glyph [
+            label = "{Glyph|+m_GlyphXSize\n+m_GlyphYSize\n+m_LineWidth\n+m_NumberLines\n+m_PixelBuffer|}"
+        ]
+        AbstractFont [
+            label = "{\<abstract\>AbstractFont||+GetGlyphXSize()\n+GetGlyphYSize()\n+GetGlyph()\n-Init()\n-Exit()}"
+        ]
+        AbstractFixedFont [
+            label = "{\<abstract\>AbstractFixedFont|*m_GlyphXSize\n*m_GlyphYSize\n*m_GlyphData\n*m_DataRangeBegin\n*m_DataRangeEnd\n*m_DefaultGlyph\n*m_Glyph|+GetGlyphXSize()\n+GetGlyphYSize()\n+GetGlyph()\n-Init()\n-Exit()}"
+        ]
+        AbstractFont -> Glyph [arrowhead = open]
+        AbstractFixedFont -> AbstractFont [style = solid, arrowhead = onormal]
+        AbstractFixedFont -> Glyph [style = solid, dir = both, arrowhead = open, arrowtail = diamond, headlabel = "1"]
+        //SomeFixedFont -> AbstractFixedFont [style = dashed, arrowhead = onormal]
     }
 
     /* LCDs group of classes */
@@ -46,12 +69,12 @@ digraph class_diagram {
         AbstractTextLCD [
             label = "{\<abstract\>AbstractTextLCD|*m_Backlight\n*m_Columns\n*m_Rows|+SetBacklight()\n+Clear()\n+SetCursor()\n+Print()\n+GetColumns()\n+GetRows()\n+Write()\n+Command()\n-Init()\n-Exit()}"
         ]
-        AbstractTextLCD -> AbstractLCD [style = solid]
-        I2CAIP31068TextLCD -> AbstractTextLCD [style = dashed]
-        I2CPCF8574TextLCD -> AbstractTextLCD [style = dashed]
-        I2CRGBTextLCD -> AbstractTextLCD [style = dashed]
-        PPITextLCD -> AbstractTextLCD [style = dashed]
-        SPIAIP31068TextLCD -> AbstractTextLCD [style = dashed]
+        AbstractTextLCD -> AbstractLCD [style = solid, arrowhead = onormal]
+        I2CAIP31068TextLCD -> AbstractTextLCD [style = dashed, arrowhead = onormal]
+        I2CPCF8574TextLCD -> AbstractTextLCD [style = dashed, arrowhead = onormal]
+        I2CRGBTextLCD -> AbstractTextLCD [style = dashed, arrowhead = onormal]
+        PPITextLCD -> AbstractTextLCD [style = dashed, arrowhead = onormal]
+        SPIAIP31068TextLCD -> AbstractTextLCD [style = dashed, arrowhead = onormal]
     }
 
     /* UARTSs group of classes */
@@ -65,14 +88,14 @@ digraph class_diagram {
         AbstractUART [
             label = "{\<abstract\>AbstractUART|*m_BaudRate|+PutCh()\n+GetCh()\n+Prefill()\n+Available()\n+GetBaudRate()\n+PutStr()\n-Init()\n-Exit()}"
         ]
-        BufferedUART -> AbstractUART [style = dashed]
+        BufferedUART -> AbstractUART [style = dashed, arrowhead = onormal]
         BufferedUART -> AbstractUART [style = solid, dir = both, arrowhead = open, arrowtail = ediamond, headlabel = "1"]
         BufferedUART -> note_for_BufferedUART [style = dashed, dir = none]
-        HardwareUART -> AbstractUART [style = dashed]
-        NoneUART -> AbstractUART [style = dashed]
-        SoftwareUART -> AbstractUART [style = dashed]
-        USBVirtualUART -> AbstractUART [style = dashed]
-        TextLoggingUART -> AbstractUART [style = dashed]
+        HardwareUART -> AbstractUART [style = dashed, arrowhead = onormal]
+        NoneUART -> AbstractUART [style = dashed, arrowhead = onormal]
+        SoftwareUART -> AbstractUART [style = dashed, arrowhead = onormal]
+        USBVirtualUART -> AbstractUART [style = dashed, arrowhead = onormal]
+        TextLoggingUART -> AbstractUART [style = dashed, arrowhead = onormal]
         TextLoggingUART -> AbstractUART [style = solid, dir = both, arrowhead = open, arrowtail = ediamond, headlabel = "2"]
         TextLoggingUART -> note_for_TextLoggingUART [style = dashed, dir = none]
         /* UARTs Notes */
@@ -101,19 +124,19 @@ digraph class_diagram {
         AbstractKeyboard [
             label = "{\<abstract\>AbstractKeyboard||+GetKey()\n+GetKeyCount()\n-Init()\n-Exit()}"
         ]
-        AnalogJoystick -> AbstractKeyboard [style = dashed]
-        AnalogKeypad -> AbstractKeyboard [style = dashed]
-        AnalogMatrix -> AbstractKeyboard [style = dashed]
-        DigitalMatrix -> AbstractKeyboard [style = dashed]
-        I2CMPR121CapacitiveKeypad -> AbstractKeyboard [style = dashed]
-        I2CRGBKeypad -> AbstractKeyboard [style = dashed]
-        I2CTTP229CapacitiveKeypad -> AbstractKeyboard [style = dashed]
-        JoinedKeyboard -> AbstractKeyboard [style = dashed]
+        AnalogJoystick -> AbstractKeyboard [style = dashed, arrowhead = onormal]
+        AnalogKeypad -> AbstractKeyboard [style = dashed, arrowhead = onormal]
+        AnalogMatrix -> AbstractKeyboard [style = dashed, arrowhead = onormal]
+        DigitalMatrix -> AbstractKeyboard [style = dashed, arrowhead = onormal]
+        I2CMPR121CapacitiveKeypad -> AbstractKeyboard [style = dashed, arrowhead = onormal]
+        I2CRGBKeypad -> AbstractKeyboard [style = dashed, arrowhead = onormal]
+        I2CTTP229CapacitiveKeypad -> AbstractKeyboard [style = dashed, arrowhead = onormal]
+        JoinedKeyboard -> AbstractKeyboard [style = dashed, arrowhead = onormal]
         JoinedKeyboard -> AbstractKeyboard [style = solid, dir = both, arrowhead = open, arrowtail = ediamond, headlabel = "1..*"]
         JoinedKeyboard -> note_for_JoinedKeyboard [style = dashed, dir = none]
-        NoneKeyboard -> AbstractKeyboard [style = dashed]
-        RotaryEncoder -> AbstractKeyboard [style = dashed]
-        SimpleButton -> AbstractKeyboard [style = dashed]
+        NoneKeyboard -> AbstractKeyboard [style = dashed, arrowhead = onormal]
+        RotaryEncoder -> AbstractKeyboard [style = dashed, arrowhead = onormal]
+        SimpleButton -> AbstractKeyboard [style = dashed, arrowhead = onormal]
         /* Keybords notes */
         note_for_JoinedKeyboard [
             shape = note
