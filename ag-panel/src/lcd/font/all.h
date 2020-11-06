@@ -10,4 +10,4 @@
 #include "AbstractFont.h"
 #include "AbstractFixedFont.h"
 
-// TODO: AbstractFont *initFont();
+extern AbstractFont *initFont();

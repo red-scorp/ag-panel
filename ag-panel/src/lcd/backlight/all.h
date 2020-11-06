@@ -16,4 +16,4 @@
 #include "RGBBinaryBacklight.h"
 #include "I2CRGBPWMBacklight.h"
 
-AbstractBacklight *initBacklight();
+extern AbstractBacklight *initBacklight();

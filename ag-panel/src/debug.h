@@ -45,4 +45,4 @@ extern AbstractUART *g_DebugUART;
 #define DEBUG_STR(str) /* Nothig */
 #endif
 
-AbstractUART* initDebug();
+extern AbstractUART* initDebug();

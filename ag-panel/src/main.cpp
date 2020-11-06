@@ -89,11 +89,15 @@ void setup() {
   /* 3. Third step is to initialize display output */
   /* 3.1. Initializing LCD backlight class */
   DEBUG_STR("Initializing Backlight...\n");
-  AbstractBacklight *Backlight = initBacklight();
+  AbstractBacklight *p_Backlight = initBacklight();
 
-  /* 3.2. Initialize LCD itself */
+  /* 3.2. Initialize LCD font class */
+  DEBUG_STR("Initializing Font...\n")
+  AbstractFont *p_Font = initFont();
+
+  /* 3.3. Initialize LCD itself */
   DEBUG_STR("Initializing LCD...\n");
-  s_LCD = initLCD(Backlight);
+  s_LCD = initLCD(p_Backlight, p_Font);
 
   /* 4. Now we should initialize keyboard for input to be ready */
   DEBUG_STR("Initializing Keyboard...\n");

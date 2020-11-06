@@ -16,7 +16,10 @@
   This function chooses one of LCD classes to use based on configuration defined in config.h
   \returns Pointer to LCD class
  */
-AbstractLCD *initLCD(AbstractBacklight *Backlight) {
+AbstractLCD *initLCD(
+  AbstractBacklight *Backlight,   /*!< Pointer to configured backlight class */
+  AbstractFont *Font              /*!< Pointer to configured font class */
+) {
   AbstractLCD *p_LCD = nullptr;
 
   #if defined(LCD_TEXT_4BIT) || defined(LCD_TEXT_8BIT)

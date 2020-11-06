@@ -16,4 +16,4 @@
 #include "TextLoggingUART.h"
 #include "USBVirtualUART.h"
 
-AbstractUART *initUART();
+extern AbstractUART *initUART();

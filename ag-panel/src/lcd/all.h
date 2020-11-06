@@ -19,4 +19,4 @@
 #include "I2CAIP31068TextLCD.h"
 #include "SPIAIP31068TextLCD.h"
 
-AbstractLCD *initLCD(AbstractBacklight *Backlight);
+extern AbstractLCD *initLCD(AbstractBacklight *Backlight, AbstractFont *Font);
