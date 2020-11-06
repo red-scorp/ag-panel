@@ -55,7 +55,7 @@
 //#define LCD_BACKLIGHT_I2C_RGB_PWM
 /* Add 'Backlight=yes' to '[hd44780]' section of your '/etc/LCDd.conf' if you use any other value LCD_BACKLIGHT_NONE */
 
-#define LCD_FONT_8X8_TEST
+//#define LCD_FONT_8X8_TEST
 
 /* Keyboard Configuration */
 /* ------------------------------------------------------------------------- */

@@ -20,7 +20,7 @@ AbstractFont *initFont() {
   AbstractFont *p_Font = nullptr;
 
   #if defined(LCD_FONT_8X8_TEST)
-    // TODO: add code here!
+    p_Font = new Fixed8x8TestFont();
   #endif
 
   return p_Font;

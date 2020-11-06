@@ -10,4 +10,6 @@
 #include "AbstractFont.h"
 #include "AbstractFixedFont.h"
 
+#include "Fixed8x8TestFont.h"
+
 extern AbstractFont *initFont();

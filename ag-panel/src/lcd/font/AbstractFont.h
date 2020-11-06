@@ -15,6 +15,7 @@
   This is a glyph format whichg will be returned by function #GetGlyph.
  */
 class Glyph {
+
 public:
   Glyph():
     m_GlyphXSize(0),
