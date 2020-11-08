@@ -4,7 +4,7 @@ digraph class_diagram {
         shape = record
     ]
     compound = true
-    #splines = false
+    //splines = false
 
     /* Header with version information */
     main_note [
