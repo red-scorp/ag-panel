@@ -52,7 +52,7 @@ digraph class_diagram {
         AbstractFont -> Glyph [arrowhead = open]
         AbstractFixedFont -> AbstractFont [style = solid, arrowhead = onormal]
         AbstractFixedFont -> Glyph [style = solid, dir = both, arrowhead = open, arrowtail = diamond, headlabel = "1"]
-        //SomeFixedFont -> AbstractFixedFont [style = dashed, arrowhead = onormal]
+        Fixed8x8TestFont -> AbstractFixedFont [style = dashed, arrowhead = onormal]
     }
 
     /* LCDs group of classes */
@@ -69,12 +69,16 @@ digraph class_diagram {
         AbstractTextLCD [
             label = "{\<abstract\>AbstractTextLCD|*m_Backlight\n*m_Columns\n*m_Rows|+SetBacklight()\n+Clear()\n+SetCursor()\n+Print()\n+GetColumns()\n+GetRows()\n+Write()\n+Command()\n-Init()\n-Exit()}"
         ]
+        AbstractGraphicLCD [
+            label = "{\<abstract\>AbstractGraphicLCD|*m_Backlight\n*m_Columns\n*m_Rows\n*m_Font\n*m_XSize\n*m_YSize\n*m_XOffset\n*m_YOffset|+SetBacklight()\n+Clear()\n+SetCursor()\n+Print()\n+GetColumns()\n+GetRows()\n*CalculateTextSize()\n-Init()\n-Exit()}"
+        ]
         AbstractTextLCD -> AbstractLCD [style = solid, arrowhead = onormal]
         I2CAIP31068TextLCD -> AbstractTextLCD [style = dashed, arrowhead = onormal]
         I2CPCF8574TextLCD -> AbstractTextLCD [style = dashed, arrowhead = onormal]
         I2CRGBTextLCD -> AbstractTextLCD [style = dashed, arrowhead = onormal]
         PPITextLCD -> AbstractTextLCD [style = dashed, arrowhead = onormal]
         SPIAIP31068TextLCD -> AbstractTextLCD [style = dashed, arrowhead = onormal]
+        AbstractGraphicLCD -> AbstractLCD [style = solid, arrowhead = onormal]
     }
 
     /* UARTSs group of classes */
@@ -163,6 +167,7 @@ digraph class_diagram {
 
     /* Relationships of main classes */
     AbstractLCD -> AbstractBacklight [style = solid, dir = both, arrowhead = open, arrowtail = ediamond, headlabel = "1"]
+    AbstractGraphicLCD -> AbstractFont [style = solid, dir = both, arrowhead = open, arrowtail = ediamond, headlabel = "1"]
     AbstractProtocol -> AbstractLCD [style = solid, dir = both, arrowhead = open, arrowtail = ediamond, headlabel = "1"]
     AbstractProtocol -> AbstractUART [style = solid, dir = both, arrowhead = open, arrowtail = ediamond, headlabel = "1"]
     AbstractProtocol -> AbstractKeyboard [style = solid, dir = both, arrowhead = open, arrowtail = ediamond, headlabel = "1"]
@@ -173,6 +178,7 @@ digraph class_diagram {
         label = "setup() and loop()"
     ]
     main -> AbstractBacklight [lhead = cluster_backlights, style = solid, dir = both, arrowhead = open, arrowtail = diamond, headlabel = "1"]
+    main -> AbstractFont [lhead = cluster_fonts, style = solid, dir = both, arrowhead = open, arrowtail = diamond, headlabel = "1"]
     main -> AbstractLCD [lhead = cluster_lcds, style = solid, dir = both, arrowhead = open, arrowtail = diamond, headlabel = "1"]
     main -> AbstractKeyboard [lhead = cluster_keyboards, style = solid, dir = both, arrowhead = open, arrowtail = diamond, headlabel = "1"]
     main -> AbstractProtocol [lhead = cluster_protocols, style = solid, dir = both, arrowhead = open, arrowtail = diamond, headlabel = "1"]
