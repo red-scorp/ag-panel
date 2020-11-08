@@ -4,6 +4,7 @@ digraph class_diagram {
         shape = record
     ]
     compound = true
+    #splines = false
 
     /* Header with version information */
     main_note [
@@ -30,6 +31,13 @@ digraph class_diagram {
         PWMBacklight -> AbstractBacklight [style = dashed, arrowhead = onormal]
         RGBBinaryBacklight -> AbstractBacklight [style = dashed, arrowhead = onormal]
         RGBPWMBacklight -> AbstractBacklight [style = dashed, arrowhead = onormal]
+
+        backlights_note [
+            shape = note
+            style = filled
+            fillcolor = yellow
+            label = "Backlights are used\nto allow LCDs to control\nexternal backlights, normally\na single or multiple LEDs"
+        ]
     }
 
     /* Fonts group of classes */
@@ -53,6 +61,13 @@ digraph class_diagram {
         AbstractFixedFont -> AbstractFont [style = solid, arrowhead = onormal]
         AbstractFixedFont -> Glyph [style = solid, dir = both, arrowhead = open, arrowtail = diamond, headlabel = "1"]
         Fixed8x8TestFont -> AbstractFixedFont [style = dashed, arrowhead = onormal]
+
+        fonts_note [
+            shape = note
+            style = filled
+            fillcolor = yellow
+            label = "Fonts are used to allow\ngraphic LCDs to display\ntextual information"
+        ]
     }
 
     /* LCDs group of classes */
@@ -79,6 +94,13 @@ digraph class_diagram {
         PPITextLCD -> AbstractTextLCD [style = dashed, arrowhead = onormal]
         SPIAIP31068TextLCD -> AbstractTextLCD [style = dashed, arrowhead = onormal]
         AbstractGraphicLCD -> AbstractLCD [style = solid, arrowhead = onormal]
+
+        lcd_note [
+            shape = note
+            style = filled
+            fillcolor = yellow
+            label = "LCDs are used to implement\na visualization of data\nreceived from the host"
+        ]
     }
 
     /* UARTSs group of classes */
@@ -115,6 +137,13 @@ digraph class_diagram {
             fillcolor = yellow
             label = "Uses first UART as\ntransparent input/output\nand second UART for logging\nof trafic in text form"
         ]
+
+        uarts_note [
+            shape = note
+            style = filled
+            fillcolor = yellow
+            label = "UARTs are used to\ncommunicate with host\nin one of available ways"
+        ]
     }
 
     /* Keyboards group of classes */
@@ -148,6 +177,13 @@ digraph class_diagram {
             fillcolor = yellow
             label = "Combines several keyboards\nand presents them as\na single keyboard unit"
         ]
+
+        keyboards_note [
+            shape = note
+            style = filled
+            fillcolor = yellow
+            label = "Keyboards are used to\nallow user input to be\ncollected and sent to host"
+        ]
     }
 
     /* Protocols group of classes */
@@ -163,6 +199,13 @@ digraph class_diagram {
         ]
         LoSPanelProtocol -> AbstractProtocol [style = dashed]
         RawSerialProtocol -> AbstractProtocol [style = dashed]
+
+        protocols_note [
+            shape = note
+            style = filled
+            fillcolor = yellow
+            label = "Protocols implement\ndifferent ways host\ncan talk to AG-Panel"
+        ]
     }
 
     /* Relationships of main classes */
@@ -175,7 +218,7 @@ digraph class_diagram {
     main [
         style = filled
         fillcolor = "crimson"
-        label = "setup() and loop()"
+        label = "setup()"
     ]
     main -> AbstractBacklight [lhead = cluster_backlights, style = solid, dir = both, arrowhead = open, arrowtail = diamond, headlabel = "1"]
     main -> AbstractFont [lhead = cluster_fonts, style = solid, dir = both, arrowhead = open, arrowtail = diamond, headlabel = "1"]
