@@ -50,12 +50,13 @@ protected:
   /*! \brief Count number of character positions based on font parameters
    */
   void CalculateTextSize() {
-    if(m_Font != nullptr) {
-      if(m_Font->GetGlyphXSize() != 0) {
+
+    if(m_Font != nullptr) { /* do we have font instance? */
+      if(m_Font->GetGlyphXSize() != 0) { /* do we have font with fixed X size? */
         m_Columns = m_XSize / m_Font->GetGlyphXSize();
         m_XOffset = (m_XSize % m_Font->GetGlyphXSize()) / 2;
       }
-      if(m_Font->GetGlyphYSize() != 0) {
+      if(m_Font->GetGlyphYSize() != 0) { /* do we have font with fixed Y size? */
         m_Rows = m_YSize / m_Font->GetGlyphYSize();
         m_YOffset = (m_YSize % m_Font->GetGlyphXSize()) / 2;
       }
