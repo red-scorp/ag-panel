@@ -12,6 +12,7 @@
 
 #include "AbstractLCD.h"
 #include "AbstractTextLCD.h"
+#include "AbstractGraphicLCD.h"
 
 #include "PPITextLCD.h"
 #include "I2CPCF8574TextLCD.h"

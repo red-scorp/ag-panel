@@ -40,6 +40,9 @@ public:
   using AbstractLCD::GetColumns;
   using AbstractLCD::GetRows;
 
+  virtual void SetPixel(uint16_t x, uint16_t y, bool on) = 0;
+  virtual void Flush() {}
+
 protected:
   AbstractFont *m_Font;       /*!< Pointer to a font instance */
   uint16_t m_XSize;           /*!< Number of pixels in X direction of the graphic LCD */
