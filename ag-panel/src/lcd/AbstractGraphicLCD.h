@@ -30,15 +30,30 @@ public:
     m_XSize(XSize),
     m_YSize(YSize),
     m_XOffset(0),
-    m_YOffset(0) { Init(); }
+    m_YOffset(0),
+    m_CursorColumn(0),
+    m_CursorRow(0) { Init(); }
   virtual ~AbstractGraphicLCD() override { Exit(); }
 
   using AbstractLCD::SetBacklight;
-  using AbstractLCD::Clear;
-  using AbstractLCD::SetCursor;
-  using AbstractLCD::Print;
   using AbstractLCD::GetColumns;
   using AbstractLCD::GetRows;
+
+  virtual void Clear() {
+    for(uint32_t y = 0; y < m_YSize; y++)
+      for(uint32_t x = 0; x < m_XSize; x++)
+        SetPixel(x, y, false);
+  }
+
+  virtual void SetCursor(uint8_t column, uint8_t row) {
+    if(column < m_Columns && row < m_Rows) {
+      m_CursorColumn = column;
+      m_CursorRow = row;
+    }
+  }
+
+  virtual void Print(const char *str) { /* TODO */ };
+  virtual void Print(char ch) { /* TODO */ };
 
   virtual void SetPixel(uint16_t x, uint16_t y, bool on) = 0;
   virtual void Flush() {}
@@ -49,10 +64,12 @@ protected:
   uint16_t m_YSize;           /*!< Number of pixels in Y direction of the graphic LCD */
   uint16_t m_XOffset;         /*!< Number of pixels in X direction around text area of the graphic LCD */
   uint16_t m_YOffset;         /*!< Number of pixels in Y direction around text area of the graphic LCD */
+  uint8_t m_CursorColumn;     /*!< X position of text cursor */
+  uint8_t m_CursorRow;        /*!< Y position of text cursor */
 
   /*! \brief Count number of character positions based on font parameters
    */
-  void CalculateTextSize() {
+  virtual void CalculateTextSize() {
 
     if(m_Font != nullptr) { /* do we have font instance? */
       if(m_Font->GetGlyphXSize() != 0) { /* do we have font with fixed X size? */
