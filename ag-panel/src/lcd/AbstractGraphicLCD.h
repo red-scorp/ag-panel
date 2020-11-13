@@ -39,21 +39,21 @@ public:
   using AbstractLCD::GetColumns;
   using AbstractLCD::GetRows;
 
-  virtual void Clear() {
+  virtual void Clear() override {
     for(uint32_t y = 0; y < m_YSize; y++)
       for(uint32_t x = 0; x < m_XSize; x++)
         SetPixel(x, y, false);
   }
 
-  virtual void SetCursor(uint8_t column, uint8_t row) {
+  virtual void SetCursor(uint8_t column, uint8_t row) override {
     if(column < m_Columns && row < m_Rows) {
       m_CursorColumn = column;
       m_CursorRow = row;
     }
   }
 
-  virtual void Print(const char *str) { /* TODO */ };
-  virtual void Print(char ch) { /* TODO */ };
+  virtual void Print(const char *str) override { /* TODO */ };
+  virtual void Print(char ch) override { /* TODO */ };
 
   virtual void SetPixel(uint16_t x, uint16_t y, bool on) = 0;
   virtual void Flush() {}
