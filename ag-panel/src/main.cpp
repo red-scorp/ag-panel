@@ -109,7 +109,7 @@ void setup() {
   DEBUG_STR("Initializing Protocol...\n");
   s_Protocol = initProtocol(s_UART, s_LCD, s_Keyboard);
 
-  /*! 6. Print a splash screen/welcome message. */
+  /* 6. Print a splash screen/welcome message. */
   print_welcome();
 }
 
