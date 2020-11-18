@@ -39,23 +39,60 @@ public:
   using AbstractLCD::GetColumns;
   using AbstractLCD::GetRows;
 
+  /*! \brief Clear graphic screen
+  
+    Inefficient but good-for-all implementation of graphic display clearing function.
+    Presuposes the #SetPixel function implemented correctly.
+    It's recommended to write optimized Clear functions in nested classes.
+   */
   virtual void Clear() override {
     for(uint32_t y = 0; y < m_YSize; y++)
       for(uint32_t x = 0; x < m_XSize; x++)
         SetPixel(x, y, false);
   }
 
-  virtual void SetCursor(uint8_t column, uint8_t row) override {
+  /*! \brief Set text cursor to give position 
+
+    Set position of text cursor.
+   */
+  virtual void SetCursor(
+    uint8_t column,       /*!< New X-position of text cursor */
+    uint8_t row           /*!< New Y-position of text cursor */
+  ) override {
     if(column < m_Columns && row < m_Rows) {
       m_CursorColumn = column;
       m_CursorRow = row;
     }
   }
 
-  virtual void Print(const char *str) override { /* TODO */ };
-  virtual void Print(char ch) override { /* TODO */ };
+  /*! \brief Print a character
+  
+    Print a character from given font on graphic display and move cursor one step forward.
+   */
+  virtual void Print(
+    char ch               /*!< Character to be printed */
+  ) override {
+    /* TODO */
+  };
+
+  /*! \brief Print a string
+  
+    Print a string of characters from given font on graphic display and move cursor each time one step forward.
+    This function may use character-based #Print function internally.
+   */
+  virtual void Print(
+    const char *str       /*!< String of characters to be printed */
+  ) override {
+    /* TODO */
+  };
 
   virtual void SetPixel(uint16_t x, uint16_t y, bool on) = 0;
+
+  /*! \brief Flush graphic display output
+
+    Used to force flush buffered display output to graphic display.
+    Override only if #SetPixel function implements some buffering and other optimizations.
+   */
   virtual void Flush() {}
 
 protected:
