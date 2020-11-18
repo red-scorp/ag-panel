@@ -11,7 +11,7 @@ digraph class_diagram {
         shape = note
         style = filled
         fillcolor = yellow
-        label = "AG-Panel Project Class Diagramm v0.2a\n(C) 2020 Andriy Golovnya\nAuthor: Andriy Golovnya (andriy.golovnya@gmail.com)"
+        label = "AG-Panel Project UML Class Diagram v0.2a\n(C) 2020 Andriy Golovnya\nAuthor: Andriy Golovnya (andriy.golovnya@gmail.com)"
     ]
 
     /* Backlights group of classes */
