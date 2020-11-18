@@ -73,6 +73,7 @@ void print_welcome() {
   - setup LCD
   - setup keyboard
   - setup protocol
+  - print welcome message
  */
 void setup() {
 
