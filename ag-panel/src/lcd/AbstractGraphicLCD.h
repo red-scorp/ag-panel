@@ -78,12 +78,14 @@ public:
   /*! \brief Print a string
   
     Print a string of characters from given font on graphic display and move cursor each time one step forward.
-    This function may use character-based #Print function internally.
+    This function uses character-based #Print function internally.
    */
   virtual void Print(
     const char *str       /*!< String of characters to be printed */
   ) override {
-    /* TODO */
+    for(char ch = *str; ch != '\0'; str++) {
+        Print(ch);
+    }
   };
 
   virtual void SetPixel(uint16_t x, uint16_t y, bool on) = 0;
