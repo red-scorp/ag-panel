@@ -53,7 +53,7 @@ public:
 
   /*! \brief Set text cursor to give position 
 
-    Set internal position of text cursor.
+    Set position of text cursor.
    */
   virtual void SetCursor(
     uint8_t column,       /*!< New X-position of text cursor */
@@ -65,8 +65,26 @@ public:
     }
   }
 
-  virtual void Print(const char *str) override { /* TODO */ };
-  virtual void Print(char ch) override { /* TODO */ };
+  /*! \brief Print a character
+  
+    Print a character from given font on graphic display and move cursor one step forward.
+   */
+  virtual void Print(
+    char ch               /*!< Character to be printed */
+  ) override {
+    /* TODO */
+  };
+
+  /*! \brief Print a string
+  
+    Print a string of characters from given font on graphic display and move cursor each time one step forward.
+    This function may use character-based #Print function internally.
+   */
+  virtual void Print(
+    const char *str       /*!< String of characters to be printed */
+  ) override {
+    /* TODO */
+  };
 
   virtual void SetPixel(uint16_t x, uint16_t y, bool on) = 0;
 
