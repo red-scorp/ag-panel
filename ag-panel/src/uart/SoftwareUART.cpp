@@ -7,7 +7,7 @@
 
 #include "SoftwareUART.h"
 
-#if defined(ARDUINO_ARCH_AVR) || defined(ARDUINO_ARCH_STM32) || defined(ARDUINO_ARCH_ESP32) || defined(ARDUINO_ARCH_ESP8266)
+#if defined(ARDUINO_ARCH_AVR) || defined(ARDUINO_ARCH_STM32) || defined(ARDUINO_ARCH_ESP32) // || defined(ARDUINO_ARCH_ESP8266)
 #include <SoftwareSerial.h>
 
 /*!
