@@ -49,7 +49,7 @@ Work in progress but already usable.
   - [x] Capacitive Keypad attached over I2C based on TTP229 controller
   - [x] Single pin button
   - [x] Joined keyboard for combining several supported keyboards/keypads together in a single unit
-- Development
+- Development / Debugging
   - [x] Hardware UART port for debugging output
   - [x] Software UART port for debugging output
   - [x] Hex String dump of UART output
