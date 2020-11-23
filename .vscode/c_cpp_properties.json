@@ -55,7 +55,7 @@
                 ]
             },
             "defines": [
-                "PLATFORMIO=50002",
+                "PLATFORMIO=50003",
                 "ARDUINO_AVR_UNO",
                 "F_CPU=16000000L",
                 "ARDUINO_ARCH_AVR",
@@ -63,7 +63,7 @@
                 "__AVR_ATmega328P__",
                 ""
             ],
-            "intelliSenseMode": "clang-x64",
+            "intelliSenseMode": "gcc-x64",
             "cStandard": "c11",
             "cppStandard": "c++11",
             "compilerPath": "C:/Users/AG/.platformio/packages/toolchain-atmelavr@1.50400.190710/bin/avr-gcc.exe",

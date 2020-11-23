@@ -13,10 +13,11 @@
             "request": "launch",
             "name": "PIO Debug",
             "executable": "d:/SRC/ag-panel/.pioenvs/uno/firmware.elf",
+            "projectEnvName": "uno",
             "toolchainBinDir": "C:/Users/AG/.platformio/packages/toolchain-atmelavr@1.50400.190710/bin",
             "preLaunchTask": {
                 "type": "PlatformIO",
-                "task": "Pre-Debug"
+                "task": "Pre-Debug (uno)"
             },
             "internalConsoleOptions": "openOnSessionStart"
         },
@@ -25,6 +26,7 @@
             "request": "launch",
             "name": "PIO Debug (skip Pre-Debug)",
             "executable": "d:/SRC/ag-panel/.pioenvs/uno/firmware.elf",
+            "projectEnvName": "uno",
             "toolchainBinDir": "C:/Users/AG/.platformio/packages/toolchain-atmelavr@1.50400.190710/bin",
             "internalConsoleOptions": "openOnSessionStart"
         }
