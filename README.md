@@ -10,9 +10,11 @@ Main platform for this project is Arduino Uno and Nano boards but it should cert
 One of the topics of this project is portability between different CPUs, though you can expect it working with AVR, SAM, SAMD, STM32, ESP32, RISC-V and other hoddy platforms as well.
 
 ## Current status
+
 Work in progress but already usable.
 
 ## Supported configurations
+
 - Protocols
   - [x] los-panel (lcdproc) for direct HD44780 (will support **only** HD44780 displays)
   - [ ] rawserial (lcdproc) (in progress)
@@ -31,13 +33,13 @@ Work in progress but already usable.
   - [x] HD44780 w/ RGB binary (7 colors) backlight over I2C bus, like 'Adafruit RGB 16x2 LCD Shield'
   - [x] AIP31068, HD44780-like w/ I2C and SPI interface
 - LCD Backlight
-  - [x] Not controlled
+  - [x] Not controlled or controlled by display itself
   - [x] ON/OFF binary backlight
   - [x] RGB binary (7 colors) backlight
   - [x] PWM-controlled (monochrome brightness) backlight
   - [x] RGB PWM-controlled (hue brightness) backlight
   - [x] RGB PWM-controlled backlight attached over I2C bus w/ help of PCA9633 LED controller
-- Keyboard
+- Keyboard / Input
   - [x] No keyboard
   - [x] Digital Matrix up to 4x4 (on analog pins)
   - [x] Analog Arduino joystick as key strokes
@@ -55,7 +57,7 @@ Work in progress but already usable.
   - [x] Hex String dump of UART output
   - [x] Hex String dump of UART input
 
-Please check 'config.h' and 'config_adv.h' for up-to-date information.
+Please check *'config.h'* and *'config_adv.h'* for up-to-date information.
 
 ## Design
 
@@ -67,9 +69,9 @@ The code compiles and runs on several embedded CPU platforms:
 - [x] STM32
 - [ ] RISC-V (planned)
 
-Basic class diagram is shown below:
+UML class diagram is shown below:
 
-![UML diagram generated from DOT below](/img/class_diagram.png)
+![UML diagram](/img/class_diagram.png)
 
 The code of ag-panel can be compiled with Arduino IDE or PlatformIO (Atom or VS Code).
 Following libraries might be required:
@@ -85,6 +87,7 @@ Following libraries might be required:
 - ESP32 AnalogWrite (5819)
 
 ## How to help
+
 Your contributions as code, resources or finances are welcome!
 Please contact me directly over e-mail andriy.golovnya@gmail.com or over [GitHub profile](https://github.com/red-scorp).
 Link for [Paypal donations](http://paypal.me/redscorp), which are always welcome.
