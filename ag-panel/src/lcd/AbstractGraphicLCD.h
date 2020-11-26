@@ -72,7 +72,34 @@ public:
   virtual void Print(
     char ch               /*!< Character to be printed */
   ) override {
-    /* TODO */
+    if(m_Font != nullptr) {
+
+      const Glyph *glyph = m_Font->GetGlyph(ch);
+      uint16_t x = m_XOffset + m_CursorColumn * m_Font->GetGlyphXSize();
+      uint16_t y = m_YOffset + m_CursorRow * m_Font->GetGlyphYSize();
+
+      if(glyph != nullptr) {
+        for(uint8_t line = 0; line < glyph->m_NumberLines; line++) {
+          uint8_t lineStart = line * glyph->m_LineWidth;
+
+          for(uint16_t byte = 0; byte < glyph->m_LineWidth; byte++) {
+            for(uint8_t bit = 0; bit < 8; bit++) {
+              bool bitSet = ((glyph->m_PixelBuffer[lineStart + byte] & (0b10000000 >> bit)) == 0)? false: true;
+              SetPixel(x + byte * 8 + bit, y + line, bitSet);
+            }
+          }
+        }
+      }
+
+      m_CursorColumn++;
+      if(m_CursorColumn >= m_Columns) {
+        m_CursorColumn %= m_Columns;
+        m_CursorRow++;
+        if(m_CursorRow >= m_Rows) {
+          m_CursorRow %= m_Rows;
+        }
+      }
+    }
   };
 
   /*! \brief Print a string
