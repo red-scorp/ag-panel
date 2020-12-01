@@ -100,7 +100,7 @@ public:
         }
       }
     }
-  };
+  }
 
   /*! \brief Print a string
   
@@ -113,7 +113,7 @@ public:
     for(char ch = *str; ch != '\0'; str++) {
         Print(ch);
     }
-  };
+  }
 
   virtual void SetPixel(uint16_t x, uint16_t y, bool on) = 0;
 

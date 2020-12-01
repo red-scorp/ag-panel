@@ -31,9 +31,9 @@ public:
   virtual ~AbstractFixedFont() { Exit(); }
 
   /*! Get normal X size of font glyphs in pixels */
-  virtual uint8_t GetGlyphXSize(void) const override { return m_GlyphXSize; };
+  virtual uint8_t GetGlyphXSize(void) const override { return m_GlyphXSize; }
   /*! Get normal Y size of font glyphs in pixels */
-  virtual uint8_t GetGlyphYSize(void) const override { return m_GlyphYSize; };
+  virtual uint8_t GetGlyphYSize(void) const override { return m_GlyphYSize; }
 
   /*! Get a glyph data from raw pixel data array addressed by glyph number
     \returns Glyph description record in case of success, \a nullptr in case of error
@@ -56,7 +56,7 @@ public:
     m_Glyph.m_PixelBuffer = &m_GlyphData[(number - m_DataRangeBegin) * m_Glyph.m_LineWidth * m_Glyph.m_NumberLines];
 
     return &m_Glyph;
-  };
+  }
 
 protected:
   uint8_t m_GlyphXSize;       /*!< Size of a glyph in X direction */
