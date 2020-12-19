@@ -75,16 +75,17 @@ UML class diagram is shown below:
 
 The code of ag-panel can be compiled with Arduino IDE or PlatformIO (Atom or VS Code).
 Following libraries might be required:
-- LiquidCrystal (887)
-- LiquidCrystal_I2C (576)
-- Adafruit MPR121 (839)
-- Adafruit RGB LCD Shield Library (762)
-- TTP229 (6690)
-- LiquidCrystal_AIP31068 (6972)
-- SoftSPIB (6971)
-- pca9633 (6980)
-- EspSoftwareSerial (168)
-- ESP32 AnalogWrite (5819)
+- LiquidCrystal
+- LiquidCrystal_I2C
+- Adafruit MPR121
+- Adafruit RGB LCD Shield Library
+- TTP229
+- LiquidCrystal_AIP31068
+- SoftSPIB
+- pca9633
+- EspSoftwareSerial
+- ESP32 AnalogWrite
+- U8glib
 
 ## How to help
 
