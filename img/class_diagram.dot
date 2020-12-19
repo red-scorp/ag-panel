@@ -94,6 +94,9 @@ digraph class_diagram {
         AbstractGraphicLCD [
             label = "{\<abstract\>AbstractGraphicLCD|*m_Backlight\n*m_Columns\n*m_Rows\n*m_Font\n*m_XSize\n*m_YSize\n*m_XOffset\n*m_YOffset\n*m_CursorColumn\n*m_CursorRow|+SetBacklight()\n+Clear()\n+SetCursor()\n+Print()\n+GetColumns()\n+GetRows()\n+SetPixel()\n+Flush()\n*CalculateTextSize()\n-Init()\n-Exit()}"
         ]
+        AbstractU8GraphicLCD [
+            label = "{\<abstract\>AbstractU8GraphicLCD|*m_Backlight\n*m_Columns\n*m_Rows\n*m_Font\n*m_XSize\n*m_YSize\n*m_XOffset\n*m_YOffset\n*m_CursorColumn\n*m_CursorRow\n*m_U8g|+SetBacklight()\n+Clear()\n+SetCursor()\n+Print()\n+GetColumns()\n+GetRows()\n+SetPixel()\n+Flush()\n*CalculateTextSize()\n-Init()\n-Exit()}"
+        ]
         AbstractTextLCD -> AbstractLCD [style = solid, arrowhead = onormal]
         I2CAIP31068TextLCD -> AbstractTextLCD [style = dashed, arrowhead = onormal]
         I2CPCF8574TextLCD -> AbstractTextLCD [style = dashed, arrowhead = onormal]
@@ -101,6 +104,7 @@ digraph class_diagram {
         PPITextLCD -> AbstractTextLCD [style = dashed, arrowhead = onormal]
         SPIAIP31068TextLCD -> AbstractTextLCD [style = dashed, arrowhead = onormal]
         AbstractGraphicLCD -> AbstractLCD [style = solid, arrowhead = onormal]
+        AbstractU8GraphicLCD -> AbstractGraphicLCD [style = solid, arrowhead = onormal]
 
         lcd_note [
             shape = note
