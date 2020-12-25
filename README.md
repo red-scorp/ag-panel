@@ -63,6 +63,7 @@ Please check *'config.h'* and *'config_adv.h'* for up-to-date information.
 
 The code of ag-panel is written on C++ with Arduino Framework.
 The code compiles and runs on several embedded CPU platforms:
+
 - [x] Atmel AVR
 - [x] Atmel SAMD and SAM
 - [ ] Espressif ESP32 and ESP8266 (to be tested)
@@ -75,6 +76,7 @@ UML class diagram is shown below:
 
 The code of ag-panel can be compiled with Arduino IDE or PlatformIO (Atom or VS Code).
 Following libraries might be required:
+
 - LiquidCrystal
 - LiquidCrystal_I2C
 - Adafruit MPR121
