@@ -99,6 +99,8 @@ public:
           m_CursorRow %= m_Rows;
         }
       }
+  
+      Flush();
     }
   }
 
@@ -111,7 +113,7 @@ public:
     const char *str       /*!< String of characters to be printed */
   ) override {
     for(char ch = *str; ch != '\0'; str++) {
-        Print(ch);
+      Print(ch);
     }
   }
 
@@ -135,7 +137,7 @@ protected:
 
   /*! \brief Count number of character positions based on font parameters
    */
-  virtual void CalculateTextSize() {
+  void CalculateTextSize() {
 
     if(m_Font != nullptr) { /* do we have font instance? */
       if(m_Font->GetGlyphXSize() != 0) { /* do we have font with fixed X size? */
