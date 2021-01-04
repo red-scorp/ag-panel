@@ -87,7 +87,7 @@ Following libraries might be required:
 - pca9633
 - EspSoftwareSerial
 - ESP32 AnalogWrite
-- U8glib
+- U8g2
 
 ## How to help
 
