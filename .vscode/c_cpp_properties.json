@@ -1,15 +1,17 @@
+//
+// !!! WARNING !!! AUTO-GENERATED FILE!
+// PLEASE DO NOT MODIFY IT AND USE "platformio.ini":
+// https://docs.platformio.org/page/projectconf/section_env_build.html#build-flags
+//
 {
     "configurations": [
         {
-            "name": "!!! WARNING !!! AUTO-GENERATED FILE, PLEASE DO NOT MODIFY IT AND USE https://docs.platformio.org/page/projectconf/section_env_build.html#build-flags"
-        },
-        {
-            "name": "Win32",
+            "name": "PlatformIO",
             "includePath": [
                 "d:/SRC/ag-panel/include",
                 "d:/SRC/ag-panel/ag-panel",
                 "C:/Users/AG/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
-                "d:/SRC/ag-panel/.piolibdeps/uno/U8glib/src",
+                "d:/SRC/ag-panel/.piolibdeps/uno/U8g2/src",
                 "d:/SRC/ag-panel/.piolibdeps/uno/pca9633/src",
                 "d:/SRC/ag-panel/.piolibdeps/uno/LiquidCrystal_AIP31068",
                 "d:/SRC/ag-panel/.piolibdeps/uno/SoftSPIB",
@@ -24,6 +26,7 @@
                 "d:/SRC/ag-panel/.piolibdeps/uno/LiquidCrystal/src",
                 "C:/Users/AG/.platformio/packages/framework-arduino-avr/cores/arduino",
                 "C:/Users/AG/.platformio/packages/framework-arduino-avr/variants/standard",
+                "d:/SRC/ag-panel/.piolibdeps/uno/U8glib/src",
                 "C:/Users/AG/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
                 "C:/Users/AG/.platformio/packages/framework-arduino-avr/libraries/HID/src",
                 "C:/Users/AG/.platformio/packages/tool-unity",
@@ -35,7 +38,7 @@
                     "d:/SRC/ag-panel/include",
                     "d:/SRC/ag-panel/ag-panel",
                     "C:/Users/AG/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
-                    "d:/SRC/ag-panel/.piolibdeps/uno/U8glib/src",
+                    "d:/SRC/ag-panel/.piolibdeps/uno/U8g2/src",
                     "d:/SRC/ag-panel/.piolibdeps/uno/pca9633/src",
                     "d:/SRC/ag-panel/.piolibdeps/uno/LiquidCrystal_AIP31068",
                     "d:/SRC/ag-panel/.piolibdeps/uno/SoftSPIB",
@@ -50,6 +53,7 @@
                     "d:/SRC/ag-panel/.piolibdeps/uno/LiquidCrystal/src",
                     "C:/Users/AG/.platformio/packages/framework-arduino-avr/cores/arduino",
                     "C:/Users/AG/.platformio/packages/framework-arduino-avr/variants/standard",
+                    "d:/SRC/ag-panel/.piolibdeps/uno/U8glib/src",
                     "C:/Users/AG/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
                     "C:/Users/AG/.platformio/packages/framework-arduino-avr/libraries/HID/src",
                     "C:/Users/AG/.platformio/packages/tool-unity",
@@ -57,7 +61,7 @@
                 ]
             },
             "defines": [
-                "PLATFORMIO=50003",
+                "PLATFORMIO=50004",
                 "ARDUINO_AVR_UNO",
                 "F_CPU=16000000L",
                 "ARDUINO_ARCH_AVR",
@@ -65,7 +69,6 @@
                 "__AVR_ATmega328P__",
                 ""
             ],
-            "intelliSenseMode": "gcc-x64",
             "cStandard": "c11",
             "cppStandard": "c++11",
             "compilerPath": "C:/Users/AG/.platformio/packages/toolchain-atmelavr@1.50400.190710/bin/avr-gcc.exe",
