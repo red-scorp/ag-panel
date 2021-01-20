@@ -10,7 +10,12 @@
 #if defined(ARDUINO_ARCH_SAMD) || defined(ARDUINO_ARCH_SAM) || defined(ARDUINO_ARCH_STM32)
 
 #if defined(ARDUINO_ARCH_SAMD)
+#if defined(ADAFRUIT_GRAND_CENTRAL_M4) || defined(ADAFRUIT_METRO_M4_EXPRESS)
+#include <USB/USBAPI.h>
+#define SerialUSB Serial /* this is a hack but it's ok for now */
+#else
 #include <USB/CDC.h>
+#endif
 typedef Serial_ USBVirtualUART_Lowlevel_t;
 #elif defined(ARDUINO_ARCH_SAM)
 #include <USB/USBAPI.h>
