@@ -5,7 +5,7 @@ This project is based on my earlier code of [Arduino LCD over Serial Panel (alos
 The original alos-panel C code was fully rewritten on C++ for better maintainability and expansion.
 Documentation is pending!
 
-This project **will** support different connections and different types of displays, including HD44780 based.
+This project **will** support multiple different connections and different types of displays, including HD44780 based.
 Main platform for this project is Arduino Uno and Nano boards but it should certainly work on another Arduino boards as well.
 One of the topics of this project is portability between different CPUs, though you can expect it working with AVR, SAM, SAMD, STM32, ESP32, RISC-V and other hoddy platforms as well.
 
@@ -61,6 +61,8 @@ Please check *'config.h'* and *'config_adv.h'* for up-to-date information.
 
 ## Design
 
+### Platforms
+
 The code of ag-panel is written on C++ with Arduino Framework.
 The code compiles and runs on several embedded CPU platforms:
 
@@ -70,9 +72,32 @@ The code compiles and runs on several embedded CPU platforms:
 - [x] STM32
 - [ ] RISC-V (planned)
 
+### Class Diagram
+
 UML class diagram is shown below:
 
 ![UML diagram](/img/class_diagram.png)
+
+### Code Tree
+
+The code is structured by subsystem.
+Classes of different subsystem are located in their respective folders.
+
+```
+ag-panel
+├── src (main source code)
+│   ├── keyboard (keyboard/input classes)
+│   ├── lcd (LCD related classes)
+│   │   ├── backlight (LCD backlight classes)
+│   │   └── font (font classes)
+│   ├── protocol (protocol logic)
+│   └── uart (UART implementations)
+├── ag-panel.ino (empty)
+├── config_adv.h (advanced configuration)
+└── config.h (basic configuration)
+```
+
+### Dependecies
 
 The code of ag-panel can be compiled with Arduino IDE or PlatformIO (Atom or VS Code).
 Following libraries might be required:
