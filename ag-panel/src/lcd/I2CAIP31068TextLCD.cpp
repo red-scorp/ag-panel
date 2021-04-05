@@ -8,7 +8,7 @@
 #include "../private.h"
 #include "I2CAIP31068TextLCD.h"
 
-#if !defined(ARDUINO_ARCH_GD32V)
+#if !defined(ARDUINO_ARCH_GD32V) && !defined(ARDUINO_ARCH_KENDRYTE)
 
 //#include <SoftSPIB.h>
 #include <LiquidCrystal_AIP31068_I2C.h>
@@ -108,5 +108,5 @@ void I2CAIP31068TextLCD::Command(
 }
 
 #else
-#warning 'I2CAIP31068TextLCD' is not implemented for GD32V platform bacause it lacks of standard header 'Wire.h'!
+#warning 'I2CAIP31068TextLCD' is not implemented for GD32V and KENDRYTE platforms bacause it lacks of standard header 'Wire.h'!
 #endif /* !ARDUINO_ARCH_GD32V */

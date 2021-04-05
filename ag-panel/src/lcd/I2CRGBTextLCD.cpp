@@ -8,7 +8,7 @@
 #include "../private.h"
 #include "I2CRGBTextLCD.h"
 
-#if !defined(ARDUINO_ARCH_GD32V)
+#if !defined(ARDUINO_ARCH_GD32V) && !defined(ARDUINO_ARCH_KENDRYTE)
 
 #include <Adafruit_RGBLCDShield.h>
 
@@ -155,5 +155,5 @@ void I2CRGBTextLCD::Command(
 }
 
 #else
-#warning 'I2CRGBTextLCD' is not implemented for GD32V platform bacause it lacks of standard header 'Wire.h'!
+#warning 'I2CRGBTextLCD' is not implemented for GD32V and KENDRYTE platforms bacause it lacks of standard header 'Wire.h'!
 #endif /* !ARDUINO_ARCH_GD32V */

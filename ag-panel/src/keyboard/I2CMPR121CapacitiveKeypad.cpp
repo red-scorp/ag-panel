@@ -9,7 +9,7 @@
 #include "../../config.h"
 #include "I2CMPR121CapacitiveKeypad.h"
 
-#if !defined(ARDUINO_ARCH_GD32V)
+#if !defined(ARDUINO_ARCH_GD32V) && !defined(ARDUINO_ARCH_KENDRYTE)
 
 #include <Adafruit_MPR121.h>
 
@@ -74,5 +74,5 @@ uint8_t I2CMPR121CapacitiveKeypad::GetKeyCount() {
 }
 
 #else
-#warning 'I2CMPR121CapacitiveKeypad' is not implemented for GD32V platform bacause it lacks of standard header 'Wire.h'!
+#warning 'I2CMPR121CapacitiveKeypad' is not implemented for GD32V and KENDRYTE platforms bacause it lacks of standard header 'Wire.h'!
 #endif /* !ARDUINO_ARCH_GD32V */

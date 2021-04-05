@@ -8,7 +8,7 @@
 #include "../private.h"
 #include "I2CPCF8574TextLCD.h"
 
-#if !defined(ARDUINO_ARCH_GD32V)
+#if !defined(ARDUINO_ARCH_GD32V) && !defined(ARDUINO_ARCH_KENDRYTE)
 
 #include <LiquidCrystal_I2C.h>
 
@@ -157,5 +157,5 @@ void I2CPCF8574TextLCD::Command(
 }
 
 #else
-#warning 'I2CPCF8574TextLCD' is not implemented for GD32V platform bacause it lacks of standard header 'Wire.h'!
+#warning 'I2CPCF8574TextLCD' is not implemented for GD32V and KENDRYTE platforms bacause it lacks of standard header 'Wire.h'!
 #endif /* !ARDUINO_ARCH_GD32V */

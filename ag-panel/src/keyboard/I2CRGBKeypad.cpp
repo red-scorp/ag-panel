@@ -10,7 +10,7 @@
 #include "I2CRGBKeypad.h"
 #include "../lcd/I2CRGBTextLCD.h"
 
-#if !defined(ARDUINO_ARCH_GD32V)
+#if !defined(ARDUINO_ARCH_GD32V) && !defined(ARDUINO_ARCH_KENDRYTE)
 
 #include <Adafruit_RGBLCDShield.h>
 
@@ -66,5 +66,5 @@ uint8_t I2CRGBKeypad::GetKeyCount() {
 }
 
 #else
-#warning 'I2CRGBKeypad' is not implemented for GD32V platform bacause it lacks of standard header 'Wire.h'!
+#warning 'I2CRGBKeypad' is not implemented for GD32V and KENDRYTE platforms bacause it lacks of standard header 'Wire.h'!
 #endif /* !ARDUINO_ARCH_GD32V */

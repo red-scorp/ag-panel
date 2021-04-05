@@ -8,7 +8,7 @@
 #include "../../private.h"
 #include "I2CRGBPWMBacklight.h"
 
-#if !defined(ARDUINO_ARCH_GD32V)
+#if !defined(ARDUINO_ARCH_GD32V) && !defined(ARDUINO_ARCH_KENDRYTE)
 
 #include <pca9633.h>
 #include <Wire.h>
@@ -76,5 +76,5 @@ void I2CRGBPWMBacklight::SetRGB(
 }
 
 #else
-#warning 'I2CRGBPWMBacklight' is not implemented for GD32V platform bacause it lacks of standard header 'Wire.h'!
+#warning 'I2CRGBPWMBacklight' is not implemented for GD32V and KENDRYTE platforms bacause it lacks of standard header 'Wire.h'!
 #endif /* !ARDUINO_ARCH_GD32V */

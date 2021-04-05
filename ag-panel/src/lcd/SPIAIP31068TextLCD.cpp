@@ -8,7 +8,7 @@
 #include "../private.h"
 #include "SPIAIP31068TextLCD.h"
 
-#if !defined(ARDUINO_ARCH_GD32V)
+#if !defined(ARDUINO_ARCH_GD32V) && !defined(ARDUINO_ARCH_KENDRYTE)
 
 #include <SoftSPIB.h>
 #include <LiquidCrystal_AIP31068_SPI.h>
@@ -108,5 +108,5 @@ void SPIAIP31068TextLCD::Command(
 }
 
 #else
-#warning 'SPIAIP31068TextLCD' is not implemented for GD32V platform bacause it lacks of standard header 'SPI.h'!
+#warning 'SPIAIP31068TextLCD' is not implemented for GD32V and KENDRYTE platforms bacause it lacks of standard header 'SPI.h'!
 #endif /* !ARDUINO_ARCH_GD32V */
