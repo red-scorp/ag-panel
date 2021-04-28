@@ -128,7 +128,8 @@ void loop() {
   }
 }
 
-#if !defined(ARDUINO_ARCH_ESP32)
+/* ESP8266 and ESP32 use function yield() internally to let their HW components (e.g. WiFi) to work correctly. */
+#if !defined(ARDUINO_ARCH_ESP8266) && !defined(ARDUINO_ARCH_ESP32)
 /*!
   \brief Background task function
 
