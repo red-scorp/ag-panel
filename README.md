@@ -7,7 +7,7 @@ Documentation is pending!
 
 This project **will** support multiple different connections and different types of displays, including HD44780 based.
 Main platform for this project is Arduino Uno and Nano boards but it should certainly work on another Arduino boards as well.
-One of the topics of this project is portability between different CPUs, though you can expect it working with AVR, SAM, SAMD, STM32, ESP32, RISC-V and other hoddy platforms as well.
+One of the topics of this project is portability between different CPUs, though you can expect it working with AVR, SAM, SAMD, STM32, ESP32, RISC-V and other hobby platforms as well.
 
 ## Current status
 
@@ -97,7 +97,7 @@ ag-panel
 └── config.h (basic configuration)
 ```
 
-### Dependecies
+### Dependencies
 
 The code of ag-panel can be compiled with Arduino IDE or PlatformIO (Atom or VS Code).
 Following libraries might be required:
