@@ -1,7 +1,7 @@
 /*!
   \file BinaryBacklight.cpp
   \brief AG-Panel Project binary (on/off) backlight implementation
-  \copyright (C) 2019-2020 Andriy Golovnya
+  \copyright (C) 2019-2021 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
@@ -20,7 +20,7 @@ bool BinaryBacklight::Init() {
 }
 
 /*!
-  \brief Deinitialisation of binary backlight class
+  \brief Deinitialization of binary backlight class
  */
 void BinaryBacklight::Exit() {
 }

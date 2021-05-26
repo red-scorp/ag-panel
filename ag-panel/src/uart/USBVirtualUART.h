@@ -1,7 +1,7 @@
 /*!
   \file USBVirtualUART.h
   \brief AG-Panel Project direct USB virtual UART interface
-  \copyright (C) 2020 Andriy Golovnya
+  \copyright (C) 2020-2021 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
@@ -14,7 +14,7 @@
   \brief USB virtual UART class
 
   This is a class which implements USB virtual UART of arduino boards.
-  This class works with SAM, SAMD and STM32 ICUs only (for now).
+  This class works with SAM, SAMD and STM32 MCUs only (for now).
  */
 class USBVirtualUART: public AbstractUART {
 

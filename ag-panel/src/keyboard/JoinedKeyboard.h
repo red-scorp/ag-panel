@@ -1,7 +1,7 @@
 /*!
   \file JoinedKeyboard.h
   \brief AG-Panel Project joined keyboard interface
-  \copyright (C) 2019-2020 Andriy Golovnya
+  \copyright (C) 2019-2021 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
@@ -20,11 +20,11 @@ class JoinedKeyboard: public AbstractKeyboard {
 public:
   explicit JoinedKeyboard():
     AbstractKeyboard(),
-    m_Privat(nullptr) { Init(); }
+    m_Private(nullptr) { Init(); }
   explicit JoinedKeyboard(
     AbstractKeyboard *Keyboard          /*!< Keyboard class instance we want to inlist first */
   ): AbstractKeyboard(),
-    m_Privat(nullptr) {
+    m_Private(nullptr) {
     Init();
     AddKeyboard(Keyboard);
   }
@@ -32,7 +32,7 @@ public:
     AbstractKeyboard *Keyboard1,        /*!< Keyboard class instance we want to inlist first */
     AbstractKeyboard *Keyboard2         /*!< Keyboard class instance we want to inlist second */
   ): AbstractKeyboard(),
-    m_Privat(nullptr) {
+    m_Private(nullptr) {
     Init();
     AddKeyboard(Keyboard1);
     AddKeyboard(Keyboard2);
@@ -42,7 +42,7 @@ public:
     AbstractKeyboard *Keyboard2,        /*!< Keyboard class instance we want to inlist second */
     AbstractKeyboard *Keyboard3         /*!< Keyboard class instance we want to inlist 3rd */
   ): AbstractKeyboard(),
-    m_Privat(nullptr) {
+    m_Private(nullptr) {
     Init();
     AddKeyboard(Keyboard1);
     AddKeyboard(Keyboard2);
@@ -54,7 +54,7 @@ public:
     AbstractKeyboard *Keyboard3,        /*!< Keyboard class instance we want to inlist 3rd */
     AbstractKeyboard *Keyboard4         /*!< Keyboard class instance we want to inlist 4th */
   ): AbstractKeyboard(),
-    m_Privat(nullptr) {
+    m_Private(nullptr) {
     Init();
     AddKeyboard(Keyboard1);
     AddKeyboard(Keyboard2);
@@ -68,7 +68,7 @@ public:
     AbstractKeyboard *Keyboard4,        /*!< Keyboard class instance we want to inlist 4th */
     AbstractKeyboard *Keyboard5         /*!< Keyboard class instance we want to inlist 5th */
   ): AbstractKeyboard(),
-    m_Privat(nullptr) {
+    m_Private(nullptr) {
     Init();
     AddKeyboard(Keyboard1);
     AddKeyboard(Keyboard2);
@@ -86,7 +86,7 @@ public:
 protected:
 
 private:
-  void *m_Privat;       /*!< Pointer to Low-Level privat class */
+  void *m_Private;       /*!< Pointer to Low-Level private class */
   bool Init();
   void Exit();
 };

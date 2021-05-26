@@ -1,7 +1,7 @@
 /*!
   \file Fixed8x8TestFont.cpp
-  \brief AG-Panel Project fixed size 8x8 test font implmentation
-  \copyright (C) 2020 Andriy Golovnya
+  \brief AG-Panel Project fixed size 8x8 test font implementation
+  \copyright (C) 2020-2021 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
@@ -55,7 +55,7 @@ bool Fixed8x8TestFont::Init() {
 }
 
 /*!
-  \brief Deinitialisation of 8x8 test font
+  \brief Deinitialization of 8x8 test font
  */
 void Fixed8x8TestFont::Exit() {
 }

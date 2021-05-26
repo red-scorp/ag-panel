@@ -1,7 +1,7 @@
 /*!
   \file RotaryEncoder.cpp
   \brief AG-Panel Project rotary encoder keyboard implementation
-  \copyright (C) 2019-2020 Andriy Golovnya
+  \copyright (C) 2019-2021 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
@@ -23,7 +23,7 @@ bool RotaryEncoder::Init() {
 }
 
 /*!
-  \brief Deinitialisation of rotary encoder class
+  \brief Deinitialization of rotary encoder class
  */
 void RotaryEncoder::Exit() {
 }

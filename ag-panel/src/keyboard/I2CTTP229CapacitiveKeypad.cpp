@@ -1,7 +1,7 @@
 /*!
   \file I2CTTP229CapacitiveKeypad.cpp
   \brief AG-Panel Project I2C TTP229 capacitive matrix keyboard implementation
-  \copyright (C) 2019-2020 Andriy Golovnya
+  \copyright (C) 2019-2021 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
@@ -28,7 +28,7 @@ bool I2CTTP229CapacitiveKeypad::Init() {
 }
 
 /*!
-  \brief Deinitialisation of capacitive matrix class
+  \brief Deinitialization of capacitive matrix class
  */
 void I2CTTP229CapacitiveKeypad::Exit() {
   TTP229 *p_I2CKbd = reinterpret_cast<TTP229*>(m_Lowlevel);
@@ -75,5 +75,5 @@ uint8_t I2CTTP229CapacitiveKeypad::GetKeyCount() {
 }
 
 #else
-#warning 'I2CTTP229CapacitiveKeypad' is not implemented for GD32V and KENDRYTE platforms bacause it lacks of standard header 'Wire.h'!
+#warning 'I2CTTP229CapacitiveKeypad' is not implemented for GD32V and KENDRYTE platforms because it lacks of standard header 'Wire.h'!
 #endif /* !ARDUINO_ARCH_GD32V */

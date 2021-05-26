@@ -1,7 +1,7 @@
 /*!
   \file I2CRGBTextLCD.cpp
-  \brief AG-Panel Project I2C RGB keypad's text (hd44780) LCD implmentation
-  \copyright (C) 2019-2020 Andriy Golovnya
+  \brief AG-Panel Project I2C RGB keypad's text (hd44780) LCD implementation
+  \copyright (C) 2019-2021 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
@@ -27,7 +27,7 @@ bool I2CRGBTextLCD::Init() {
 }
 
 /*!
-  \brief Deinitialisation of I2C RGB text LCD display class
+  \brief Deinitialization of I2C RGB text LCD display class
  */
 void I2CRGBTextLCD::Exit() {
   Adafruit_RGBLCDShield *p_I2CRGBLCD = reinterpret_cast<Adafruit_RGBLCDShield*>(m_Lowlevel);
@@ -124,7 +124,7 @@ void I2CRGBTextLCD::Print(
   This function calls corresponding function of Adafruit_RGBLCDShield class instance.
  */
 void I2CRGBTextLCD::Print(
-  char character        /*!< Chcracter to print */
+  char character        /*!< Character to print */
 ) {
   Adafruit_RGBLCDShield *p_I2CRGBLCD = reinterpret_cast<Adafruit_RGBLCDShield*>(m_Lowlevel);
   p_I2CRGBLCD->print(character);
@@ -155,5 +155,5 @@ void I2CRGBTextLCD::Command(
 }
 
 #else
-#warning 'I2CRGBTextLCD' is not implemented for GD32V and KENDRYTE platforms bacause it lacks of standard header 'Wire.h'!
+#warning 'I2CRGBTextLCD' is not implemented for GD32V and KENDRYTE platforms because it lacks of standard header 'Wire.h'!
 #endif /* !ARDUINO_ARCH_GD32V */

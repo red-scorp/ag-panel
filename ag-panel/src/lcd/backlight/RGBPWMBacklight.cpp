@@ -1,7 +1,7 @@
 /*!
   \file RGBPWMBacklight.cpp
   \brief AG-Panel Project RGB PWM (0-255) backlight implementation
-  \copyright (C) 2019-2020 Andriy Golovnya
+  \copyright (C) 2019-2021 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
@@ -22,7 +22,7 @@ bool RGBPWMBacklight::Init() {
 }
 
 /*!
-  \brief Deinitialisation of RGB PWM backlight class
+  \brief Deinitialization of RGB PWM backlight class
  */
 void RGBPWMBacklight::Exit() {
 }
@@ -30,7 +30,7 @@ void RGBPWMBacklight::Exit() {
 /*!
   \brief Set backlight in binary (on/off) form
 
-  This function sets maximu brightness of RGB PWM backlight if enabled.
+  This function sets maximum brightness of RGB PWM backlight if enabled.
  */
 void RGBPWMBacklight::SetOn(
   bool on               /*!< Backlight state in on/off format */

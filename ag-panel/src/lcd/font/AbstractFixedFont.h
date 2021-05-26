@@ -1,7 +1,7 @@
 /*!
   \file AbstractFixedFont.h
   \brief AG-Panel Project abstract fixed size font interface
-  \copyright (C) 2020 Andriy Golovnya
+  \copyright (C) 2020-2021 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
@@ -61,7 +61,7 @@ public:
 protected:
   uint8_t m_GlyphXSize;       /*!< Size of a glyph in X direction */
   uint8_t m_GlyphYSize;       /*!< Size of a glyph in Y direction */
-  uint8_t *m_GlyphData;       /*!< Pointer to an arry of glyph raw data */
+  uint8_t *m_GlyphData;       /*!< Pointer to an array of glyph raw data */
   uint16_t m_DataRangeBegin;  /*!< Number of first glyph in data array */
   uint16_t m_DataRangeEnd;    /*!< Number of last glyph in data array */
   uint16_t m_DefaultGlyph;    /*!< Default 'missing' glyph number */

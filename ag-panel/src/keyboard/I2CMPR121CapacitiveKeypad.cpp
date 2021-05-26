@@ -1,7 +1,7 @@
 /*!
   \file I2CMPR121CapacitiveKeypad.cpp
   \brief AG-Panel Project I2C MPR121 capacitive matrix keyboard implementation
-  \copyright (C) 2019-2020 Andriy Golovnya
+  \copyright (C) 2019-2021 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
@@ -27,7 +27,7 @@ bool I2CMPR121CapacitiveKeypad::Init() {
 }
 
 /*!
-  \brief Deinitialisation of capacitive matrix class
+  \brief Deinitialization of capacitive matrix class
  */
 void I2CMPR121CapacitiveKeypad::Exit() {
   Adafruit_MPR121 *p_I2CKbd = reinterpret_cast<Adafruit_MPR121*>(m_Lowlevel);
@@ -74,5 +74,5 @@ uint8_t I2CMPR121CapacitiveKeypad::GetKeyCount() {
 }
 
 #else
-#warning 'I2CMPR121CapacitiveKeypad' is not implemented for GD32V and KENDRYTE platforms bacause it lacks of standard header 'Wire.h'!
+#warning 'I2CMPR121CapacitiveKeypad' is not implemented for GD32V and KENDRYTE platforms because it lacks of standard header 'Wire.h'!
 #endif /* !ARDUINO_ARCH_GD32V */

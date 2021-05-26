@@ -1,7 +1,7 @@
 /*!
   \file SimpleButton.cpp
   \brief AG-Panel Project simple button keyboard implementation
-  \copyright (C) 2019-2020 Andriy Golovnya
+  \copyright (C) 2019-2021 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
@@ -24,7 +24,7 @@ bool SimpleButton::Init() {
 }
 
 /*!
-  \brief Deinitialisation of simple button class
+  \brief Deinitialization of simple button class
  */
 void SimpleButton::Exit() {
 }
@@ -32,7 +32,7 @@ void SimpleButton::Exit() {
 /*!
   \brief Get a key of simple button array
 
-  Sequntially reads button pins to find out what key has been pressed.
+  Sequentially reads button pins to find out what key has been pressed.
   \returns #KeyNone if no new actions detected, else a key code
  */
 uint8_t SimpleButton::GetKey() {

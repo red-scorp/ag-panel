@@ -1,7 +1,7 @@
 /*!
   \file HardwareUART.cpp
   \brief AG-Panel Project direct hardware UART implementation
-  \copyright (C) 2019-2020 Andriy Golovnya
+  \copyright (C) 2019-2021 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
@@ -81,7 +81,7 @@ void HardwareUART::Exit() {
   \returns Number of bytes written to hardware UART
  */
 uint8_t HardwareUART::PutCh(
-  uint8_t txbyte      /*!< Character to be writte to hardware UART */
+  uint8_t txbyte      /*!< Character to be written to hardware UART */
 ) {
   HardwareSerial *p_UART = reinterpret_cast<HardwareSerial*>(m_Lowlevel);
   return p_UART->write(txbyte);

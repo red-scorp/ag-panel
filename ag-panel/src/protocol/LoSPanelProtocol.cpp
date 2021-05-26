@@ -1,7 +1,7 @@
 /*!
   \file LoSPanelProtocol.cpp
-  \brief AG-Panel Project LoS-panel protocol implmentation
-  \copyright (C) 2019-2020 Andriy Golovnya
+  \brief AG-Panel Project LoS-panel protocol implementation
+  \copyright (C) 2019-2021 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
@@ -33,7 +33,7 @@ bool LoSPanelProtocol::Init() {
 }
 
 /*!
-  \brief Deinitialisation of los-panel protocol class
+  \brief Deinitialization of los-panel protocol class
  */
 void LoSPanelProtocol::Exit() {
 }

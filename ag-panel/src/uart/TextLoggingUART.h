@@ -1,7 +1,7 @@
 /*!
   \file TextLoggingUART.h
   \brief AG-Panel Project text logging UART interface
-  \copyright (C) 2019-2020 Andriy Golovnya
+  \copyright (C) 2019-2021 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
@@ -28,7 +28,7 @@ public:
     AbstractUART *RealUART,       /*!< Real (communication) UART */
     AbstractUART *DebugUART,      /*!< Debug (logging) UART */
     uint8_t NumbersBase = NumbersBaseHexadecimal, /*!< Base to convert numbers */
-    uint8_t LineWrap = 1          /*!< Flag enaling wraping a line */
+    uint8_t LineWrap = 1          /*!< Flag enabling wraping a line */
   ): AbstractUART(0),
     m_RealUART(RealUART),
     m_DebugUART(DebugUART),
@@ -50,7 +50,7 @@ protected:
   AbstractUART *m_RealUART;       /*!< Real (communication) UART */
   AbstractUART *m_DebugUART;      /*!< Debug (logging) UART */
   uint8_t m_NumbersBase;          /*!< Base to convert numbers */
-  uint8_t m_LineWrap;             /*!< Flag enaling wraping a line */
+  uint8_t m_LineWrap;             /*!< Flag enabling wraping a line */
 
 private:
   uint8_t m_Direction;            /*!< Direction of communication took last time */

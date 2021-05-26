@@ -1,7 +1,7 @@
 /*!
   \file RotaryEncoder.h
   \brief AG-Panel Project rotary encoder keyboard interface
-  \copyright (C) 2019-2020 Andriy Golovnya
+  \copyright (C) 2019-2021 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
@@ -13,7 +13,7 @@
 /*!
   \brief Digital Matrix class
 
-  This class implements rotary encoder based on two digital pins for encoder an simgle digital pin for select key.
+  This class implements rotary encoder based on two digital pins for encoder an single digital pin for select key.
  */
 class RotaryEncoder: public AbstractKeyboard {
 

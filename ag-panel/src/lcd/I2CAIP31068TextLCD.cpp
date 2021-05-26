@@ -1,7 +1,7 @@
 /*!
   \file I2CAIP31068TextLCD.cpp
-  \brief AG-Panel Project I2C 8-bit text (AIP31068) LCD implmentation
-  \copyright (C) 2020 Andriy Golovnya
+  \brief AG-Panel Project I2C 8-bit text (AIP31068) LCD implementation
+  \copyright (C) 2020-2021 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
@@ -27,7 +27,7 @@ bool I2CAIP31068TextLCD::Init() {
 }
 
 /*!
-  \brief Deinitialisation of I2C text LCD display class
+  \brief Deinitialization of I2C text LCD display class
  */
 void I2CAIP31068TextLCD::Exit() {
   LiquidCrystal_AIP31068_I2C *p_I2CLCD = reinterpret_cast<LiquidCrystal_AIP31068_I2C*>(m_Lowlevel);
@@ -108,5 +108,5 @@ void I2CAIP31068TextLCD::Command(
 }
 
 #else
-#warning 'I2CAIP31068TextLCD' is not implemented for GD32V and KENDRYTE platforms bacause it lacks of standard header 'Wire.h'!
+#warning 'I2CAIP31068TextLCD' is not implemented for GD32V and KENDRYTE platforms because it lacks of standard header 'Wire.h'!
 #endif /* !ARDUINO_ARCH_GD32V */

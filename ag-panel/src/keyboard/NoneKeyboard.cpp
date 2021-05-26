@@ -1,7 +1,7 @@
 /*!
   \file NoneKeyboard.cpp
   \brief AG-Panel Project none keyboard implementation
-  \copyright (C) 2019-2020 Andriy Golovnya
+  \copyright (C) 2019-2021 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
@@ -18,7 +18,7 @@ bool NoneKeyboard::Init() {
 }
 
 /*!
-  \brief Deinitialisation of none keyboard class
+  \brief Deinitialization of none keyboard class
  */
 void NoneKeyboard::Exit() {
 }

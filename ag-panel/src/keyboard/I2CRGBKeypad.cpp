@@ -1,7 +1,7 @@
 /*!
   \file I2CRGBKeypad.cpp
   \brief AG-Panel Project I2C RGB keypad keyboard implementation
-  \copyright (C) 2019-2020 Andriy Golovnya
+  \copyright (C) 2019-2021 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
@@ -27,7 +27,7 @@ bool I2CRGBKeypad::Init() {
 }
 
 /*!
-  \brief Deinitialisation of I2C RGB keypad class
+  \brief Deinitialization of I2C RGB keypad class
  */
 void I2CRGBKeypad::Exit() {
 }
@@ -66,5 +66,5 @@ uint8_t I2CRGBKeypad::GetKeyCount() {
 }
 
 #else
-#warning 'I2CRGBKeypad' is not implemented for GD32V and KENDRYTE platforms bacause it lacks of standard header 'Wire.h'!
+#warning 'I2CRGBKeypad' is not implemented for GD32V and KENDRYTE platforms because it lacks of standard header 'Wire.h'!
 #endif /* !ARDUINO_ARCH_GD32V */

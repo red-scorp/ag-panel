@@ -1,7 +1,7 @@
 /*!
   \file PWMBacklight.cpp
   \brief AG-Panel Project PWM (0-255) backlight implementation
-  \copyright (C) 2019-2020 Andriy Golovnya
+  \copyright (C) 2019-2021 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
@@ -20,7 +20,7 @@ bool PWMBacklight::Init() {
 }
 
 /*!
-  \brief Deinitialisation of PWM backlight class
+  \brief Deinitialization of PWM backlight class
  */
 void PWMBacklight::Exit() {
 }

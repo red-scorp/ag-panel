@@ -1,7 +1,7 @@
 /*!
   \file DigitalMatrix.cpp
   \brief AG-Panel Project digital keypad keyboard implementation
-  \copyright (C) 2019-2020 Andriy Golovnya
+  \copyright (C) 2019-2021 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
@@ -26,7 +26,7 @@ bool DigitalMatrix::Init() {
 }
 
 /*!
-  \brief Deinitialisation of digital matrix class
+  \brief Deinitialization of digital matrix class
  */
 void DigitalMatrix::Exit() {
 }
@@ -34,7 +34,7 @@ void DigitalMatrix::Exit() {
 /*!
   \brief Get a key of digital matrix
 
-  Activates sequntially column pins and reads row pins to find out what key has been pressed.
+  Activates sequentially column pins and reads row pins to find out what key has been pressed.
   \returns #KeyNone if no new actions detected, else a key code
  */
 uint8_t DigitalMatrix::GetKey() {

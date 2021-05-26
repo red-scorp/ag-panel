@@ -1,7 +1,7 @@
 /*!
   \file USBVirtualUART.cpp
   \brief AG-Panel Project direct USB virtual UART implementation
-  \copyright (C) 2020 Andriy Golovnya
+  \copyright (C) 2020-2021 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
@@ -51,7 +51,7 @@ void USBVirtualUART::Exit() {
   \returns Number of bytes written to USB virtual UART
  */
 uint8_t USBVirtualUART::PutCh(
-  uint8_t txbyte      /*!< Character to be writte to USB virtual UART */
+  uint8_t txbyte      /*!< Character to be written to USB virtual UART */
 ) {
   USBVirtualUART_Lowlevel_t *p_UART = reinterpret_cast<USBVirtualUART_Lowlevel_t*>(m_Lowlevel);
   return p_UART->write(txbyte);

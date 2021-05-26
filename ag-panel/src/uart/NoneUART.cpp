@@ -1,7 +1,7 @@
 /*!
   \file NoneUART.cpp
   \brief AG-Panel Project none UART implementation
-  \copyright (C) 2019-2020 Andriy Golovnya
+  \copyright (C) 2019-2021 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
@@ -29,7 +29,7 @@ void NoneUART::Exit() {
   \returns Number of bytes written to hardware UART
  */
 uint8_t NoneUART::PutCh(
-  uint8_t txbyte      /*!< Character to be writte to hardware UART */
+  uint8_t txbyte      /*!< Character to be written to hardware UART */
 ) {
   txbyte = txbyte; /* remove 'unused parameter ...' warning */
   return 1;

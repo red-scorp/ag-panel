@@ -1,7 +1,7 @@
 /*!
   \file SPIAIP31068TextLCD.cpp
-  \brief AG-Panel Project SPI 8-bit text (AIP31068) LCD implmentation
-  \copyright (C) 2020 Andriy Golovnya
+  \brief AG-Panel Project SPI 8-bit text (AIP31068) LCD implementation
+  \copyright (C) 2020-2021 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
@@ -27,7 +27,7 @@ bool SPIAIP31068TextLCD::Init() {
 }
 
 /*!
-  \brief Deinitialisation of I2C text LCD display class
+  \brief Deinitialization of I2C text LCD display class
  */
 void SPIAIP31068TextLCD::Exit() {
   LiquidCrystal_AIP31068_SPI *p_SPILCD = reinterpret_cast<LiquidCrystal_AIP31068_SPI*>(m_Lowlevel);
@@ -108,5 +108,5 @@ void SPIAIP31068TextLCD::Command(
 }
 
 #else
-#warning 'SPIAIP31068TextLCD' is not implemented for GD32V and KENDRYTE platforms bacause it lacks of standard header 'SPI.h'!
+#warning 'SPIAIP31068TextLCD' is not implemented for GD32V and KENDRYTE platforms because it lacks of standard header 'SPI.h'!
 #endif /* !ARDUINO_ARCH_GD32V */

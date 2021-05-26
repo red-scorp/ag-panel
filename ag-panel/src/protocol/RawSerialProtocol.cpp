@@ -1,7 +1,7 @@
 /*!
   \file RawSerialProtocol.cpp
-  \brief AG-Panel Project raw serial protocol implmentation
-  \copyright (C) 2020 Andriy Golovnya
+  \brief AG-Panel Project raw serial protocol implementation
+  \copyright (C) 2020-2021 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
@@ -22,7 +22,7 @@ bool RawSerialProtocol::Init() {
 }
 
 /*!
-  \brief Deinitialisation of rawserial protocol class
+  \brief Deinitialization of rawserial protocol class
  */
 void RawSerialProtocol::Exit() {
 }
@@ -52,7 +52,7 @@ void RawSerialProtocol::Loop() {
     if(m_XPos >= m_LCD->GetColumns()) { /* end of line condition -> go to new line */
       m_XPos = 0;
       m_YPos++;
-      if(m_YPos >= m_LCD->GetRows()) /* end of buffer reached -> print nothing untill proper command is received */
+      if(m_YPos >= m_LCD->GetRows()) /* end of buffer reached -> print nothing until proper command is received */
         m_OutOfRange = true;
       if(!m_OutOfRange)
         m_LCD->SetCursor(m_XPos, m_YPos);

@@ -1,7 +1,7 @@
 /*!
   \file BufferedUART.cpp
   \brief AG-Panel Project buffered UART implementation
-  \copyright (C) 2019-2020 Andriy Golovnya
+  \copyright (C) 2019-2021 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
@@ -33,7 +33,7 @@ void BufferedUART::Exit() {
   \returns Number of bytes written to real UART
  */
 uint8_t BufferedUART::PutCh(
-  uint8_t txbyte      /*!< Character to be writte to real UART */
+  uint8_t txbyte      /*!< Character to be written to real UART */
 ) {
   return m_UART->PutCh(txbyte);
 }
@@ -52,7 +52,7 @@ uint8_t BufferedUART::GetCh() {
 }
 
 /*!
-  \brief Prefill UARD data buffer
+  \brief Prefill UART data buffer
  */
 void BufferedUART::Prefill() {
   FillBuffer();
@@ -61,7 +61,7 @@ void BufferedUART::Prefill() {
 /*!
   \brief Push a character from UART data buffer
 
-  \returns Caracter (byte) from top of a buffer (oldest)
+  \returns Character (byte) from top of a buffer (oldest)
  */
 uint8_t BufferedUART::PushBuffer() {
   uint8_t top_byte = m_Buffer[0];

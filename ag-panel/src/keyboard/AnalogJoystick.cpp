@@ -1,7 +1,7 @@
 /*!
   \file AnalogJoystick.cpp
   \brief AG-Panel Project analog joystick keyboard implementation
-  \copyright (C) 2019-2020 Andriy Golovnya
+  \copyright (C) 2019-2021 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
@@ -27,7 +27,7 @@ bool AnalogJoystick::Init() {
 }
 
 /*!
-  \brief Deinitialisation of analog joystick class
+  \brief Deinitialization of analog joystick class
  */
 void AnalogJoystick::Exit() {
 }

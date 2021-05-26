@@ -1,7 +1,7 @@
 /*!
   \file PPITextLCD.cpp
-  \brief AG-Panel Project PPI (parallel) 4 and 8-bit text (hd44780) LCD implmentation
-  \copyright (C) 2019-2020 Andriy Golovnya
+  \brief AG-Panel Project PPI (parallel) 4 and 8-bit text (hd44780) LCD implementation
+  \copyright (C) 2019-2021 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
@@ -29,7 +29,7 @@ bool PPITextLCD::Init() {
 }
 
 /*!
-  \brief Deinitialisation of parallel text LCD display class
+  \brief Deinitialization of parallel text LCD display class
  */
 void PPITextLCD::Exit() {
   LiquidCrystal *p_PPILCD = reinterpret_cast<LiquidCrystal*>(m_Lowlevel);

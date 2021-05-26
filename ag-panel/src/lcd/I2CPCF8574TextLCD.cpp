@@ -1,7 +1,7 @@
 /*!
   \file I2CPCF8574TextLCD.cpp
-  \brief AG-Panel Project I2C 4-bit text (hd44780) LCD implmentation
-  \copyright (C) 2019-2020 Andriy Golovnya
+  \brief AG-Panel Project I2C 4-bit text (hd44780) LCD implementation
+  \copyright (C) 2019-2021 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
@@ -26,7 +26,7 @@ bool I2CPCF8574TextLCD::Init() {
 }
 
 /*!
-  \brief Deinitialisation of I2C text LCD display class
+  \brief Deinitialization of I2C text LCD display class
  */
 void I2CPCF8574TextLCD::Exit() {
   LiquidCrystal_I2C *p_I2CLCD = reinterpret_cast<LiquidCrystal_I2C*>(m_Lowlevel);
@@ -157,5 +157,5 @@ void I2CPCF8574TextLCD::Command(
 }
 
 #else
-#warning 'I2CPCF8574TextLCD' is not implemented for GD32V and KENDRYTE platforms bacause it lacks of standard header 'Wire.h'!
+#warning 'I2CPCF8574TextLCD' is not implemented for GD32V and KENDRYTE platforms because it lacks of standard header 'Wire.h'!
 #endif /* !ARDUINO_ARCH_GD32V */

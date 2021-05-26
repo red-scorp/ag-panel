@@ -1,7 +1,7 @@
 /*!
   \file SoftwareUART.h
   \brief AG-Panel Project direct software UART interface
-  \copyright (C) 2019-2020 Andriy Golovnya
+  \copyright (C) 2019-2021 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
@@ -14,7 +14,7 @@
   \brief Software UART class
 
   This is a class which implements software UART of arduino boards.
-  This class works with AVR and STM32 ICUs only (for now).
+  This class works with AVR, ESP32 and STM32 MCUs only (for now).
  */
 class SoftwareUART: public AbstractUART {
 

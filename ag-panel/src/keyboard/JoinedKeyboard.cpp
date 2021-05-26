@@ -1,7 +1,7 @@
 /*!
   \file JoinedKeyboard.cpp
   \brief AG-Panel Project joined keyboard implementation
-  \copyright (C) 2019-2020 Andriy Golovnya
+  \copyright (C) 2019-2021 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
@@ -47,11 +47,11 @@ bool JoinedKeyboard::Init() {
 }
 
 /*!
-  \brief Deinitialisation of joined keyboard class
+  \brief Deinitialization of joined keyboard class
  */
 void JoinedKeyboard::Exit() {
-  if(m_Privat != nullptr) {
-    JoinedKeyboardList *p_ListEntry = reinterpret_cast<JoinedKeyboardList*>(m_Privat);
+  if(m_Private != nullptr) {
+    JoinedKeyboardList *p_ListEntry = reinterpret_cast<JoinedKeyboardList*>(m_Private);
     delete p_ListEntry;
   }
 }
@@ -64,7 +64,7 @@ void JoinedKeyboard::Exit() {
   \returns #KeyNone if no new actions detected, else a key code
  */
 uint8_t JoinedKeyboard::GetKey() {
-  JoinedKeyboardList *p_ListEntry = reinterpret_cast<JoinedKeyboardList*>(m_Privat);
+  JoinedKeyboardList *p_ListEntry = reinterpret_cast<JoinedKeyboardList*>(m_Private);
 
   while(p_ListEntry != nullptr) {
     uint8_t Key = p_ListEntry->m_Keyboard->GetKey();
@@ -85,11 +85,11 @@ uint8_t JoinedKeyboard::GetKey() {
 void JoinedKeyboard::AddKeyboard(
   AbstractKeyboard *Keyboard      /*!< Keyboard class instance we want to inlist */
 ) {
-  JoinedKeyboardList *p_ListEntry = reinterpret_cast<JoinedKeyboardList*>(m_Privat);
-  JoinedKeyboardList **pp_LastNext = reinterpret_cast<JoinedKeyboardList**>(&m_Privat);
+  JoinedKeyboardList *p_ListEntry = reinterpret_cast<JoinedKeyboardList*>(m_Private);
+  JoinedKeyboardList **pp_LastNext = reinterpret_cast<JoinedKeyboardList**>(&m_Private);
   uint8_t KeyOffset = 0;
 
-  /* Fild last linked list entry */
+  /* Find last linked list entry */
   while(p_ListEntry != nullptr) {
     KeyOffset = p_ListEntry->m_KeyOffset + p_ListEntry->m_KeyCount;
     pp_LastNext = &p_ListEntry->m_Next;
@@ -106,7 +106,7 @@ void JoinedKeyboard::AddKeyboard(
   \returns Number of supported keys
  */
 uint8_t JoinedKeyboard::GetKeyCount() {
-  JoinedKeyboardList *p_ListEntry = reinterpret_cast<JoinedKeyboardList*>(m_Privat);
+  JoinedKeyboardList *p_ListEntry = reinterpret_cast<JoinedKeyboardList*>(m_Private);
   uint8_t KeySum = 0;
 
   while(p_ListEntry != nullptr) {

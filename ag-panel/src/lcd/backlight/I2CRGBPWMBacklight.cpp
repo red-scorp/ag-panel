@@ -1,7 +1,7 @@
 /*!
   \file I2CRGBPWMBacklight.cpp
   \brief AG-Panel Project I2C RGB PWM (0-255) backlight implementation
-  \copyright (C) 2020 Andriy Golovnya
+  \copyright (C) 2020-2021 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
@@ -28,7 +28,7 @@ bool I2CRGBPWMBacklight::Init() {
 }
 
 /*!
-  \brief Deinitialisation of I2C RGB PWM backlight class
+  \brief Deinitialization of I2C RGB PWM backlight class
  */
 void I2CRGBPWMBacklight::Exit() {
   PCA9633 *p_I2CBacklight = reinterpret_cast<PCA9633*>(m_Lowlevel);
@@ -40,7 +40,7 @@ void I2CRGBPWMBacklight::Exit() {
 /*!
   \brief Set backlight in binary (on/off) form
 
-  This function sets maximu brightness of RGB PWM backlight if enabled.
+  This function sets maximum brightness of RGB PWM backlight if enabled.
  */
 void I2CRGBPWMBacklight::SetOn(
   bool on               /*!< Backlight state in on/off format */
@@ -76,5 +76,5 @@ void I2CRGBPWMBacklight::SetRGB(
 }
 
 #else
-#warning 'I2CRGBPWMBacklight' is not implemented for GD32V and KENDRYTE platforms bacause it lacks of standard header 'Wire.h'!
+#warning 'I2CRGBPWMBacklight' is not implemented for GD32V and KENDRYTE platforms because it lacks of standard header 'Wire.h'!
 #endif /* !ARDUINO_ARCH_GD32V */

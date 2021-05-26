@@ -1,7 +1,7 @@
 /*!
   \file AnalogMatrix.cpp
   \brief AG-Panel Project analog keypad keyboard implementation
-  \copyright (C) 2019-2020 Andriy Golovnya
+  \copyright (C) 2019-2021 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
@@ -31,7 +31,7 @@ bool AnalogMatrix::Init() {
 }
 
 /*!
-  \brief Deinitialisation of analog matrix class
+  \brief Deinitialization of analog matrix class
  */
 void AnalogMatrix::Exit() {
 }

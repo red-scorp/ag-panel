@@ -1,7 +1,7 @@
 /*!
   \file NoneBacklight.cpp
   \brief AG-Panel Project none backlight implementation
-  \copyright (C) 2019-2020 Andriy Golovnya
+  \copyright (C) 2019-2021 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
@@ -18,7 +18,7 @@ bool NoneBacklight::Init() {
 }
 
 /*!
-  \brief Deinitialisation of none backlight class
+  \brief Deinitialization of none backlight class
  */
 void NoneBacklight::Exit() {
 }
