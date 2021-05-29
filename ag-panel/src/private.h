@@ -31,7 +31,7 @@
   #endif
 #endif
 
-#undef UART /* Requered to compile for DUE board */
+#undef UART /* Required to compile for DUE board */
 
 const uint8_t InvalidPin = 255;
 
