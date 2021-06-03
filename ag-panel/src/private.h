@@ -33,6 +33,17 @@
 
 #undef UART /* Required to compile for DUE board */
 
+/* Hack for Raspberry Pico */
+#if !defined(SPI_CLOCK_DIV2)
+#define SPI_CLOCK_DIV2   2
+#define SPI_CLOCK_DIV4   4
+#define SPI_CLOCK_DIV8   8
+#define SPI_CLOCK_DIV16  16
+#define SPI_CLOCK_DIV32  32
+#define SPI_CLOCK_DIV64  64
+#define SPI_CLOCK_DIV128 128
+#endif
+
 const uint8_t InvalidPin = 255;
 
 const uint8_t PWMResolution = 8;
