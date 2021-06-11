@@ -70,7 +70,7 @@ The code compiles and runs on several embedded CPU platforms:
 - [x] Atmel SAMD and SAM
 - [ ] Espressif ESP32 and ESP8266 (to be tested)
 - [x] STM32
-- [ ] RP2040
+- [ ] RP2040 (to be tested)
 - [ ] RISC-V (planned)
 
 ### Class Diagram
