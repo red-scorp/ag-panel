@@ -1,7 +1,7 @@
 /*!
   \file all.h
   \brief AG-Panel Project all LCD includes
-  \copyright (C) 2019-2020 Andriy Golovnya
+  \copyright (C) 2019-2021 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@gmail.com)
 */
 
@@ -13,6 +13,8 @@
 #include "AbstractLCD.h"
 #include "AbstractTextLCD.h"
 
+#ifndef UNIT_TEST
+
 #include "PPITextLCD.h"
 #include "I2CPCF8574TextLCD.h"
 #include "I2CRGBTextLCD.h"
@@ -21,5 +23,7 @@
 
 #include "AbstractGraphicLCD.h"
 #include "AbstractU8GraphicLCD.h"
+
+#endif/*UNIT_TEST*/
 
 extern AbstractLCD *initLCD(AbstractBacklight *Backlight, AbstractFont *Font);

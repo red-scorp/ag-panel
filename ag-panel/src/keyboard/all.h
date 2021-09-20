@@ -1,13 +1,15 @@
 /*!
   \file all.h
   \brief AG-Panel Project all Keyboard includes
-  \copyright (C) 2019-2020 Andriy Golovnya
+  \copyright (C) 2019-2021 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@gmail.com)
 */
 
 #pragma once
 
 #include "AbstractKeyboard.h"
+
+#ifndef UNIT_TEST
 
 #include "NoneKeyboard.h"
 #include "AnalogKeypad.h"
@@ -20,5 +22,7 @@
 #include "I2CRGBKeypad.h"
 #include "SimpleButton.h"
 #include "JoinedKeyboard.h"
+
+#endif/*UNIT_TEST*/
 
 AbstractKeyboard *initKeyboard(AbstractLCD *p_LCD);
