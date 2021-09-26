@@ -1,11 +1,13 @@
 /*!
   \file config.h
   \brief AG-Panel Project configuration file
-  \copyright (C) 2019-2020 Andriy Golovnya
+  \copyright (C) 2019-2021 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
 #pragma once
+
+#ifndef UNIT_TEST
 
 /* Protocol Configuration */
 /* ------------------------------------------------------------------------- */
@@ -72,5 +74,15 @@
 //#define KBD_JOINED /* Enables use of several keyboards at once */
 /* Add 'Keypad=yes' to '[hd44780]' section of your '/etc/LCDd.conf' if you use any other value then KBD_NONE */
 /* Check for proper 'KeyMatrix_?_?=???' values for your '/etc/LCDd.conf' in kbd.h */
+
+#else
+
+#define PROT_RAWSERIAL
+#define UART_UT
+#define LCD_TEXT_UT
+#define LCD_BACKLIGHT_UT
+#define KBD_UT
+
+#endif/*UNIT_TEST*/
 
 #include "config_adv.h"

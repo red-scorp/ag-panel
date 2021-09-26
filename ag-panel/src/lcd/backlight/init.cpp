@@ -1,7 +1,7 @@
 /*!
   \file init.cpp
   \brief AG-Panel Project LCD backlight initialization
-  \copyright (C) 2020 Andriy Golovnya
+  \copyright (C) 2020-2021 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@gmail.com)
 */
 
@@ -43,6 +43,8 @@ AbstractBacklight *initBacklight() {
     #else
       p_Backlight = new I2CRGBPWMBacklight(LCD_BACKLIGHT_CHAN_R, LCD_BACKLIGHT_CHAN_G, LCD_BACKLIGHT_CHAN_B, LCD_BACKLIGHT_I2C_ADDR, LCD_BACKLIGHT_COLOR);
     #endif
+  #elif defined(LCD_BACKLIGHT_UT)
+    /*p_Backlight = new UTBacklight();*/
   #endif
 
   return p_Backlight;

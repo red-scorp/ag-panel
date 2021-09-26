@@ -1,7 +1,7 @@
 /*!
   \file init.cpp
   \brief AG-Panel Project UART initialization
-  \copyright (C) 2020 Andriy Golovnya
+  \copyright (C) 2020-2021 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@gmail.com)
 */
 
@@ -48,6 +48,8 @@ AbstractUART *initUART() {
     p_UART = new SoftwareUART(UART_BAUD, UART_PIN_RX, UART_PIN_TX);
   #elif defined(UART_NONE)
     p_UART = new NoneUART(UART_BAUD);
+  #elif defined(UART_UT)
+    /*p_UART = new UTUART();*/
   #else
     #error UART is not defined!
   #endif
