@@ -9,11 +9,12 @@
 
 #include "AbstractUART.h"
 
+#include "NoneUART.h"
+
 #ifndef UNIT_TEST
 
 #include "HardwareUART.h"
 #include "SoftwareUART.h"
-#include "NoneUART.h"
 #include "BufferedUART.h"
 #include "TextLoggingUART.h"
 #include "USBVirtualUART.h"

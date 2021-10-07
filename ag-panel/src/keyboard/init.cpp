@@ -1,7 +1,7 @@
 /*!
   \file init.cpp
   \brief AG-Panel Project Keyboard initialization
-  \copyright (C) 2020 Andriy Golovnya
+  \copyright (C) 2020-2021 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@gmail.com)
 */
 
@@ -136,6 +136,13 @@ AbstractKeyboard *initKeyboard(AbstractLCD *p_LCD) {
   #if defined(KBD_BUTTON)
     static const uint8_t pins[] = KBD_PIN_ARRAY;
     p_Keyboard = new SimpleButton(KBD_NUM, pins);
+    #if defined(KBD_JOINED)
+      p_JoinedKeyboard->AddKeyboard(p_Keyboard);
+      p_Keyboard = nullptr;
+    #endif
+  #endif
+  #if defined(KBD_UT)
+    /*p_Keyboard = new UTKeyboard();*/
     #if defined(KBD_JOINED)
       p_JoinedKeyboard->AddKeyboard(p_Keyboard);
       p_Keyboard = nullptr;

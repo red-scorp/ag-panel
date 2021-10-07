@@ -1,7 +1,7 @@
 /*!
   \file init.cpp
   \brief AG-Panel Project LCD initialization
-  \copyright (C) 2020 Andriy Golovnya
+  \copyright (C) 2020-2021 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@gmail.com)
 */
 
@@ -41,6 +41,8 @@ AbstractLCD *initLCD(
     p_LCD = new I2CAIP31068TextLCD(Backlight, LCD_COLS, LCD_ROWS, LCD_I2C_ADDR);
   #elif defined(LCD_TEXT_SPI_AIP31068)
     p_LCD = new SPIAIP31068TextLCD(Backlight, LCD_COLS, LCD_ROWS, LCD_PIN_SS, LCD_PIN_SCLK, LCD_PIN_MOSI, LCD_PIN_MISO);
+  #elif defined(LCD_TEXT_UT)
+    /*p_LCD = new UTTextLCD(Backlight);*/
   #else
     #error LCD is not defined!
   #endif
