@@ -119,5 +119,5 @@ Following libraries might be required:
 
 Your contributions as code, resources or finances are welcome!
 Please contact me directly over e-mail andriy.golovnya@gmail.com or over [GitHub profile](https://github.com/red-scorp).
-Link for [Paypal donations](http://paypal.me/redscorp), which are always welcome.
+Link for [Paypal donations](http://paypal.me/redscorp) and [Ko-Fi donations](http://ko-fi.com/redscorp), which are always welcome.
 Thanks in advance!
