@@ -1,7 +1,7 @@
 /*!
   \file SoftwareUART.cpp
   \brief AG-Panel Project direct software UART implementation
-  \copyright (C) 2019-2020 Andriy Golovnya
+  \copyright (C) 2019-2022 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
@@ -39,7 +39,7 @@ void SoftwareUART::Exit() {
   \returns Number of bytes written to software UART
  */
 uint8_t SoftwareUART::PutCh(
-  uint8_t txbyte      /*!< Character to be writte to software UART */
+  uint8_t txbyte      /*!< Character to be written to software UART */
 ) {
   SoftwareSerial *p_UART = reinterpret_cast<SoftwareSerial*>(m_Lowlevel);
   return p_UART->write(txbyte);
@@ -48,7 +48,7 @@ uint8_t SoftwareUART::PutCh(
 /*!
   \brief Read a character from software UART
 
-  \returns Charecter (byte) read from software UART
+  \returns Character (byte) read from software UART
  */
 uint8_t SoftwareUART::GetCh() {
   SoftwareSerial *p_UART = reinterpret_cast<SoftwareSerial*>(m_Lowlevel);

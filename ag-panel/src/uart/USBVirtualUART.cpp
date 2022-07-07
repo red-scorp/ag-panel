@@ -1,7 +1,7 @@
 /*!
   \file USBVirtualUART.cpp
   \brief AG-Panel Project direct USB virtual UART implementation
-  \copyright (C) 2020-2021 Andriy Golovnya
+  \copyright (C) 2020-2022 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
@@ -60,7 +60,7 @@ uint8_t USBVirtualUART::PutCh(
 /*!
   \brief Read a character from USB virtual UART
 
-  \returns Charecter (byte) read from USB virtual UART
+  \returns Character (byte) read from USB virtual UART
  */
 uint8_t USBVirtualUART::GetCh() {
   USBVirtualUART_Lowlevel_t *p_UART = reinterpret_cast<USBVirtualUART_Lowlevel_t*>(m_Lowlevel);

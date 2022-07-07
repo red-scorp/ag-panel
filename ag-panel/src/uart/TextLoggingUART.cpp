@@ -1,7 +1,7 @@
 /*!
   \file TextLoggingUART.cpp
   \brief AG-Panel Project text logging UART implementation
-  \copyright (C) 2019-2020 Andriy Golovnya
+  \copyright (C) 2019-2022 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
@@ -81,7 +81,7 @@ uint8_t TextLoggingUART::PutCh(
 /*!
   \brief Read a character from text logging UART
 
-  \returns Charecter (byte) read from real UART
+  \returns Character (byte) read from real UART
  */
 uint8_t TextLoggingUART::GetCh() {
   uint8_t rxbyte = m_RealUART->GetCh();

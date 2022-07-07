@@ -1,7 +1,7 @@
 /*!
   \file NoneUART.cpp
   \brief AG-Panel Project none UART implementation
-  \copyright (C) 2019-2021 Andriy Golovnya
+  \copyright (C) 2019-2022 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
@@ -38,7 +38,7 @@ uint8_t NoneUART::PutCh(
 /*!
   \brief Read a character from none UART
 
-  \returns Charecter (byte) read from hardware UART
+  \returns Character (byte) read from hardware UART
  */
 uint8_t NoneUART::GetCh() {
 

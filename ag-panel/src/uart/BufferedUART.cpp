@@ -1,7 +1,7 @@
 /*!
   \file BufferedUART.cpp
   \brief AG-Panel Project buffered UART implementation
-  \copyright (C) 2019-2021 Andriy Golovnya
+  \copyright (C) 2019-2022 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
@@ -41,7 +41,7 @@ uint8_t BufferedUART::PutCh(
 /*!
   \brief Read a character from UART buffer
 
-  \returns Charecter (byte) read from UART buffer
+  \returns Character (byte) read from UART buffer
  */
 uint8_t BufferedUART::GetCh() {
   while(FillBuffer() == 0) {

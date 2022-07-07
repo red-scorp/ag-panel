@@ -1,7 +1,7 @@
 /*!
   \file HardwareUART.cpp
   \brief AG-Panel Project direct hardware UART implementation
-  \copyright (C) 2019-2021 Andriy Golovnya
+  \copyright (C) 2019-2022 Andriy Golovnya
   \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
@@ -90,7 +90,7 @@ uint8_t HardwareUART::PutCh(
 /*!
   \brief Read a character from hardware UART
 
-  \returns Charecter (byte) read from hardware UART
+  \returns Character (byte) read from hardware UART
  */
 uint8_t HardwareUART::GetCh() {
   HardwareSerial *p_UART = reinterpret_cast<HardwareSerial*>(m_Lowlevel);
