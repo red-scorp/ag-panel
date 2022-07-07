@@ -45,8 +45,8 @@
 //#define LCD_TEXT_I2C_RGB        /* Use HD44780 based text RGB display over I2C with help of MCP23017 IC */
 //#define LCD_TEXT_SPI_AIP31068   /* Use HD44780 based text display over SPI with help of AIP31068 IC */
 
-#define LCD_ROWS            2   /* Use given amount of text rows */
-#define LCD_COLS            16  /* Use given amount of text columns */
+#define LCD_ROWS            2   /* Use given number of text rows */
+#define LCD_COLS            16  /* Use given number of text columns */
 /* Add proper 'Size=?x?' to '[hd44780]' section of your '/etc/LCDd.conf' for selected LCD_ROWS and LCD_COLS */
 
 //#define LCD_BACKLIGHT_NONE        /* Use no controlled display backlight */
