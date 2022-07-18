@@ -1,8 +1,7 @@
-/*!
-  \file class_diagram.dot
-  \brief AG-Panel Project UML class diagram
-  \copyright (C) 2020 Andriy Golovnya
-  \author Andriy Golovnya (andriy.golovnya@gmail.com)
+/*! \file class_diagram.dot
+    \brief AG-Panel Project UML class diagram
+    \copyright (C) 2020-2022 Andriy Golovnya
+    \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
 digraph class_diagram {

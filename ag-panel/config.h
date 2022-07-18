@@ -1,8 +1,7 @@
-/*!
-  \file config.h
-  \brief AG-Panel Project configuration file
-  \copyright (C) 2019-2022 Andriy Golovnya
-  \author Andriy Golovnya (andriy.golovnya@gmail.com)
+/*! \file config.h
+    \brief AG-Panel Project configuration file
+    \copyright (C) 2019-2022 Andriy Golovnya
+    \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
 #pragma once

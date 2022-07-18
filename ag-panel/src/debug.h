@@ -1,8 +1,7 @@
-/*!
-  \file debug.h
-  \brief AG-Panel Project debugging header
-  \copyright (C) 2019-2020 Andriy Golovnya
-  \author Andriy Golovnya (andriy.golovnya@gmail.com)
+/*! \file debug.h
+    \brief AG-Panel Project debugging header
+    \copyright (C) 2019-2022 Andriy Golovnya
+    \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
 #pragma once
@@ -33,16 +32,16 @@
 #define DEBUG_BAUD      115200
 
 #if defined(DEBUG_UART_SOFTWARE)
-#define DEBUG_PIN_RX    12
-#define DEBUG_PIN_TX    13
+    #define DEBUG_PIN_RX    12
+    #define DEBUG_PIN_TX    13
 #endif
 
 #if defined(DEBUG_STR_ENABLED)
-#include "uart/AbstractUART.h"
-extern AbstractUART *g_DebugUART;
-#define DEBUG_STR(str) g_DebugUART->PutStr(str)
+    #include "uart/AbstractUART.h"
+    extern AbstractUART *g_DebugUART;
+    #define DEBUG_STR(str) g_DebugUART->PutStr(str)
 #else
-#define DEBUG_STR(str) /* Nothig */
+    #define DEBUG_STR(str) /* Nothing */
 #endif
 
 extern AbstractUART* initDebug();

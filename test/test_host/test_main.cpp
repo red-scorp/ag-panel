@@ -1,8 +1,7 @@
-/*!
-  \file test_main.cpp
-  \brief AG-Panel Project test main code
-  \copyright (C) 2021 Andriy Golovnya
-  \author Andriy Golovnya (andriy.golovnya@gmail.com)
+/*! \file test_main.cpp
+    \brief AG-Panel Project test main code
+    \copyright (C) 2021-2022 Andriy Golovnya
+    \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
 #include <stdio.h>
@@ -27,10 +26,10 @@ using namespace std;
 
 int main(int argc, char *argv[]) {
 
-  UNITY_BEGIN();
+    UNITY_BEGIN();
 
-  setup();
+    setup();
 
-  while(true)
-    loop();
+    while(true)
+        loop();
 }
