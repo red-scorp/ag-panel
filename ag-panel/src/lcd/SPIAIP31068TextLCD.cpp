@@ -81,7 +81,7 @@ void SPIAIP31068TextLCD::Print(
     This function calls corresponding function of LiquidCrystal_AIP31068_SPI class instance.
  */
 void SPIAIP31068TextLCD::Write(
-    uint8_t byte          /* !< Byte to write to LCD display */
+    uint8_t byte          /*!< Byte to write to LCD display */
 ) {
     LiquidCrystal_AIP31068_SPI *p_SPILCD = reinterpret_cast<LiquidCrystal_AIP31068_SPI*>(m_Lowlevel);
     p_SPILCD->write(byte);
@@ -92,7 +92,7 @@ void SPIAIP31068TextLCD::Write(
     This function calls corresponding function of LiquidCrystal_AIP31068_SPI class instance.
  */
 void SPIAIP31068TextLCD::Command(
-    uint8_t byte          /* !< Command to send to LCD display */
+    uint8_t byte          /*!< Command to send to LCD display */
 ) {
     LiquidCrystal_AIP31068_SPI *p_SPILCD = reinterpret_cast<LiquidCrystal_AIP31068_SPI*>(m_Lowlevel);
     p_SPILCD->command(byte);
