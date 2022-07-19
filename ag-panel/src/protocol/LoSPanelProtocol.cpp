@@ -1,8 +1,7 @@
-/*!
-  \file LoSPanelProtocol.cpp
-  \brief AG-Panel Project LoS-panel protocol implementation
-  \copyright (C) 2019-2021 Andriy Golovnya
-  \author Andriy Golovnya (andriy.golovnya@gmail.com)
+/*! \file LoSPanelProtocol.cpp
+    \brief AG-Panel Project LoS-panel protocol implementation
+    \copyright (C) 2019-2022 Andriy Golovnya
+    \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
 #include "../private.h"
@@ -17,107 +16,102 @@ const uint8_t LoSPanelProtocolBacklightOff = 0x00;  /*!< Enable LCD Backlight co
 const uint8_t LoSPanelProtocolBacklightOn = 0xFF;   /*!< Disable LCD Backlight code */
 
 constexpr uint8_t LoSPanelKeypadCode(uint8_t col, uint8_t row) {
-  return ((col) << 4) | (1 << (row));
+    return ((col) << 4) | (1 << (row));
 }
 
-/*!
-  \brief Initialization of los-panel protocol
+/*! \brief Initialization of los-panel protocol
 
-  Configures los-panel protocol class.
-  \note https://mlf.home.xs4all.nl/los/
-  \returns true
+    Configures los-panel protocol class.
+    \note https://mlf.home.xs4all.nl/los/
+    \returns true
  */
 bool LoSPanelProtocol::Init() {
-  m_LCDLastTxMicros = 0;
-  return true;
+    m_LCDLastTxMicros = 0;
+    return true;
 }
 
-/*!
-  \brief Deinitialization of los-panel protocol class
+/*! \brief Deinitialization of los-panel protocol class
  */
 void LoSPanelProtocol::Exit() {
 }
 
-/*!
-  \brief Wait for given microseconds from last text LCD transfer
+/*! \brief Wait for given microseconds from last text LCD transfer
  */
 void LoSPanelProtocol::WaitFromLastTx(
-  uint32_t WaitMicros       /*!< Time in microseconds to wait */
+    uint32_t WaitMicros       /*!< Time in microseconds to wait */
 ) {
-  uint32_t WaitForMicros = m_LCDLastTxMicros + WaitMicros;
+    uint32_t WaitForMicros = m_LCDLastTxMicros + WaitMicros;
 
-  if((WaitForMicros > m_LCDLastTxMicros) && (micros() >= WaitForMicros)) /* we are already over the target time */
-    return;
+    if((WaitForMicros > m_LCDLastTxMicros) && (micros() >= WaitForMicros)) /* we are already over the target time */
+        return;
 
-//  digitalWrite(LED_BUILTIN, HIGH);
+//    digitalWrite(LED_BUILTIN, HIGH);
 
-  if(WaitForMicros < m_LCDLastTxMicros) { /* we have an micros() overflow */
-    while(micros() > m_LCDLastTxMicros) /* first run over the maximum */
-      Yield();
-  }
+    if(WaitForMicros < m_LCDLastTxMicros) { /* we have an micros() overflow */
+        while(micros() > m_LCDLastTxMicros) /* first run over the maximum */
+            Yield();
+    }
 
-  while(micros() < WaitForMicros) /* now wait for target time */
-    Yield();
+    while(micros() < WaitForMicros) /* now wait for target time */
+        Yield();
 
-//  digitalWrite(LED_BUILTIN, LOW);
+//    digitalWrite(LED_BUILTIN, LOW);
 }
 
 /*! \brief Store last LCD transfer time stamp
  */
 void LoSPanelProtocol::StampLastTx() {
-  m_LCDLastTxMicros = micros();
+    m_LCDLastTxMicros = micros();
 }
 
-/*!
-  \brief Main loop of los-panel protocol
+/*! \brief Main loop of los-panel protocol
 
-  This function reads UART and interpret the input based on los-panel protocol rules.
+    This function reads UART and interpret the input based on los-panel protocol rules.
  */
 void LoSPanelProtocol::Loop() {
-  uint8_t rxbyte = m_UART->GetCh();
-  uint8_t nextbyte;
+    uint8_t rxbyte = m_UART->GetCh();
+    uint8_t nextbyte;
 
-  switch(rxbyte) {
+    switch(rxbyte) {
 
-  case LoSPanelProtocolInstruction:
-    nextbyte = m_UART->GetCh();
-    WaitFromLastTx(nextbyte < 4? 2000: 40); /* for commands 1 - 3 wait for 2 ms, otherwise 40 us */
-    m_TextLCD->Command(nextbyte);
-    StampLastTx();
-    break;
+    case LoSPanelProtocolInstruction:
+        nextbyte = m_UART->GetCh();
+        WaitFromLastTx(nextbyte < 4? 2000: 40); /* for commands 1 - 3 wait for 2 ms, otherwise 40 us */
+        m_TextLCD->Command(nextbyte);
+        StampLastTx();
+        break;
 
-  case LoSPanelProtocolBacklight:
-    nextbyte = m_UART->GetCh();
-    m_TextLCD->SetBacklight(nextbyte);
-    break;
+    case LoSPanelProtocolBacklight:
+        nextbyte = m_UART->GetCh();
+        m_TextLCD->SetBacklight(nextbyte);
+        break;
 
-  default:
-    WaitFromLastTx(40);
-    m_TextLCD->Write(rxbyte);
-    StampLastTx();
-    break;
-  }
+    default:
+        WaitFromLastTx(40);
+        m_TextLCD->Write(rxbyte);
+        StampLastTx();
+        break;
+    }
 }
 
-/*!
-  \brief Background job of los-panel protocol
+/*! \brief Background job of los-panel protocol
 
-  This function reads keyboard input and puts it to UART.
+    This function reads keyboard input and puts it to UART.
  */
 void LoSPanelProtocol::Yield() {
-  static uint8_t old_key = KeyNone;
-  uint8_t key = m_Keyboard->GetKey();
+    static uint8_t old_key = KeyNone;
+    uint8_t key = m_Keyboard->GetKey();
 
-  if(old_key != key)
-    old_key = key;
-  else
-    return;
+    if(old_key != key)
+        old_key = key;
+    else
+        return;
 
-  if(key != KeyNone) {
-    uint8_t txbyte = LoSPanelKeypadCode(key >> 2, key & 0x3);
-    m_UART->PutCh(LoSPanelProtocolKeypad);
-    m_UART->PutCh(txbyte);
-  }
+    if(key != KeyNone) {
+        uint8_t txbyte = LoSPanelKeypadCode(key >> 2, key & 0x3);
+        m_UART->PutCh(LoSPanelProtocolKeypad);
+        m_UART->PutCh(txbyte);
+    }
 
-  m_UART->Prefill();
+    m_UART->Prefill();
 }
