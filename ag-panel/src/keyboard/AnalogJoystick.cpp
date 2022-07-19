@@ -1,8 +1,7 @@
-/*!
-  \file AnalogJoystick.cpp
-  \brief AG-Panel Project analog joystick keyboard implementation
-  \copyright (C) 2019-2021 Andriy Golovnya
-  \author Andriy Golovnya (andriy.golovnya@gmail.com)
+/*! \file AnalogJoystick.cpp
+    \brief AG-Panel Project analog joystick keyboard implementation
+    \copyright (C) 2019-2022 Andriy Golovnya
+    \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
 #include "../private.h"
@@ -15,52 +14,48 @@ static const int s_AnalogJoystickThreshold = MaxAnalogValue / 20;   /*!< Insensi
 
 static const uint8_t s_AnalogJoystickKeysMax = 5;   /*!< Maximum of detectable keys for the class */
 
-/*!
-  \brief Initialization of analog joystick
+/*! \brief Initialization of analog joystick
 
-  Configures select button pin.
-  \returns true
+    Configures select button pin.
+    \returns true
  */
 bool AnalogJoystick::Init() {
-  pinMode(m_ButtonPin, INPUT_PULLUP);
-  return true;
+    pinMode(m_ButtonPin, INPUT_PULLUP);
+    return true;
 }
 
-/*!
-  \brief Deinitialization of analog joystick class
+/*! \brief Deinitialization of analog joystick class
  */
 void AnalogJoystick::Exit() {
 }
 
-/*!
-  \brief Get a key of analog joystick
+/*! \brief Get a key of analog joystick
 
-  Reads X- and Y-direction analog pins and a select button digital pin.
-  \returns #KeyNone if no new actions detected, else a key code
+    Reads X- and Y-direction analog pins and a select button digital pin.
+    \returns #KeyNone if no new actions detected, else a key code
  */
 uint8_t AnalogJoystick::GetKey() {
-  uint16_t x = analogRead(m_XPin);
-  uint16_t y = analogRead(m_YPin);
-  uint8_t button = digitalRead(m_ButtonPin);
+    uint16_t x = analogRead(m_XPin);
+    uint16_t y = analogRead(m_YPin);
+    uint8_t button = digitalRead(m_ButtonPin);
 
-  if(button == LOW)
-    return KeyDefaultSelect;
-  if(x < (s_AnalogJoystickXCenter - s_AnalogJoystickThreshold))
-    return KeyDefaultLeft;
-  if(x > (s_AnalogJoystickXCenter + s_AnalogJoystickThreshold))
-    return KeyDefaultRight;
-  if(y < (s_AnalogJoystickYCenter - s_AnalogJoystickThreshold))
-    return KeyDefaultDown;
-  if(y > (s_AnalogJoystickYCenter + s_AnalogJoystickThreshold))
-    return KeyDefaultUp;
-  return KeyNone;
+    if(button == LOW)
+        return KeyDefaultSelect;
+    if(x < (s_AnalogJoystickXCenter - s_AnalogJoystickThreshold))
+        return KeyDefaultLeft;
+    if(x > (s_AnalogJoystickXCenter + s_AnalogJoystickThreshold))
+        return KeyDefaultRight;
+    if(y < (s_AnalogJoystickYCenter - s_AnalogJoystickThreshold))
+        return KeyDefaultDown;
+    if(y > (s_AnalogJoystickYCenter + s_AnalogJoystickThreshold))
+        return KeyDefaultUp;
+    return KeyNone;
 }
 
-/*!
-  \brief Get number of keys supported by analog joystick
+/*! \brief Get number of keys supported by analog joystick
 
-  \returns Number of supported keys
+    \returns Number of supported keys
  */
 uint8_t AnalogJoystick::GetKeyCount() {
-  return s_AnalogJoystickKeysMax;
+    return s_AnalogJoystickKeysMax;
 }

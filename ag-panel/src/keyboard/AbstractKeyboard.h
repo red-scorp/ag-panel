@@ -1,8 +1,7 @@
-/*!
-  \file AbstractKeyboard.h
-  \brief AG-Panel Project abstract keyboard interface
-  \copyright (C) 2019-2020 Andriy Golovnya
-  \author Andriy Golovnya (andriy.golovnya@gmail.com)
+/*! \file AbstractKeyboard.h
+    \brief AG-Panel Project abstract keyboard interface
+    \copyright (C) 2019-2022 Andriy Golovnya
+    \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
 #pragma once
@@ -17,24 +16,23 @@ const uint8_t KeyDefaultLeft = 3;     /* KeyMatrix_1_3=Left */
 const uint8_t KeyDefaultRight = 4;    /* KeyMatrix_1_4=Right */
 const uint8_t KeyDefaultSelect = 5;   /* KeyMatrix_2_1=Enter */
 
-/*!
-  \brief Abstract keyboard class
+/*! \brief Abstract keyboard class
 
-  This is a base class for all keyboard implementations.
-  It defines only a base interface of keyboard used by the rest of a project code.
+    This is a base class for all keyboard implementations.
+    It defines only a base interface of keyboard used by the rest of a project code.
  */
 class AbstractKeyboard {
 
 public:
-  explicit AbstractKeyboard() { Init(); }
-  virtual ~AbstractKeyboard() { Exit(); }
+    explicit AbstractKeyboard() { Init(); }
+    virtual ~AbstractKeyboard() { Exit(); }
 
-  virtual uint8_t GetKey() = 0;
-  virtual uint8_t GetKeyCount() = 0;
+    virtual uint8_t GetKey() = 0;
+    virtual uint8_t GetKeyCount() = 0;
 
 protected:
 
 private:
-  bool Init() { return true; }
-  void Exit() {}
+    bool Init() { return true; }
+    void Exit() {}
 };

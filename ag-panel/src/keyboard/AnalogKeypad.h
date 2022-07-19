@@ -1,8 +1,7 @@
-/*!
-  \file AnalogKeypad.h
-  \brief AG-Panel Project analog keypad keyboard interface
-  \copyright (C) 2019-2020 Andriy Golovnya
-  \author Andriy Golovnya (andriy.golovnya@gmail.com)
+/*! \file AnalogKeypad.h
+    \brief AG-Panel Project analog keypad keyboard interface
+    \copyright (C) 2019-2022 Andriy Golovnya
+    \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
 #pragma once
@@ -10,52 +9,49 @@
 #include "../private.h"
 #include "AbstractKeyboard.h"
 
-/*!
-  \brief Positions of Keys in range array
+/*! \brief Positions of Keys in range array
  */
 enum {
-  AbstractKeyboardAnalogDataRangeIndexUp = 0,
-  AbstractKeyboardAnalogDataRangeIndexDown,
-  AbstractKeyboardAnalogDataRangeIndexLeft,
-  AbstractKeyboardAnalogDataRangeIndexRight,
-  AbstractKeyboardAnalogDataRangeIndexSelect,
-  AbstractKeyboardAnalogDataRangeIndexMax     /*!< Data range array length */
+    AbstractKeyboardAnalogDataRangeIndexUp = 0,
+    AbstractKeyboardAnalogDataRangeIndexDown,
+    AbstractKeyboardAnalogDataRangeIndexLeft,
+    AbstractKeyboardAnalogDataRangeIndexRight,
+    AbstractKeyboardAnalogDataRangeIndexSelect,
+    AbstractKeyboardAnalogDataRangeIndexMax     /*!< Data range array length */
 };
 
-/*!
-  \brief Analog Data Range struct
+/*! \brief Analog Data Range struct
 
-  This structure helps to define a range of analog input values for key pressed.
+    This structure helps to define a range of analog input values for key pressed.
  */
 struct AnalogDataRange {
-  uint16_t min;     /*!< Minimum of analog input range */
-  uint16_t max;     /*!< Maximum of analog input range */
+    uint16_t min;     /*!< Minimum of analog input range */
+    uint16_t max;     /*!< Maximum of analog input range */
 };
 
-/*!
-  \brief Analog Keypad class
+/*! \brief Analog Keypad class
 
-  This class implements analog keypad based on several buttons connected with different resistors.
+    This class implements analog keypad based on several buttons connected with different resistors.
  */
 class AnalogKeypad: public AbstractKeyboard {
 
 public:
-  explicit AnalogKeypad(
-    uint8_t DataPin,     /*!< Keypad input analog pin */
-    const AnalogDataRange *DataRangeArray   /*!< Data ranges for keys */
-  ): AbstractKeyboard(),
-    m_DataPin(DataPin),
-    m_DataRangeArray(DataRangeArray) { Init(); }
-  virtual ~AnalogKeypad() override { Exit(); }
+    explicit AnalogKeypad(
+        uint8_t DataPin,     /*!< Keypad input analog pin */
+        const AnalogDataRange *DataRangeArray   /*!< Data ranges for keys */
+    ): AbstractKeyboard(),
+        m_DataPin(DataPin),
+        m_DataRangeArray(DataRangeArray) { Init(); }
+    virtual ~AnalogKeypad() override { Exit(); }
 
-  virtual uint8_t GetKey() override;
-  virtual uint8_t GetKeyCount() override;
+    virtual uint8_t GetKey() override;
+    virtual uint8_t GetKeyCount() override;
 
 protected:
-  uint8_t m_DataPin;    /*!< Keypad input analog pin */
-  const AnalogDataRange *m_DataRangeArray;  /*!< Data ranges for keys */
+    uint8_t m_DataPin;    /*!< Keypad input analog pin */
+    const AnalogDataRange *m_DataRangeArray;  /*!< Data ranges for keys */
 
 private:
-  bool Init();
-  void Exit();
+    bool Init();
+    void Exit();
 };

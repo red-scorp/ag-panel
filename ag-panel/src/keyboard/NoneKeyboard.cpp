@@ -1,42 +1,37 @@
-/*!
-  \file NoneKeyboard.cpp
-  \brief AG-Panel Project none keyboard implementation
-  \copyright (C) 2019-2021 Andriy Golovnya
-  \author Andriy Golovnya (andriy.golovnya@gmail.com)
+/*! \file NoneKeyboard.cpp
+    \brief AG-Panel Project none keyboard implementation
+    \copyright (C) 2019-2022 Andriy Golovnya
+    \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
 #include "../private.h"
 #include "NoneKeyboard.h"
 
-/*!
-  \brief Initialization of none keyboard
+/*! \brief Initialization of none keyboard
 
-  \returns true
+    \returns true
  */
 bool NoneKeyboard::Init() {
-  return true;
+    return true;
 }
 
-/*!
-  \brief Deinitialization of none keyboard class
+/*! \brief Deinitialization of none keyboard class
  */
 void NoneKeyboard::Exit() {
 }
 
-/*!
-  \brief Get a key of none keyboard
+/*! \brief Get a key of none keyboard
 
-  \returns #KeyNone allways
+    \returns #KeyNone always
  */
 uint8_t NoneKeyboard::GetKey() {
-  return KeyNone;
+    return KeyNone;
 }
 
-/*!
-  \brief Get number of keys supported by none keyboard
+/*! \brief Get number of keys supported by none keyboard
 
-  \returns Number of supported keys
+    \returns Number of supported keys
  */
 uint8_t NoneKeyboard::GetKeyCount() {
-  return 0;
+    return 0;
 }

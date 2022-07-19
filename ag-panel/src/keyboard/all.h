@@ -1,8 +1,7 @@
-/*!
-  \file all.h
-  \brief AG-Panel Project all Keyboard includes
-  \copyright (C) 2019-2021 Andriy Golovnya
-  \author Andriy Golovnya (andriy.golovnya@gmail.com)
+/*! \file all.h
+    \brief AG-Panel Project all Keyboard includes
+    \copyright (C) 2019-2022 Andriy Golovnya
+    \author Andriy Golovnya (andriy.golovnya@gmail.com)
 */
 
 #pragma once
