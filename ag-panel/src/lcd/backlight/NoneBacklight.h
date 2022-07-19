@@ -1,8 +1,7 @@
-/*!
-  \file NoneBacklight.h
-  \brief AG-Panel Project none backlight interface
-  \copyright (C) 2019-2020 Andriy Golovnya
-  \author Andriy Golovnya (andriy.golovnya@gmail.com)
+/*! \file NoneBacklight.h
+    \brief AG-Panel Project none backlight interface
+    \copyright (C) 2019-2022 Andriy Golovnya
+    \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
 #pragma once
@@ -10,24 +9,23 @@
 #include "../../private.h"
 #include "AbstractBacklight.h"
 
-/*!
-  \brief None (dummy) Backlight class
+/*! \brief None (dummy) Backlight class
 
-  This class implements none backlight.
+    This class implements none backlight.
  */
 class NoneBacklight: public AbstractBacklight {
 
 public:
-  explicit NoneBacklight(): AbstractBacklight() { Init(); }
-  virtual ~NoneBacklight() override { Exit(); }
+    explicit NoneBacklight(): AbstractBacklight() { Init(); }
+    virtual ~NoneBacklight() override { Exit(); }
 
-  virtual void SetOn(bool on) override;
-  virtual void SetBrightness(uint8_t brightness) override;
-  virtual void SetRGB(uint8_t red, uint8_t green, uint8_t blue) override;
+    virtual void SetOn(bool on) override;
+    virtual void SetBrightness(uint8_t brightness) override;
+    virtual void SetRGB(uint8_t red, uint8_t green, uint8_t blue) override;
 
 protected:
 
 private:
-  bool Init();
-  void Exit();
+    bool Init();
+    void Exit();
 };
