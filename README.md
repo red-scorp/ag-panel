@@ -2,43 +2,43 @@
 
 A Next generation of [lcdproc](http://lcdproc.sourceforge.net/) display panel based on Arduino and similar HW.
 This project is based on my earlier code of [Arduino LCD over Serial Panel (alos-panel)](https://github.com/red-scorp/alos-panel).
-The original alos-panel C code was fully rewritten on C++ for better maintainability and expansion.
+The original alos-panel C code was fully rewritten in C++ for better maintainability and expansion.
 Documentation is pending!
 
-This project **will** support multiple different connections and different types of displays, including HD44780 based.
-Main platform for this project is Arduino Uno and Nano boards but it should certainly work on another Arduino boards as well.
-One of the topics of this project is portability between different CPUs, though you can expect it working with AVR, SAM, SAMD, STM32, ESP32, RISC-V and other hobby platforms as well.
+This project **will** support multiple different connections and different types of displays, including HD44780-based displays.
+The main platform for this project is Arduino Uno and Nano boards, but it should certainly work on other Arduino boards as well.
+One of the goals of this project is portability between different CPUs. You can expect it to work with AVR, SAM, SAMD, STM32, ESP32, RISC-V, and other hobby platforms.
 
-## Current status
+## Current Status
 
-Work in progress but already usable.
+Work in progress, but already usable.
 
-## Supported configurations
+## Supported Configurations
 
 - Protocols
-  - [x] los-panel (lcdproc) for direct HD44780 (will support **only** HD44780 displays)
+  - [x] los-panel (lcdproc) for direct HD44780 (supports **only** HD44780 displays)
   - [ ] rawserial (lcdproc) (in progress)
   - [ ] own protocol TBD (lcdproc) (to be implemented)
 - UART Serial
   - [x] Hardware UART (up to 10 if supported)
-  - [x] USB Virtual UART (for SAMD, SAM and STM32 platforms)
-  - [x] Software UART (for AVR, STM32, ESP8266 and ESP32 platforms)
+  - [x] USB Virtual UART (for SAMD, SAM, and STM32 platforms)
+  - [x] Software UART (for AVR, STM32, ESP8266, and ESP32 platforms)
   - [ ] Bluetooth UART (to be implemented)
   - [ ] LAN/WLAN TCP/IP socket (to be implemented)
   - [x] No (null) UART
   - [x] Buffered UART (addition to a regular UART)
 - LCD Display
   - [x] HD44780 and clones in 4-bit and 8-bit modes
-  - [x] HD44780 w/ binary (on/off) backlight over I2C bus, based on 'I2C LCD backpack'
-  - [x] HD44780 w/ RGB binary (7 colors) backlight over I2C bus, like 'Adafruit RGB 16x2 LCD Shield'
-  - [x] AIP31068, HD44780-like w/ I2C and SPI interface
+  - [x] HD44780 with binary (on/off) backlight over I2C bus, based on 'I2C LCD backpack'
+  - [x] HD44780 with RGB binary (7 colors) backlight over I2C bus, like 'Adafruit RGB 16x2 LCD Shield'
+  - [x] AIP31068, HD44780-like with I2C and SPI interface
 - LCD Backlight
-  - [x] Not controlled or controlled by display itself
+  - [x] Not controlled or controlled by the display itself
   - [x] ON/OFF binary backlight
   - [x] RGB binary (7 colors) backlight
   - [x] PWM-controlled (monochrome brightness) backlight
   - [x] RGB PWM-controlled (hue brightness) backlight
-  - [x] RGB PWM-controlled backlight attached over I2C bus w/ help of PCA9633 LED controller
+  - [x] RGB PWM-controlled backlight attached over I2C bus with the help of PCA9633 LED controller
 - Keyboard / Input
   - [x] No keyboard
   - [x] Digital Matrix up to 4x4 (on analog pins)
@@ -63,7 +63,7 @@ Please check *'config.h'* and *'config_adv.h'* for up-to-date information.
 
 ### Platforms
 
-The code of ag-panel is written on C++ with Arduino Framework.
+The code of ag-panel is written in C++ with the Arduino Framework.
 The code compiles and runs on several embedded CPU platforms:
 
 - [x] Atmel (Microchip) AVR
@@ -76,14 +76,14 @@ The code compiles and runs on several embedded CPU platforms:
 
 ### Class Diagram
 
-UML class diagram is shown below:
+The UML class diagram is shown below:
 
 ![UML diagram](/img/class_diagram.png)
 
 ### Code Tree
 
 The code is structured by subsystem.
-Classes of different subsystem are located in their respective folders.
+Classes of different subsystems are located in their respective folders.
 
 ```
 ag-panel
@@ -101,8 +101,8 @@ ag-panel
 
 ### Dependencies
 
-The code of ag-panel can be compiled with Arduino IDE or PlatformIO (Atom or VS Code).
-Following libraries might be required:
+The code of ag-panel can be compiled with the Arduino IDE or PlatformIO (Atom or VS Code).
+The following libraries might be required:
 
 - LiquidCrystal
 - LiquidCrystal_I2C
@@ -116,9 +116,9 @@ Following libraries might be required:
 - ESP32 AnalogWrite
 - U8g2
 
-## How to help
+## How to Help
 
-Your contributions as code, resources, or finances are welcome! Please contact me directly via email at andriy.golovnya@gmail.com or through my [GitHub profile](https://github.com/red-scorp).
+Your contributions in the form of code, resources, or finances are welcome! Please contact me directly via email at andriy.golovnya@gmail.com or through my [GitHub profile](https://github.com/red-scorp).
 
 If you'd like to make a financial contribution, you can donate via [PayPal](http://paypal.me/redscorp) or [Ko-Fi](http://ko-fi.com/redscorp). Your support is greatly appreciated.
 
