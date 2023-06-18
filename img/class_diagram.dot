@@ -2,6 +2,7 @@
     \brief AG-Panel Project UML class diagram
     \copyright (C) 2020-2023 Andriy Golovnya
     \author Andriy Golovnya (andriy.golovnya@gmail.com)
+    \note To generate new PNG image use following command: & "C:\Program Files\Graphviz\bin\dot.exe" .\img\class_diagram.dot -Tpng -o .\img\class_diagram.png
  */
 
 digraph class_diagram {
