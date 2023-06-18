@@ -1,6 +1,6 @@
 /*! \file class_diagram.dot
     \brief AG-Panel Project UML class diagram
-    \copyright (C) 2020-2022 Andriy Golovnya
+    \copyright (C) 2020-2023 Andriy Golovnya
     \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
@@ -17,7 +17,7 @@ digraph class_diagram {
         shape = note
         style = filled
         fillcolor = yellow
-        label = "AG-Panel Project UML Class Diagram v0.2a\n(C) 2020 Andriy Golovnya\nAuthor: Andriy Golovnya (andriy.golovnya@gmail.com)"
+        label = "AG-Panel Project UML Class Diagram v0.2a\n(C) 2020-2023 Andriy Golovnya\nAuthor: Andriy Golovnya (andriy.golovnya@gmail.com)"
     ]
 
     /* Backlights group of classes */
@@ -113,7 +113,7 @@ digraph class_diagram {
         ]
     }
 
-    /* UARTSs group of classes */
+    /* UARTs group of classes */
     subgraph cluster_uarts {
         node [
             style = filled
@@ -145,7 +145,7 @@ digraph class_diagram {
             shape = note
             style = filled
             fillcolor = yellow
-            label = "Uses first UART as\ntransparent input/output\nand second UART for logging\nof trafic in text form"
+            label = "Uses first UART as\ntransparent input/output\nand second UART for logging\nof traffic in text form"
         ]
 
         uarts_note [
