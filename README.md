@@ -68,6 +68,7 @@ The code compiles and runs on several embedded CPU platforms:
 
 - [x] Atmel (Microchip) AVR
 - [x] Atmel (Microchip) SAMD and SAM
+- [ ] Renesas RA (to be tested)
 - [ ] Espressif ESP32 and ESP8266 (to be tested)
 - [x] ST STM32
 - [ ] Raspberry RP2040 (to be tested)
