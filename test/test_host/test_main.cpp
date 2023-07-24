@@ -1,13 +1,14 @@
 /*! \file test_main.cpp
-    \brief AG-Panel Project test main code
-    \copyright (C) 2021-2022 Andriy Golovnya
+    \brief AG-Panel Project unit test main code
+    \copyright (C) 2021-2023 Andriy Golovnya
     \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <unity.h>
+
+#include "../unity/unity.h"
 
 using namespace std;
 
@@ -24,12 +25,14 @@ using namespace std;
 #include "../ag-panel/src/protocol/init.cpp"
 #include "../ag-panel/src/protocol/RawSerialProtocol.cpp"
 
+/* Unit testing main function */
 int main(int argc, char *argv[]) {
 
     UNITY_BEGIN();
 
-    setup();
+    // TODO: call unit test functions
 
-    while(true)
-        loop();
+
+
+    UNITY_END();
 }
