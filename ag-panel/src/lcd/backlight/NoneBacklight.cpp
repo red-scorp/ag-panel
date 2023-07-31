@@ -1,6 +1,6 @@
 /*! \file NoneBacklight.cpp
     \brief AG-Panel Project none backlight implementation
-    \copyright (C) 2019-2022 Andriy Golovnya
+    \copyright (C) 2019-2023 Andriy Golovnya
     \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
@@ -23,27 +23,22 @@ void NoneBacklight::Exit() {
 /*! \brief Set backlight in binary (on/off) form
  */
 void NoneBacklight::SetOn(
-    bool on               /*!< Backlight state in on/off format */
+    A_UNUSED bool on        /*!< Backlight state in on/off format */
 ) {
-    on = on;
 }
 
 /*! \brief Set backlight brightness if supported
  */
 void NoneBacklight::SetBrightness(
-    uint8_t brightness    /*!< Backlight brightness value */
+    A_UNUSED uint8_t brightness /*!< Backlight brightness value */
 ) {
-    brightness = brightness;
 }
 
 /*! \brief Set backlight RGB colors if supported
  */
 void NoneBacklight::SetRGB(
-    uint8_t red,          /*!< Red color value */
-    uint8_t green,        /*!< Green color value */
-    uint8_t blue          /*!< Blue color value */
+    A_UNUSED uint8_t red,   /*!< Red color value */
+    A_UNUSED uint8_t green, /*!< Green color value */
+    A_UNUSED uint8_t blue   /*!< Blue color value */
 ) {
-    red = red;
-    green = green;
-    blue = blue;
 }

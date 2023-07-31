@@ -1,6 +1,6 @@
 /*! \file private.h
     \brief AG-Panel Project private header
-    \copyright (C) 2019-2022 Andriy Golovnya
+    \copyright (C) 2019-2023 Andriy Golovnya
     \author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
@@ -33,6 +33,8 @@
 #endif
 
 #undef UART /* Required to compile for DUE board */
+
+#include "SPI.h"
 
 /* Hack for Raspberry Pico */
 #if !defined(SPI_CLOCK_DIV2)
@@ -74,4 +76,16 @@ const uint8_t AnalogResolution = 10;
 
 const int MaxAnalogValue = (1 << AnalogResolution) - 1;
 
+/* Some useful defines */
 #define ITEMS_OF_ARRAY(arr)     (sizeof(arr) / sizeof(arr[0]))
+
+/* Some compiler attribute defines */
+#define A_UNUSED                __attribute__((unused))
+#define A_ALIGN(bytes)          __attribute__((aligned(bytes)))
+#define A_PACKED(bytes)         __attribute__((packed(bytes)))
+#define A_NAKED                 __attribute__((naked))
+#define A_NOINLINE              __attribute__((noinline))
+#define A_ALWAYS_INLINE         __attribute__((always_inline))
+#define A_NO_RETURN             __attribute__((noreturn))
+#define A_OPTIMIZE(flag)        __attribute__((optimize(flag)))
+#define A_NO_OPTIMIZE           A_OPTIMIZE("O0")
