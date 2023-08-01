@@ -1,7 +1,7 @@
-/*! \file main.cpp
-    \brief AG-Panel Project main code
-    \copyright (C) 2019-2022 Andriy Golovnya
-    \author Andriy Golovnya (andriy.golovnya@gmail.com)
+/** @file main.cpp
+    @brief AG-Panel Project main code
+    @copyright (C) 2019-2023 Andriy Golovnya
+    @author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
 #include "private.h"
@@ -15,28 +15,28 @@
 #include "keyboard/all.h"
 #include "protocol/all.h"
 
-/*! \brief Globally available debugging UART class pointer
-    \todo Move it to a separate file ('debug.cpp') to free some space if debug output is disabled.
+/** @brief Globally available debugging UART class pointer
+    @todo Move it to a separate file ('debug.cpp') to free some space if debug output is disabled.
  */
 AbstractUART *g_DebugUART = nullptr;
 
-/*! \brief Main communication UART class pointer
+/** @brief Main communication UART class pointer
  */
 static AbstractUART *s_UART = nullptr;
 
-/*! \brief Main display class pointer
+/** @brief Main display class pointer
  */
 static AbstractLCD *s_LCD = nullptr;
 
-/*! \brief Main input class pointer
+/** @brief Main input class pointer
  */
 static AbstractKeyboard *s_Keyboard = nullptr;
 
-/*! \brief Main data exchange protocol class pointer
+/** @brief Main data exchange protocol class pointer
  */
 static AbstractProtocol *s_Protocol = nullptr;
 
-/*! \brief Print welcome message to the LCD
+/** @brief Print welcome message to the LCD
 
     This function prints project name, project version and UART baud rate to the attached LCD.
  */
@@ -61,7 +61,7 @@ void print_welcome() {
     DEBUG_STR("LCD> "); DEBUG_STR(str); DEBUG_STR("\n");
 }
 
-/*! \brief Main initialization function
+/** @brief Main initialization function
 
     - setup debugging
     - setup UART
@@ -73,7 +73,7 @@ void print_welcome() {
 void setup() {
 
     /* 1. First we will initialize debug UART to enable debug output as early as possible */
-    /*! \todo Disable with macro if debug output is disabled */
+    /** @todo Disable with macro if debug output is disabled */
     g_DebugUART = initDebug();
 
     DEBUG_STR("Starting Up...\n");
@@ -99,7 +99,7 @@ void setup() {
     DEBUG_STR("Initializing Keyboard...\n");
     s_Keyboard = initKeyboard(s_LCD);
 
-    /*! \todo Add AbstractSpeaker and other classes for notice, warning and error sounds??? */
+    /** @todo Add AbstractSpeaker and other classes for notice, warning and error sounds??? */
 
     /* 5. Now it's time for protocol itself. Remember the protocol class defines how all other elements communicate with each other */
     DEBUG_STR("Initializing Protocol...\n");
@@ -109,7 +109,7 @@ void setup() {
     print_welcome();
 }
 
-/*!  \brief Main loop function
+/**  @brief Main loop function
 
     - run protocol main task
     - start protocol background task
@@ -124,7 +124,7 @@ void loop() {
 
 /* ESP8266 and ESP32 use function yield() internally to let their HW components (e.g. WiFi) to work correctly. */
 #if !defined(ARDUINO_ARCH_ESP8266) && !defined(ARDUINO_ARCH_ESP32) && !defined(ARDUINO_ARCH_RP2040)
-/*! \brief Background task function
+/** @brief Background task function
 
     - start protocol background task
  */

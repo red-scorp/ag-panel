@@ -1,17 +1,17 @@
-/*! \file RotaryEncoder.cpp
-    \brief AG-Panel Project rotary encoder keyboard implementation
-    \copyright (C) 2019-2022 Andriy Golovnya
-    \author Andriy Golovnya (andriy.golovnya@gmail.com)
+/** @file RotaryEncoder.cpp
+    @brief AG-Panel Project rotary encoder keyboard implementation
+    @copyright (C) 2019-2023 Andriy Golovnya
+    @author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
 #include "../private.h"
 #include "../../config.h"
 #include "RotaryEncoder.h"
 
-/*! \brief Initialization of rotary encoder
+/** @brief Initialization of rotary encoder
 
     Configures digital pins of rotary encoder and select button.
-    \returns true
+    @returns true
  */
 bool RotaryEncoder::Init() {
     pinMode(m_D1Pin, INPUT_PULLUP);
@@ -20,15 +20,15 @@ bool RotaryEncoder::Init() {
     return true;
 }
 
-/*! \brief Deinitialization of rotary encoder class
+/** @brief Deinitialization of rotary encoder class
  */
 void RotaryEncoder::Exit() {
 }
 
-/*! \brief Get a key of rotary encoder
+/** @brief Get a key of rotary encoder
 
     Read rotary encoder and select button pins to find out what key has been pressed.
-    \returns #KeyNone if no new actions detected, else a key code
+    @returns #KeyNone if no new actions detected, else a key code
  */
 uint8_t RotaryEncoder::GetKey() {
 /*  action| full left | full right| left&back | right&back|
@@ -75,9 +75,9 @@ uint8_t RotaryEncoder::GetKey() {
     return KeyNone;
 }
 
-/*! \brief Get number of keys supported by rotary encoder
+/** @brief Get number of keys supported by rotary encoder
 
-    \returns Number of supported keys
+    @returns Number of supported keys
  */
 uint8_t RotaryEncoder::GetKeyCount() {
     return 5; // we skip up and down here, but still use select key code

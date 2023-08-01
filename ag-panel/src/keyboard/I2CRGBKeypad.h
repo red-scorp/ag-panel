@@ -1,7 +1,7 @@
-/*! \file I2CRGBKeypad.h
-    \brief AG-Panel Project I2C RGB keypad keyboard interface
-    \copyright (C) 2019-2022 Andriy Golovnya
-    \author Andriy Golovnya (andriy.golovnya@gmail.com)
+/** @file I2CRGBKeypad.h
+    @brief AG-Panel Project I2C RGB keypad keyboard interface
+    @copyright (C) 2019-2023 Andriy Golovnya
+    @author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
 #pragma once
@@ -10,7 +10,7 @@
 #include "AbstractKeyboard.h"
 #include "../lcd/AbstractLCD.h"
 
-/*! \brief I2C RGB Keypad class
+/** @brief I2C RGB Keypad class
 
     This class implements RGB display keypad attached with I2C MCP23017 I/O expander controller.
  */
@@ -18,7 +18,7 @@ class I2CRGBKeypad: public AbstractKeyboard {
 
 public:
     explicit I2CRGBKeypad(
-        AbstractLCD *LCD      /*!< Pointer to LCD class, should be of #I2CRGBTextLCD type */
+        AbstractLCD *LCD      /**< Pointer to LCD class, should be of #I2CRGBTextLCD type */
     ): AbstractKeyboard(),
         m_LCD(LCD),
         m_Lowlevel(nullptr) { Init(); }
@@ -31,7 +31,7 @@ protected:
     AbstractLCD *m_LCD;
 
 private:
-    void *m_Lowlevel;       /*!< Pointer to Low-Level LCD class */
+    void *m_Lowlevel;       /**< Pointer to Low-Level LCD class */
     bool Init();
     void Exit();
 };

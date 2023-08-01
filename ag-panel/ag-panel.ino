@@ -1,7 +1,7 @@
-/*! \file ag-panel.ino
-    \brief AG-Panel Project file
-    \copyright (C) 2019-2022 Andriy Golovnya
-    \author Andriy Golovnya (andriy.golovnya@gmail.com)
+/** @file ag-panel.ino
+    @brief AG-Panel Project file
+    @copyright (C) 2019-2023 Andriy Golovnya
+    @author Andriy Golovnya (andriy.golovnya@gmail.com)
 */
 
 /*

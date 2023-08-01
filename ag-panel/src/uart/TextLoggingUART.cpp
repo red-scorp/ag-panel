@@ -1,7 +1,7 @@
-/*! \file TextLoggingUART.cpp
-    \brief AG-Panel Project text logging UART implementation
-    \copyright (C) 2019-2022 Andriy Golovnya
-    \author Andriy Golovnya (andriy.golovnya@gmail.com)
+/** @file TextLoggingUART.cpp
+    @brief AG-Panel Project text logging UART implementation
+    @copyright (C) 2019-2023 Andriy Golovnya
+    @author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
 #include "TextLoggingUART.h"
@@ -13,10 +13,10 @@ const uint8_t NumbersLineHexadecimal = 16;
 
 static const char s_Numbers[] = "0123456789ABCDEF";
 
-/*! \brief Initialization of text logging UART
+/** @brief Initialization of text logging UART
 
     Initialize text logging UART.
-    \returns true
+    @returns true
  */
 bool TextLoggingUART::Init() {
 
@@ -58,25 +58,25 @@ bool TextLoggingUART::Init() {
     return true;
 }
 
-/*! \brief Deinitialization of text logging UART
+/** @brief Deinitialization of text logging UART
  */
 void TextLoggingUART::Exit() {
 }
 
-/*! \brief Write a character to text logging UART
+/** @brief Write a character to text logging UART
 
-    \returns Number of bytes written to real UART
+    @returns Number of bytes written to real UART
  */
 uint8_t TextLoggingUART::PutCh(
-    uint8_t txbyte      /*!< Character to be written to text logging UART */
+    uint8_t txbyte      /**< Character to be written to text logging UART */
 ) {
     PrintByte(txbyte, 0);
     return m_RealUART->PutCh(txbyte);
 }
 
-/*! \brief Read a character from text logging UART
+/** @brief Read a character from text logging UART
 
-    \returns Character (byte) read from real UART
+    @returns Character (byte) read from real UART
  */
 uint8_t TextLoggingUART::GetCh() {
     uint8_t rxbyte = m_RealUART->GetCh();
@@ -84,29 +84,29 @@ uint8_t TextLoggingUART::GetCh() {
     return rxbyte;
 }
 
-/*! \brief Check number of bytes in text logging UART buffer
+/** @brief Check number of bytes in text logging UART buffer
 
-    \returns Number of bytes stored in buffer of real UART
+    @returns Number of bytes stored in buffer of real UART
  */
 uint32_t TextLoggingUART::Available() {
     return m_RealUART->Available();
 }
 
-/*! \brief Get baud rate of text logging UART
+/** @brief Get baud rate of text logging UART
 
-    \returns Baud rate of real UART
+    @returns Baud rate of real UART
  */
 uint32_t TextLoggingUART::GetBaudRate() const {
     return m_RealUART->GetBaudRate();
 }
 
-/*! \brief Print a byte
+/** @brief Print a byte
 
     This function prints given byte in specified format to a debug UART.
  */
 void TextLoggingUART::PrintByte(
-    uint8_t byte,       /*!< byte to be printed */
-    uint8_t direction   /*!< direction it goes to */
+    uint8_t byte,       /**< byte to be printed */
+    uint8_t direction   /**< direction it goes to */
 ) {
     char str[m_NumberLength + 1];
     char *p;

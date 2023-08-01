@@ -1,7 +1,7 @@
-/*! \file USBVirtualUART.cpp
-    \brief AG-Panel Project direct USB virtual UART implementation
-    \copyright (C) 2020-2022 Andriy Golovnya
-    \author Andriy Golovnya (andriy.golovnya@gmail.com)
+/** @file USBVirtualUART.cpp
+    @brief AG-Panel Project direct USB virtual UART implementation
+    @copyright (C) 2020-2023 Andriy Golovnya
+    @author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
 #include "USBVirtualUART.h"
@@ -24,10 +24,10 @@
     typedef USBSerial USBVirtualUART_Lowlevel_t;
 #endif
 
-/*! \brief Initialization of USB virtual UART
+/** @brief Initialization of USB virtual UART
 
     Initialize USB virtual UART and set baud rate.
-    \returns true
+    @returns true
  */
 bool USBVirtualUART::Init() {
     m_Lowlevel = &SerialUSB;
@@ -36,26 +36,26 @@ bool USBVirtualUART::Init() {
     return true;
 }
 
-/*! \brief Deinitialization of USB virtual UART
+/** @brief Deinitialization of USB virtual UART
  */
 void USBVirtualUART::Exit() {
     m_Lowlevel = nullptr;
 }
 
-/*! \brief Write a character to USB virtual UART
+/** @brief Write a character to USB virtual UART
 
-    \returns Number of bytes written to USB virtual UART
+    @returns Number of bytes written to USB virtual UART
  */
 uint8_t USBVirtualUART::PutCh(
-    uint8_t txbyte      /*!< Character to be written to USB virtual UART */
+    uint8_t txbyte      /**< Character to be written to USB virtual UART */
 ) {
     USBVirtualUART_Lowlevel_t *p_UART = reinterpret_cast<USBVirtualUART_Lowlevel_t*>(m_Lowlevel);
     return p_UART->write(txbyte);
 }
 
-/*! \brief Read a character from USB virtual UART
+/** @brief Read a character from USB virtual UART
 
-    \returns Character (byte) read from USB virtual UART
+    @returns Character (byte) read from USB virtual UART
  */
 uint8_t USBVirtualUART::GetCh() {
     USBVirtualUART_Lowlevel_t *p_UART = reinterpret_cast<USBVirtualUART_Lowlevel_t*>(m_Lowlevel);
@@ -66,9 +66,9 @@ uint8_t USBVirtualUART::GetCh() {
     return p_UART->read();
 }
 
-/*! \brief Check number of bytes in USB virtual UART buffer
+/** @brief Check number of bytes in USB virtual UART buffer
 
-    \returns Number of bytes stored in buffer of USB virtual UART
+    @returns Number of bytes stored in buffer of USB virtual UART
  */
 uint32_t USBVirtualUART::Available() {
     USBVirtualUART_Lowlevel_t *p_UART = reinterpret_cast<USBVirtualUART_Lowlevel_t*>(m_Lowlevel);

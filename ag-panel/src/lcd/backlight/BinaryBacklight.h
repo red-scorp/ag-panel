@@ -1,7 +1,7 @@
-/*! \file BinaryBacklight.h
-    \brief AG-Panel Project binary (on/off) backlight interface
-    \copyright (C) 2019-2022 Andriy Golovnya
-    \author Andriy Golovnya (andriy.golovnya@gmail.com)
+/** @file BinaryBacklight.h
+    @brief AG-Panel Project binary (on/off) backlight interface
+    @copyright (C) 2019-2023 Andriy Golovnya
+    @author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
 #pragma once
@@ -9,7 +9,7 @@
 #include "../../private.h"
 #include "AbstractBacklight.h"
 
-/*! \brief Binary (on/off) Backlight class
+/** @brief Binary (on/off) Backlight class
 
     This class implements binary backlight based on a single digital pin.
  */
@@ -17,7 +17,7 @@ class BinaryBacklight: public AbstractBacklight {
 
 public:
     explicit BinaryBacklight(
-        uint8_t LEDPin      /*!< Binary backlight digital pin */
+        uint8_t LEDPin      /**< Binary backlight digital pin */
     ): AbstractBacklight(),
         m_LEDPin(LEDPin) { Init(); }
     virtual ~BinaryBacklight() override { Exit(); }
@@ -27,7 +27,7 @@ public:
     virtual void SetRGB(uint8_t red, uint8_t green, uint8_t blue) override;
 
 protected:
-    uint8_t m_LEDPin;     /*!< Binary backlight digital pin */
+    uint8_t m_LEDPin;     /**< Binary backlight digital pin */
 
 private:
     bool Init();

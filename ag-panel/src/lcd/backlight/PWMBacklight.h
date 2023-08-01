@@ -1,7 +1,7 @@
-/*! \file PWMBacklight.h
-    \brief AG-Panel Project PWM (0-255) backlight interface
-    \copyright (C) 2019-2022 Andriy Golovnya
-    \author Andriy Golovnya (andriy.golovnya@gmail.com)
+/** @file PWMBacklight.h
+    @brief AG-Panel Project PWM (0-255) backlight interface
+    @copyright (C) 2019-2023 Andriy Golovnya
+    @author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
 #pragma once
@@ -9,9 +9,9 @@
 #include "../../private.h"
 #include "AbstractBacklight.h"
 
-const uint8_t DefaultPWMBacklightScaleBrightness = MaxBacklightBrightness;  /*!< Default PWM backlight brightness if not specified */
+const uint8_t DefaultPWMBacklightScaleBrightness = MaxBacklightBrightness;  /**< Default PWM backlight brightness if not specified */
 
-/*! \brief PWM Backlight class
+/** @brief PWM Backlight class
 
     This class implements PWM backlight based on a single digital pin.
  */
@@ -19,8 +19,8 @@ class PWMBacklight: public AbstractBacklight {
 
 public:
     explicit PWMBacklight(
-        uint8_t LEDPin,     /*!< PWM backlight digital pin */
-        uint8_t ScaleBrightness = DefaultPWMBacklightScaleBrightness  /*!< Brightness scaling (dimming) value */
+        uint8_t LEDPin,     /**< PWM backlight digital pin */
+        uint8_t ScaleBrightness = DefaultPWMBacklightScaleBrightness  /**< Brightness scaling (dimming) value */
     ): AbstractBacklight(),
         m_LEDPin(LEDPin),
         m_ScaleBrightness(ScaleBrightness) { Init(); }
@@ -31,8 +31,8 @@ public:
     virtual void SetRGB(uint8_t red, uint8_t green, uint8_t blue) override;
 
 protected:
-    uint8_t m_LEDPin;     /*!< PWM backlight digital pin */
-    uint8_t m_ScaleBrightness;  /*!< Brightness scaling (dimming) value */
+    uint8_t m_LEDPin;     /**< PWM backlight digital pin */
+    uint8_t m_ScaleBrightness;  /**< Brightness scaling (dimming) value */
 
 private:
     bool Init();

@@ -1,14 +1,13 @@
-/*! \file Fixed8x8TestFont.cpp
-    \brief AG-Panel Project fixed size 8x8 test font implementation
-    \copyright (C) 2020-2022 Andriy Golovnya
-    \author Andriy Golovnya (andriy.golovnya@gmail.com)
+/** @file Fixed8x8TestFont.cpp
+    @brief AG-Panel Project fixed size 8x8 test font implementation
+    @copyright (C) 2020-2023 Andriy Golovnya
+    @author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
 #include "../../private.h"
 #include "Fixed8x8TestFont.h"
 
-/*!
-    \brief 8x8 test font data.
+/** @brief 8x8 test font data.
 
     This array defines two characters:
     - 31 a placeholder (a crossed box)
@@ -35,10 +34,10 @@ static uint8_t s_8x8TestFontData[] = {
     0b00000000,
 };
 
-/*! \brief Initialization of 8x8 test font
+/** @brief Initialization of 8x8 test font
 
     Initializes internal parameters of the font.
-    \returns true
+    @returns true
  */
 bool Fixed8x8TestFont::Init() {
 
@@ -52,7 +51,7 @@ bool Fixed8x8TestFont::Init() {
     return true;
 }
 
-/*! \brief Deinitialization of 8x8 test font
+/** @brief Deinitialization of 8x8 test font
  */
 void Fixed8x8TestFont::Exit() {
 }

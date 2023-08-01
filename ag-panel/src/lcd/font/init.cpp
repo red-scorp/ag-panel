@@ -1,7 +1,7 @@
-/*! \file init.cpp
-    \brief AG-Panel Project LCD font initialization
-    \copyright (C) 2020-2022 Andriy Golovnya
-    \author Andriy Golovnya (andriy.golovnya@gmail.com)
+/** @file init.cpp
+    @brief AG-Panel Project LCD font initialization
+    @copyright (C) 2020-2023 Andriy Golovnya
+    @author Andriy Golovnya (andriy.golovnya@gmail.com)
 */
 
 #include "../../private.h"
@@ -9,10 +9,10 @@
 
 #include "all.h"
 
-/*! \brief Initialize LCD font
+/** @brief Initialize LCD font
 
     This function chooses one of font classes to use based on configuration defined in config.h
-    \returns Pointer to LCD font class
+    @returns Pointer to LCD font class
  */
 AbstractFont *initFont() {
     AbstractFont *p_Font = nullptr;

@@ -1,7 +1,7 @@
-/*! \file version.h
-    \brief AG-Panel Project version header
-    \copyright (C) 2019-2022 Andriy Golovnya
-    \author Andriy Golovnya (andriy.golovnya@gmail.com)
+/** @file version.h
+    @brief AG-Panel Project version header
+    @copyright (C) 2019-2023 Andriy Golovnya
+    @author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
 #pragma once

@@ -1,7 +1,7 @@
-/*! \file I2CPCF8574TextLCD.h
-    \brief AG-Panel Project I2C 4-bit text (hd44780) LCD interface
-    \copyright (C) 2019-2022 Andriy Golovnya
-    \author Andriy Golovnya (andriy.golovnya@gmail.com)
+/** @file I2CPCF8574TextLCD.h
+    @brief AG-Panel Project I2C 4-bit text (hd44780) LCD interface
+    @copyright (C) 2019-2023 Andriy Golovnya
+    @author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
 #pragma once
@@ -9,7 +9,7 @@
 #include "../private.h"
 #include "AbstractTextLCD.h"
 
-/*! \brief I2C Text LCD class
+/** @brief I2C Text LCD class
 
     This class implements a 4-bit text LCD display based on HD44780 and connected
     with a help of PCF8574(T/AT) I2C 8-bit digital I/O expander chip.
@@ -19,9 +19,9 @@ class I2CPCF8574TextLCD: public AbstractTextLCD {
 
 public:
     explicit I2CPCF8574TextLCD(
-        uint8_t Columns,            /*!< Number of columns of the text LCD */
-        uint8_t Rows,               /*!< Number of rows of the text LCD */
-        uint8_t I2CAddress          /*!< I2C address of digital I/O expander chip */
+        uint8_t Columns,            /**< Number of columns of the text LCD */
+        uint8_t Rows,               /**< Number of rows of the text LCD */
+        uint8_t I2CAddress          /**< I2C address of digital I/O expander chip */
     ): AbstractTextLCD(nullptr, Columns, Rows),
         m_I2CAddress(I2CAddress),
         m_Lowlevel(nullptr) { Init(); }
@@ -41,10 +41,10 @@ public:
     virtual void Command(uint8_t byte) override;
 
 protected:
-    uint8_t m_I2CAddress;         /*!< I2C address of digital I/O expander chip */
+    uint8_t m_I2CAddress;         /**< I2C address of digital I/O expander chip */
 
 private:
-    void *m_Lowlevel;       /*!< Pointer to Low-Level LCD class */
+    void *m_Lowlevel;       /**< Pointer to Low-Level LCD class */
     bool Init();
     void Exit();
 };

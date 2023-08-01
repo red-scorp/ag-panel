@@ -1,16 +1,16 @@
-/*! \file AbstractUART.h
-    \brief AG-Panel Project abstract UART interface
-    \copyright (C) 2019-2022 Andriy Golovnya
-    \author Andriy Golovnya (andriy.golovnya@gmail.com)
+/** @file AbstractUART.h
+    @brief AG-Panel Project abstract UART interface
+    @copyright (C) 2019-2023 Andriy Golovnya
+    @author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
 #pragma once
 
 #include "../private.h"
 
-const uint32_t DefaultUARTBaudRate = 9600;    /*!< Default baud rate value used if none is specified.*/
+const uint32_t DefaultUARTBaudRate = 9600;    /**< Default baud rate value used if none is specified.*/
 
-/*! \brief Abstract UART class
+/** @brief Abstract UART class
 
     This is a base class for all UART implementations.
     It defines only a base interface of UART used by the rest of a project code.
@@ -19,7 +19,7 @@ class AbstractUART {
 
 public:
     explicit AbstractUART(
-        uint32_t BaudRate = DefaultUARTBaudRate /*!< Baud rate of an UART */
+        uint32_t BaudRate = DefaultUARTBaudRate /**< Baud rate of an UART */
     ): m_BaudRate(BaudRate) { Init(); }
     virtual ~AbstractUART() { Exit(); }
 
@@ -32,7 +32,7 @@ public:
     virtual void PutStr(char *str) { while(*str != '\0') PutCh(*str++); }
 
 protected:
-    uint32_t m_BaudRate;  /*!< UART baud rate */
+    uint32_t m_BaudRate;  /**< UART baud rate */
 
 private:
     bool Init() { return true; }

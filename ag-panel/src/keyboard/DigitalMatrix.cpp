@@ -1,17 +1,17 @@
-/*! \file DigitalMatrix.cpp
-    \brief AG-Panel Project digital keypad keyboard implementation
-    \copyright (C) 2019-2022 Andriy Golovnya
-    \author Andriy Golovnya (andriy.golovnya@gmail.com)
+/** @file DigitalMatrix.cpp
+    @brief AG-Panel Project digital keypad keyboard implementation
+    @copyright (C) 2019-2023 Andriy Golovnya
+    @author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
 #include "../private.h"
 #include "../../config.h"
 #include "DigitalMatrix.h"
 
-/*! \brief Initialization of digital matrix
+/** @brief Initialization of digital matrix
 
     Configures column and row pins of the matrix.
-    \returns true
+    @returns true
  */
 bool DigitalMatrix::Init() {
 
@@ -23,15 +23,15 @@ bool DigitalMatrix::Init() {
     return true;
 }
 
-/*! \brief Deinitialization of digital matrix class
+/** @brief Deinitialization of digital matrix class
  */
 void DigitalMatrix::Exit() {
 }
 
-/*! \brief Get a key of digital matrix
+/** @brief Get a key of digital matrix
 
     Activates sequentially column pins and reads row pins to find out what key has been pressed.
-    \returns #KeyNone if no new actions detected, else a key code
+    @returns #KeyNone if no new actions detected, else a key code
  */
 uint8_t DigitalMatrix::GetKey() {
     for(uint8_t c = 0; c < m_Columns; c++) {
@@ -56,9 +56,9 @@ uint8_t DigitalMatrix::GetKey() {
     return KeyNone;
 }
 
-/*! \brief Get number of keys supported by digital matrix
+/** @brief Get number of keys supported by digital matrix
 
-    \returns Number of supported keys
+    @returns Number of supported keys
  */
 uint8_t DigitalMatrix::GetKeyCount() {
     return m_Columns * m_Rows;

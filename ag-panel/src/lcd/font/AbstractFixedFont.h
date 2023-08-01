@@ -1,7 +1,7 @@
-/*! \file AbstractFixedFont.h
-    \brief AG-Panel Project abstract fixed size font interface
-    \copyright (C) 2020-2022 Andriy Golovnya
-    \author Andriy Golovnya (andriy.golovnya@gmail.com)
+/** @file AbstractFixedFont.h
+    @brief AG-Panel Project abstract fixed size font interface
+    @copyright (C) 2020-2023 Andriy Golovnya
+    @author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
 #pragma once
@@ -9,7 +9,7 @@
 #include "../../private.h"
 #include "AbstractFont.h"
 
-/*! \brief Abstract Fixed Font class
+/** @brief Abstract Fixed Font class
 
     This is a base class for all fixed size font implementations.
     It defines only a base interface of fixed font used by the rest of a project code.
@@ -28,16 +28,16 @@ public:
         m_Glyph() { Init(); }
     virtual ~AbstractFixedFont() { Exit(); }
 
-    /*! Get normal X size of font glyphs in pixels */
+    /** Get normal X size of font glyphs in pixels */
     virtual uint8_t GetGlyphXSize(void) const override { return m_GlyphXSize; }
-    /*! Get normal Y size of font glyphs in pixels */
+    /** Get normal Y size of font glyphs in pixels */
     virtual uint8_t GetGlyphYSize(void) const override { return m_GlyphYSize; }
 
-    /*! Get a glyph data from raw pixel data array addressed by glyph number
-        \returns Glyph description record in case of success, \a nullptr in case of error
+    /** Get a glyph data from raw pixel data array addressed by glyph number
+        @returns Glyph description record in case of success, @a nullptr in case of error
     */
     virtual const Glyph *GetGlyph(
-        uint8_t number      /*!< Glyph number */
+        uint8_t number      /**< Glyph number */
     ) override {
 
         if(m_GlyphData == nullptr)
@@ -57,13 +57,13 @@ public:
     }
 
 protected:
-    uint8_t m_GlyphXSize;       /*!< Size of a glyph in X direction */
-    uint8_t m_GlyphYSize;       /*!< Size of a glyph in Y direction */
-    uint8_t *m_GlyphData;       /*!< Pointer to an array of glyph raw data */
-    uint16_t m_DataRangeBegin;  /*!< Number of first glyph in data array */
-    uint16_t m_DataRangeEnd;    /*!< Number of last glyph in data array */
-    uint16_t m_DefaultGlyph;    /*!< Default 'missing' glyph number */
-    Glyph m_Glyph;              /*!< Glyph data returned by #GetGlyph */
+    uint8_t m_GlyphXSize;       /**< Size of a glyph in X direction */
+    uint8_t m_GlyphYSize;       /**< Size of a glyph in Y direction */
+    uint8_t *m_GlyphData;       /**< Pointer to an array of glyph raw data */
+    uint16_t m_DataRangeBegin;  /**< Number of first glyph in data array */
+    uint16_t m_DataRangeEnd;    /**< Number of last glyph in data array */
+    uint16_t m_DefaultGlyph;    /**< Default 'missing' glyph number */
+    Glyph m_Glyph;              /**< Glyph data returned by #GetGlyph */
 
 private:
     bool Init() { return true; }

@@ -1,7 +1,7 @@
-/*! \file init.cpp
-    \brief AG-Panel Project Keyboard initialization
-    \copyright (C) 2020-2022 Andriy Golovnya
-    \author Andriy Golovnya (andriy.golovnya@gmail.com)
+/** @file init.cpp
+    @brief AG-Panel Project Keyboard initialization
+    @copyright (C) 2020-2023 Andriy Golovnya
+    @author Andriy Golovnya (andriy.golovnya@gmail.com)
 */
 
 #include "../private.h"
@@ -9,10 +9,10 @@
 
 #include "all.h"
 
-/*! \brief Initialize protocol
+/** @brief Initialize protocol
 
     This function chooses one of protocol classes to use based on configuration defined in config.h
-    \returns Pointer to protocol class
+    @returns Pointer to protocol class
  */
 AbstractProtocol *initProtocol(AbstractUART *UART, AbstractLCD *LCD, AbstractKeyboard *Keyboard) {
     AbstractProtocol *p_Protocol = nullptr;

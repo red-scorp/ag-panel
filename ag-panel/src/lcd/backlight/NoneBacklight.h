@@ -1,7 +1,7 @@
-/*! \file NoneBacklight.h
-    \brief AG-Panel Project none backlight interface
-    \copyright (C) 2019-2022 Andriy Golovnya
-    \author Andriy Golovnya (andriy.golovnya@gmail.com)
+/** @file NoneBacklight.h
+    @brief AG-Panel Project none backlight interface
+    @copyright (C) 2019-2023 Andriy Golovnya
+    @author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
 #pragma once
@@ -9,7 +9,7 @@
 #include "../../private.h"
 #include "AbstractBacklight.h"
 
-/*! \brief None (dummy) Backlight class
+/** @brief None (dummy) Backlight class
 
     This class implements none backlight.
  */

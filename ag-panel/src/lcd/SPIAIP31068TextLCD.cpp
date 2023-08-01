@@ -1,7 +1,7 @@
-/*! \file SPIAIP31068TextLCD.cpp
-    \brief AG-Panel Project SPI 8-bit text (AIP31068) LCD implementation
-    \copyright (C) 2020-2022 Andriy Golovnya
-    \author Andriy Golovnya (andriy.golovnya@gmail.com)
+/** @file SPIAIP31068TextLCD.cpp
+    @brief AG-Panel Project SPI 8-bit text (AIP31068) LCD implementation
+    @copyright (C) 2020-2023 Andriy Golovnya
+    @author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
 #include "../private.h"
@@ -12,10 +12,10 @@
 #include <SoftSPIB.h>
 #include <LiquidCrystal_AIP31068_SPI.h>
 
-/*! \brief Initialization of SPI text LCD display
+/** @brief Initialization of SPI text LCD display
 
     Configures SPI text LCD display to work with specified geometry.
-    \returns true
+    @returns true
  */
 bool SPIAIP31068TextLCD::Init() {
     m_Lowlevel = new LiquidCrystal_AIP31068_SPI(m_SSPin, m_Columns, m_Rows, m_SCLKPin, m_MOSIPin, m_MISOPin);
@@ -24,7 +24,7 @@ bool SPIAIP31068TextLCD::Init() {
     return true;
 }
 
-/*! \brief Deinitialization of I2C text LCD display class
+/** @brief Deinitialization of I2C text LCD display class
  */
 void SPIAIP31068TextLCD::Exit() {
     LiquidCrystal_AIP31068_SPI *p_SPILCD = reinterpret_cast<LiquidCrystal_AIP31068_SPI*>(m_Lowlevel);
@@ -33,7 +33,7 @@ void SPIAIP31068TextLCD::Exit() {
     m_Lowlevel = nullptr;
 }
 
-/*! \brief Clear LCD display
+/** @brief Clear LCD display
 
     This function calls corresponding function of LiquidCrystal_AIP31068_SPI class instance.
  */
@@ -42,57 +42,57 @@ void SPIAIP31068TextLCD::Clear() {
     p_SPILCD->clear();
 }
 
-/*! \brief Set Cursor on LCD display
+/** @brief Set Cursor on LCD display
 
     This function calls corresponding function of LiquidCrystal_AIP31068_SPI class instance.
  */
 void SPIAIP31068TextLCD::SetCursor(
-    uint8_t column,       /*!< Column to put the cursor to */
-    uint8_t row           /*!< Row to put the cursor to */
+    uint8_t column,       /**< Column to put the cursor to */
+    uint8_t row           /**< Row to put the cursor to */
 ) {
     LiquidCrystal_AIP31068_SPI *p_SPILCD = reinterpret_cast<LiquidCrystal_AIP31068_SPI*>(m_Lowlevel);
     p_SPILCD->setCursor(column, row);
 }
 
-/*! \brief Print a text on LCD display
+/** @brief Print a text on LCD display
 
     This function calls corresponding function of LiquidCrystal_AIP31068_SPI class instance.
  */
 void SPIAIP31068TextLCD::Print(
-    const char *str       /*!< String to print */
+    const char *str       /**< String to print */
 ) {
     LiquidCrystal_AIP31068_SPI *p_SPILCD = reinterpret_cast<LiquidCrystal_AIP31068_SPI*>(m_Lowlevel);
     p_SPILCD->print(str);
 }
 
-/*! \brief Print a character on LCD display
+/** @brief Print a character on LCD display
 
     This function calls corresponding function of LiquidCrystal_AIP31068_SPI class instance.
  */
 void SPIAIP31068TextLCD::Print(
-    char character        /*!< Character to print */
+    char character        /**< Character to print */
 ) {
     LiquidCrystal_AIP31068_SPI *p_SPILCD = reinterpret_cast<LiquidCrystal_AIP31068_SPI*>(m_Lowlevel);
     p_SPILCD->print(character);
 }
 
-/*! \brief Write a byte (RS = 1) to LCD display
+/** @brief Write a byte (RS = 1) to LCD display
 
     This function calls corresponding function of LiquidCrystal_AIP31068_SPI class instance.
  */
 void SPIAIP31068TextLCD::Write(
-    uint8_t byte          /*!< Byte to write to LCD display */
+    uint8_t byte          /**< Byte to write to LCD display */
 ) {
     LiquidCrystal_AIP31068_SPI *p_SPILCD = reinterpret_cast<LiquidCrystal_AIP31068_SPI*>(m_Lowlevel);
     p_SPILCD->write(byte);
 }
 
-/*! \brief Send a command byte (RS = 0) to LCD display
+/** @brief Send a command byte (RS = 0) to LCD display
 
     This function calls corresponding function of LiquidCrystal_AIP31068_SPI class instance.
  */
 void SPIAIP31068TextLCD::Command(
-    uint8_t byte          /*!< Command to send to LCD display */
+    uint8_t byte          /**< Command to send to LCD display */
 ) {
     LiquidCrystal_AIP31068_SPI *p_SPILCD = reinterpret_cast<LiquidCrystal_AIP31068_SPI*>(m_Lowlevel);
     p_SPILCD->command(byte);

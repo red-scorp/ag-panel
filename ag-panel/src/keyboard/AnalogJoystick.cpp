@@ -1,38 +1,38 @@
-/*! \file AnalogJoystick.cpp
-    \brief AG-Panel Project analog joystick keyboard implementation
-    \copyright (C) 2019-2022 Andriy Golovnya
-    \author Andriy Golovnya (andriy.golovnya@gmail.com)
+/** @file AnalogJoystick.cpp
+    @brief AG-Panel Project analog joystick keyboard implementation
+    @copyright (C) 2019-2023 Andriy Golovnya
+    @author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
 #include "../private.h"
 #include "../../config.h"
 #include "AnalogJoystick.h"
 
-static const int s_AnalogJoystickXCenter = MaxAnalogValue / 2;      /*!< Center position of analog input scale for X axis */
-static const int s_AnalogJoystickYCenter = MaxAnalogValue / 2;      /*!< Center position of analog input scale for X axis */
-static const int s_AnalogJoystickThreshold = MaxAnalogValue / 20;   /*!< Insensitive area (resting position) around center of X and Y axis */
+static const int s_AnalogJoystickXCenter = MaxAnalogValue / 2;      /**< Center position of analog input scale for X axis */
+static const int s_AnalogJoystickYCenter = MaxAnalogValue / 2;      /**< Center position of analog input scale for X axis */
+static const int s_AnalogJoystickThreshold = MaxAnalogValue / 20;   /**< Insensitive area (resting position) around center of X and Y axis */
 
-static const uint8_t s_AnalogJoystickKeysMax = 5;   /*!< Maximum of detectable keys for the class */
+static const uint8_t s_AnalogJoystickKeysMax = 5;   /**< Maximum of detectable keys for the class */
 
-/*! \brief Initialization of analog joystick
+/** @brief Initialization of analog joystick
 
     Configures select button pin.
-    \returns true
+    @returns true
  */
 bool AnalogJoystick::Init() {
     pinMode(m_ButtonPin, INPUT_PULLUP);
     return true;
 }
 
-/*! \brief Deinitialization of analog joystick class
+/** @brief Deinitialization of analog joystick class
  */
 void AnalogJoystick::Exit() {
 }
 
-/*! \brief Get a key of analog joystick
+/** @brief Get a key of analog joystick
 
     Reads X- and Y-direction analog pins and a select button digital pin.
-    \returns #KeyNone if no new actions detected, else a key code
+    @returns #KeyNone if no new actions detected, else a key code
  */
 uint8_t AnalogJoystick::GetKey() {
     uint16_t x = analogRead(m_XPin);
@@ -52,9 +52,9 @@ uint8_t AnalogJoystick::GetKey() {
     return KeyNone;
 }
 
-/*! \brief Get number of keys supported by analog joystick
+/** @brief Get number of keys supported by analog joystick
 
-    \returns Number of supported keys
+    @returns Number of supported keys
  */
 uint8_t AnalogJoystick::GetKeyCount() {
     return s_AnalogJoystickKeysMax;

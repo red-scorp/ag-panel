@@ -1,44 +1,44 @@
-/*! \file LoSPanelProtocol.cpp
-    \brief AG-Panel Project LoS-panel protocol implementation
-    \copyright (C) 2019-2022 Andriy Golovnya
-    \author Andriy Golovnya (andriy.golovnya@gmail.com)
+/** @file LoSPanelProtocol.cpp
+    @brief AG-Panel Project LoS-panel protocol implementation
+    @copyright (C) 2019-2023 Andriy Golovnya
+    @author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
 #include "../private.h"
 #include "LoSPanelProtocol.h"
 
 /* Protocol commands definition */
-const uint8_t LoSPanelProtocolInstruction = 0xFE;   /*!< Instruction code prefix, comes from host to target */
-const uint8_t LoSPanelProtocolKeypad = 0xFE;        /*!< Keypad code prefix, comes from target to host */
-const uint8_t LoSPanelProtocolBacklight = 0xFD;     /*!< LCD Backlight control prefix, comes from host to target */
+const uint8_t LoSPanelProtocolInstruction = 0xFE;   /**< Instruction code prefix, comes from host to target */
+const uint8_t LoSPanelProtocolKeypad = 0xFE;        /**< Keypad code prefix, comes from target to host */
+const uint8_t LoSPanelProtocolBacklight = 0xFD;     /**< LCD Backlight control prefix, comes from host to target */
 
-const uint8_t LoSPanelProtocolBacklightOff = 0x00;  /*!< Enable LCD Backlight code */
-const uint8_t LoSPanelProtocolBacklightOn = 0xFF;   /*!< Disable LCD Backlight code */
+const uint8_t LoSPanelProtocolBacklightOff = 0x00;  /**< Enable LCD Backlight code */
+const uint8_t LoSPanelProtocolBacklightOn = 0xFF;   /**< Disable LCD Backlight code */
 
 constexpr uint8_t LoSPanelKeypadCode(uint8_t col, uint8_t row) {
     return ((col) << 4) | (1 << (row));
 }
 
-/*! \brief Initialization of los-panel protocol
+/** @brief Initialization of los-panel protocol
 
     Configures los-panel protocol class.
-    \note https://mlf.home.xs4all.nl/los/
-    \returns true
+    @note https://mlf.home.xs4all.nl/los/
+    @returns true
  */
 bool LoSPanelProtocol::Init() {
     m_LCDLastTxMicros = 0;
     return true;
 }
 
-/*! \brief Deinitialization of los-panel protocol class
+/** @brief Deinitialization of los-panel protocol class
  */
 void LoSPanelProtocol::Exit() {
 }
 
-/*! \brief Wait for given microseconds from last text LCD transfer
+/** @brief Wait for given microseconds from last text LCD transfer
  */
 void LoSPanelProtocol::WaitFromLastTx(
-    uint32_t WaitMicros       /*!< Time in microseconds to wait */
+    uint32_t WaitMicros       /**< Time in microseconds to wait */
 ) {
     uint32_t WaitForMicros = m_LCDLastTxMicros + WaitMicros;
 
@@ -58,13 +58,13 @@ void LoSPanelProtocol::WaitFromLastTx(
 //    digitalWrite(LED_BUILTIN, LOW);
 }
 
-/*! \brief Store last LCD transfer time stamp
+/** @brief Store last LCD transfer time stamp
  */
 void LoSPanelProtocol::StampLastTx() {
     m_LCDLastTxMicros = micros();
 }
 
-/*! \brief Main loop of los-panel protocol
+/** @brief Main loop of los-panel protocol
 
     This function reads UART and interpret the input based on los-panel protocol rules.
  */
@@ -94,7 +94,7 @@ void LoSPanelProtocol::Loop() {
     }
 }
 
-/*! \brief Background job of los-panel protocol
+/** @brief Background job of los-panel protocol
 
     This function reads keyboard input and puts it to UART.
  */

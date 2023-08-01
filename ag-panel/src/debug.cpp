@@ -1,7 +1,7 @@
-/*! \file debug.cpp
-    \brief AG-Panel Project debugging helper functions
-    \copyright (C) 2020-2022 Andriy Golovnya
-    \author Andriy Golovnya (andriy.golovnya@gmail.com)
+/** @file debug.cpp
+    @brief AG-Panel Project debugging helper functions
+    @copyright (C) 2020-2023 Andriy Golovnya
+    @author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
 #include "private.h"
@@ -9,10 +9,10 @@
 
 #include "debug.h"
 
-/*! \brief Initialize debug interface
+/** @brief Initialize debug interface
 
     This function chooses one of UART classes to use based on configuration defined in config.h
-    \returns Pointer to debugging UART class
+    @returns Pointer to debugging UART class
  */
 AbstractUART* initDebug() {
     AbstractUART *p_DebugUART = nullptr;

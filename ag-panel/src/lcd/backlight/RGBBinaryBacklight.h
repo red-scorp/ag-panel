@@ -1,7 +1,7 @@
-/*! \file RGBBinaryBacklight.h
-    \brief AG-Panel Project RGB binary (8 colors) backlight interface
-    \copyright (C) 2019-2022 Andriy Golovnya
-    \author Andriy Golovnya (andriy.golovnya@gmail.com)
+/** @file RGBBinaryBacklight.h
+    @brief AG-Panel Project RGB binary (8 colors) backlight interface
+    @copyright (C) 2019-2023 Andriy Golovnya
+    @author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
 #pragma once
@@ -9,9 +9,9 @@
 #include "../../private.h"
 #include "AbstractBacklight.h"
 
-const uint32_t DefaultRGBBinaryBacklightDefaultColor = DefaultBacklightRGBColor;  /*!< Default RGB backlight color if not specified */
+const uint32_t DefaultRGBBinaryBacklightDefaultColor = DefaultBacklightRGBColor;  /**< Default RGB backlight color if not specified */
 
-/*! \brief RGB Binary (7 colors) Backlight class
+/** @brief RGB Binary (7 colors) Backlight class
 
     This class implements RGB binary backlight based on a 3 digital pin, one per LED color.
  */
@@ -19,10 +19,10 @@ class RGBBinaryBacklight: public AbstractBacklight {
 
 public:
     explicit RGBBinaryBacklight(
-        uint8_t RedPin,         /*!< Red LED digital pin */
-        uint8_t GreenPin,       /*!< Green LED digital pin */
-        uint8_t BluePin,        /*!< Blue LED digital pin */
-        uint32_t DefaultColor = DefaultRGBBinaryBacklightDefaultColor   /*!< Default color if not specified */
+        uint8_t RedPin,         /**< Red LED digital pin */
+        uint8_t GreenPin,       /**< Green LED digital pin */
+        uint8_t BluePin,        /**< Blue LED digital pin */
+        uint32_t DefaultColor = DefaultRGBBinaryBacklightDefaultColor   /**< Default color if not specified */
     ): AbstractBacklight(),
         m_RedPin(RedPin),
         m_GreenPin(GreenPin),
@@ -36,10 +36,10 @@ public:
     using AbstractBacklight::SetRGB;
 
 protected:
-    uint8_t m_RedPin;         /*!< Red LED digital pin */
-    uint8_t m_GreenPin;       /*!< Green LED digital pin */
-    uint8_t m_BluePin;        /*!< Blue LED digital pin */
-    uint32_t m_DefaultColor;  /*!< Default color if not specified */
+    uint8_t m_RedPin;         /**< Red LED digital pin */
+    uint8_t m_GreenPin;       /**< Green LED digital pin */
+    uint8_t m_BluePin;        /**< Blue LED digital pin */
+    uint32_t m_DefaultColor;  /**< Default color if not specified */
 
 private:
     bool Init();

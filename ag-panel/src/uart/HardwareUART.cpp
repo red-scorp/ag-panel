@@ -1,16 +1,16 @@
-/*! \file HardwareUART.cpp
-    \brief AG-Panel Project direct hardware UART implementation
-    \copyright (C) 2019-2022 Andriy Golovnya
-    \author Andriy Golovnya (andriy.golovnya@gmail.com)
+/** @file HardwareUART.cpp
+    @brief AG-Panel Project direct hardware UART implementation
+    @copyright (C) 2019-2023 Andriy Golovnya
+    @author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
 #include "HardwareUART.h"
 #include <HardwareSerial.h>
 
-/*! \brief Initialization of hardware UART
+/** @brief Initialization of hardware UART
 
     Initialize hardware UART and set baud rate.
-    \returns true
+    @returns true
  */
 bool HardwareUART::Init() {
     if(false)
@@ -66,26 +66,26 @@ bool HardwareUART::Init() {
     return true;
 }
 
-/*! \brief Deinitialization of hardware UART
+/** @brief Deinitialization of hardware UART
  */
 void HardwareUART::Exit() {
     m_Lowlevel = nullptr;
 }
 
-/*! \brief Write a character to hardware UART
+/** @brief Write a character to hardware UART
 
-    \returns Number of bytes written to hardware UART
+    @returns Number of bytes written to hardware UART
  */
 uint8_t HardwareUART::PutCh(
-    uint8_t txbyte      /*!< Character to be written to hardware UART */
+    uint8_t txbyte      /**< Character to be written to hardware UART */
 ) {
     HardwareSerial *p_UART = reinterpret_cast<HardwareSerial*>(m_Lowlevel);
     return p_UART->write(txbyte);
 }
 
-/*! \brief Read a character from hardware UART
+/** @brief Read a character from hardware UART
 
-    \returns Character (byte) read from hardware UART
+    @returns Character (byte) read from hardware UART
  */
 uint8_t HardwareUART::GetCh() {
     HardwareSerial *p_UART = reinterpret_cast<HardwareSerial*>(m_Lowlevel);
@@ -96,9 +96,9 @@ uint8_t HardwareUART::GetCh() {
     return p_UART->read();
 }
 
-/*! \brief Check number of bytes in hardware UART buffer
+/** @brief Check number of bytes in hardware UART buffer
 
-    \returns Number of bytes stored in buffer of hardware UART
+    @returns Number of bytes stored in buffer of hardware UART
  */
 uint32_t HardwareUART::Available() {
     HardwareSerial *p_UART = reinterpret_cast<HardwareSerial*>(m_Lowlevel);

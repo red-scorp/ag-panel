@@ -1,7 +1,7 @@
-/*! \file I2CRGBKeypad.cpp
-    \brief AG-Panel Project I2C RGB keypad keyboard implementation
-    \copyright (C) 2019-2022 Andriy Golovnya
-    \author Andriy Golovnya (andriy.golovnya@gmail.com)
+/** @file I2CRGBKeypad.cpp
+    @brief AG-Panel Project I2C RGB keypad keyboard implementation
+    @copyright (C) 2019-2023 Andriy Golovnya
+    @author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
 #include "../private.h"
@@ -13,9 +13,9 @@
 
 #include <Adafruit_RGBLCDShield.h>
 
-/*! \brief Initialization of I2C RGB keypad
+/** @brief Initialization of I2C RGB keypad
 
-    \returns true
+    @returns true
  */
 bool I2CRGBKeypad::Init() {
     /* The RGB Keypad is already initialized in I2CRGBTextLCD.cpp but we should retrieve a pointer */
@@ -24,15 +24,15 @@ bool I2CRGBKeypad::Init() {
   return true;
 }
 
-/*! \brief Deinitialization of I2C RGB keypad class
+/** @brief Deinitialization of I2C RGB keypad class
  */
 void I2CRGBKeypad::Exit() {
 }
 
-/*! \brief Get a key of I2C RGB keypad
+/** @brief Get a key of I2C RGB keypad
 
     Reads key state from I2C controller to find out what key has been pressed.
-    \returns #KeyNone if no new actions detected, else a key code
+    @returns #KeyNone if no new actions detected, else a key code
  */
 uint8_t I2CRGBKeypad::GetKey() {
     Adafruit_RGBLCDShield *p_I2CRGBLCD = reinterpret_cast<Adafruit_RGBLCDShield*>(m_Lowlevel);
@@ -52,9 +52,9 @@ uint8_t I2CRGBKeypad::GetKey() {
     return KeyNone;
 }
 
-/*! \brief Get number of keys supported by I2C RGB keypad
+/** @brief Get number of keys supported by I2C RGB keypad
 
-    \returns Number of supported keys
+    @returns Number of supported keys
  */
 uint8_t I2CRGBKeypad::GetKeyCount() {
     return 5;

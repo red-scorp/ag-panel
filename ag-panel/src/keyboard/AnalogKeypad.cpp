@@ -1,31 +1,31 @@
-/*! \file AnalogKeypad.cpp
-    \brief AG-Panel Project analog keypad keyboard implementation
-    \copyright (C) 2019-2022 Andriy Golovnya
-    \author Andriy Golovnya (andriy.golovnya@gmail.com)
+/** @file AnalogKeypad.cpp
+    @brief AG-Panel Project analog keypad keyboard implementation
+    @copyright (C) 2019-2023 Andriy Golovnya
+    @author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
 #include "../private.h"
 #include "../../config.h"
 #include "AnalogKeypad.h"
 
-/*! \brief Initialization of analog keypad
+/** @brief Initialization of analog keypad
 
-    \returns true
+    @returns true
  */
 bool AnalogKeypad::Init() {
     /* No initialization needed for analog pins */
     return true;
 }
 
-/*! \brief Deinitialization of analog keypad class
+/** @brief Deinitialization of analog keypad class
  */
 void AnalogKeypad::Exit() {
 }
 
-/*! \brief Get a key of analog keypad
+/** @brief Get a key of analog keypad
 
     Reads analog pin and deduces what key has been pressed.
-    \returns #KeyNone if no new actions detected, else a key code
+    @returns #KeyNone if no new actions detected, else a key code
  */
 uint8_t AnalogKeypad::GetKey() {
     uint16_t data = analogRead(m_DataPin);
@@ -48,9 +48,9 @@ uint8_t AnalogKeypad::GetKey() {
     return KeyNone;
 }
 
-/*! \brief Get number of keys supported by analog keypad
+/** @brief Get number of keys supported by analog keypad
 
-    \returns Number of supported keys
+    @returns Number of supported keys
  */
 uint8_t AnalogKeypad::GetKeyCount() {
     return 5;

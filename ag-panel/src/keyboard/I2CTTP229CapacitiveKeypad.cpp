@@ -1,7 +1,7 @@
-/*! \file I2CTTP229CapacitiveKeypad.cpp
-    \brief AG-Panel Project I2C TTP229 capacitive matrix keyboard implementation
-    \copyright (C) 2019-2022 Andriy Golovnya
-    \author Andriy Golovnya (andriy.golovnya@gmail.com)
+/** @file I2CTTP229CapacitiveKeypad.cpp
+    @brief AG-Panel Project I2C TTP229 capacitive matrix keyboard implementation
+    @copyright (C) 2019-2023 Andriy Golovnya
+    @author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
 #include "../private.h"
@@ -13,10 +13,10 @@
 #include <Wire.h>
 #include <TTP229.h>
 
-/*! \brief Initialization of capacitive matrix
+/** @brief Initialization of capacitive matrix
 
     Begin communication with controller of capacitive matrix.
-    \returns true
+    @returns true
  */
 bool I2CTTP229CapacitiveKeypad::Init() {
     Wire.begin();
@@ -25,7 +25,7 @@ bool I2CTTP229CapacitiveKeypad::Init() {
     return true;
 }
 
-/*! \brief Deinitialization of capacitive matrix class
+/** @brief Deinitialization of capacitive matrix class
  */
 void I2CTTP229CapacitiveKeypad::Exit() {
     TTP229 *p_I2CKbd = reinterpret_cast<TTP229*>(m_Lowlevel);
@@ -34,10 +34,10 @@ void I2CTTP229CapacitiveKeypad::Exit() {
     m_Lowlevel = nullptr;
 }
 
-/*! \brief Get a key of capacitive matrix
+/** @brief Get a key of capacitive matrix
 
     Reads touch status from I2C touch controller to find out what key has been pressed.
-    \returns #KeyNone if no new actions detected, else a key code
+    @returns #KeyNone if no new actions detected, else a key code
  */
 uint8_t I2CTTP229CapacitiveKeypad::GetKey() {
     TTP229 *p_I2CKbd = reinterpret_cast<TTP229*>(m_Lowlevel);
@@ -61,9 +61,9 @@ uint8_t I2CTTP229CapacitiveKeypad::GetKey() {
     return KeyNone;
 }
 
-/*! \brief Get number of keys supported by capacitive matrix
+/** @brief Get number of keys supported by capacitive matrix
 
-    \returns Number of supported keys
+    @returns Number of supported keys
  */
 uint8_t I2CTTP229CapacitiveKeypad::GetKeyCount() {
     return m_Number;

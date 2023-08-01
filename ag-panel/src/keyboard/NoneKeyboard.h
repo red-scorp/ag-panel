@@ -1,7 +1,7 @@
-/*! \file NoneKeyboard.h
-    \brief AG-Panel Project none keyboard interface
-    \copyright (C) 2019-2022 Andriy Golovnya
-    \author Andriy Golovnya (andriy.golovnya@gmail.com)
+/** @file NoneKeyboard.h
+    @brief AG-Panel Project none keyboard interface
+    @copyright (C) 2019-2023 Andriy Golovnya
+    @author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
 #pragma once
@@ -9,7 +9,7 @@
 #include "../private.h"
 #include "AbstractKeyboard.h"
 
-/*! \brief None Keyboard class
+/** @brief None Keyboard class
 
     This class implements none keyboard (missing keyboard).
  */

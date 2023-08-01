@@ -1,7 +1,7 @@
-/*! \file TextLoggingUART.h
-    \brief AG-Panel Project text logging UART interface
-    \copyright (C) 2019-2022 Andriy Golovnya
-    \author Andriy Golovnya (andriy.golovnya@gmail.com)
+/** @file TextLoggingUART.h
+    @brief AG-Panel Project text logging UART interface
+    @copyright (C) 2019-2023 Andriy Golovnya
+    @author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
 #pragma once
@@ -15,7 +15,7 @@ const uint8_t NumbersBaseDecimal = 10;
 const uint8_t NumbersBaseHexadecimal = 16;
 const uint8_t DefaultNumbersBase = NumbersBaseHexadecimal;
 
-/*! \brief Text Logging UART class
+/** @brief Text Logging UART class
 
     This is a class which implements logging of UART communication to another UART in text form.
  */
@@ -23,10 +23,10 @@ class TextLoggingUART: public AbstractUART {
 
 public:
     explicit TextLoggingUART(
-        AbstractUART *RealUART,       /*!< Real (communication) UART */
-        AbstractUART *DebugUART,      /*!< Debug (logging) UART */
-        uint8_t NumbersBase = NumbersBaseHexadecimal, /*!< Base to convert numbers */
-        uint8_t LineWrap = 1          /*!< Flag enabling wrapping a line */
+        AbstractUART *RealUART,       /**< Real (communication) UART */
+        AbstractUART *DebugUART,      /**< Debug (logging) UART */
+        uint8_t NumbersBase = NumbersBaseHexadecimal, /**< Base to convert numbers */
+        uint8_t LineWrap = 1          /**< Flag enabling wrapping a line */
     ): AbstractUART(0),
         m_RealUART(RealUART),
         m_DebugUART(DebugUART),
@@ -45,17 +45,17 @@ public:
     virtual uint32_t GetBaudRate() const override;
 
 protected:
-    AbstractUART *m_RealUART;       /*!< Real (communication) UART */
-    AbstractUART *m_DebugUART;      /*!< Debug (logging) UART */
-    uint8_t m_NumbersBase;          /*!< Base to convert numbers */
-    uint8_t m_LineWrap;             /*!< Flag enabling wrapping a line */
+    AbstractUART *m_RealUART;       /**< Real (communication) UART */
+    AbstractUART *m_DebugUART;      /**< Debug (logging) UART */
+    uint8_t m_NumbersBase;          /**< Base to convert numbers */
+    uint8_t m_LineWrap;             /**< Flag enabling wrapping a line */
 
 private:
-    uint8_t m_Direction;            /*!< Direction of communication took last time */
-    uint8_t m_NumberLength;         /*!< Number of digits in number (for one byte) */
-    uint8_t m_LeadingZeros;         /*!< Leading zeros in number should be printed */
-    uint8_t m_WrapLineLength;       /*!< Line wrapping length */
-    uint8_t m_CurrentLineLength;    /*!< Current line length */
+    uint8_t m_Direction;            /**< Direction of communication took last time */
+    uint8_t m_NumberLength;         /**< Number of digits in number (for one byte) */
+    uint8_t m_LeadingZeros;         /**< Leading zeros in number should be printed */
+    uint8_t m_WrapLineLength;       /**< Line wrapping length */
+    uint8_t m_CurrentLineLength;    /**< Current line length */
     void PrintByte(uint8_t byte, uint8_t direction);
     bool Init();
     void Exit();

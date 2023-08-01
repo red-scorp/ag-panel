@@ -1,7 +1,7 @@
-/*! \file init.cpp
-    \brief AG-Panel Project Keyboard initialization
-    \copyright (C) 2020-2022 Andriy Golovnya
-    \author Andriy Golovnya (andriy.golovnya@gmail.com)
+/** @file init.cpp
+    @brief AG-Panel Project Keyboard initialization
+    @copyright (C) 2020-2023 Andriy Golovnya
+    @author Andriy Golovnya (andriy.golovnya@gmail.com)
 */
 
 #include "../private.h"
@@ -9,10 +9,10 @@
 
 #include "all.h"
 
-/*! \brief Initialize keyboard
+/** @brief Initialize keyboard
 
     This function chooses one or more keyboard classes to use based on configuration defined in config.h
-    \returns Pointer to keyboard class
+    @returns Pointer to keyboard class
  */
 AbstractKeyboard *initKeyboard(AbstractLCD *p_LCD) {
     AbstractKeyboard *p_Keyboard = nullptr;

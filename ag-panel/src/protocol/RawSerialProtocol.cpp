@@ -1,30 +1,30 @@
-/*! \file RawSerialProtocol.cpp
-    \brief AG-Panel Project raw serial protocol implementation
-    \copyright (C) 2020-2022 Andriy Golovnya
-    \author Andriy Golovnya (andriy.golovnya@gmail.com)
+/** @file RawSerialProtocol.cpp
+    @brief AG-Panel Project raw serial protocol implementation
+    @copyright (C) 2020-2023 Andriy Golovnya
+    @author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
 #include "../private.h"
 #include "RawSerialProtocol.h"
 
 /* Protocol commands definition */
-const uint8_t RawSerialProtocolEndOfBuffer = '\n';    /*!< End of buffer command, comes from host to target */
+const uint8_t RawSerialProtocolEndOfBuffer = '\n';    /**< End of buffer command, comes from host to target */
 
-/*! \brief Initialization of rawserial protocol
+/** @brief Initialization of rawserial protocol
 
     Configures rawserial protocol class.
-    \returns true
+    @returns true
  */
 bool RawSerialProtocol::Init() {
     return true;
 }
 
-/*! \brief Deinitialization of rawserial protocol class
+/** @brief Deinitialization of rawserial protocol class
  */
 void RawSerialProtocol::Exit() {
 }
 
-/*! \brief Main loop of rawserial protocol
+/** @brief Main loop of rawserial protocol
 
     This function reads UART and interpret the input based on rawserial protocol rules.
  */
@@ -61,7 +61,7 @@ void RawSerialProtocol::Loop() {
     }
 }
 
-/*! \brief Background job of rawserial protocol
+/** @brief Background job of rawserial protocol
 
     This function reads keyboard input and puts it to UART.
  */

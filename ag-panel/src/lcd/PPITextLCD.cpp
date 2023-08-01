@@ -1,20 +1,20 @@
-/*! \file PPITextLCD.cpp
-    \brief AG-Panel Project PPI (parallel) 4 and 8-bit text (hd44780) LCD implementation
-    \copyright (C) 2019-2022 Andriy Golovnya
-    \author Andriy Golovnya (andriy.golovnya@gmail.com)
+/** @file PPITextLCD.cpp
+    @brief AG-Panel Project PPI (parallel) 4 and 8-bit text (hd44780) LCD implementation
+    @copyright (C) 2019-2023 Andriy Golovnya
+    @author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
 #include "../private.h"
 #include "PPITextLCD.h"
 #include <LiquidCrystal.h>
 
-//static LiquidCrystal *sp_PPILCD;    /*!< Pointer to a LiquidCrystal class instance */
+//static LiquidCrystal *sp_PPILCD;    /**< Pointer to a LiquidCrystal class instance */
 
-/*! \brief Initialization of parallel text LCD display
+/** @brief Initialization of parallel text LCD display
 
     Configures parallel text LCD display to work in 8- or 4-bit mode according to specified pins and geometry.
-    \note https://en.wikipedia.org/wiki/Hitachi_HD44780_LCD_controller
-    \returns true
+    @note https://en.wikipedia.org/wiki/Hitachi_HD44780_LCD_controller
+    @returns true
  */
 bool PPITextLCD::Init() {
     if(m_D0Pin != InvalidPin && m_D1Pin != InvalidPin && m_D2Pin != InvalidPin && m_D3Pin != InvalidPin)
@@ -26,7 +26,7 @@ bool PPITextLCD::Init() {
     return true;
 }
 
-/*! \brief Deinitialization of parallel text LCD display class
+/** @brief Deinitialization of parallel text LCD display class
  */
 void PPITextLCD::Exit() {
     LiquidCrystal *p_PPILCD = reinterpret_cast<LiquidCrystal*>(m_Lowlevel);
@@ -35,7 +35,7 @@ void PPITextLCD::Exit() {
     m_Lowlevel = nullptr;
 }
 
-/*! \brief Clear LCD display
+/** @brief Clear LCD display
 
     This function calls corresponding function of LiquidCrystal class instance.
  */
@@ -44,57 +44,57 @@ void PPITextLCD::Clear() {
     p_PPILCD->clear();
 }
 
-/*! \brief Set Cursor on LCD display
+/** @brief Set Cursor on LCD display
 
     This function calls corresponding function of LiquidCrystal class instance.
  */
 void PPITextLCD::SetCursor(
-    uint8_t column,       /*!< Column to put the cursor to */
-    uint8_t row           /*!< Row to put the cursor to */
+    uint8_t column,       /**< Column to put the cursor to */
+    uint8_t row           /**< Row to put the cursor to */
 ) {
     LiquidCrystal *p_PPILCD = reinterpret_cast<LiquidCrystal*>(m_Lowlevel);
     p_PPILCD->setCursor(column, row);
 }
 
-/*! \brief Print a text on LCD display
+/** @brief Print a text on LCD display
 
     This function calls corresponding function of LiquidCrystal class instance.
  */
 void PPITextLCD::Print(
-    const char *str       /*!< String to print */
+    const char *str       /**< String to print */
 ) {
     LiquidCrystal *p_PPILCD = reinterpret_cast<LiquidCrystal*>(m_Lowlevel);
     p_PPILCD->print(str);
 }
 
-/*! \brief Print a character on LCD display
+/** @brief Print a character on LCD display
 
     This function calls corresponding function of LiquidCrystal class instance.
  */
 void PPITextLCD::Print(
-    char character        /*!< Character to print */
+    char character        /**< Character to print */
 ) {
     LiquidCrystal *p_PPILCD = reinterpret_cast<LiquidCrystal*>(m_Lowlevel);
     p_PPILCD->print(character);
 }
 
-/*! \brief Write a byte (RS = 1) to LCD display
+/** @brief Write a byte (RS = 1) to LCD display
 
     This function calls corresponding function of LiquidCrystal class instance.
  */
 void PPITextLCD::Write(
-    uint8_t byte          /*!< Byte to write to LCD display */
+    uint8_t byte          /**< Byte to write to LCD display */
 ) {
     LiquidCrystal *p_PPILCD = reinterpret_cast<LiquidCrystal*>(m_Lowlevel);
     p_PPILCD->write(byte);
 }
 
-/*! \brief Send a command byte (RS = 0) to LCD display
+/** @brief Send a command byte (RS = 0) to LCD display
 
     This function calls corresponding function of LiquidCrystal class instance.
  */
 void PPITextLCD::Command(
-    uint8_t byte          /*!< Command to send to LCD display */
+    uint8_t byte          /**< Command to send to LCD display */
 ) {
     LiquidCrystal *p_PPILCD = reinterpret_cast<LiquidCrystal*>(m_Lowlevel);
     p_PPILCD->command(byte);

@@ -1,7 +1,7 @@
-/*! \file init.cpp
-    \brief AG-Panel Project LCD initialization
-    \copyright (C) 2020-2022 Andriy Golovnya
-    \author Andriy Golovnya (andriy.golovnya@gmail.com)
+/** @file init.cpp
+    @brief AG-Panel Project LCD initialization
+    @copyright (C) 2020-2023 Andriy Golovnya
+    @author Andriy Golovnya (andriy.golovnya@gmail.com)
 */
 
 #include "../private.h"
@@ -9,14 +9,14 @@
 
 #include "all.h"
 
-/*! \brief Initialize LCD
+/** @brief Initialize LCD
 
     This function chooses one of LCD classes to use based on configuration defined in config.h
-    \returns Pointer to LCD class
+    @returns Pointer to LCD class
  */
 AbstractLCD *initLCD(
-    AbstractBacklight *Backlight,   /*!< Pointer to configured backlight class */
-    AbstractFont *Font              /*!< Pointer to configured font class */
+    AbstractBacklight *Backlight,   /**< Pointer to configured backlight class */
+    AbstractFont *Font              /**< Pointer to configured font class */
 ) {
     AbstractLCD *p_LCD = nullptr;
 

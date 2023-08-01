@@ -1,7 +1,7 @@
-/*! \file init.cpp
-    \brief AG-Panel Project LCD backlight initialization
-    \copyright (C) 2020-2022 Andriy Golovnya
-    \author Andriy Golovnya (andriy.golovnya@gmail.com)
+/** @file init.cpp
+    @brief AG-Panel Project LCD backlight initialization
+    @copyright (C) 2020-2023 Andriy Golovnya
+    @author Andriy Golovnya (andriy.golovnya@gmail.com)
 */
 
 #include "../../private.h"
@@ -9,10 +9,10 @@
 
 #include "all.h"
 
-/*! \brief Initialize LCD backlight
+/** @brief Initialize LCD backlight
 
     This function chooses one of backlight classes to use based on configuration defined in config.h
-    \returns Pointer to LCD backlight class
+    @returns Pointer to LCD backlight class
  */
 AbstractBacklight *initBacklight() {
     AbstractBacklight *p_Backlight = nullptr;

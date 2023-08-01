@@ -1,7 +1,7 @@
-/*! \file JoinedKeyboard.h
-    \brief AG-Panel Project joined keyboard interface
-    \copyright (C) 2019-2022 Andriy Golovnya
-    \author Andriy Golovnya (andriy.golovnya@gmail.com)
+/** @file JoinedKeyboard.h
+    @brief AG-Panel Project joined keyboard interface
+    @copyright (C) 2019-2023 Andriy Golovnya
+    @author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
 #pragma once
@@ -9,7 +9,7 @@
 #include "../private.h"
 #include "AbstractKeyboard.h"
 
-/*! \brief Joined Keyboard class
+/** @brief Joined Keyboard class
 
     This class implements joined keyboard (complex keyboard).
  */
@@ -20,15 +20,15 @@ public:
         AbstractKeyboard(),
         m_Private(nullptr) { Init(); }
     explicit JoinedKeyboard(
-        AbstractKeyboard *Keyboard          /*!< Keyboard class instance we want to inlist first */
+        AbstractKeyboard *Keyboard          /**< Keyboard class instance we want to inlist first */
     ): AbstractKeyboard(),
         m_Private(nullptr) {
         Init();
         AddKeyboard(Keyboard);
     }
     explicit JoinedKeyboard(
-        AbstractKeyboard *Keyboard1,        /*!< Keyboard class instance we want to inlist first */
-        AbstractKeyboard *Keyboard2         /*!< Keyboard class instance we want to inlist second */
+        AbstractKeyboard *Keyboard1,        /**< Keyboard class instance we want to inlist first */
+        AbstractKeyboard *Keyboard2         /**< Keyboard class instance we want to inlist second */
     ): AbstractKeyboard(),
         m_Private(nullptr) {
         Init();
@@ -36,9 +36,9 @@ public:
         AddKeyboard(Keyboard2);
     }
     explicit JoinedKeyboard(
-        AbstractKeyboard *Keyboard1,        /*!< Keyboard class instance we want to inlist first */
-        AbstractKeyboard *Keyboard2,        /*!< Keyboard class instance we want to inlist second */
-        AbstractKeyboard *Keyboard3         /*!< Keyboard class instance we want to inlist 3rd */
+        AbstractKeyboard *Keyboard1,        /**< Keyboard class instance we want to inlist first */
+        AbstractKeyboard *Keyboard2,        /**< Keyboard class instance we want to inlist second */
+        AbstractKeyboard *Keyboard3         /**< Keyboard class instance we want to inlist 3rd */
     ): AbstractKeyboard(),
         m_Private(nullptr) {
         Init();
@@ -47,10 +47,10 @@ public:
         AddKeyboard(Keyboard3);
     }
     explicit JoinedKeyboard(
-        AbstractKeyboard *Keyboard1,        /*!< Keyboard class instance we want to inlist first */
-        AbstractKeyboard *Keyboard2,        /*!< Keyboard class instance we want to inlist second */
-        AbstractKeyboard *Keyboard3,        /*!< Keyboard class instance we want to inlist 3rd */
-        AbstractKeyboard *Keyboard4         /*!< Keyboard class instance we want to inlist 4th */
+        AbstractKeyboard *Keyboard1,        /**< Keyboard class instance we want to inlist first */
+        AbstractKeyboard *Keyboard2,        /**< Keyboard class instance we want to inlist second */
+        AbstractKeyboard *Keyboard3,        /**< Keyboard class instance we want to inlist 3rd */
+        AbstractKeyboard *Keyboard4         /**< Keyboard class instance we want to inlist 4th */
     ): AbstractKeyboard(),
         m_Private(nullptr) {
         Init();
@@ -60,11 +60,11 @@ public:
         AddKeyboard(Keyboard4);
     }
     explicit JoinedKeyboard(
-        AbstractKeyboard *Keyboard1,        /*!< Keyboard class instance we want to inlist first */
-        AbstractKeyboard *Keyboard2,        /*!< Keyboard class instance we want to inlist second */
-        AbstractKeyboard *Keyboard3,        /*!< Keyboard class instance we want to inlist 3rd */
-        AbstractKeyboard *Keyboard4,        /*!< Keyboard class instance we want to inlist 4th */
-        AbstractKeyboard *Keyboard5         /*!< Keyboard class instance we want to inlist 5th */
+        AbstractKeyboard *Keyboard1,        /**< Keyboard class instance we want to inlist first */
+        AbstractKeyboard *Keyboard2,        /**< Keyboard class instance we want to inlist second */
+        AbstractKeyboard *Keyboard3,        /**< Keyboard class instance we want to inlist 3rd */
+        AbstractKeyboard *Keyboard4,        /**< Keyboard class instance we want to inlist 4th */
+        AbstractKeyboard *Keyboard5         /**< Keyboard class instance we want to inlist 5th */
     ): AbstractKeyboard(),
         m_Private(nullptr) {
         Init();
@@ -84,7 +84,7 @@ public:
 protected:
 
 private:
-    void *m_Private;       /*!< Pointer to Low-Level private class */
+    void *m_Private;       /**< Pointer to Low-Level private class */
     bool Init();
     void Exit();
 };

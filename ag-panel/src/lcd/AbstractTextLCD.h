@@ -1,7 +1,7 @@
-/*! \file AbstractTextLCD.h
-    \brief AG-Panel Project abstract text (hd44780) LCD interface
-    \copyright (C) 2019-2022 Andriy Golovnya
-    \author Andriy Golovnya (andriy.golovnya@gmail.com)
+/** @file AbstractTextLCD.h
+    @brief AG-Panel Project abstract text (hd44780) LCD interface
+    @copyright (C) 2019-2023 Andriy Golovnya
+    @author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
 #pragma once
@@ -9,7 +9,7 @@
 #include "../private.h"
 #include "AbstractLCD.h"
 
-/*! \brief Abstract Text LCD class
+/** @brief Abstract Text LCD class
 
     This is a base class for all text LCD implementations.
     It defines only a base interface of text LCD used by the rest of a project code.
@@ -18,9 +18,9 @@ class AbstractTextLCD: public AbstractLCD {
 
 public:
     explicit AbstractTextLCD(
-        AbstractBacklight *Backlight,   /*!< Pointer to a backlight instance */
-        uint8_t Columns,            /*!< Number of columns of the text LCD */
-        uint8_t Rows                /*!< Number of rows of the text LCD */
+        AbstractBacklight *Backlight,   /**< Pointer to a backlight instance */
+        uint8_t Columns,            /**< Number of columns of the text LCD */
+        uint8_t Rows                /**< Number of rows of the text LCD */
     ): AbstractLCD(Backlight, Columns, Rows) { Init(); }
     virtual ~AbstractTextLCD() override { Exit(); }
 
