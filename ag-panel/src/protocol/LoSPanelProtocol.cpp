@@ -22,7 +22,7 @@ constexpr uint8_t LoSPanelKeypadCode(uint8_t col, uint8_t row) {
 /** @brief Initialization of los-panel protocol
 
     Configures los-panel protocol class.
-    @note https://mlf.home.xs4all.nl/los/
+    @note https://mlf.home.xs4all.nl/los/ (defunct URL)
     @returns true
  */
 bool LoSPanelProtocol::Init() {
