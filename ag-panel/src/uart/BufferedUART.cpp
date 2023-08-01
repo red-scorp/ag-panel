@@ -20,8 +20,12 @@ bool BufferedUART::Init() {
 /** @brief Deinitialization of buffered UART and deallocate data buffer
  */
 void BufferedUART::Exit() {
+    if(m_Buffer != nullptr)
+        delete[] m_Buffer;
+    m_Buffer = nullptr;
     if(m_UART != nullptr)
         delete m_UART;
+    m_UART = nullptr;
 }
 
 /** @brief Write a character to real UART

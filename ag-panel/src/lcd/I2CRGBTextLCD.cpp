@@ -30,7 +30,7 @@ void I2CRGBTextLCD::Exit() {
     Adafruit_RGBLCDShield *p_I2CRGBLCD = reinterpret_cast<Adafruit_RGBLCDShield*>(m_Lowlevel);
     if(p_I2CRGBLCD != nullptr)
         delete p_I2CRGBLCD;
-    p_I2CRGBLCD = nullptr;
+    m_Lowlevel = nullptr;
 }
 
 /** @brief Set backlight in binary (on/off) form

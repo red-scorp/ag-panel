@@ -25,8 +25,10 @@ public:
     ~JoinedKeyboardList() {
         if(m_Keyboard != nullptr)
             delete m_Keyboard;
+        m_Keyboard = nullptr;
         if(m_Next != nullptr)
             delete m_Next;
+        m_Next = nullptr;
     };
 
     AbstractKeyboard *m_Keyboard;     /**< Pointer to a Keyboard class */
@@ -50,6 +52,7 @@ void JoinedKeyboard::Exit() {
         JoinedKeyboardList *p_ListEntry = reinterpret_cast<JoinedKeyboardList*>(m_Private);
         delete p_ListEntry;
     }
+    m_Private = nullptr;
 }
 
 /** @brief Get a key of joined keyboard
