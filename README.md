@@ -1,3 +1,12 @@
+```
+ █████╗  ██████╗       ██████╗  █████╗ ███╗   ██╗███████╗██╗     
+██╔══██╗██╔════╝       ██╔══██╗██╔══██╗████╗  ██║██╔════╝██║     
+███████║██║  ███╗█████╗██████╔╝███████║██╔██╗ ██║█████╗  ██║     
+██╔══██║██║   ██║╚════╝██╔═══╝ ██╔══██║██║╚██╗██║██╔══╝  ██║     
+██║  ██║╚██████╔╝      ██║     ██║  ██║██║ ╚████║███████╗███████╗
+╚═╝  ╚═╝ ╚═════╝       ╚═╝     ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚══════╝
+```
+
 # Arduino Graphic Panel for lcdproc (ag-panel)
 
 A Next generation of [lcdproc](http://lcdproc.sourceforge.net/) display panel based on Arduino and similar HW.
@@ -124,3 +133,4 @@ Your contributions in the form of code, resources, or finances are welcome! Plea
 If you'd like to make a financial contribution, you can donate via [PayPal](http://paypal.me/redscorp) or [Ko-Fi](http://ko-fi.com/redscorp). Your support is greatly appreciated.
 
 Thanks in advance!
+                                                     
