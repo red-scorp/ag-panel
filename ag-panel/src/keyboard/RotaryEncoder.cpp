@@ -48,8 +48,8 @@ uint8_t RotaryEncoder::GetKey() {
     uint8_t d = (d1 << 0) | (d2 << 1);
 
     static uint8_t p_d = 0;
-    static uint8_t sum = 0;
-    static uint8_t p_sum = 0;
+    static uint8_t sum = 0;     /* cppcheck-suppress variableScope */
+    static uint8_t p_sum = 0;   /* cppcheck-suppress variableScope */
 
     if(d != p_d) { /* do we have a state change? */
         p_d = d;

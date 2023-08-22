@@ -19,7 +19,7 @@
  */
 bool I2CRGBKeypad::Init() {
     /* The RGB Keypad is already initialized in I2CRGBTextLCD.cpp but we should retrieve a pointer */
-    I2CRGBTextLCD *p_I2CRGBTextLCD = reinterpret_cast<I2CRGBTextLCD*>(m_LCD);
+    const I2CRGBTextLCD *p_I2CRGBTextLCD = reinterpret_cast<I2CRGBTextLCD*>(m_LCD);
     m_Lowlevel = p_I2CRGBTextLCD->GetLowLevel();
   return true;
 }
