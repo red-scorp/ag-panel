@@ -6,7 +6,7 @@
 
 #pragma once
 
-#ifndef UNIT_TEST
+#if !defined(UNIT_TEST)
 
 #include <Arduino.h>
 #if defined(ARDUINO_ARCH_ESP32)
@@ -57,8 +57,13 @@ const int MaxPWMValue = (1 << PWMResolution) - 1;
 #elif defined(ARDUINO_ARCH_SAM) || defined(ARDUINO_ARCH_SAMD) || defined(ARDUINO_ARCH_STM32) || defined(ARDUINO_ARCH_ESP32) || defined(ARDUINO_ARCH_RP2040)
     const uint8_t AnalogResolution = 12;
 #else
-    #warning The value of 'AnalogResolution' is not defined for this platform yet! Assuming 10-bit!
-    const uint8_t AnalogResolution = 10;
+    #if defined(ADC_RESOLUTION)
+        #warning Use macro 'ADC_RESOLUTION' for 'AnalogResolution' for this platform. Check the value for correctness.
+        const uint8_t AnalogResolution = ADC_RESOLUTION;
+    #else
+        #warning The value of 'AnalogResolution' is not defined for this platform yet! Assuming 10-bit!
+        const uint8_t AnalogResolution = 10;
+    #endif/*ADC_RESOLUTION*/
 #endif
 
 #else/*UNIT_TEST*/
