@@ -11,7 +11,7 @@
 
 A Next generation of [lcdproc](http://lcdproc.sourceforge.net/) display panel based on Arduino and similar HW.
 This project is based on my earlier code of [Arduino LCD over Serial Panel (alos-panel)](https://github.com/red-scorp/alos-panel).
-The original alos-panel C code was fully rewritten in C++ for better maintainability and expansion.
+The original _alos-panel_ C code was fully rewritten in C++ for better maintainability and expansion.
 Documentation is pending!
 
 This project **will** support multiple different connections and different types of displays, including HD44780-based displays.
@@ -72,7 +72,7 @@ Please check *'config.h'* and *'config_adv.h'* for up-to-date information.
 
 ### Platforms
 
-The code of ag-panel is written in C++ with the Arduino Framework.
+The code of _ag-panel_ is written in C++ with the Arduino Framework.
 The code compiles and runs on several embedded CPU platforms:
 
 - [x] Atmel (Microchip) AVR
@@ -111,8 +111,19 @@ ag-panel
 
 ### Dependencies
 
-The code of ag-panel can be compiled with the Arduino IDE or PlatformIO (Atom or VS Code).
-The following libraries might be required:
+This project has several dependencies you should fullfil to be able to build it.
+
+#### IDEs
+
+The code of _ag-panel_ can be compiled with any IDE which supports development for Arduino SDK.
+The following IDEs are tested with _ag-panel_ project:
+
+- [Arduino IDE](https://www.arduino.cc/en/software)
+- [Visual Studio Code](https://code.visualstudio.com/) with PlatformIO Extension
+
+#### Libraries
+
+To compile the project following libraries might be required:
 
 - LiquidCrystal
 - LiquidCrystal_I2C
@@ -126,6 +137,8 @@ The following libraries might be required:
 - ESP32 AnalogWrite
 - U8g2
 
+While PlatformIO is able to resolve library dependencies itself, in Arduino IDE you have to install required libraries manually.
+
 ## How to Help
 
 Your contributions in the form of code, resources, or finances are welcome! Please contact me directly via email at andriy.golovnya@gmail.com or through my [GitHub profile](https://github.com/red-scorp).
@@ -133,4 +146,3 @@ Your contributions in the form of code, resources, or finances are welcome! Plea
 If you'd like to make a financial contribution, you can donate via [PayPal](http://paypal.me/redscorp) or [Ko-Fi](http://ko-fi.com/redscorp). Your support is greatly appreciated.
 
 Thanks in advance!
-                                                     
