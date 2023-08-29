@@ -126,7 +126,7 @@ The code of _ag-panel_ can be compiled with any IDE which supports development f
 The following IDEs are tested with _ag-panel_ project:
 
 - To open the project in [Arduino IDE](https://www.arduino.cc/en/software) you should open INO file _ag-panel/ag-panel.ino_ from File menu.
-- To open the project in [Visual Studio Code](https://code.visualstudio.com/) with PlatformIO Extension you should open project folder with _platformio.ini_ from File menu.
+- To open the project in [Visual Studio Code](https://code.visualstudio.com/) with [PlatformIO](https://platformio.org/) Extension you should open project folder with file _platformio.ini_ from File menu.
 
 #### Libraries
 
@@ -144,7 +144,7 @@ To compile the project following libraries might be required:
 - ESP32 AnalogWrite
 - U8g2
 
-While PlatformIO is able to resolve library dependencies itself, in Arduino IDE you have to install required libraries manually.
+While PlatformIO is able to resolve library dependencies by itself, in Arduino IDE you have to install required libraries manually.
 
 ## How to Help
 
