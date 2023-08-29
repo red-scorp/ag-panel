@@ -113,13 +113,20 @@ ag-panel
 
 This project has several dependencies you should fullfil to be able to build it.
 
+#### Download code
+
+To download _ag-panel_ code you can use one of following ways:
+
+- To use Git version control system you can use following command: ```git clone https://github.com/red-scorp/ag-panel.git```
+- Alternatively, you can download full master branch code in a [single zip file](https://github.com/red-scorp/ag-panel/archive/refs/heads/master.zip).
+
 #### IDEs
 
 The code of _ag-panel_ can be compiled with any IDE which supports development for Arduino SDK.
 The following IDEs are tested with _ag-panel_ project:
 
-- [Arduino IDE](https://www.arduino.cc/en/software)
-- [Visual Studio Code](https://code.visualstudio.com/) with PlatformIO Extension
+- To open the project in [Arduino IDE](https://www.arduino.cc/en/software) you should open INO file _ag-panel/ag-panel.ino_ from File menu.
+- To open the project in [Visual Studio Code](https://code.visualstudio.com/) with PlatformIO Extension you should open project folder with _platformio.ini_ from File menu.
 
 #### Libraries
 
