@@ -11,7 +11,7 @@
 
 A Next generation of [lcdproc](http://lcdproc.sourceforge.net/) display panel based on Arduino and similar HW.
 This project is based on my earlier code of [Arduino LCD over Serial Panel (alos-panel)](https://github.com/red-scorp/alos-panel).
-The original _alos-panel_ C code was fully rewritten in C++ for better maintainability and expansion.
+The original *alos-panel* C code was fully rewritten in C++ for better maintainability and expansion.
 Documentation is pending!
 
 This project **will** support multiple different connections and different types of displays, including HD44780-based displays.
@@ -72,7 +72,7 @@ Please check *'config.h'* and *'config_adv.h'* for up-to-date information.
 
 ### Platforms
 
-The code of _ag-panel_ is written in C++ with the Arduino Framework.
+The code of *ag-panel* is written in C++ with the Arduino Framework.
 The code compiles and runs on several embedded CPU platforms:
 
 - [x] Atmel (Microchip) AVR
@@ -115,18 +115,18 @@ This project has several dependencies you should fullfil to be able to build it.
 
 #### Download code
 
-To download _ag-panel_ code you can use one of following ways:
+To download *ag-panel* code you can use one of following ways:
 
 - To use Git version control system you can use following command: ```git clone https://github.com/red-scorp/ag-panel.git```
 - Alternatively, you can download full master branch code in a [single zip file](https://github.com/red-scorp/ag-panel/archive/refs/heads/master.zip).
 
 #### IDEs
 
-The code of _ag-panel_ can be compiled with any IDE which supports development for Arduino SDK.
-The following IDEs are tested with _ag-panel_ project:
+The code of *ag-panel* can be compiled with any IDE which supports development for Arduino SDK.
+The following IDEs are tested with *ag-panel* project:
 
-- To open the project in [Arduino IDE](https://www.arduino.cc/en/software) you should open INO file _ag-panel/ag-panel.ino_ from File menu.
-- To open the project in [Visual Studio Code](https://code.visualstudio.com/) with [PlatformIO](https://platformio.org/) Extension you should open project folder with file _platformio.ini_ from File menu.
+- To open the project in [Arduino IDE](https://www.arduino.cc/en/software) you should open INO file *ag-panel/ag-panel.ino* from File menu.
+- To open the project in [Visual Studio Code](https://code.visualstudio.com/) with [PlatformIO](https://platformio.org/) Extension you should open project folder with file *platformio.ini* from File menu.
 
 #### Libraries
 
