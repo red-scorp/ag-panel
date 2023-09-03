@@ -13,7 +13,7 @@
   #include <analogWrite.h>
 #endif
 
-#if defined(__riscv)
+#if defined(__riscv) && !defined(ARDUINO_ARCH_ESP32)
     #if __INTPTR_WIDTH__ == 32
         #define ARDUINO_ARCH_GD32V
         /* TODO: add implementation of 'Wire.h' and 'SPI.h' for RISC-V */
