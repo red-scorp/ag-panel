@@ -1,0 +1,44 @@
+#** @file unit-test.yml
+#   @brief AG-Panel Project unit-test github action file.
+#   @copyright (C) 2023 Andriy Golovnya
+#   @author Andriy Golovnya (andriy.golovnya@gmail.com)
+
+# Name of the action
+name: Native Unit-Test Configuration
+
+# Controls when the action will run. Triggers the workflow on each push request
+on: push
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  main:
+    name: Main
+    runs-on: ubuntu-latest
+    steps:
+
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Git Checkout
+        uses: actions/checkout@master
+
+      # Installs python 3.x
+      - name: Setup Python
+        uses: actions/setup-python@master
+        with:
+          python-version: '3.x'
+
+      # Updates pip and installs platformio
+      - name: Install Platform IO
+        run: |
+          python -m pip install --upgrade pip
+          pip install -U platformio
+
+      # Install native build tools
+      - name: Install Build Tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential
+
+      # Runs unit-test command on native host
+      - name: Run Unit-Test
+        run: |
+          pio test -e native_test
