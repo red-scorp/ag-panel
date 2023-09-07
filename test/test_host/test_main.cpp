@@ -29,67 +29,67 @@
 using namespace std;
 
 /* Mocks for initDebug() function */
-MOCK_VARIABLE bool b_initDebug_called = false;
-MOCK_VARIABLE AbstractUART* p_initDebug_return = (AbstractUART*)(void*)b_initDebug_called;
+MOCK_VARIABLE int i_initDebug_called = 0;
+MOCK_VARIABLE AbstractUART *p_initDebug_return = (AbstractUART*)(void*)&i_initDebug_called;
 MOCK_FUNCTION AbstractUART *initDebug() {
-    b_initDebug_called = true;
+    i_initDebug_called++;
     return p_initDebug_return;
 }
 
 /* Mocks for initUART() function */
-MOCK_VARIABLE bool b_initUART_called = false;
-MOCK_VARIABLE AbstractUART* p_initUART_return = (AbstractUART*)(void*)b_initUART_called;
+MOCK_VARIABLE int i_initUART_called = 0;
+MOCK_VARIABLE AbstractUART *p_initUART_return = (AbstractUART*)(void*)&i_initUART_called;
 MOCK_FUNCTION AbstractUART *initUART() {
-    b_initUART_called = true;
+    i_initUART_called++;
     return p_initUART_return;
 }
 
 /* Mocks for initBacklight() function */
-MOCK_VARIABLE bool b_initBacklight_called = false;
-MOCK_VARIABLE AbstractBacklight* p_initBacklight_return = (AbstractBacklight*)(void*)b_initBacklight_called;
+MOCK_VARIABLE int i_initBacklight_called = 0;
+MOCK_VARIABLE AbstractBacklight *p_initBacklight_return = (AbstractBacklight*)(void*)&i_initBacklight_called;
 MOCK_FUNCTION AbstractBacklight *initBacklight() {
-    b_initBacklight_called = true;
+    i_initBacklight_called++;
     return p_initBacklight_return;
 }
 
 /* Mocks for initFont() function */
-MOCK_VARIABLE bool b_initFont_called = false;
-MOCK_VARIABLE AbstractFont* p_initFont_return = (AbstractFont*)(void*)b_initFont_called;
+MOCK_VARIABLE int i_initFont_called = 0;
+MOCK_VARIABLE AbstractFont *p_initFont_return = (AbstractFont*)(void*)&i_initFont_called;
 MOCK_FUNCTION AbstractFont *initFont() {
-    b_initFont_called = true;
+    i_initFont_called++;
     return p_initFont_return;
 }
 
 /* Mocks for initLCD() function */
-MOCK_VARIABLE bool b_initLCD_called = false;
-MOCK_VARIABLE AbstractLCD* p_initLCD_return = (AbstractLCD*)(void*)b_initLCD_called;
+MOCK_VARIABLE int i_initLCD_called = 0;
+MOCK_VARIABLE AbstractLCD *p_initLCD_return = (AbstractLCD*)(void*)&i_initLCD_called;
 MOCK_VARIABLE AbstractBacklight *p_initLCD_called_with_Backlight = nullptr;
 MOCK_VARIABLE AbstractFont *p_initLCD_called_with_Font = nullptr;
 MOCK_FUNCTION AbstractLCD *initLCD(AbstractBacklight *Backlight, AbstractFont *Font) {
-    b_initLCD_called = true;
+    i_initLCD_called++;
     p_initLCD_called_with_Backlight = Backlight;
-    p_initFont_return = Font;
+    p_initLCD_called_with_Font = Font;
     return p_initLCD_return;
 }
 
 /* Mocks for initKeyboard() function */
-MOCK_VARIABLE bool b_initKeyboard_called = false;
-MOCK_VARIABLE AbstractKeyboard* p_initKeyboard_return = (AbstractKeyboard*)(void*)b_initKeyboard_called;
+MOCK_VARIABLE int i_initKeyboard_called = 0;
+MOCK_VARIABLE AbstractKeyboard *p_initKeyboard_return = (AbstractKeyboard*)(void*)&i_initKeyboard_called;
 MOCK_VARIABLE AbstractLCD *p_initKeyboard_called_with_LCD = nullptr;
 MOCK_FUNCTION AbstractKeyboard *initKeyboard(AbstractLCD *p_LCD) {
-    b_initKeyboard_called = true;
+    i_initKeyboard_called++;
     p_initKeyboard_called_with_LCD = p_LCD;
     return p_initKeyboard_return;
 }
 
 /* Mocks for initProtocol() function */
-MOCK_VARIABLE bool b_initProtocol_called = false;
-MOCK_VARIABLE AbstractProtocol* p_initProtocol_return = (AbstractProtocol*)(void*)b_initProtocol_called;
+MOCK_VARIABLE int i_initProtocol_called = 0;
+MOCK_VARIABLE AbstractProtocol *p_initProtocol_return = (AbstractProtocol*)(void*)&i_initProtocol_called;
 MOCK_VARIABLE AbstractUART *p_initProtocol_called_with_UART = nullptr;
 MOCK_VARIABLE AbstractLCD *p_initProtocol_called_with_LCD = nullptr;
 MOCK_VARIABLE AbstractKeyboard *p_initProtocol_called_with_Keyboard = nullptr;
 MOCK_FUNCTION AbstractProtocol *initProtocol(AbstractUART *UART, AbstractLCD *LCD, AbstractKeyboard *Keyboard) {
-    b_initProtocol_called = true;
+    i_initProtocol_called++;
     p_initProtocol_called_with_UART = UART;
     p_initProtocol_called_with_LCD = LCD;
     p_initProtocol_called_with_Keyboard = Keyboard;
@@ -97,47 +97,59 @@ MOCK_FUNCTION AbstractProtocol *initProtocol(AbstractUART *UART, AbstractLCD *LC
 }
 
 /* Mocks for print_welcome() function */
-MOCK_VARIABLE bool b_print_welcome_called = false;
+MOCK_VARIABLE int i_print_welcome_called = 0;
 MOCK_FUNCTION void print_welcome() {
-    b_print_welcome_called = true;
+    i_print_welcome_called++;
 }
 
 /* Mocks for loop() and yield() functions */
-MOCK_VARIABLE bool b_MockProtocol_Loop_called = false;
-MOCK_VARIABLE bool b_MockProtocol_Yield_called = false;
+MOCK_VARIABLE int i_MockProtocol_Loop_called = 0;
+MOCK_VARIABLE int i_MockProtocol_Yield_called = 0;
 class MockProtocol: public AbstractProtocol {
 public:
     MockProtocol(): AbstractProtocol(nullptr, nullptr, nullptr) { }
     virtual ~MockProtocol() { }
-    virtual void Loop() override { b_MockProtocol_Loop_called = true; }
-    virtual void Yield() override { b_MockProtocol_Yield_called = true; }
+    virtual void Loop() override { i_MockProtocol_Loop_called++; }
+    virtual void Yield() override { i_MockProtocol_Yield_called++; }
 };
 
 /* Mocks for real_print_welcome() function */
 void real_print_welcome();
-MOCK_VARIABLE bool b_MockLCD_Clear_called = false;
-MOCK_VARIABLE bool b_MockLCD_SetCursor_called = false;
-MOCK_VARIABLE bool b_MockLCD_Print_str_called = false;
-MOCK_VARIABLE bool b_MockLCD_Print_ch_called = false;
+MOCK_VARIABLE int i_MockBacklight_SetOn_called = 0;
+MOCK_VARIABLE int i_MockBacklight_SetBrightness_called = 0;
+MOCK_VARIABLE int i_MockBacklight_SetRGB_called = 0;
+class MockBacklight: public AbstractBacklight {
+public:
+    MockBacklight(): AbstractBacklight() { }
+    virtual ~MockBacklight() { }
+    virtual void SetOn(bool on) override { i_MockBacklight_SetOn_called++; }
+    virtual void SetBrightness(uint8_t brightness) override { i_MockBacklight_SetBrightness_called++; }
+    virtual void SetRGB(uint8_t red, uint8_t green, uint8_t blue) override { i_MockBacklight_SetRGB_called++; }
+};
+MOCK_VARIABLE int i_MockLCD_Clear_called = 0;
+MOCK_VARIABLE int i_MockLCD_SetCursor_called = 0;
+MOCK_VARIABLE int i_MockLCD_Print_str_called = 0;
+MOCK_VARIABLE int i_MockLCD_Print_ch_called = 0;
 class MockLCD: public AbstractLCD {
 public:
-    MockLCD(): AbstractLCD(nullptr, 20, 2) { }
+    MockLCD(AbstractBacklight *Backlight): AbstractLCD(Backlight, 20, 2) { }
     virtual ~MockLCD() { }
-    virtual void Clear() override { b_MockLCD_Clear_called = true; }
-    virtual void SetCursor(uint8_t x, uint8_t y) override { b_MockLCD_SetCursor_called = true; }
-    virtual void Print(const char *str) override { b_MockLCD_Print_str_called = true; }
-    virtual void Print(char ch) override { b_MockLCD_Print_ch_called = true; }
+    virtual void Clear() override { i_MockLCD_Clear_called++; }
+    virtual void SetCursor(uint8_t x, uint8_t y) override { i_MockLCD_SetCursor_called++; }
+    virtual void Print(const char *str) override { i_MockLCD_Print_str_called++; }
+    virtual void Print(char ch) override { i_MockLCD_Print_ch_called++; }
 };
-MOCK_VARIABLE bool b_MockUART_GetBaudRate_called = false;
+MOCK_VARIABLE int i_MockUART_GetBaudRate_called = 0;
 class MockUART: public AbstractUART {
 public:
-    MockUART(): AbstractUART(9600) { }
+    MockUART(): AbstractUART() { }
     virtual ~MockUART() { }
     virtual uint8_t PutCh(uint8_t txbyte) override { return 0; }
     virtual uint8_t GetCh() override { return 0; }
-    virtual uint32_t GetBaudRate() const override { b_MockUART_GetBaudRate_called = true; return 0; }
+    virtual uint32_t GetBaudRate() const override { i_MockUART_GetBaudRate_called++; return AbstractUART::GetBaudRate(); }
 };
 
+#undef DEBUG_STR
 #define DEBUG_STR(str) printf("%s", str)
 
 #include "../ag-panel/src/main.cpp"
@@ -153,22 +165,25 @@ void setUp(void) {
     g_DebugUART = nullptr;
 
     /* Reset local mocks */
-    b_initDebug_called = false;
-    b_initUART_called = false;
-    b_initBacklight_called = false;
-    b_initFont_called = false;
-    b_initLCD_called = false;
-    b_initKeyboard_called = false;
-    b_initProtocol_called = false;
+    i_initDebug_called = 0;
+    i_initUART_called = 0;
+    i_initBacklight_called = 0;
+    i_initFont_called = 0;
+    i_initLCD_called = 0;
+    i_initKeyboard_called = 0;
+    i_initProtocol_called = 0;
 
-    b_MockProtocol_Loop_called = false;
-    b_MockProtocol_Yield_called = false;
+    i_MockProtocol_Loop_called = 0;
+    i_MockProtocol_Yield_called = 0;
 
-    b_MockLCD_Clear_called = false;
-    b_MockLCD_SetCursor_called = false;
-    b_MockLCD_Print_str_called = false;
-    b_MockLCD_Print_ch_called = false;
-    b_MockUART_GetBaudRate_called = false;
+    i_MockBacklight_SetOn_called = 0;
+    i_MockBacklight_SetBrightness_called = 0;
+    i_MockBacklight_SetRGB_called = 0;
+    i_MockLCD_Clear_called = 0;
+    i_MockLCD_SetCursor_called = 0;
+    i_MockLCD_Print_str_called = 0;
+    i_MockLCD_Print_ch_called = 0;
+    i_MockUART_GetBaudRate_called = 0;
 }
 
 /* Call after each unit test case */
@@ -182,14 +197,14 @@ void test_setup_calls_all_init_functions_with_right_arguments(void) {
     setup();
 
     /* Check if all init functions are called */
-    TEST_ASSERT_TRUE(b_initDebug_called);
-    TEST_ASSERT_TRUE(b_initUART_called);
-    TEST_ASSERT_TRUE(b_initBacklight_called);
-    TEST_ASSERT_TRUE(b_initFont_called);
-    TEST_ASSERT_TRUE(b_initLCD_called);
-    TEST_ASSERT_TRUE(b_initKeyboard_called);
-    TEST_ASSERT_TRUE(b_initProtocol_called);
-    TEST_ASSERT_TRUE(b_print_welcome_called);
+    TEST_ASSERT_TRUE(i_initDebug_called == 1);
+    TEST_ASSERT_TRUE(i_initUART_called == 1);
+    TEST_ASSERT_TRUE(i_initBacklight_called == 1);
+    TEST_ASSERT_TRUE(i_initFont_called == 1);
+    TEST_ASSERT_TRUE(i_initLCD_called == 1);
+    TEST_ASSERT_TRUE(i_initKeyboard_called == 1);
+    TEST_ASSERT_TRUE(i_initProtocol_called == 1);
+    TEST_ASSERT_TRUE(i_print_welcome_called == 1);
 
     /* Check if all instance pointer are stored in proper variables */
     TEST_ASSERT_EQUAL_PTR(g_DebugUART, p_initDebug_return);
@@ -217,8 +232,8 @@ void test_loop_calls_protocol_loop_and_yield(void) {
     loop();
 
     /* Check if all init functions are called */
-    TEST_ASSERT_TRUE(b_MockProtocol_Loop_called);
-    TEST_ASSERT_TRUE(b_MockProtocol_Yield_called);
+    TEST_ASSERT_TRUE(i_MockProtocol_Loop_called == 1);
+    TEST_ASSERT_TRUE(i_MockProtocol_Yield_called == 1);
 
     /* Cleanup test */
     delete s_Protocol;
@@ -234,8 +249,8 @@ void test_yield_calls_protocol_yield(void) {
     yield();
 
     /* Check if all init functions are called */
-    TEST_ASSERT_FALSE(b_MockProtocol_Loop_called);
-    TEST_ASSERT_TRUE(b_MockProtocol_Yield_called);
+    TEST_ASSERT_TRUE(i_MockProtocol_Loop_called == 0);
+    TEST_ASSERT_TRUE(i_MockProtocol_Yield_called == 1);
 
     /* Cleanup test */
     delete s_Protocol;
@@ -245,7 +260,9 @@ void test_yield_calls_protocol_yield(void) {
 void test_print_welcome_calls_lcd_functions(void) {
 
     /* Setup test */
-    s_LCD = new MockLCD();
+    AbstractBacklight *p_Backlight = new MockBacklight();
+
+    s_LCD = new MockLCD(p_Backlight);
     printf("LCD size = %dx%d\n", s_LCD->GetColumns(), s_LCD->GetRows());
 
     s_UART = new MockUART();
@@ -255,10 +272,11 @@ void test_print_welcome_calls_lcd_functions(void) {
     real_print_welcome();
 
     /* Check if all init functions are called */
-    TEST_ASSERT_TRUE(b_MockLCD_Clear_called);
-    TEST_ASSERT_TRUE(b_MockLCD_SetCursor_called);
-    TEST_ASSERT_TRUE(b_MockLCD_Print_str_called || b_MockLCD_Print_ch_called);
-    TEST_ASSERT_TRUE(b_MockUART_GetBaudRate_called);
+    TEST_ASSERT_TRUE(i_MockBacklight_SetOn_called >= 1 || i_MockBacklight_SetBrightness_called >= 1 || i_MockBacklight_SetRGB_called >= 1);
+    TEST_ASSERT_TRUE(i_MockLCD_Clear_called >= 1);
+    TEST_ASSERT_TRUE(i_MockLCD_SetCursor_called >= 1);
+    TEST_ASSERT_TRUE(i_MockLCD_Print_str_called >= 1 || i_MockLCD_Print_ch_called >= 1);
+    TEST_ASSERT_TRUE(i_MockUART_GetBaudRate_called >= 1);
 
     /* Cleanup test */
     delete s_UART;
@@ -274,7 +292,7 @@ int main(int argc, char *argv[]) {
     RUN_TEST(test_setup_calls_all_init_functions_with_right_arguments);
     RUN_TEST(test_loop_calls_protocol_loop_and_yield);
     RUN_TEST(test_yield_calls_protocol_yield);
-    // RUN_TEST(test_print_welcome_calls_lcd_functions);
+    RUN_TEST(test_print_welcome_calls_lcd_functions);
 
     UNITY_END();
 }
