@@ -36,6 +36,11 @@ static AbstractKeyboard *s_Keyboard = nullptr;
  */
 static AbstractProtocol *s_Protocol = nullptr;
 
+/* Trick to use print_welcome() function in unit tests (rename it for test) */
+#if defined(UNIT_TEST)
+#define print_welcome  real_print_welcome
+#endif /* UNIT_TEST */
+
 /** @brief Print welcome message to the LCD
 
     This function prints project name, project version and UART baud rate to the attached LCD.
@@ -60,6 +65,11 @@ void print_welcome() {
     s_LCD->Print(str);
     DEBUG_STR("LCD> "); DEBUG_STR(str); DEBUG_STR("\n");
 }
+
+/* Trick to use print_welcome() function in unit tests (undo rename) */
+#if defined(UNIT_TEST)
+#undef print_welcome
+#endif /* UNIT_TEST */
 
 /** @brief Main initialization function
 
@@ -88,7 +98,7 @@ void setup() {
     AbstractBacklight *p_Backlight = initBacklight();
 
     /* 3.2. Initialize LCD font class */
-    DEBUG_STR("Initializing Font...\n")
+    DEBUG_STR("Initializing Font...\n");
     AbstractFont *p_Font = initFont();
 
     /* 3.3. Initialize LCD itself */
