@@ -9,91 +9,87 @@
 
 # Arduino Graphic Panel for lcdproc (ag-panel)
 
-A Next generation of [lcdproc](http://lcdproc.sourceforge.net/) display panel based on Arduino and similar HW.
-This project is based on my earlier code of [Arduino LCD over Serial Panel (alos-panel)](https://github.com/red-scorp/alos-panel).
-The original *alos-panel* C code was fully rewritten in C++ for better maintainability and expansion.
-Documentation is pending!
+Welcome to the Arduino Graphic Panel for lcdproc (ag-panel) project! This is the next generation of [lcdproc](http://lcdproc.sourceforge.net/) display panel, built on the versatile Arduino platform and similar hardware. If you're looking to create dynamic and customizable displays, this project is for you.
 
-This project **will** support multiple different connections and different types of displays, including HD44780-based displays.
-The main platform for this project is Arduino Uno and Nano boards, but it should certainly work on other Arduino boards as well.
-One of the goals of this project is portability between different CPUs. You can expect it to work with AVR, SAM, SAMD, STM32, ESP32, RISC-V, and other hobby platforms.
+## Project Evolution
+
+This project is based on the earlier code of [Arduino LCD over Serial Panel (alos-panel)](https://github.com/red-scorp/alos-panel). However, we've taken it to the next level by fully rewriting the original C code in C++ for improved maintainability and expandability. While the documentation is still a work in progress, we're excited to share the project's potential with you.
+
+## Versatile Compatibility
+
+The ag-panel project is designed to offer maximum compatibility and flexibility. Here's what it currently supports:
+
+- **Protocols**
+  - ✓ los-panel (lcdproc) for direct HD44780 (supports **only** HD44780 displays)
+  - ◻️ rawserial (lcdproc) (in progress)
+  - ◻️ own protocol TBD (lcdproc) (to be implemented)
+
+- **UART Serial**
+  - ✓ Hardware UART (up to 10 if supported)
+  - ✓ USB Virtual UART (for SAMD, SAM, and STM32 platforms)
+  - ✓ Software UART (for AVR, STM32, ESP8266, and ESP32 platforms)
+  - ◻️ Bluetooth UART (to be implemented)
+  - ◻️ LAN/WLAN TCP/IP socket (to be implemented)
+  - ✓ No (null) UART
+  - ✓ Buffered UART (addition to a regular UART)
+
+- **LCD Display**
+  - ✓ HD44780 and clones in 4-bit and 8-bit modes
+  - ✓ HD44780 with binary (on/off) backlight over I2C bus, based on 'I2C LCD backpack'
+  - ✓ HD44780 with RGB binary (7 colors) backlight over I2C bus, like 'Adafruit RGB 16x2 LCD Shield'
+  - ✓ AIP31068, HD44780-like with I2C and SPI interface
+
+- **LCD Backlight**
+  - ✓ Not controlled or controlled by the display itself
+  - ✓ ON/OFF binary backlight
+  - ✓ RGB binary (7 colors) backlight
+  - ✓ PWM-controlled (monochrome brightness) backlight
+  - ✓ RGB PWM-controlled (hue brightness) backlight
+  - ✓ RGB PWM-controlled backlight attached over I2C bus with the help of PCA9633 LED controller
+
+- **Keyboard / Input**
+  - ✓ No keyboard
+  - ✓ Digital Matrix up to 4x4 (on analog pins)
+  - ✓ Analog Arduino joystick as key strokes
+  - ✓ Analog Keypad of 'LCD Keypad Shield'
+  - ✓ Rotary Encoder
+  - ✓ Analog Matrix 4x4 and 3x4 from RobotDyn
+  - ✓ Digital Keypad or Digital Joystick over I2C bus, like 'Adafruit RGB 16x2 LCD Shield'
+  - ✓ Capacitive Keypad attached over I2C based on MPR121 controller
+  - ✓ Capacitive Keypad attached over I2C based on TTP229 controller
+  - ✓ Single pin button
+  - ✓ Joined keyboard for combining several supported keyboards/keypads together in a single unit
+
+- **Development / Debugging**
+  - ✓ Hardware UART port for debugging output
+  - ✓ Software UART port for debugging output
+  - ✓ Hex String dump of UART output
+  - ✓ Hex String dump of UART input
+
+Please refer to *'config.h'* and *'config_adv.h'* for the most up-to-date information on supported configurations.
 
 ## Current Status
 
-Work in progress, but already usable.
+While ag-panel is still a work in progress, it's already usable and offers a wide range of features for your display projects.
 
-## Supported Configurations
-
-- Protocols
-  - [x] los-panel (lcdproc) for direct HD44780 (supports **only** HD44780 displays)
-  - [ ] rawserial (lcdproc) (in progress)
-  - [ ] own protocol TBD (lcdproc) (to be implemented)
-- UART Serial
-  - [x] Hardware UART (up to 10 if supported)
-  - [x] USB Virtual UART (for SAMD, SAM, and STM32 platforms)
-  - [x] Software UART (for AVR, STM32, ESP8266, and ESP32 platforms)
-  - [ ] Bluetooth UART (to be implemented)
-  - [ ] LAN/WLAN TCP/IP socket (to be implemented)
-  - [x] No (null) UART
-  - [x] Buffered UART (addition to a regular UART)
-- LCD Display
-  - [x] HD44780 and clones in 4-bit and 8-bit modes
-  - [x] HD44780 with binary (on/off) backlight over I2C bus, based on 'I2C LCD backpack'
-  - [x] HD44780 with RGB binary (7 colors) backlight over I2C bus, like 'Adafruit RGB 16x2 LCD Shield'
-  - [x] AIP31068, HD44780-like with I2C and SPI interface
-- LCD Backlight
-  - [x] Not controlled or controlled by the display itself
-  - [x] ON/OFF binary backlight
-  - [x] RGB binary (7 colors) backlight
-  - [x] PWM-controlled (monochrome brightness) backlight
-  - [x] RGB PWM-controlled (hue brightness) backlight
-  - [x] RGB PWM-controlled backlight attached over I2C bus with the help of PCA9633 LED controller
-- Keyboard / Input
-  - [x] No keyboard
-  - [x] Digital Matrix up to 4x4 (on analog pins)
-  - [x] Analog Arduino joystick as key strokes
-  - [x] Analog Keypad of 'LCD Keypad Shield'
-  - [x] Rotary Encoder
-  - [x] Analog Matrix 4x4 and 3x4 from RobotDyn
-  - [x] Digital Keypad or Digital Joystick over I2C bus, like 'Adafruit RGB 16x2 LCD Shield'
-  - [x] Capacitive Keypad attached over I2C based on MPR121 controller
-  - [x] Capacitive Keypad attached over I2C based on TTP229 controller
-  - [x] Single pin button
-  - [x] Joined keyboard for combining several supported keyboards/keypads together in a single unit
-- Development / Debugging
-  - [x] Hardware UART port for debugging output
-  - [x] Software UART port for debugging output
-  - [x] Hex String dump of UART output
-  - [x] Hex String dump of UART input
-
-Please check *'config.h'* and *'config_adv.h'* for up-to-date information.
-
-## Design
+## Project Structure
 
 ### Platforms
 
-The code of *ag-panel* is written in C++ with the Arduino Framework.
-The code compiles and runs on several embedded CPU platforms:
+The ag-panel code is written in C++ and utilizes the Arduino Framework. It's designed to compile and run on various embedded CPU platforms, including but not limited to:
 
-- [x] Atmel (Microchip) AVR
-- [x] Atmel (Microchip) SAMD and SAM
-- [ ] Renesas RA (to be tested)
-- [ ] Espressif ESP32 and ESP8266 (to be tested)
-- [x] ST STM32
-- [ ] Raspberry RP2040 (to be tested)
-- [ ] RISC-V (planned)
-- [ ] Logic Green AVR (planned)
+- ✓ Atmel (Microchip) AVR
+- ✓ Atmel (Microchip) SAMD and SAM
+- ◻️ Renesas RA (to be tested)
+- ◻️ Espressif ESP32 and ESP8266 (to be tested)
+- ✓ ST STM32
+- ◻️ Raspberry RP2040 (to be tested)
+- ◻️ RISC-V (planned)
+- ◻️ Logic Green AVR (planned)
 
-### Class Diagram
+### Code Structure
 
-The UML class diagram is shown below:
-
-![UML diagram](/img/class_diagram.png)
-
-### Code Tree
-
-The code is structured by subsystem.
-Classes of different subsystems are located in their respective folders.
+The code is organized by subsystems, with classes for different functionalities residing in their respective folders:
 
 ```
 ag-panel
@@ -109,28 +105,27 @@ ag-panel
 └── config.h (basic configuration)
 ```
 
-### Dependencies
+## Getting Started
 
-This project has several dependencies you should fullfil to be able to build it.
+To begin working with the ag-panel project, you'll need to fulfill certain dependencies:
 
-#### Download code
+### Download Code
 
-To download *ag-panel* code you can use one of following ways:
+You can obtain the ag-panel project code using one of the following methods:
 
-- To use Git version control system you can use following command: ```git clone https://github.com/red-scorp/ag-panel.git```
-- Alternatively, you can download full master branch code in a [single zip file](https://github.com/red-scorp/ag-panel/archive/refs/heads/master.zip).
+- If you prefer using the Git version control system, run the following command: `git clone https://github.com/red-scorp/ag-panel.git`
+- Alternatively, you can download the entire master branch code as a [single zip file](https://github.com/red-scorp/ag-panel/archive/refs/heads/master.zip).
 
-#### IDEs
+### Supported IDEs
 
-The code of *ag-panel* can be compiled with any IDE which supports development for Arduino SDK.
-The following IDEs are tested with *ag-panel* project:
+You can compile the ag-panel project with any IDE that supports development for the Arduino SDK. We've tested it with the following IDEs:
 
-- To open the project in [Arduino IDE](https://www.arduino.cc/en/software) you should open INO file *ag-panel/ag-panel.ino* from File menu.
-- To open the project in [Visual Studio Code](https://code.visualstudio.com/) with [PlatformIO](https://platformio.org/) Extension you should open project folder with file *platformio.ini* from File menu.
+- To open the project in the [Arduino IDE](https://www.arduino.cc/en/software), simply open the INO file located at *ag-panel/ag-panel.ino* from the File menu.
+- To use [Visual Studio Code](https://code.visualstudio.com/) with the [PlatformIO](https://platformio.org/) Extension, open the project folder containing the *platformio.ini* file from the File menu.
 
-#### Libraries
+### Required Libraries
 
-To compile the project following libraries might be required:
+To successfully compile the project, you may need to install the following libraries:
 
 - LiquidCrystal
 - LiquidCrystal_I2C
@@ -144,12 +139,12 @@ To compile the project following libraries might be required:
 - ESP32 AnalogWrite
 - U8g2
 
-While PlatformIO is able to resolve library dependencies by itself, in Arduino IDE you have to install required libraries manually.
+While PlatformIO can automatically resolve library dependencies, Arduino IDE users will need to install the required libraries manually.
 
-## How to Help
+## How You Can Contribute
 
-Your contributions in the form of code, resources, or finances are welcome! Please contact me directly via email at andriy.golovnya@gmail.com or through my [GitHub profile](https://github.com/red-scorp).
+We welcome your contributions to the ag-panel project! Whether it's code, resources, or financial support, your help is invaluable. Feel free to reach out directly via email at andriy.golovnya@gmail.com or through my [GitHub profile](https://github.com/red-scorp).
 
-If you'd like to make a financial contribution, you can donate via [PayPal](http://paypal.me/redscorp) or [Ko-Fi](http://ko-fi.com/redscorp). Your support is greatly appreciated.
+If you'd like to make a financial contribution to support the project's development, you can donate via [PayPal](http://paypal.me/redscorp) or [Ko-Fi](http://ko-fi.com/redscorp). Your generosity is greatly appreciated.
 
-Thanks in advance!
+Thank you in advance for your support, and let's make the ag-panel project even better together!
