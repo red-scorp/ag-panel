@@ -29,7 +29,6 @@
 using namespace std;
 
 
-void real_print_welcome();
 MOCK_VARIABLE int i_MockBacklight_SetOn_called = 0;
 MOCK_VARIABLE int i_MockBacklight_SetBrightness_called = 0;
 MOCK_VARIABLE int i_MockBacklight_SetRGB_called = 0;
@@ -41,18 +40,22 @@ public:
     virtual void SetBrightness(uint8_t brightness) override { i_MockBacklight_SetBrightness_called++; }
     virtual void SetRGB(uint8_t red, uint8_t green, uint8_t blue) override { i_MockBacklight_SetRGB_called++; }
 };
-MOCK_VARIABLE int i_MockLCD_Clear_called = 0;
-MOCK_VARIABLE int i_MockLCD_SetCursor_called = 0;
-MOCK_VARIABLE int i_MockLCD_Print_str_called = 0;
-MOCK_VARIABLE int i_MockLCD_Print_ch_called = 0;
-class MockLCD: public AbstractLCD {
+MOCK_VARIABLE int i_MockTextLCD_Clear_called = 0;
+MOCK_VARIABLE int i_MockTextLCD_SetCursor_called = 0;
+MOCK_VARIABLE int i_MockTextLCD_Print_str_called = 0;
+MOCK_VARIABLE int i_MockTextLCD_Print_ch_called = 0;
+MOCK_VARIABLE int i_MockTextLCD_Write_called = 0;
+MOCK_VARIABLE int i_MockTextLCD_Command_called = 0;
+class MockTextLCD: public AbstractTextLCD {
 public:
-    MockLCD(AbstractBacklight *Backlight): AbstractLCD(Backlight, 20, 2) { }
-    virtual ~MockLCD() { }
-    virtual void Clear() override { i_MockLCD_Clear_called++; }
-    virtual void SetCursor(uint8_t x, uint8_t y) override { i_MockLCD_SetCursor_called++; }
-    virtual void Print(const char *str) override { i_MockLCD_Print_str_called++; }
-    virtual void Print(char ch) override { i_MockLCD_Print_ch_called++; }
+    MockTextLCD(AbstractBacklight *Backlight): AbstractTextLCD(Backlight, 20, 2) { }
+    virtual ~MockTextLCD() { }
+    virtual void Clear() override { i_MockTextLCD_Clear_called++; }
+    virtual void SetCursor(uint8_t x, uint8_t y) override { i_MockTextLCD_SetCursor_called++; }
+    virtual void Print(const char *str) override { i_MockTextLCD_Print_str_called++; }
+    virtual void Print(char ch) override { i_MockTextLCD_Print_ch_called++; }
+    virtual void Write(uint8_t byte) override { i_MockTextLCD_Write_called++; }
+    virtual void Command(uint8_t byte) override { i_MockTextLCD_Command_called++; }
 };
 MOCK_VARIABLE int i_MockUART_GetBaudRate_called = 0;
 class MockUART: public AbstractUART {
@@ -86,10 +89,12 @@ void setUp(void) {
     i_MockBacklight_SetOn_called = 0;
     i_MockBacklight_SetBrightness_called = 0;
     i_MockBacklight_SetRGB_called = 0;
-    i_MockLCD_Clear_called = 0;
-    i_MockLCD_SetCursor_called = 0;
-    i_MockLCD_Print_str_called = 0;
-    i_MockLCD_Print_ch_called = 0;
+    i_MockTextLCD_Clear_called = 0;
+    i_MockTextLCD_SetCursor_called = 0;
+    i_MockTextLCD_Print_str_called = 0;
+    i_MockTextLCD_Print_ch_called = 0;
+    i_MockTextLCD_Write_called = 0;
+    i_MockTextLCD_Command_called = 0;
     i_MockUART_GetBaudRate_called = 0;
     i_MockKeyboard_GetKey_called = 0;
     i_MockKeyboard_GetKeyCount_called = 0;
@@ -104,9 +109,9 @@ void test_lospanel_protocol_does_right_initialization(void) {
 
     AbstractUART *p_UART = new MockUART();
     AbstractBacklight *p_Backlight = new MockBacklight();
-    AbstractLCD *p_LCD = new MockLCD(p_Backlight);
+    AbstractTextLCD *p_TextLCD = new MockTextLCD(p_Backlight);
     AbstractKeyboard *p_Keyboard = new MockKeyboard();
-    AbstractProtocol *p_Protocol = new LoSPanelProtocol(p_UART, reinterpret_cast<AbstractTextLCD*>(p_LCD), p_Keyboard);
+    AbstractProtocol *p_Protocol = new LoSPanelProtocol(p_UART, p_TextLCD, p_Keyboard);
 
     // TODO: test initialization of LoSPanelProtocol class
 
