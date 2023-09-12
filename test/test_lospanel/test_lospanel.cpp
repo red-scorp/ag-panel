@@ -115,6 +115,11 @@ void test_lospanel_protocol_does_right_initialization(void) {
 
     // TODO: test initialization of LoSPanelProtocol class
 
+    delete p_Protocol;
+    delete p_Keyboard;
+    delete p_TextLCD;
+    delete p_Backlight;
+    delete p_UART;
 }
 
 
