@@ -33,9 +33,9 @@ void BufferedUART::Exit() {
     @returns Number of bytes written to real UART
  */
 uint8_t BufferedUART::PutCh(
-    uint8_t txbyte      /**< Character to be written to real UART */
+    uint8_t TxByte      /**< Character to be written to real UART */
 ) {
-    return m_UART->PutCh(txbyte);
+    return m_UART->PutCh(TxByte);
 }
 
 /** @brief Read a character from UART buffer
@@ -61,14 +61,14 @@ void BufferedUART::Prefill() {
     @returns Character (byte) from top of a buffer (oldest)
  */
 uint8_t BufferedUART::PushBuffer() {
-    uint8_t top_byte = m_Buffer[0];
+    uint8_t TopByte = m_Buffer[0];
 
     for(uint32_t i = 1; i < m_BufferFilled; i++) {
         m_Buffer[i - 1] = m_Buffer[i];
     }
 
     m_BufferFilled--;
-    return top_byte;
+    return TopByte;
 }
 
 /** @brief Fill UART data buffer from real UART
@@ -77,8 +77,8 @@ uint8_t BufferedUART::PushBuffer() {
  */
 uint8_t BufferedUART::FillBuffer() {
     while(m_BufferFilled < m_BufferSize && m_UART->Available()) {
-        uint8_t rxbyte = m_UART->GetCh();
-        m_Buffer[m_BufferFilled++] = rxbyte;
+        uint8_t RxByte = m_UART->GetCh();
+        m_Buffer[m_BufferFilled++] = RxByte;
     }
 
     return m_BufferFilled;

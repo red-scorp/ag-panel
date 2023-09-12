@@ -35,10 +35,10 @@ void SoftwareUART::Exit() {
     @returns Number of bytes written to software UART
  */
 uint8_t SoftwareUART::PutCh(
-    uint8_t txbyte      /**< Character to be written to software UART */
+    uint8_t TxByte      /**< Character to be written to software UART */
 ) {
     SoftwareSerial *p_UART = reinterpret_cast<SoftwareSerial*>(m_Lowlevel);
-    return p_UART->write(txbyte);
+    return p_UART->write(TxByte);
 }
 
 /** @brief Read a character from software UART

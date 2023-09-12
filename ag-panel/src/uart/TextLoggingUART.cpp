@@ -68,10 +68,10 @@ void TextLoggingUART::Exit() {
     @returns Number of bytes written to real UART
  */
 uint8_t TextLoggingUART::PutCh(
-    uint8_t txbyte      /**< Character to be written to text logging UART */
+    uint8_t TxByte      /**< Character to be written to text logging UART */
 ) {
-    PrintByte(txbyte, 0);
-    return m_RealUART->PutCh(txbyte);
+    PrintByte(TxByte, 0);
+    return m_RealUART->PutCh(TxByte);
 }
 
 /** @brief Read a character from text logging UART
@@ -79,9 +79,9 @@ uint8_t TextLoggingUART::PutCh(
     @returns Character (byte) read from real UART
  */
 uint8_t TextLoggingUART::GetCh() {
-    uint8_t rxbyte = m_RealUART->GetCh();
-    PrintByte(rxbyte, 1);
-    return rxbyte;
+    uint8_t RxByte = m_RealUART->GetCh();
+    PrintByte(RxByte, 1);
+    return RxByte;
 }
 
 /** @brief Check number of bytes in text logging UART buffer
@@ -110,7 +110,7 @@ void TextLoggingUART::PrintByte(
 ) {
     char str[m_NumberLength + 1];
     char *p;
-    uint8_t meet_nonzero = 0;
+    uint8_t MeetNonZero = 0;
 
     if(m_Direction != direction) {
         m_DebugUART->PutCh('\n');
@@ -132,9 +132,9 @@ void TextLoggingUART::PrintByte(
         if(m_LeadingZeros) {
         m_DebugUART->PutCh(str[i]);
         } else {
-        if(meet_nonzero || i == m_NumberLength - 1 || str[i] != '0') {
+        if(MeetNonZero || i == m_NumberLength - 1 || str[i] != '0') {
             m_DebugUART->PutCh(str[i]);
-            meet_nonzero = 1;
+            MeetNonZero = 1;
         } else {
             m_DebugUART->PutCh(' ');
         }

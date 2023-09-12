@@ -77,10 +77,10 @@ void HardwareUART::Exit() {
     @returns Number of bytes written to hardware UART
  */
 uint8_t HardwareUART::PutCh(
-    uint8_t txbyte      /**< Character to be written to hardware UART */
+    uint8_t TxByte      /**< Character to be written to hardware UART */
 ) {
     HardwareSerial *p_UART = reinterpret_cast<HardwareSerial*>(m_Lowlevel);
-    return p_UART->write(txbyte);
+    return p_UART->write(TxByte);
 }
 
 /** @brief Read a character from hardware UART

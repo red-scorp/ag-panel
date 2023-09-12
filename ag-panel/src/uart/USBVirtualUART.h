@@ -23,7 +23,7 @@ public:
         m_Lowlevel(nullptr) { Init(); }
     virtual ~USBVirtualUART() override { Exit(); }
 
-    virtual uint8_t PutCh(uint8_t txbyte) override;
+    virtual uint8_t PutCh(uint8_t TxByte) override;
     virtual uint8_t GetCh() override;
     virtual uint32_t Available() override;
 

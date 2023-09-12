@@ -47,10 +47,10 @@ void USBVirtualUART::Exit() {
     @returns Number of bytes written to USB virtual UART
  */
 uint8_t USBVirtualUART::PutCh(
-    uint8_t txbyte      /**< Character to be written to USB virtual UART */
+    uint8_t TxByte      /**< Character to be written to USB virtual UART */
 ) {
     USBVirtualUART_Lowlevel_t *p_UART = reinterpret_cast<USBVirtualUART_Lowlevel_t*>(m_Lowlevel);
-    return p_UART->write(txbyte);
+    return p_UART->write(TxByte);
 }
 
 /** @brief Read a character from USB virtual UART

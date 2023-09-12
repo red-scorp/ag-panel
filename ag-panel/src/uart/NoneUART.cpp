@@ -25,7 +25,7 @@ void NoneUART::Exit() {
     @returns Number of bytes written to hardware UART
  */
 uint8_t NoneUART::PutCh(
-    A_UNUSED uint8_t txbyte     /**< Character to be written to hardware UART */
+    A_UNUSED uint8_t TxByte     /**< Character to be written to hardware UART */
 ) {
     return 1;
 }

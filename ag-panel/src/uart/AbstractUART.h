@@ -23,7 +23,7 @@ public:
     ): m_BaudRate(BaudRate) { Init(); }
     virtual ~AbstractUART() { Exit(); }
 
-    virtual uint8_t PutCh(uint8_t txbyte) = 0;
+    virtual uint8_t PutCh(uint8_t TxByte) = 0;
     virtual uint8_t GetCh() = 0;
     virtual void Prefill() {}
     virtual uint32_t Available() { return 0; }
