@@ -69,26 +69,26 @@ void LoSPanelProtocol::StampLastTx() {
     This function reads UART and interpret the input based on los-panel protocol rules.
  */
 void LoSPanelProtocol::Loop() {
-    uint8_t rxbyte = m_UART->GetCh();
-    uint8_t nextbyte;
+    uint8_t RxByte = m_UART->GetCh();
+    uint8_t NextByte;
 
-    switch(rxbyte) {
+    switch(RxByte) {
 
     case LoSPanelProtocolInstruction:
-        nextbyte = m_UART->GetCh();
-        WaitFromLastTx(nextbyte < 4? 2000: 40); /* for commands 1 - 3 wait for 2 ms, otherwise 40 us */
-        m_TextLCD->Command(nextbyte);
+        NextByte = m_UART->GetCh();
+        WaitFromLastTx(NextByte < 4? 2000: 40); /* for commands 1 - 3 wait for 2 ms, otherwise 40 us */
+        m_TextLCD->Command(NextByte);
         StampLastTx();
         break;
 
     case LoSPanelProtocolBacklight:
-        nextbyte = m_UART->GetCh();
-        m_TextLCD->SetBacklight(nextbyte);
+        NextByte = m_UART->GetCh();
+        m_TextLCD->SetBacklight(NextByte);
         break;
 
     default:
         WaitFromLastTx(40);
-        m_TextLCD->Write(rxbyte);
+        m_TextLCD->Write(RxByte);
         StampLastTx();
         break;
     }
@@ -99,18 +99,18 @@ void LoSPanelProtocol::Loop() {
     This function reads keyboard input and puts it to UART.
  */
 void LoSPanelProtocol::Yield() {
-    static uint8_t old_key = KeyNone;
+    static uint8_t OldKey = KeyNone;
     uint8_t key = m_Keyboard->GetKey();
 
-    if(old_key != key)
-        old_key = key;
+    if(OldKey != key)
+        OldKey = key;
     else
         return;
 
     if(key != KeyNone) {
-        uint8_t txbyte = LoSPanelKeypadCode(key >> 2, key & 0x3);
+        uint8_t TxByte = LoSPanelKeypadCode(key >> 2, key & 0x3);
         m_UART->PutCh(LoSPanelProtocolKeypad);
-        m_UART->PutCh(txbyte);
+        m_UART->PutCh(TxByte);
     }
 
     m_UART->Prefill();

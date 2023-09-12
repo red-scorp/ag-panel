@@ -29,7 +29,7 @@ void RawSerialProtocol::Exit() {
     This function reads UART and interpret the input based on rawserial protocol rules.
  */
 void RawSerialProtocol::Loop() {
-    uint8_t rxbyte = m_UART->GetCh();
+    uint8_t RxByte = m_UART->GetCh();
 
     if(!m_ShowRealData) { /* first real data received -> clear screen and reset output coordinates */
         m_XPos = 0;
@@ -39,7 +39,7 @@ void RawSerialProtocol::Loop() {
         m_ShowRealData = true;
     }
 
-    if(rxbyte == RawSerialProtocolEndOfBuffer) { /* end of buffer command -> go to beginning of a screen */
+    if(RxByte == RawSerialProtocolEndOfBuffer) { /* end of buffer command -> go to beginning of a screen */
         m_XPos = 0;
         m_YPos = 0;
         m_OutOfRange = false;
@@ -54,7 +54,7 @@ void RawSerialProtocol::Loop() {
                 m_LCD->SetCursor(m_XPos, m_YPos);
         }
         if(!m_OutOfRange) {
-            char character = rxbyte;
+            char character = RxByte;
             m_LCD->Print(character);
             m_XPos++;
         }
@@ -66,18 +66,18 @@ void RawSerialProtocol::Loop() {
     This function reads keyboard input and puts it to UART.
  */
 void RawSerialProtocol::Yield() {
-    static uint8_t old_key = KeyNone;
+    static uint8_t OldKey = KeyNone;
     uint8_t key = m_Keyboard->GetKey();
 
-    if(old_key != key)
-        old_key = key;
+    if(OldKey != key)
+        OldKey = key;
     else
         return;
 
     if(key != KeyNone) {
-        // uint8_t txbyte = LoSPanelKeypadCode(key >> 2, key & 0x3);
+        // uint8_t TxByte = LoSPanelKeypadCode(key >> 2, key & 0x3);
         // m_UART->PutCh(LoSPanelProtocolKeypad);
-        // m_UART->PutCh(txbyte);
+        // m_UART->PutCh(TxByte);
     }
 
     m_UART->Prefill();
