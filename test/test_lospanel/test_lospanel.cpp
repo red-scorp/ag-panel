@@ -26,8 +26,14 @@
 #define MOCK_FUNCTION   
 #define MOCK_VARIABLE   static
 
-using namespace std;
+#define MOCK_UART_TXBUF_SIZE        512
+#define MOCK_UART_RXBUF_SIZE        512
+#define MOCK_LCD_WIDTH              20
+#define MOCK_LCD_HEIGHT             2
+#define MOCK_LCD_WRITE_BUF_SIZE     64
+#define MOCK_LCD_COMMAND_BUF_SIZE   64
 
+using namespace std;
 
 MOCK_VARIABLE int i_MockBacklight_SetOn_called = 0;
 MOCK_VARIABLE int i_MockBacklight_SetBrightness_called = 0;
@@ -46,9 +52,13 @@ MOCK_VARIABLE int i_MockTextLCD_Print_str_called = 0;
 MOCK_VARIABLE int i_MockTextLCD_Print_ch_called = 0;
 MOCK_VARIABLE int i_MockTextLCD_Write_called = 0;
 MOCK_VARIABLE int i_MockTextLCD_Command_called = 0;
+MOCK_VARIABLE uint8_t i_MockTextLCD_WriteBuffer[MOCK_LCD_WRITE_BUF_SIZE] = { 0 };
+MOCK_VARIABLE uint16_t i_MockTextLCD_WriteBufferPos = 0;
+MOCK_VARIABLE uint8_t i_MockTextLCD_CommandBuffer[MOCK_LCD_COMMAND_BUF_SIZE] = { 0 };
+MOCK_VARIABLE uint16_t i_MockTextLCD_CommandBufferPos = 0;
 class MockTextLCD: public AbstractTextLCD {
 public:
-    MockTextLCD(AbstractBacklight *Backlight): AbstractTextLCD(Backlight, 20, 2) { }
+    MockTextLCD(AbstractBacklight *Backlight): AbstractTextLCD(Backlight, MOCK_LCD_WIDTH, MOCK_LCD_HEIGHT) { }
     virtual ~MockTextLCD() { }
     virtual void Clear() override { i_MockTextLCD_Clear_called++; }
     virtual void SetCursor(uint8_t x, uint8_t y) override { i_MockTextLCD_SetCursor_called++; }
@@ -58,12 +68,18 @@ public:
     virtual void Command(uint8_t byte) override { i_MockTextLCD_Command_called++; }
 };
 MOCK_VARIABLE int i_MockUART_GetBaudRate_called = 0;
+MOCK_VARIABLE int i_MockUART_PutCh_called = 0;
+MOCK_VARIABLE int i_MockUART_GetCh_called = 0;
+MOCK_VARIABLE uint8_t i_MockUART_TxBuffer[MOCK_UART_TXBUF_SIZE] = { 0 };
+MOCK_VARIABLE uint16_t i_MockUART_TxBufferPos = 0;
+MOCK_VARIABLE uint8_t i_MockUART_RxBuffer[MOCK_UART_RXBUF_SIZE] = { 0 };
+MOCK_VARIABLE uint16_t i_MockUART_RxBufferPos = 0;
 class MockUART: public AbstractUART {
 public:
     MockUART(): AbstractUART() { }
     virtual ~MockUART() { }
-    virtual uint8_t PutCh(uint8_t txbyte) override { return 0; }
-    virtual uint8_t GetCh() override { return 0; }
+    virtual uint8_t PutCh(uint8_t TxByte) override { i_MockUART_GetCh_called++; return 0; }
+    virtual uint8_t GetCh() override { i_MockUART_PutCh_called++; return 0; }
     virtual uint32_t GetBaudRate() const override { i_MockUART_GetBaudRate_called++; return AbstractUART::GetBaudRate(); }
 };
 MOCK_VARIABLE int i_MockKeyboard_GetKey_called = 0;
@@ -95,7 +111,17 @@ void setUp(void) {
     i_MockTextLCD_Print_ch_called = 0;
     i_MockTextLCD_Write_called = 0;
     i_MockTextLCD_Command_called = 0;
+    memset(i_MockTextLCD_WriteBuffer, 0, sizeof(i_MockTextLCD_WriteBuffer));
+    i_MockTextLCD_WriteBufferPos = 0;
+    memset(i_MockTextLCD_CommandBuffer, 0, sizeof(i_MockTextLCD_CommandBuffer));
+    i_MockTextLCD_CommandBufferPos = 0;
     i_MockUART_GetBaudRate_called = 0;
+    i_MockUART_PutCh_called = 0;
+    i_MockUART_GetCh_called = 0;
+    memset(i_MockUART_TxBuffer, 0, sizeof(i_MockUART_TxBuffer));
+    i_MockUART_TxBufferPos = 0;
+    memset(i_MockUART_RxBuffer, 0, sizeof(i_MockUART_RxBuffer));
+    i_MockUART_RxBufferPos = 0;
     i_MockKeyboard_GetKey_called = 0;
     i_MockKeyboard_GetKeyCount_called = 0;
     i_micros_called = 0;
