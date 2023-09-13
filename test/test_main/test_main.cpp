@@ -144,7 +144,7 @@ class MockUART: public AbstractUART {
 public:
     MockUART(): AbstractUART() { }
     virtual ~MockUART() { }
-    virtual uint8_t PutCh(uint8_t txbyte) override { return 0; }
+    virtual uint8_t PutCh(uint8_t TxByte) override { return 0; }
     virtual uint8_t GetCh() override { return 0; }
     virtual uint32_t GetBaudRate() const override { i_MockUART_GetBaudRate_called++; return AbstractUART::GetBaudRate(); }
 };
