@@ -6,8 +6,12 @@
 # Name of the action
 name: Cppcheck Check All Configuration
 
-# Controls when the action will run. Triggers the workflow on each push request
-on: push
+# Controls when the action will run. Triggers the workflow on each push request to source directory
+on:
+  push:
+    paths:
+      - '.github/workflows/**'
+      - 'ag-panel/**'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
