@@ -111,10 +111,12 @@ public:
         return i_MockUART_RxBufferMax - i_MockUART_RxBufferPos;
     }
 };
-#define MOCKUART_FILL_RXBUFFER(data) \
-    memcpy(c_MockUART_RxBuffer, data, sizeof(data)); \
+#define MOCKUART_FILL_RXBUFFER_SIZED(data, size) \
+    memcpy(c_MockUART_RxBuffer, data, size); \
     i_MockUART_RxBufferPos = 0; \
-    i_MockUART_RxBufferMax = sizeof(data);
+    i_MockUART_RxBufferMax = size;
+#define MOCKUART_FILL_RXBUFFER(data) \
+    MOCKUART_FILL_RXBUFFER_SIZED(data, sizeof(data))
 MOCK_VARIABLE int i_MockKeyboard_GetKey_called = 0;
 MOCK_VARIABLE int i_MockKeyboard_GetKeyCount_called = 0;
 class MockKeyboard: public AbstractKeyboard {
@@ -125,12 +127,12 @@ public:
     virtual uint8_t GetKeyCount() override { i_MockKeyboard_GetKeyCount_called++; return 0; }
 };
 MOCK_VARIABLE int i_micros_called = 0;
-MOCK_FUNCTION unsigned long micros() {
-    i_micros_called++;
+unsigned long real_micros() {
     struct timeval ts;
     gettimeofday(&ts, NULL);
     return ts.tv_sec * 1000000 + ts.tv_usec;
 }
+MOCK_FUNCTION unsigned long micros() { i_micros_called++; return real_micros(); }
 
 #undef DEBUG_STR
 #define DEBUG_STR(str) printf("%s", str)
@@ -349,9 +351,74 @@ void test_lospanel_protocol_reads_uart_and_controls_backlight(void) {
     delete p_UART;
 }
 
+void run_timing_test_with_input_data(AbstractProtocol *p_Protocol, uint8_t *c_UARTInputData, uint32_t i_UARTInputDataSize, uint32_t i_expected_wait_time) {
+
+    uint8_t c_UARTInputDataRefWait[] = { 0xFE, 0x04 };
+
+    /* Setting up time measured input data */
+    MOCKUART_FILL_RXBUFFER_SIZED(c_UARTInputData, i_UARTInputDataSize);
+
+    uint32_t i_micros_start = real_micros();
+
+    /* Calling the function under test till it runs out of input data */
+    while(i_MockUART_RxBufferPos < i_MockUART_RxBufferMax)
+        p_Protocol->Loop();
+
+    /* Setting up short input data */
+    MOCKUART_FILL_RXBUFFER(c_UARTInputDataRefWait);
+
+    /* Calling the function under test till it runs out of input data */
+    while(i_MockUART_RxBufferPos < i_MockUART_RxBufferMax)
+        p_Protocol->Loop();
+
+    /* Check if the function under test waited 2 ms */
+    uint32_t i_micros_end = real_micros();
+    TEST_ASSERT_GREATER_OR_EQUAL(1, i_micros_called);
+    i_micros_called = 0;
+    printf("waited %d us, expecting %d us\n", i_micros_end - i_micros_start, i_expected_wait_time);
+    TEST_ASSERT_GREATER_OR_EQUAL(i_expected_wait_time, i_micros_end - i_micros_start);
+}
+
 /* Unit test function to check if LoSPanelProtocol class holds proper time between LCD transfers */
 void test_lospanel_protocol_holds_proper_timing(void) {
-    // TODO!
+
+    /* Definition of input and expected output data */
+    /* Based on the timing spec https://en.wikipedia.org/wiki/Hitachi_HD44780_LCD_controller ,
+       we need to wait 37 us after each byte transfer, except for commands 1 - 3, where we need to wait 1.52 ms.
+       We also need to wait nothing after backlight command. */
+    uint8_t c_UARTInputData2ms1[] = { 0xFE, 0x00 };     /* long command 0x00 */
+    uint8_t c_UARTInputData2ms2[] = { 0xFE, 0x01 };     /* long command 0x01 */
+    uint8_t c_UARTInputData2ms3[] = { 0xFE, 0x02 };     /* long command 0x02 */
+    uint8_t c_UARTInputData2ms4[] = { 0xFE, 0x03 };     /* long command 0x03 */
+    uint8_t c_UARTInputData40us1[] = { 0xFE, 0x04 };    /* short command 0x04 */
+    uint8_t c_UARTInputData40us2[] = { 0xFE, 0x7F };    /* short command 0x7F */
+    uint8_t c_UARTInputData40us3[] = { 0xFE, 0xFF };    /* short command 0xFF */
+    uint8_t c_UARTInputData40us4[] = { 'A' };           /* short text data */
+    uint8_t c_UARTInputData0us1[] = { 0xFD, 0x00 };     /* set backlight request is not timed and has no waiting delay */
+
+    /* Creating objects to initialize LosPanelProtocol class */
+    AbstractUART *p_UART = new MockUART();
+    AbstractBacklight *p_Backlight = new MockBacklight();
+    AbstractTextLCD *p_TextLCD = new MockTextLCD(p_Backlight);
+    AbstractKeyboard *p_Keyboard = new MockKeyboard();
+    AbstractProtocol *p_Protocol = new LoSPanelProtocol(p_UART, p_TextLCD, p_Keyboard);
+
+    run_timing_test_with_input_data(p_Protocol, c_UARTInputData2ms1, sizeof(c_UARTInputData2ms1), 1520);
+    run_timing_test_with_input_data(p_Protocol, c_UARTInputData2ms2, sizeof(c_UARTInputData2ms2), 1520);
+    run_timing_test_with_input_data(p_Protocol, c_UARTInputData2ms3, sizeof(c_UARTInputData2ms3), 1520);
+    run_timing_test_with_input_data(p_Protocol, c_UARTInputData2ms4, sizeof(c_UARTInputData2ms4), 1520);
+    run_timing_test_with_input_data(p_Protocol, c_UARTInputData40us1, sizeof(c_UARTInputData40us1), 37);
+    run_timing_test_with_input_data(p_Protocol, c_UARTInputData40us2, sizeof(c_UARTInputData40us2), 37);
+    run_timing_test_with_input_data(p_Protocol, c_UARTInputData40us3, sizeof(c_UARTInputData40us3), 37);
+    run_timing_test_with_input_data(p_Protocol, c_UARTInputData40us4, sizeof(c_UARTInputData40us4), 37);
+    run_timing_test_with_input_data(p_Protocol, c_UARTInputData0us1, sizeof(c_UARTInputData0us1), 0);
+
+    /* Removing objects after use */
+    delete p_Protocol;
+    delete p_Keyboard;
+    delete p_TextLCD;
+    delete p_Backlight;
+    delete p_UART;
 }
 
 /* Unit testing main function */
