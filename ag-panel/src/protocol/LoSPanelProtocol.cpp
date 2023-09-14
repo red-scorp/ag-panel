@@ -66,12 +66,16 @@ void LoSPanelProtocol::StampLastTx() {
 
 /** @brief Main loop of los-panel protocol
 
-    This function reads UART and interpret the input based on los-panel protocol rules.
+    This function reads UART if new data available and interpret the input based on los-panel protocol rules.
  */
 void LoSPanelProtocol::Loop() {
-    uint8_t RxByte = m_UART->GetCh();
+    uint8_t RxByte;
     uint8_t NextByte;
 
+    if(m_UART->Available() == 0)
+        return; /* Exit without waiting if there no UART data available */
+
+    RxByte = m_UART->GetCh();
     switch(RxByte) {
 
     case LoSPanelProtocolInstruction:
