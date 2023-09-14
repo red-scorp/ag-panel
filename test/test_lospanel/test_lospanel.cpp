@@ -130,7 +130,10 @@ MOCK_VARIABLE int i_micros_called = 0;
 unsigned long real_micros() {
     struct timeval ts;
     gettimeofday(&ts, NULL);
-    return ts.tv_sec * 1000000 + ts.tv_usec;
+    uint32_t result = (uint32_t)(ts.tv_sec * 1000000 + ts.tv_usec);
+    // result = result % 10000;
+    // printf("real_micros: %u:%u -> %u\n", ts.tv_sec, ts.tv_usec, result);
+    return result;
 }
 MOCK_FUNCTION unsigned long micros() { i_micros_called++; return real_micros(); }
 
@@ -433,7 +436,7 @@ int main(int argc, char *argv[]) {
     RUN_TEST(test_lospanel_protocol_reads_uart_and_prints_on_lcd);
     RUN_TEST(test_lospanel_protocol_reads_uart_and_prints_on_lcd_with_commands);
     RUN_TEST(test_lospanel_protocol_reads_uart_and_controls_backlight);
-    // RUN_TEST(test_lospanel_protocol_holds_proper_timing);
+    RUN_TEST(test_lospanel_protocol_holds_proper_timing);
 
     UNITY_END();
 }
