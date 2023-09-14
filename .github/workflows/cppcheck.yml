@@ -6,7 +6,7 @@
 # Name of the action
 name: Cppcheck Check All Configuration
 
-# Controls when the action will run. Triggers the workflow on each push request to source directory
+# Controls when the action will run. Triggers the workflow on each push request to workflow and source directories
 on:
   push:
     paths:
