@@ -408,6 +408,7 @@ void test_lospanel_protocol_holds_proper_timing(void) {
     AbstractKeyboard *p_Keyboard = new MockKeyboard();
     AbstractProtocol *p_Protocol = new LoSPanelProtocol(p_UART, p_TextLCD, p_Keyboard);
 
+    /* Calling the function under test with different input data */
     run_timing_test_with_input_data(p_Protocol, c_UARTInputData2ms1, sizeof(c_UARTInputData2ms1), 1520);
     run_timing_test_with_input_data(p_Protocol, c_UARTInputData2ms2, sizeof(c_UARTInputData2ms2), 1520);
     run_timing_test_with_input_data(p_Protocol, c_UARTInputData2ms3, sizeof(c_UARTInputData2ms3), 1520);
