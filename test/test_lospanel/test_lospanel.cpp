@@ -40,12 +40,13 @@ using namespace std;
 MOCK_VARIABLE int i_MockBacklight_SetOn_called = 0;
 MOCK_VARIABLE int i_MockBacklight_SetBrightness_called = 0;
 MOCK_VARIABLE int i_MockBacklight_SetRGB_called = 0;
+MOCK_VARIABLE uint8_t c_MockBacklight_Brightness = 0;
 class MockBacklight: public AbstractBacklight {
 public:
     MockBacklight(): AbstractBacklight() { }
     virtual ~MockBacklight() { }
     virtual void SetOn(bool on) override { i_MockBacklight_SetOn_called++; }
-    virtual void SetBrightness(uint8_t brightness) override { i_MockBacklight_SetBrightness_called++; }
+    virtual void SetBrightness(uint8_t brightness) override { i_MockBacklight_SetBrightness_called++; c_MockBacklight_Brightness = brightness; }
     virtual void SetRGB(uint8_t red, uint8_t green, uint8_t blue) override { i_MockBacklight_SetRGB_called++; }
 };
 MOCK_VARIABLE int i_MockTextLCD_Clear_called = 0;
@@ -108,6 +109,10 @@ public:
         return i_MockUART_RxBufferMax - i_MockUART_RxBufferPos;
     }
 };
+#define MOCKUART_FILL_RXBUFFER(data) \
+    memcpy(c_MockUART_RxBuffer, data, sizeof(data)); \
+    i_MockUART_RxBufferPos = 0; \
+    i_MockUART_RxBufferMax = sizeof(data);
 MOCK_VARIABLE int i_MockKeyboard_GetKey_called = 0;
 MOCK_VARIABLE int i_MockKeyboard_GetKeyCount_called = 0;
 class MockKeyboard: public AbstractKeyboard {
@@ -136,6 +141,7 @@ void setUp(void) {
     i_MockBacklight_SetOn_called = 0;
     i_MockBacklight_SetBrightness_called = 0;
     i_MockBacklight_SetRGB_called = 0;
+    c_MockBacklight_Brightness = 0;
     i_MockTextLCD_Clear_called = 0;
     i_MockTextLCD_SetCursor_called = 0;
     i_MockTextLCD_Print_str_called = 0;
@@ -167,6 +173,7 @@ void tearDown(void) {
 /* Unit test function to check if initialization of mocks for LoSPanelProtocol class works correctly */
 void test_lospanel_protocol_does_right_initialization(void) {
 
+    /* Creating objects to initialize LosPanelProtocol class */
     AbstractUART *p_UART = new MockUART();
     TEST_ASSERT_NOT_NULL(p_UART);
 
@@ -182,6 +189,7 @@ void test_lospanel_protocol_does_right_initialization(void) {
     AbstractProtocol *p_Protocol = new LoSPanelProtocol(p_UART, p_TextLCD, p_Keyboard);
     TEST_ASSERT_NOT_NULL(p_Protocol);
 
+    /* Removing objects after use */
     delete p_Protocol;
     delete p_Keyboard;
     delete p_TextLCD;
@@ -192,18 +200,19 @@ void test_lospanel_protocol_does_right_initialization(void) {
 /* Unit test function to check if LoSPanelProtocol class read data from UART and sends it to LCD */
 void test_lospanel_protocol_reads_uart_and_prints_on_lcd(void) {
 
+    /* Definition of input and expected output data */
     uint8_t c_UARTInputData[] = { 'A', 'B', 'C', 'D', 'E', 'F', '0', '1', '2', '3', '4', '5' };
     uint8_t c_LCDOutputData[] = { 'A', 'B', 'C', 'D', 'E', 'F', '0', '1', '2', '3', '4', '5' };
 
+    /* Creating objects to initialize LosPanelProtocol class */
     AbstractUART *p_UART = new MockUART();
     AbstractBacklight *p_Backlight = new MockBacklight();
     AbstractTextLCD *p_TextLCD = new MockTextLCD(p_Backlight);
     AbstractKeyboard *p_Keyboard = new MockKeyboard();
     AbstractProtocol *p_Protocol = new LoSPanelProtocol(p_UART, p_TextLCD, p_Keyboard);
 
-    memcpy(c_MockUART_RxBuffer, c_UARTInputData, sizeof(c_UARTInputData));
-    i_MockUART_RxBufferPos = 0;
-    i_MockUART_RxBufferMax = sizeof(c_UARTInputData);
+    /* Setting up text input data */
+    MOCKUART_FILL_RXBUFFER(c_UARTInputData);
 
     /* Calling the function under test till it runs out of input data */
     while(i_MockUART_RxBufferPos < i_MockUART_RxBufferMax)
@@ -218,6 +227,7 @@ void test_lospanel_protocol_reads_uart_and_prints_on_lcd(void) {
     TEST_ASSERT_EQUAL_INT(sizeof(c_LCDOutputData), i_MockTextLCD_WriteBufferPos);
     TEST_ASSERT_EQUAL_INT(0, memcmp(c_LCDOutputData, c_MockTextLCD_WriteBuffer, sizeof(c_LCDOutputData)));
 
+    /* Removing objects after use */
     delete p_Protocol;
     delete p_Keyboard;
     delete p_TextLCD;
@@ -228,19 +238,20 @@ void test_lospanel_protocol_reads_uart_and_prints_on_lcd(void) {
 /* Unit test function to check if LoSPanelProtocol class read data from UART and sends it to LCD with commands */
 void test_lospanel_protocol_reads_uart_and_prints_on_lcd_with_commands(void) {
 
+    /* Definition of input and expected output data */
     uint8_t c_UARTInputData[] = { 'A', 'B', 0xFE, 0x01, 'C', 'D', 0xFE, 0x02, 'E', 'F', 0xFE, 0x03 };
     uint8_t c_LCDOutputData[] = { 'A', 'B', 'C', 'D', 'E', 'F'};
     uint8_t c_LCDCommandData[] = { 0x01, 0x02, 0x03 };
 
+    /* Creating objects to initialize LosPanelProtocol class */
     AbstractUART *p_UART = new MockUART();
     AbstractBacklight *p_Backlight = new MockBacklight();
     AbstractTextLCD *p_TextLCD = new MockTextLCD(p_Backlight);
     AbstractKeyboard *p_Keyboard = new MockKeyboard();
     AbstractProtocol *p_Protocol = new LoSPanelProtocol(p_UART, p_TextLCD, p_Keyboard);
 
-    memcpy(c_MockUART_RxBuffer, c_UARTInputData, sizeof(c_UARTInputData));
-    i_MockUART_RxBufferPos = 0;
-    i_MockUART_RxBufferMax = sizeof(c_UARTInputData);
+    /* Setting up text and command input data */
+    MOCKUART_FILL_RXBUFFER(c_UARTInputData);
 
     /* Calling the function under test till it runs out of input data */
     while(i_MockUART_RxBufferPos < i_MockUART_RxBufferMax)
@@ -257,6 +268,76 @@ void test_lospanel_protocol_reads_uart_and_prints_on_lcd_with_commands(void) {
     TEST_ASSERT_EQUAL_INT(sizeof(c_LCDCommandData), i_MockTextLCD_CommandBufferPos);
     TEST_ASSERT_EQUAL_INT(0, memcmp(c_LCDCommandData, c_MockTextLCD_CommandBuffer, sizeof(c_LCDCommandData)));
 
+    /* Removing objects after use */
+    delete p_Protocol;
+    delete p_Keyboard;
+    delete p_TextLCD;
+    delete p_Backlight;
+    delete p_UART;
+}
+
+/* Unit test function to check if LoSPanelProtocol class read data from UART and controls backlight */
+void test_lospanel_protocol_reads_uart_and_controls_backlight(void) {
+
+    /* Definition of input and expected output data */
+    uint8_t c_UARTInputDataMax[] = { 'A', 0xFD, 0xFF, 0xFE, 0x01, 'B' };
+    uint8_t c_UARTInputDataOff[] = { 'C', 0xFD, 0x00, 0xFE, 0x02, 'D' };
+    uint8_t c_UARTInputDataHalf[] = { 'E', 0xFD, 0x7F, 0xFE, 0x03, 'F' };
+    uint8_t c_LCDOutputData[] = { 'A', 'B', 'C', 'D', 'E', 'F'};
+    uint8_t c_LCDCommandData[] = { 0x01, 0x02, 0x03 };
+
+    /* Creating objects to initialize LosPanelProtocol class */
+    AbstractUART *p_UART = new MockUART();
+    AbstractBacklight *p_Backlight = new MockBacklight();
+    AbstractTextLCD *p_TextLCD = new MockTextLCD(p_Backlight);
+    AbstractKeyboard *p_Keyboard = new MockKeyboard();
+    AbstractProtocol *p_Protocol = new LoSPanelProtocol(p_UART, p_TextLCD, p_Keyboard);
+
+    /* Setting up max backlight input data */
+    MOCKUART_FILL_RXBUFFER(c_UARTInputDataMax);
+
+    /* Calling the function under test till it runs out of input data */
+    while(i_MockUART_RxBufferPos < i_MockUART_RxBufferMax)
+        p_Protocol->Loop();
+
+    /* Check if backlight was set to max brightness */
+    TEST_ASSERT_EQUAL_INT(1, i_MockBacklight_SetBrightness_called);
+    TEST_ASSERT_EQUAL_INT(255, c_MockBacklight_Brightness);
+
+    /* Setting up off backlight input data */
+    MOCKUART_FILL_RXBUFFER(c_UARTInputDataOff);
+
+    /* Calling the function under test till it runs out of input data */
+    while(i_MockUART_RxBufferPos < i_MockUART_RxBufferMax)
+        p_Protocol->Loop();
+
+    /* Check if backlight was set to off brightness */
+    TEST_ASSERT_EQUAL_INT(2, i_MockBacklight_SetBrightness_called);
+    TEST_ASSERT_EQUAL_INT(0, c_MockBacklight_Brightness);
+
+    /* Setting up half backlight input data */
+    MOCKUART_FILL_RXBUFFER(c_UARTInputDataHalf);
+
+    /* Calling the function under test till it runs out of input data */
+    while(i_MockUART_RxBufferPos < i_MockUART_RxBufferMax)
+        p_Protocol->Loop();
+
+    /* Check if backlight was set to off brightness */
+    TEST_ASSERT_EQUAL_INT(3, i_MockBacklight_SetBrightness_called);
+    TEST_ASSERT_EQUAL_INT(127, c_MockBacklight_Brightness);
+
+    /* Checking if the function under test called right functions */
+    TEST_ASSERT_EQUAL_INT(sizeof(c_UARTInputDataMax) + sizeof(c_UARTInputDataOff) + sizeof(c_UARTInputDataHalf), i_MockUART_GetCh_called);
+    TEST_ASSERT_EQUAL_INT(sizeof(c_LCDOutputData), i_MockTextLCD_Write_called);
+    TEST_ASSERT_EQUAL_INT(sizeof(c_LCDCommandData), i_MockTextLCD_Command_called);
+
+    /* Checking if the function under test still able to process commands and text data */
+    TEST_ASSERT_EQUAL_INT(sizeof(c_LCDOutputData), i_MockTextLCD_WriteBufferPos);
+    TEST_ASSERT_EQUAL_INT(0, memcmp(c_LCDOutputData, c_MockTextLCD_WriteBuffer, sizeof(c_LCDOutputData)));
+    TEST_ASSERT_EQUAL_INT(sizeof(c_LCDCommandData), i_MockTextLCD_CommandBufferPos);
+    TEST_ASSERT_EQUAL_INT(0, memcmp(c_LCDCommandData, c_MockTextLCD_CommandBuffer, sizeof(c_LCDCommandData)));
+
+    /* Removing objects after use */
     delete p_Protocol;
     delete p_Keyboard;
     delete p_TextLCD;
@@ -273,6 +354,7 @@ int main(int argc, char *argv[]) {
     RUN_TEST(test_lospanel_protocol_does_right_initialization);
     RUN_TEST(test_lospanel_protocol_reads_uart_and_prints_on_lcd);
     RUN_TEST(test_lospanel_protocol_reads_uart_and_prints_on_lcd_with_commands);
+    RUN_TEST(test_lospanel_protocol_reads_uart_and_controls_backlight);
 
     UNITY_END();
 }
