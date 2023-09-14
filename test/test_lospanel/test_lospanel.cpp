@@ -349,6 +349,11 @@ void test_lospanel_protocol_reads_uart_and_controls_backlight(void) {
     delete p_UART;
 }
 
+/* Unit test function to check if LoSPanelProtocol class holds proper time between LCD transfers */
+void test_lospanel_protocol_holds_proper_timing(void) {
+    // TODO!
+}
+
 /* Unit testing main function */
 int main(int argc, char *argv[]) {
 
@@ -359,6 +364,7 @@ int main(int argc, char *argv[]) {
     RUN_TEST(test_lospanel_protocol_reads_uart_and_prints_on_lcd);
     RUN_TEST(test_lospanel_protocol_reads_uart_and_prints_on_lcd_with_commands);
     RUN_TEST(test_lospanel_protocol_reads_uart_and_controls_backlight);
+    RUN_TEST(test_lospanel_protocol_holds_proper_timing);
 
     UNITY_END();
 }
