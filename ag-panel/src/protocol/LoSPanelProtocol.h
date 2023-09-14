@@ -33,6 +33,7 @@ protected:
 
 private:
     uint32_t m_LCDLastTxMicros;     /**< Last LCD transfer microseconds time stamp value */
+    uint8_t m_LCDLastTxCommand;     /**< Last LCD transfer command value to determine the waiting time */
     bool Init();
     void Exit();
     void WaitFromLastTx(uint32_t WaitMicros);

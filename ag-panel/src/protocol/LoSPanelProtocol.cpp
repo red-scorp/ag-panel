@@ -15,6 +15,9 @@ const uint8_t LoSPanelProtocolBacklight = 0xFD;     /**< LCD Backlight control p
 const uint8_t LoSPanelProtocolBacklightOff = 0x00;  /**< Enable LCD Backlight code */
 const uint8_t LoSPanelProtocolBacklightOn = 0xFF;   /**< Disable LCD Backlight code */
 
+const uint32_t LosPanelProtocolLCDShortDelay = 40;  /**< Short delay in microseconds between LCD transfers (37 us by 270 kHz) */
+const uint32_t LosPanelProtocolLCDLongDelay = 2000; /**< Long delay in microseconds between LCD transfers (1.52 ms by 270 kHz) */
+
 constexpr uint8_t LoSPanelKeypadCode(uint8_t col, uint8_t row) {
     return ((col) << 4) | (1 << (row));
 }
@@ -26,7 +29,8 @@ constexpr uint8_t LoSPanelKeypadCode(uint8_t col, uint8_t row) {
     @returns true
  */
 bool LoSPanelProtocol::Init() {
-    m_LCDLastTxMicros = 0;
+    StampLastTx();
+    m_LCDLastTxCommand = 0xFF;
     return true;
 }
 
@@ -70,7 +74,7 @@ void LoSPanelProtocol::StampLastTx() {
  */
 void LoSPanelProtocol::Loop() {
     uint8_t RxByte;
-    uint8_t NextByte;
+    uint8_t SecondRxByte;
 
     if(m_UART->Available() == 0)
         return; /* Exit without waiting if there no UART data available */
@@ -79,20 +83,22 @@ void LoSPanelProtocol::Loop() {
     switch(RxByte) {
 
     case LoSPanelProtocolInstruction:
-        NextByte = m_UART->GetCh();
-        WaitFromLastTx(NextByte < 4? 2000: 40); /* for commands 1 - 3 wait for 2 ms, otherwise 40 us */
-        m_TextLCD->Command(NextByte);
+        SecondRxByte = m_UART->GetCh();
+        WaitFromLastTx(m_LCDLastTxCommand < 0x04? LosPanelProtocolLCDLongDelay: LosPanelProtocolLCDShortDelay); /* for commands 1 - 3 wait for 2 ms, otherwise 40 us */
+        m_TextLCD->Command(SecondRxByte);
+        m_LCDLastTxCommand = SecondRxByte;
         StampLastTx();
         break;
 
     case LoSPanelProtocolBacklight:
-        NextByte = m_UART->GetCh();
-        m_TextLCD->SetBacklight(NextByte);
+        SecondRxByte = m_UART->GetCh();
+        m_TextLCD->SetBacklight(SecondRxByte);
         break;
 
     default:
         WaitFromLastTx(40);
         m_TextLCD->Write(RxByte);
+        m_LCDLastTxCommand = 0xFF;
         StampLastTx();
         break;
     }
