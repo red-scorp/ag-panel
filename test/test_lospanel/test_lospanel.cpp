@@ -24,6 +24,10 @@
 #include "../ag-panel/src/keyboard/all.h"
 #include "../ag-panel/src/protocol/all.h"
 
+using namespace std;
+
+#pragma region Mocks for unit tests
+
 #define MOCK_FUNCTION   
 #define MOCK_VARIABLE   static
 
@@ -33,8 +37,6 @@
 #define MOCK_LCD_HEIGHT             2
 #define MOCK_LCD_WRITE_BUF_SIZE     128
 #define MOCK_LCD_COMMAND_BUF_SIZE   128
-
-using namespace std;
 
 /* Mocks for testing LoSPanelProtocol class */
 MOCK_VARIABLE int i_MockBacklight_SetOn_called = 0;
@@ -132,6 +134,8 @@ MOCK_FUNCTION unsigned long micros() {
 
 #undef DEBUG_STR
 #define DEBUG_STR(str) printf("%s", str)
+
+#pragma endregion
 
 #include "../ag-panel/src/protocol/LoSPanelProtocol.cpp"
 

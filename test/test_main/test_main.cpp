@@ -23,10 +23,12 @@
 #include "../ag-panel/src/keyboard/all.h"
 #include "../ag-panel/src/protocol/all.h"
 
+using namespace std;
+
+#pragma region Mocks for unit tests
+
 #define MOCK_FUNCTION   
 #define MOCK_VARIABLE   static
-
-using namespace std;
 
 /* Mocks for initDebug() function */
 MOCK_VARIABLE int i_initDebug_called = 0;
@@ -151,6 +153,8 @@ public:
 
 #undef DEBUG_STR
 #define DEBUG_STR(str) printf("%s", str)
+
+#pragma endregion
 
 #include "../ag-panel/src/main.cpp"
 
