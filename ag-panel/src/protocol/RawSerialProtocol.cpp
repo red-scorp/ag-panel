@@ -26,10 +26,15 @@ void RawSerialProtocol::Exit() {
 
 /** @brief Main loop of rawserial protocol
 
-    This function reads UART and interpret the input based on rawserial protocol rules.
+    This function reads UART if new data available and interpret the input based on rawserial protocol rules.
  */
 void RawSerialProtocol::Loop() {
-    uint8_t RxByte = m_UART->GetCh();
+    uint8_t RxByte;
+
+    if(m_UART->Available() == 0)
+        return; /* Exit without waiting if there no UART data available */
+
+    RxByte = m_UART->GetCh();
 
     if(!m_ShowRealData) { /* first real data received -> clear screen and reset output coordinates */
         m_XPos = 0;
