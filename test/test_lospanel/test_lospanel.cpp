@@ -119,12 +119,13 @@ public:
     MOCKUART_FILL_RXBUFFER_SIZED(data, sizeof(data))
 MOCK_VARIABLE int i_MockKeyboard_GetKey_called = 0;
 MOCK_VARIABLE int i_MockKeyboard_GetKeyCount_called = 0;
+MOCK_VARIABLE uint8_t c_MockKeyboard_GetKey_return = 0;
 class MockKeyboard: public AbstractKeyboard {
 public:
     MockKeyboard(): AbstractKeyboard() { }
     virtual ~MockKeyboard() { }
-    virtual uint8_t GetKey() override { i_MockKeyboard_GetKey_called++; return 0; }
-    virtual uint8_t GetKeyCount() override { i_MockKeyboard_GetKeyCount_called++; return 0; }
+    virtual uint8_t GetKey() override { i_MockKeyboard_GetKey_called++; return c_MockKeyboard_GetKey_return; }
+    virtual uint8_t GetKeyCount() override { i_MockKeyboard_GetKeyCount_called++; return 5; }
 };
 MOCK_VARIABLE int i_micros_called = 0;
 unsigned long real_micros() {
@@ -172,6 +173,7 @@ void setUp(void) {
     i_MockUART_RxBufferMax = 0;
     i_MockKeyboard_GetKey_called = 0;
     i_MockKeyboard_GetKeyCount_called = 0;
+    c_MockKeyboard_GetKey_return = 0;
     i_micros_called = 0;
 }
 
@@ -379,8 +381,8 @@ void run_timing_test_with_input_data(AbstractProtocol *p_Protocol, uint8_t *c_UA
     uint32_t i_micros_end = real_micros();
     TEST_ASSERT_GREATER_OR_EQUAL_INT(1, i_micros_called);
     i_micros_called = 0;
-    printf("test start %u us, end %u us\n", i_micros_start, i_micros_end);
-    printf("waited %u us, expecting %u us\n", i_micros_end - i_micros_start, i_expected_wait_time);
+    // printf("test start %u us, end %u us\n", i_micros_start, i_micros_end);
+    // printf("waited %u us, expecting %u us\n", i_micros_end - i_micros_start, i_expected_wait_time);
     TEST_ASSERT_GREATER_OR_EQUAL_INT(i_expected_wait_time, i_micros_end - i_micros_start);
 }
 
@@ -427,6 +429,92 @@ void test_lospanel_protocol_holds_proper_timing(void) {
     delete p_UART;
 }
 
+/* Unit test function to check if LoSPanelProtocol class reads keys and sends them to UART */
+void test_lospanel_protocol_reads_keys_and_sends_over_uart(void) {
+
+    /* Definition of input and expected output data */
+    uint8_t c_KeyboardIntputData1 = 0x01;
+    uint8_t c_KeyboardIntputData2 = 0x04;
+    uint8_t c_KeyboardIntputData3 = 0x17;
+    uint8_t c_UARTOutputData1[] = { 0xFE, 0x02 };
+    uint8_t c_UARTOutputData2[] = { 0xFE, 0x11 };
+    uint8_t c_UARTOutputData3[] = { 0xFE, 0x58 };
+
+    /* Creating objects to initialize LosPanelProtocol class */
+    AbstractUART *p_UART = new MockUART();
+    AbstractBacklight *p_Backlight = new MockBacklight();
+    AbstractTextLCD *p_TextLCD = new MockTextLCD(p_Backlight);
+    AbstractKeyboard *p_Keyboard = new MockKeyboard();
+    AbstractProtocol *p_Protocol = new LoSPanelProtocol(p_UART, p_TextLCD, p_Keyboard);
+
+    /* Setting up keyboard input data */
+    c_MockKeyboard_GetKey_return = c_KeyboardIntputData1;
+    memset(c_MockUART_TxBuffer, 0, sizeof(c_MockUART_TxBuffer));
+    i_MockUART_TxBufferPos = 0;
+
+    /* Calling the function under test till it runs out of input data */
+    while(i_MockKeyboard_GetKey_called < 1) {
+        p_Protocol->Loop();
+        p_Protocol->Yield();
+    }
+
+    /* Checking if the function under test called right functions */
+    TEST_ASSERT_EQUAL_INT(1, i_MockKeyboard_GetKey_called);
+    TEST_ASSERT_EQUAL_INT(2, i_MockUART_PutCh_called);
+
+    /* Checking if the function under test does right output */
+    TEST_ASSERT_EQUAL_INT(sizeof(c_UARTOutputData1), i_MockUART_TxBufferPos);
+    // printf("c_MockUART_TxBuffer: %02X %02X\n", c_MockUART_TxBuffer[0], c_MockUART_TxBuffer[1]);
+    TEST_ASSERT_EQUAL_INT(0, memcmp(c_UARTOutputData1, c_MockUART_TxBuffer, sizeof(c_UARTOutputData1)));
+
+    /* Setting up keyboard input data */
+    c_MockKeyboard_GetKey_return = c_KeyboardIntputData2;
+    memset(c_MockUART_TxBuffer, 0, sizeof(c_MockUART_TxBuffer));
+    i_MockUART_TxBufferPos = 0;
+
+    /* Calling the function under test till it runs out of input data */
+    while(i_MockKeyboard_GetKey_called < 2) {
+        p_Protocol->Loop();
+        p_Protocol->Yield();
+    }
+
+    /* Checking if the function under test called right functions */
+    TEST_ASSERT_EQUAL_INT(2, i_MockKeyboard_GetKey_called);
+    TEST_ASSERT_EQUAL_INT(4, i_MockUART_PutCh_called);
+
+    /* Checking if the function under test does right output */
+    TEST_ASSERT_EQUAL_INT(sizeof(c_UARTOutputData2), i_MockUART_TxBufferPos);
+    // printf("c_MockUART_TxBuffer: %02X %02X\n", c_MockUART_TxBuffer[0], c_MockUART_TxBuffer[1]);
+    TEST_ASSERT_EQUAL_INT(0, memcmp(c_UARTOutputData2, c_MockUART_TxBuffer, sizeof(c_UARTOutputData2)));
+
+    /* Setting up keyboard input data */
+    c_MockKeyboard_GetKey_return = c_KeyboardIntputData3;
+    memset(c_MockUART_TxBuffer, 0, sizeof(c_MockUART_TxBuffer));
+    i_MockUART_TxBufferPos = 0;
+
+    /* Calling the function under test till it runs out of input data */
+    while(i_MockKeyboard_GetKey_called < 3) {
+        p_Protocol->Loop();
+        p_Protocol->Yield();
+    }
+
+    /* Checking if the function under test called right functions */
+    TEST_ASSERT_EQUAL_INT(3, i_MockKeyboard_GetKey_called);
+    TEST_ASSERT_EQUAL_INT(6, i_MockUART_PutCh_called);
+
+    /* Checking if the function under test does right output */
+    TEST_ASSERT_EQUAL_INT(sizeof(c_UARTOutputData3), i_MockUART_TxBufferPos);
+    // printf("c_MockUART_TxBuffer: %02X %02X\n", c_MockUART_TxBuffer[0], c_MockUART_TxBuffer[1]);
+    TEST_ASSERT_EQUAL_INT(0, memcmp(c_UARTOutputData3, c_MockUART_TxBuffer, sizeof(c_UARTOutputData3)));
+
+    /* Removing objects after use */
+    delete p_Protocol;
+    delete p_Keyboard;
+    delete p_TextLCD;
+    delete p_Backlight;
+    delete p_UART;
+}
+
 /* Unit testing main function */
 int main(int argc, char *argv[]) {
 
@@ -438,6 +526,7 @@ int main(int argc, char *argv[]) {
     RUN_TEST(test_lospanel_protocol_reads_uart_and_prints_on_lcd_with_commands);
     RUN_TEST(test_lospanel_protocol_reads_uart_and_controls_backlight);
     RUN_TEST(test_lospanel_protocol_holds_proper_timing);
+    RUN_TEST(test_lospanel_protocol_reads_keys_and_sends_over_uart);
 
     UNITY_END();
 }
