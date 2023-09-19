@@ -218,7 +218,7 @@ void test_rawserial_protocol_reads_uart_and_prints_on_lcd(void) {
     AbstractKeyboard *p_Keyboard = new MockKeyboard();
     AbstractProtocol *p_Protocol = new RawSerialProtocol(p_UART, p_LCD, p_Keyboard);
 
-    /* Checking if during initialization to ->Clear() and ->SetCursor() for LCD was performed */
+    /* Checking if during initialization no calls of Clear() and SetCursor() for LCD was performed */
     TEST_ASSERT_EQUAL_INT(0, i_MockLCD_Clear_called);
     TEST_ASSERT_EQUAL_INT(0, i_MockLCD_SetCursor_called);
 
