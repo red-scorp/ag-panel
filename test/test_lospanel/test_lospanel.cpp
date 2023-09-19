@@ -132,7 +132,6 @@ unsigned long real_micros() {
     struct timeval ts;
     gettimeofday(&ts, NULL);
     uint32_t result = (uint32_t)(ts.tv_sec * 1000000 + ts.tv_usec);
-    // result = result % 10000;
     // printf("real_micros: %u:%u -> %u\n", ts.tv_sec, ts.tv_usec, result);
     return result;
 }
