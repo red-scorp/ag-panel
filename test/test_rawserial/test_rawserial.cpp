@@ -1,0 +1,197 @@
+/** @file test_rawserial.cpp
+    @brief AG-Panel Project unit test rawserial protocol code
+    @copyright (C) 2023 Andriy Golovnya
+    @author Andriy Golovnya (andriy.golovnya@gmail.com)
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/time.h>
+
+/* Trick to include unit test headers during build and have syntax highlighting in editor */
+#if defined(UNIT_TEST)
+#include "unity.h"
+#else
+#include "../unity/unity.h"
+#endif /* UNIT_TEST */
+
+#include "../ag-panel/src/debug.h"
+#include "../ag-panel/src/uart/all.h"
+#include "../ag-panel/src/lcd/backlight/all.h"
+#include "../ag-panel/src/lcd/font/all.h"
+#include "../ag-panel/src/lcd/all.h"
+#include "../ag-panel/src/keyboard/all.h"
+#include "../ag-panel/src/protocol/all.h"
+
+using namespace std;
+
+#pragma region Mocks for unit tests
+
+#define MOCK_FUNCTION   
+#define MOCK_VARIABLE   static
+
+#define MOCK_UART_TXBUF_SIZE        512
+#define MOCK_UART_RXBUF_SIZE        512
+#define MOCK_LCD_WIDTH              20
+#define MOCK_LCD_HEIGHT             2
+#define MOCK_LCD_WRITE_BUF_SIZE     128
+#define MOCK_LCD_COMMAND_BUF_SIZE   128
+
+/* Mocks for testing RawSerialProtocol class */
+MOCK_VARIABLE int i_MockBacklight_SetOn_called = 0;
+MOCK_VARIABLE int i_MockBacklight_SetBrightness_called = 0;
+MOCK_VARIABLE int i_MockBacklight_SetRGB_called = 0;
+MOCK_VARIABLE uint8_t c_MockBacklight_Brightness = 0;
+class MockBacklight: public AbstractBacklight {
+public:
+    MockBacklight(): AbstractBacklight() { }
+    virtual ~MockBacklight() { }
+    virtual void SetOn(bool on) override { i_MockBacklight_SetOn_called++; }
+    virtual void SetBrightness(uint8_t brightness) override { i_MockBacklight_SetBrightness_called++; c_MockBacklight_Brightness = brightness; }
+    virtual void SetRGB(uint8_t red, uint8_t green, uint8_t blue) override { i_MockBacklight_SetRGB_called++; }
+};
+MOCK_VARIABLE int i_MockLCD_Clear_called = 0;
+MOCK_VARIABLE int i_MockLCD_SetCursor_called = 0;
+MOCK_VARIABLE int i_MockLCD_Print_str_called = 0;
+MOCK_VARIABLE int i_MockLCD_Print_ch_called = 0;
+class MockLCD: public AbstractLCD {
+public:
+    MockLCD(AbstractBacklight *Backlight): AbstractLCD(Backlight, MOCK_LCD_WIDTH, MOCK_LCD_HEIGHT) { }
+    virtual ~MockLCD() { }
+    virtual void Clear() override { i_MockLCD_Clear_called++; }
+    virtual void SetCursor(uint8_t x, uint8_t y) override { i_MockLCD_SetCursor_called++; }
+    virtual void Print(const char *str) override { i_MockLCD_Print_str_called++; }
+    virtual void Print(char ch) override { i_MockLCD_Print_ch_called++; }
+};
+MOCK_VARIABLE int i_MockUART_GetBaudRate_called = 0;
+MOCK_VARIABLE int i_MockUART_PutCh_called = 0;
+MOCK_VARIABLE int i_MockUART_GetCh_called = 0;
+MOCK_VARIABLE int i_MockUART_Available_called = 0;
+MOCK_VARIABLE uint8_t c_MockUART_TxBuffer[MOCK_UART_TXBUF_SIZE] = { 0 };
+MOCK_VARIABLE int i_MockUART_TxBufferPos = 0;
+MOCK_VARIABLE uint8_t c_MockUART_RxBuffer[MOCK_UART_RXBUF_SIZE] = { 0 };
+MOCK_VARIABLE int i_MockUART_RxBufferPos = 0;
+MOCK_VARIABLE int i_MockUART_RxBufferMax = 0;
+class MockUART: public AbstractUART {
+public:
+    MockUART(): AbstractUART() { }
+    virtual ~MockUART() { }
+    virtual uint8_t PutCh(uint8_t TxByte) override {
+        i_MockUART_PutCh_called++;
+        if(i_MockUART_TxBufferPos < MOCK_UART_TXBUF_SIZE)
+            c_MockUART_TxBuffer[i_MockUART_TxBufferPos++] = TxByte;
+        return 0;
+    }
+    virtual uint8_t GetCh() override {
+        i_MockUART_GetCh_called++;
+        if(i_MockUART_RxBufferPos < i_MockUART_RxBufferMax && i_MockUART_RxBufferPos < MOCK_UART_RXBUF_SIZE)
+            return c_MockUART_RxBuffer[i_MockUART_RxBufferPos++];
+        return 0;
+    }
+    virtual uint32_t GetBaudRate() const override { i_MockUART_GetBaudRate_called++; return AbstractUART::GetBaudRate(); }
+    virtual uint32_t Available() override {
+        i_MockUART_Available_called++;
+        return i_MockUART_RxBufferMax - i_MockUART_RxBufferPos;
+    }
+};
+#define MOCKUART_FILL_RXBUFFER_SIZED(data, size) \
+    memcpy(c_MockUART_RxBuffer, data, size); \
+    i_MockUART_RxBufferPos = 0; \
+    i_MockUART_RxBufferMax = size;
+#define MOCKUART_FILL_RXBUFFER(data) \
+    MOCKUART_FILL_RXBUFFER_SIZED(data, sizeof(data))
+MOCK_VARIABLE int i_MockKeyboard_GetKey_called = 0;
+MOCK_VARIABLE int i_MockKeyboard_GetKeyCount_called = 0;
+MOCK_VARIABLE uint8_t c_MockKeyboard_GetKey_return = 0;
+class MockKeyboard: public AbstractKeyboard {
+public:
+    MockKeyboard(): AbstractKeyboard() { }
+    virtual ~MockKeyboard() { }
+    virtual uint8_t GetKey() override { i_MockKeyboard_GetKey_called++; return c_MockKeyboard_GetKey_return; }
+    virtual uint8_t GetKeyCount() override { i_MockKeyboard_GetKeyCount_called++; return 5; }
+};
+MOCK_VARIABLE int i_micros_called = 0;
+unsigned long real_micros() {
+    struct timeval ts;
+    gettimeofday(&ts, NULL);
+    uint32_t result = (uint32_t)(ts.tv_sec * 1000000 + ts.tv_usec);
+    // printf("real_micros: %u:%u -> %u\n", ts.tv_sec, ts.tv_usec, result);
+    return result;
+}
+MOCK_FUNCTION unsigned long micros() { i_micros_called++; return real_micros(); }
+
+#undef DEBUG_STR
+#define DEBUG_STR(str) printf("%s", str)
+
+#pragma endregion
+
+#include "../ag-panel/src/protocol/RawSerialProtocol.cpp"
+
+/* Call before each unit test case */
+void setUp(void) {
+
+    i_MockBacklight_SetOn_called = 0;
+    i_MockBacklight_SetBrightness_called = 0;
+    i_MockBacklight_SetRGB_called = 0;
+    c_MockBacklight_Brightness = 0;
+    i_MockLCD_Clear_called = 0;
+    i_MockLCD_SetCursor_called = 0;
+    i_MockLCD_Print_str_called = 0;
+    i_MockLCD_Print_ch_called = 0;
+    i_MockUART_GetBaudRate_called = 0;
+    i_MockUART_PutCh_called = 0;
+    i_MockUART_GetCh_called = 0;
+    i_MockUART_Available_called = 0;
+    memset(c_MockUART_TxBuffer, 0, sizeof(c_MockUART_TxBuffer));
+    i_MockUART_TxBufferPos = 0;
+    memset(c_MockUART_RxBuffer, 0, sizeof(c_MockUART_RxBuffer));
+    i_MockUART_RxBufferPos = 0;
+    i_MockUART_RxBufferMax = 0;
+    i_MockKeyboard_GetKey_called = 0;
+    i_MockKeyboard_GetKeyCount_called = 0;
+    c_MockKeyboard_GetKey_return = 0;
+    i_micros_called = 0;
+}
+
+/* Call after each unit test case */
+void tearDown(void) {
+}
+
+/* Unit test function to check if initialization of mocks for RawSerialProtocol class works correctly */
+void test_rawserial_protocol_does_right_initialization(void) {
+
+    /* Creating objects to initialize RawSerialProtocol class */
+    AbstractUART *p_UART = new MockUART();
+    TEST_ASSERT_NOT_NULL(p_UART);
+
+    AbstractBacklight *p_Backlight = new MockBacklight();
+    TEST_ASSERT_NOT_NULL(p_Backlight);
+
+    AbstractLCD *p_LCD = new MockLCD(p_Backlight);
+    TEST_ASSERT_NOT_NULL(p_LCD);
+
+    AbstractKeyboard *p_Keyboard = new MockKeyboard();
+    TEST_ASSERT_NOT_NULL(p_Keyboard);
+
+    AbstractProtocol *p_Protocol = new RawSerialProtocol(p_UART, p_LCD, p_Keyboard);
+    TEST_ASSERT_NOT_NULL(p_Protocol);
+
+    /* Removing objects after use */
+    delete p_Protocol;
+    delete p_Keyboard;
+    delete p_LCD;
+    delete p_Backlight;
+    delete p_UART;
+}
+
+/* Unit testing main function */
+int main(int argc, char *argv[]) {
+
+    UNITY_BEGIN();
+
+    /* Calling unit test functions */
+    RUN_TEST(test_rawserial_protocol_does_right_initialization);
+
+    UNITY_END();
+}
