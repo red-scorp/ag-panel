@@ -35,8 +35,7 @@ using namespace std;
 #define MOCK_UART_RXBUF_SIZE        512
 #define MOCK_LCD_WIDTH              20
 #define MOCK_LCD_HEIGHT             2
-#define MOCK_LCD_WRITE_BUF_SIZE     128
-#define MOCK_LCD_COMMAND_BUF_SIZE   128
+#define MOCK_LCD_PRINT_BUF_SIZE     (MOCK_LCD_HEIGHT * MOCK_LCD_WIDTH * 2)
 
 /* Mocks for testing RawSerialProtocol class */
 MOCK_VARIABLE int i_MockBacklight_SetOn_called = 0;
@@ -55,14 +54,24 @@ MOCK_VARIABLE int i_MockLCD_Clear_called = 0;
 MOCK_VARIABLE int i_MockLCD_SetCursor_called = 0;
 MOCK_VARIABLE int i_MockLCD_Print_str_called = 0;
 MOCK_VARIABLE int i_MockLCD_Print_ch_called = 0;
+MOCK_VARIABLE uint8_t c_MockLCD_PrintBuffer[MOCK_LCD_PRINT_BUF_SIZE] = { 0 };
+MOCK_VARIABLE int i_MockLCD_PrintBufferPos = 0;
 class MockLCD: public AbstractLCD {
 public:
     MockLCD(AbstractBacklight *Backlight): AbstractLCD(Backlight, MOCK_LCD_WIDTH, MOCK_LCD_HEIGHT) { }
     virtual ~MockLCD() { }
     virtual void Clear() override { i_MockLCD_Clear_called++; }
     virtual void SetCursor(uint8_t x, uint8_t y) override { i_MockLCD_SetCursor_called++; }
-    virtual void Print(const char *str) override { i_MockLCD_Print_str_called++; }
-    virtual void Print(char ch) override { i_MockLCD_Print_ch_called++; }
+    virtual void Print(const char *str) override {
+        i_MockLCD_Print_str_called++;
+        while(*str != '\0' && i_MockLCD_PrintBufferPos < MOCK_LCD_PRINT_BUF_SIZE)
+            c_MockLCD_PrintBuffer[i_MockLCD_PrintBufferPos++] = *str++;
+    }
+    virtual void Print(char ch) override {
+        i_MockLCD_Print_ch_called++;
+        if(i_MockLCD_PrintBufferPos < MOCK_LCD_PRINT_BUF_SIZE)
+            c_MockLCD_PrintBuffer[i_MockLCD_PrintBufferPos++] = ch;
+    }
 };
 MOCK_VARIABLE int i_MockUART_GetBaudRate_called = 0;
 MOCK_VARIABLE int i_MockUART_PutCh_called = 0;
@@ -139,6 +148,8 @@ void setUp(void) {
     i_MockLCD_SetCursor_called = 0;
     i_MockLCD_Print_str_called = 0;
     i_MockLCD_Print_ch_called = 0;
+    memset(c_MockLCD_PrintBuffer, 0, sizeof(c_MockLCD_PrintBuffer));
+    i_MockLCD_PrintBufferPos = 0;
     i_MockUART_GetBaudRate_called = 0;
     i_MockUART_PutCh_called = 0;
     i_MockUART_GetCh_called = 0;
@@ -185,6 +196,43 @@ void test_rawserial_protocol_does_right_initialization(void) {
     delete p_UART;
 }
 
+/* Unit test function to check if RawSerialProtocol class reads UART and prints on LCD */
+void test_rawserial_protocol_reads_uart_and_prints_on_lcd(void) {
+
+    /* Definition of input and expected output data */
+    uint8_t c_UARTInputData[] = "Hello World!";
+    uint8_t c_LCDOutputData[] = "Hello World!";
+
+    /* Creating objects to initialize RawSerialProtocol class */
+    AbstractUART *p_UART = new MockUART();
+    AbstractBacklight *p_Backlight = new MockBacklight();
+    AbstractLCD *p_LCD = new MockLCD(p_Backlight);
+    AbstractKeyboard *p_Keyboard = new MockKeyboard();
+    AbstractProtocol *p_Protocol = new RawSerialProtocol(p_UART, p_LCD, p_Keyboard);
+
+    /* Setting up text input data */
+    MOCKUART_FILL_RXBUFFER(c_UARTInputData);
+
+    /* Calling the function under test till it runs out of input data */
+    while(i_MockUART_RxBufferPos < i_MockUART_RxBufferMax)
+        p_Protocol->Loop();
+
+    /* Checking if the function under test called right functions */
+    TEST_ASSERT_EQUAL_INT(sizeof(c_UARTInputData), i_MockUART_GetCh_called);
+    TEST_ASSERT_EQUAL_INT(sizeof(c_LCDOutputData), i_MockLCD_Print_ch_called);
+
+    /* Checking if the function under test does right output */
+    TEST_ASSERT_EQUAL_INT(sizeof(c_LCDOutputData), i_MockLCD_PrintBufferPos);
+    TEST_ASSERT_EQUAL_INT(0, memcmp(c_LCDOutputData, c_MockLCD_PrintBuffer, sizeof(c_LCDOutputData)));
+
+    /* Removing objects after use */
+    delete p_Protocol;
+    delete p_Keyboard;
+    delete p_LCD;
+    delete p_Backlight;
+    delete p_UART;
+}
+
 /* Unit testing main function */
 int main(int argc, char *argv[]) {
 
@@ -192,6 +240,7 @@ int main(int argc, char *argv[]) {
 
     /* Calling unit test functions */
     RUN_TEST(test_rawserial_protocol_does_right_initialization);
+    RUN_TEST(test_rawserial_protocol_reads_uart_and_prints_on_lcd);
 
     UNITY_END();
 }
