@@ -365,6 +365,89 @@ void test_rawserial_protocol_reads_uart_and_prints_on_lcd_handles_range_and_scre
     delete p_UART;
 }
 
+/* Unit test function to check if RawSerialProtocol class reads keys and sends them to UART */
+void test_rawserial_protocol_reads_keys_and_sends_over_uart(void) {
+
+    /* Definition of input and expected output data */
+    uint8_t c_KeyboardIntputData1 = 0x01;
+    uint8_t c_KeyboardIntputData2 = 0x04;
+    uint8_t c_KeyboardIntputData3 = 0x17;
+    uint8_t c_UARTOutputData1[] = { 0x01 };
+    uint8_t c_UARTOutputData2[] = { 0x04 };
+    uint8_t c_UARTOutputData3[] = { 0x17 };
+
+    /* Creating objects to initialize RawSerialProtocol class */
+    AbstractUART *p_UART = new MockUART();
+    AbstractBacklight *p_Backlight = new MockBacklight();
+    AbstractLCD *p_LCD = new MockLCD(p_Backlight);
+    AbstractKeyboard *p_Keyboard = new MockKeyboard();
+    AbstractProtocol *p_Protocol = new RawSerialProtocol(p_UART, p_LCD, p_Keyboard);
+
+    /* Setting up keyboard input data */
+    c_MockKeyboard_GetKey_return = c_KeyboardIntputData1;
+    memset(c_MockUART_TxBuffer, 0, sizeof(c_MockUART_TxBuffer));
+    i_MockUART_TxBufferPos = 0;
+
+    /* Calling the function under test till it runs out of input data */
+    while(i_MockKeyboard_GetKey_called < 1) {
+        p_Protocol->Loop();
+        p_Protocol->Yield();
+    }
+
+    /* Checking if the function under test called right functions */
+    TEST_ASSERT_EQUAL_INT(1, i_MockKeyboard_GetKey_called);
+    TEST_ASSERT_EQUAL_INT(1, i_MockUART_PutCh_called);
+
+    /* Checking if the function under test does right output */
+    TEST_ASSERT_EQUAL_INT(sizeof(c_UARTOutputData1), i_MockUART_TxBufferPos);
+    TEST_ASSERT_EQUAL_INT(0, memcmp(c_UARTOutputData1, c_MockUART_TxBuffer, sizeof(c_UARTOutputData1)));
+
+    /* Setting up keyboard input data */
+    c_MockKeyboard_GetKey_return = c_KeyboardIntputData2;
+    memset(c_MockUART_TxBuffer, 0, sizeof(c_MockUART_TxBuffer));
+    i_MockUART_TxBufferPos = 0;
+
+    /* Calling the function under test till it runs out of input data */
+    while(i_MockKeyboard_GetKey_called < 2) {
+        p_Protocol->Loop();
+        p_Protocol->Yield();
+    }
+
+    /* Checking if the function under test called right functions */
+    TEST_ASSERT_EQUAL_INT(2, i_MockKeyboard_GetKey_called);
+    TEST_ASSERT_EQUAL_INT(2, i_MockUART_PutCh_called);
+
+    /* Checking if the function under test does right output */
+    TEST_ASSERT_EQUAL_INT(sizeof(c_UARTOutputData2), i_MockUART_TxBufferPos);
+    TEST_ASSERT_EQUAL_INT(0, memcmp(c_UARTOutputData2, c_MockUART_TxBuffer, sizeof(c_UARTOutputData2)));
+
+    /* Setting up keyboard input data */
+    c_MockKeyboard_GetKey_return = c_KeyboardIntputData3;
+    memset(c_MockUART_TxBuffer, 0, sizeof(c_MockUART_TxBuffer));
+    i_MockUART_TxBufferPos = 0;
+
+    /* Calling the function under test till it runs out of input data */
+    while(i_MockKeyboard_GetKey_called < 3) {
+        p_Protocol->Loop();
+        p_Protocol->Yield();
+    }
+
+    /* Checking if the function under test called right functions */
+    TEST_ASSERT_EQUAL_INT(3, i_MockKeyboard_GetKey_called);
+    TEST_ASSERT_EQUAL_INT(3, i_MockUART_PutCh_called);
+
+    /* Checking if the function under test does right output */
+    TEST_ASSERT_EQUAL_INT(sizeof(c_UARTOutputData3), i_MockUART_TxBufferPos);
+    TEST_ASSERT_EQUAL_INT(0, memcmp(c_UARTOutputData3, c_MockUART_TxBuffer, sizeof(c_UARTOutputData3)));
+
+    /* Removing objects after use */
+    delete p_Protocol;
+    delete p_Keyboard;
+    delete p_LCD;
+    delete p_Backlight;
+    delete p_UART;
+}
+
 /* Unit testing main function */
 int main(int argc, char *argv[]) {
 
@@ -374,6 +457,7 @@ int main(int argc, char *argv[]) {
     RUN_TEST(test_rawserial_protocol_does_right_initialization);
     RUN_TEST(test_rawserial_protocol_reads_uart_and_prints_on_lcd);
     RUN_TEST(test_rawserial_protocol_reads_uart_and_prints_on_lcd_handles_range_and_screen_begin);
+    RUN_TEST(test_rawserial_protocol_reads_keys_and_sends_over_uart);
 
     UNITY_END();
 }

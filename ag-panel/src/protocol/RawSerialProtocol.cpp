@@ -80,9 +80,8 @@ void RawSerialProtocol::Yield() {
         return;
 
     if(key != KeyNone) {
-        // uint8_t TxByte = LoSPanelKeypadCode(key >> 2, key & 0x3);
-        // m_UART->PutCh(LoSPanelProtocolKeypad);
-        // m_UART->PutCh(TxByte);
+        uint8_t TxByte = key;
+        m_UART->PutCh(TxByte);
     }
 
     m_UART->Prefill();
