@@ -264,6 +264,11 @@ void test_rawserial_protocol_reads_uart_and_prints_on_lcd_handles_range_and_scre
     uint8_t c_LCDOutputData3[] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
                                    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
                                    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+    uint8_t c_UARTInputData4[] = { '\n', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+    uint8_t c_LCDOutputData4[] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+                                   '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+                                   '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+                                   '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
 
     /* Creating objects to initialize RawSerialProtocol class */
     AbstractUART *p_UART = new MockUART();
@@ -332,6 +337,25 @@ void test_rawserial_protocol_reads_uart_and_prints_on_lcd_handles_range_and_scre
     /* Checking if the function under test does right output */
     TEST_ASSERT_EQUAL_INT(sizeof(c_LCDOutputData3), i_MockLCD_PrintBufferPos);
     TEST_ASSERT_EQUAL_INT(0, memcmp(c_LCDOutputData3, c_MockLCD_PrintBuffer, sizeof(c_LCDOutputData3)));
+
+    /* Setting up text input data */
+    MOCKUART_FILL_RXBUFFER(c_UARTInputData4);
+
+    /* Calling the function under test till it runs out of input data */
+    while(i_MockUART_RxBufferPos < i_MockUART_RxBufferMax)
+        p_Protocol->Loop();
+
+    /* Checking if the function under test called right functions */
+    TEST_ASSERT_EQUAL_INT(sizeof(c_UARTInputData1) + sizeof(c_UARTInputData2) + sizeof(c_UARTInputData3)  + sizeof(c_UARTInputData4), i_MockUART_GetCh_called);
+    TEST_ASSERT_EQUAL_INT(sizeof(c_LCDOutputData4), i_MockLCD_Print_ch_called);
+    TEST_ASSERT_EQUAL_INT(1, i_MockLCD_Clear_called);
+    TEST_ASSERT_EQUAL_INT(4, i_MockLCD_SetCursor_called);
+    TEST_ASSERT_EQUAL(0, c_MockLCD_SetCursor_called_with_x);
+    TEST_ASSERT_EQUAL(0, c_MockLCD_SetCursor_called_with_y);
+
+    /* Checking if the function under test does right output */
+    TEST_ASSERT_EQUAL_INT(sizeof(c_LCDOutputData4), i_MockLCD_PrintBufferPos);
+    TEST_ASSERT_EQUAL_INT(0, memcmp(c_LCDOutputData4, c_MockLCD_PrintBuffer, sizeof(c_LCDOutputData4)));
 
     /* Removing objects after use */
     delete p_Protocol;
