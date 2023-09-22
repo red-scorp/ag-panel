@@ -65,6 +65,7 @@ The ag-panel project is designed to offer maximum compatibility and flexibility.
   - ✓ Software UART port for debugging output
   - ✓ Hex String dump of UART output
   - ✓ Hex String dump of UART input
+  - ✓ Unit Tests for main components
 
 Please refer to *'config.h'* and *'config_adv.h'* for the most up-to-date information on supported configurations.
 
