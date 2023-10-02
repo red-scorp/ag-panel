@@ -38,6 +38,7 @@ The ag-panel project is designed to offer maximum compatibility and flexibility.
   - ✓ HD44780 with binary (on/off) backlight over I2C bus, based on 'I2C LCD backpack'
   - ✓ HD44780 with RGB binary (7 colors) backlight over I2C bus, like 'Adafruit RGB 16x2 LCD Shield'
   - ✓ AIP31068, HD44780-like with I2C and SPI interface
+  - ◻️ U8g2 compatible displays (to be implemented)
 
 - **LCD Backlight**
   - ✓ Not controlled or controlled by the display itself
