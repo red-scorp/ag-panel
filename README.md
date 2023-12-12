@@ -107,6 +107,16 @@ ag-panel
 └── config.h (basic configuration)
 ```
 
+Unit test code is located in the *'test'* folder:
+
+```
+test
+├── test_lospanel (unit tests for los-panel protocol)
+├── test_main (unit tests for main components)
+├── test_rawserial (unit tests for rawserial protocol)
+└── unity (Unity unit test framework)
+```
+
 ## Getting Started
 
 To begin working with the ag-panel project, you'll need to fulfill certain dependencies:
