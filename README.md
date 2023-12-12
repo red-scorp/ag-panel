@@ -133,7 +133,9 @@ You can obtain the ag-panel project code using one of the following methods:
 You can compile the ag-panel project with any IDE that supports development for the Arduino SDK. We've tested it with the following IDEs:
 
 - To open the project in the [Arduino IDE](https://www.arduino.cc/en/software), simply open the INO file located at *ag-panel/ag-panel.ino* from the File menu.
-- To use [Visual Studio Code](https://code.visualstudio.com/) with the [PlatformIO](https://platformio.org/) Extension, open the project folder containing the *platformio.ini* file from the File menu.
+- To use [Visual Studio Code](https://code.visualstudio.com/) with the [PlatformIO](https://platformio.org/) Extension, open the project folder containing the *'platformio.ini'* file from the File menu. To build the project in console mode, run the following command: `pio run -e <environment>'`, where `<environment>` is the name of the target environment (e.g. `uno` or `megaatmega2560`).
+
+To run unity unit tests, you need to use PlatformIO with Visual Studio Code. It is required to install native build tools for your platform inside PlatformIO. To run unit tests, run the following command: `pio test -e native_test` or start *Test* task under *native_test* environment in Visual Studio Code.
 
 ### Required Libraries
 
