@@ -68,7 +68,7 @@ The ag-panel project is designed to offer maximum compatibility and flexibility.
   - ✓ Hex String dump of UART input
   - ✓ Unit Tests for main components
 
-Please refer to *'config.h'* and *'config_adv.h'* for the most up-to-date information on supported configurations.
+Please refer to *config.h* and *config_adv.h* for the most up-to-date information on supported configurations.
 
 ## Current Status
 
@@ -128,14 +128,22 @@ You can obtain the ag-panel project code using one of the following methods:
 - If you prefer using the Git version control system, run the following command: `git clone https://github.com/red-scorp/ag-panel.git`
 - Alternatively, you can download the entire master branch code as a [single zip file](https://github.com/red-scorp/ag-panel/archive/refs/heads/master.zip).
 
-### Supported IDEs
+### Building the Project
 
 You can compile the ag-panel project with any IDE that supports development for the Arduino SDK. We've tested it with the following IDEs:
 
 - To open the project in the [Arduino IDE](https://www.arduino.cc/en/software), simply open the INO file located at *ag-panel/ag-panel.ino* from the File menu.
-- To use [Visual Studio Code](https://code.visualstudio.com/) with the [PlatformIO](https://platformio.org/) Extension, open the project folder containing the *'platformio.ini'* file from the File menu. To build the project in console mode, run the following command: `pio run -e <environment>'`, where `<environment>` is the name of the target environment (e.g. `uno` or `megaatmega2560`).
+- To use [Visual Studio Code](https://code.visualstudio.com/) with the [PlatformIO](https://platformio.org/) Extension, open the project folder containing the *platformio.ini* file from the File menu. To build the project in console mode, run the following command: `pio run -e <environment>`, where `<environment>` is the name of the target environment (e.g. `uno` or `megaatmega2560`).
 
-To run unity unit tests, you need to use PlatformIO with Visual Studio Code. It is required to install native build tools for your platform inside PlatformIO. To run unit tests, run the following command: `pio test -e native_test` or start *Test* task under *native_test* environment in Visual Studio Code.
+To successfully compile the project, you may need to install the required libraries (see below).
+
+To flash the compiled code to your target device, you can use built-in GUI tools of your IDE or use the following command: `pio run -e <environment> -t upload`, where `<environment>` is the name of the target environment (e.g. `uno` or `megaatmega2560`).
+
+Please note, you might need to install additional drivers for your target device to be recognized by your computer.
+
+Some target devices might need you to specify target upload port. In Arduino IDE you will need to select proper device in *Tools* menu. In PlatformIO you can do it by adding value *upload_port* to *platformio.ini* file or by using the following command: `pio run -e <environment> -t upload --upload-port <port>`, where `<port>` is the name of the target upload port (e.g. `COM1` or `/dev/ttyUSB0`).
+
+Please refer to the documentation of your IDE for more information on how to build and flash the project.
 
 ### Required Libraries
 
@@ -154,6 +162,10 @@ To successfully compile the project, you may need to install the following libra
 - U8g2
 
 While PlatformIO can automatically resolve library dependencies, Arduino IDE users will need to install the required libraries manually.
+
+### Running Unit Tests
+
+To run unity unit tests, you need to use PlatformIO with Visual Studio Code. It is required to install native build tools for your platform inside PlatformIO. To run unit tests, run the following command: `pio test -e native_test` or start *Test* task under *native_test* environment in Visual Studio Code.
 
 ## How You Can Contribute
 
