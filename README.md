@@ -107,7 +107,7 @@ ag-panel
 └── config.h (basic configuration)
 ```
 
-Unit test code is located in the *'test'* folder:
+Project's native unit tests code is located in the separate folder:
 
 ```
 test
@@ -116,6 +116,10 @@ test
 ├── test_rawserial (unit tests for rawserial protocol)
 └── unity (Unity unit test framework)
 ```
+
+Please note unit tests are using some of the code from the main source code folder directly, but unit test code is not included in the final build.
+
+Keep in mind that the project is still a work in progress, so the code structure may change in the future.
 
 ## Getting Started
 
@@ -132,7 +136,7 @@ You can obtain the ag-panel project code using one of the following methods:
 
 You can compile the ag-panel project with any IDE that supports development for the Arduino SDK. We've tested it with the following IDEs:
 
-- To open the project in the [Arduino IDE](https://www.arduino.cc/en/software), simply open the INO file located at *ag-panel/ag-panel.ino* from the File menu.
+- To open the project in the [Arduino IDE](https://www.arduino.cc/en/software), simply open the INO file located at *ag-panel/ag-panel.ino* from the File menu. After this you can compile and flash the project to your target device using the built-in tools.
 - To use [Visual Studio Code](https://code.visualstudio.com/) with the [PlatformIO](https://platformio.org/) Extension, open the project folder containing the *platformio.ini* file from the File menu. To build the project in console mode, run the following command: `pio run -e <environment>`, where `<environment>` is the name of the target environment (e.g. `uno` or `megaatmega2560`).
 
 To successfully compile the project, you may need to install the required libraries (see below).
