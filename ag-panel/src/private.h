@@ -10,7 +10,7 @@
 
 #include <Arduino.h>
 #if defined(ARDUINO_ARCH_ESP32)
-  #include <analogWrite.h>
+    #include <analogWrite.h>
 #endif
 
 #if defined(__riscv) && !defined(ARDUINO_ARCH_ESP32)
@@ -33,6 +33,10 @@
 #endif
 
 #undef UART /* Required to compile for DUE board */
+
+#if defined(ARDUINO_ARCH_ESP32)
+    #include "esp32-hal-spi.h"
+#endif
 
 #include "SPI.h"
 
