@@ -80,12 +80,12 @@ While ag-panel is still a work in progress, it's already usable and offers a wid
 
 The ag-panel code is written in C++ and utilizes the Arduino Framework. It's designed to compile and run on various embedded CPU platforms, including but not limited to:
 
-- ✓ Atmel (Microchip) AVR
-- ✓ Atmel (Microchip) SAMD and SAM
+- ✓ Atmel/Microchip AVR
+- ✓ Atmel/Microchip SAMD and SAM
 - ◻️ Renesas RA (to be tested)
 - ◻️ Espressif ESP32 and ESP8266 (to be tested)
 - ✓ ST STM32
-- ◻️ Raspberry RP2040 (to be tested)
+- ◻️ Raspberry RP2040/RP2350 (to be tested)
 - ◻️ RISC-V (planned)
 - ◻️ Logic Green AVR (planned)
 
