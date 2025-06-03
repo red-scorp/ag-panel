@@ -1,6 +1,6 @@
 /** @file init.cpp
     @brief AG-Panel Project UART initialization
-    @copyright (C) 2020-2023 Andriy Golovnya
+    @copyright (C) 2020-2025 Andriy Golovnya
     @author Andriy Golovnya (andriy.golovnya@gmail.com)
 */
 
@@ -19,27 +19,27 @@ AbstractUART *initUART() {
 
     /* Initialize communication UART class */
     #if defined(UART_HARDWARE)
-        p_UART = new HardwareUART(UART_BAUD);
+        p_UART = new HardwareUART0(UART_BAUD);
     #elif defined(UART_HARDWARE1)
-        p_UART = new HardwareUART(UART_BAUD, 1);
+        p_UART = new HardwareUART1(UART_BAUD);
     #elif defined(UART_HARDWARE2)
-        p_UART = new HardwareUART(UART_BAUD, 2);
+        p_UART = new HardwareUART2(UART_BAUD);
     #elif defined(UART_HARDWARE3)
-        p_UART = new HardwareUART(UART_BAUD, 3);
+        p_UART = new HardwareUART3(UART_BAUD);
     #elif defined(UART_HARDWARE4)
-        p_UART = new HardwareUART(UART_BAUD, 4);
+        p_UART = new HardwareUART4(UART_BAUD);
     #elif defined(UART_HARDWARE5)
-        p_UART = new HardwareUART(UART_BAUD, 5);
+        p_UART = new HardwareUART5(UART_BAUD);
     #elif defined(UART_HARDWARE6)
-        p_UART = new HardwareUART(UART_BAUD, 6);
+        p_UART = new HardwareUART6(UART_BAUD);
     #elif defined(UART_HARDWARE7)
-        p_UART = new HardwareUART(UART_BAUD, 7);
+        p_UART = new HardwareUART7(UART_BAUD);
     #elif defined(UART_HARDWARE8)
-        p_UART = new HardwareUART(UART_BAUD, 8);
+        p_UART = new HardwareUART8(UART_BAUD);
     #elif defined(UART_HARDWARE9)
-        p_UART = new HardwareUART(UART_BAUD, 9);
+        p_UART = new HardwareUART9(UART_BAUD);
     #elif defined(UART_HARDWARE10)
-        p_UART = new HardwareUART(UART_BAUD, 10);
+        p_UART = new HardwareUART10(UART_BAUD);
     #elif defined(UART_HARDWAREUSB)
         p_UART = new USBVirtualUART(UART_BAUD);
     #elif defined(UART_SOFTWARE)

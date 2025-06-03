@@ -1,6 +1,6 @@
 /** @file HardwareUART.h
     @brief AG-Panel Project direct hardware UART interface
-    @copyright (C) 2019-2023 Andriy Golovnya
+    @copyright (C) 2019-2025 Andriy Golovnya
     @author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
@@ -8,31 +8,145 @@
 
 #include "../private.h"
 #include "AbstractUART.h"
+#include "TemplateUART.h"
 
-/** @brief Hardware UART class
+/** @brief Hardware UART0 class
 
-    This is a class which implements hardware UART of arduino boards.
+    This class implements hardware UART for port 0.
  */
-class HardwareUART: public AbstractUART {
-
+class HardwareUART0 : public TemplateUART<decltype(Serial)> {
 public:
-    explicit HardwareUART(
-        uint32_t BaudRate = DefaultUARTBaudRate,  /**< Baud rate of an UART */
-        uint8_t Port = 0      /**< Hardware UART port number */
-    ): AbstractUART(BaudRate),
-        m_Port(Port),
-        m_Lowlevel(nullptr) { Init(); }
-    virtual ~HardwareUART() override { Exit(); }
-
-    virtual uint8_t PutCh(uint8_t TxByte) override;
-    virtual uint8_t GetCh() override;
-    virtual uint32_t Available() override;
-
-protected:
-    uint8_t m_Port;         /**< Hardware UART port number */
-
-private:
-    void *m_Lowlevel;       /**< Pointer to Low-Level Serial class */
-    bool Init();
-    void Exit();
+    explicit HardwareUART0(
+        uint32_t BaudRate = DefaultUARTBaudRate /**< Baud rate of an UART */
+    ) : TemplateUART(&Serial, BaudRate) {}
 };
+
+#if defined(HAVE_HWSERIAL1) || defined(SERIAL_PORT_HARDWARE1)
+/** @brief Hardware UART1 class
+
+    This class implements hardware UART for port 1.
+ */
+class HardwareUART1 : public TemplateUART<decltype(Serial1)> {
+public:
+    explicit HardwareUART1(
+        uint32_t BaudRate = DefaultUARTBaudRate /**< Baud rate of an UART */
+    ) : TemplateUART(&Serial1, BaudRate) {}
+};
+#endif
+
+#if defined(HAVE_HWSERIAL2) || defined(SERIAL_PORT_HARDWARE2)
+/** @brief Hardware UART2 class
+
+    This class implements hardware UART for port 2.
+ */
+class HardwareUART2 : public TemplateUART<decltype(Serial2)> {
+public:
+    explicit HardwareUART2(
+        uint32_t BaudRate = DefaultUARTBaudRate /**< Baud rate of an UART */
+    ) : TemplateUART(&Serial2, BaudRate) {}
+};
+#endif
+
+#if defined(HAVE_HWSERIAL3) || defined(SERIAL_PORT_HARDWARE3)
+/** @brief Hardware UART3 class
+
+    This class implements hardware UART for port 3.
+ */
+class HardwareUART3 : public TemplateUART<decltype(Serial3)> {
+public:
+    explicit HardwareUART3(
+        uint32_t BaudRate = DefaultUARTBaudRate /**< Baud rate of an UART */
+    ) : TemplateUART(&Serial3, BaudRate) {}
+};
+#endif
+
+#if defined(HAVE_HWSERIAL4) || defined(SERIAL_PORT_HARDWARE4)
+/** @brief Hardware UART4 class
+
+    This class implements hardware UART for port 4.
+ */
+class HardwareUART4 : public TemplateUART<decltype(Serial4)> {
+public:
+    explicit HardwareUART4(
+        uint32_t BaudRate = DefaultUARTBaudRate /**< Baud rate of an UART */
+    ) : TemplateUART(&Serial4, BaudRate) {}
+};
+#endif
+
+#if defined(HAVE_HWSERIAL5) || defined(SERIAL_PORT_HARDWARE5)
+/** @brief Hardware UART5 class
+
+    This class implements hardware UART for port 5.
+ */
+class HardwareUART5 : public TemplateUART<decltype(Serial5)> {
+public:
+    explicit HardwareUART5(
+        uint32_t BaudRate = DefaultUARTBaudRate /**< Baud rate of an UART */
+    ) : TemplateUART(&Serial5, BaudRate) {}
+};
+#endif
+
+#if defined(HAVE_HWSERIAL6) || defined(SERIAL_PORT_HARDWARE6)
+/** @brief Hardware UART6 class
+
+    This class implements hardware UART for port 6.
+ */
+class HardwareUART6 : public TemplateUART<decltype(Serial6)> {
+public:
+    explicit HardwareUART6(
+        uint32_t BaudRate = DefaultUARTBaudRate /**< Baud rate of an UART */
+    ) : TemplateUART(&Serial6, BaudRate) {}
+};
+#endif
+
+#if defined(HAVE_HWSERIAL7) || defined(SERIAL_PORT_HARDWARE7)
+/** @brief Hardware UART7 class
+
+    This class implements hardware UART for port 7.
+ */
+class HardwareUART7 : public TemplateUART<decltype(Serial7)> {
+public:
+    explicit HardwareUART7(
+        uint32_t BaudRate = DefaultUARTBaudRate /**< Baud rate of an UART */
+    ) : TemplateUART(&Serial7, BaudRate) {}
+};
+#endif
+
+#if defined(HAVE_HWSERIAL8) || defined(SERIAL_PORT_HARDWARE8)
+/** @brief Hardware UART8 class
+
+    This class implements hardware UART for port 8.
+ */
+class HardwareUART8 : public TemplateUART<decltype(Serial8)> {
+public:
+    explicit HardwareUART8(
+        uint32_t BaudRate = DefaultUARTBaudRate /**< Baud rate of an UART */
+    ) : TemplateUART(&Serial8, BaudRate) {}
+};
+#endif
+
+#if defined(HAVE_HWSERIAL9) || defined(SERIAL_PORT_HARDWARE9)
+/** @brief Hardware UART9 class
+
+    This class implements hardware UART for port 9.
+ */
+class HardwareUART9 : public TemplateUART<decltype(Serial9)> {
+public:
+    explicit HardwareUART9(
+        uint32_t BaudRate = DefaultUARTBaudRate /**< Baud rate of an UART */
+    ) : TemplateUART(&Serial9, BaudRate) {}
+};
+#endif
+
+#if defined(HAVE_HWSERIAL10) || defined(SERIAL_PORT_HARDWARE10)
+/** @brief Hardware UART10 class
+
+    This class implements hardware UART for port 10.
+ */
+class HardwareUART10 : public TemplateUART<decltype(Serial10)> {
+public:
+    explicit HardwareUART10(
+        uint32_t BaudRate = DefaultUARTBaudRate /**< Baud rate of an UART */
+    ) : TemplateUART(&Serial10, BaudRate) {}
+};
+#endif
