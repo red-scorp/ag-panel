@@ -1,6 +1,6 @@
 /** @file SoftwareUART.h
     @brief AG-Panel Project direct software UART interface
-    @copyright (C) 2019-2023 Andriy Golovnya
+    @copyright (C) 2019-2025 Andriy Golovnya
     @author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
@@ -8,23 +8,26 @@
 
 #include "../private.h"
 #include "AbstractUART.h"
+#include "TemplateUART.h"
+#include "SoftwareSerial.h"
+
+#if defined(ARDUINO_ARCH_AVR) || defined(ARDUINO_ARCH_STM32) || defined(ARDUINO_ARCH_ESP32) // || defined(ARDUINO_ARCH_ESP8266)
 
 /** @brief Software UART class
 
     This is a class which implements software UART of arduino boards.
     This class works with AVR, ESP32 and STM32 MCUs only (for now).
  */
-class SoftwareUART: public AbstractUART {
+class SoftwareUART: public TemplateUART<SoftwareSerial> {
 
 public:
     explicit SoftwareUART(
         uint32_t BaudRate,    /**< Baud rate of an UART */
         uint8_t RxPin,        /**< Receive data UART pin */
         uint8_t TxPin         /**< Transmit data UART pin */
-    ): AbstractUART(BaudRate),
+    ): TemplateUART(new SoftwareSerial(RxPin, TxPin), BaudRate),
         m_RxPin(RxPin),
-        m_TxPin(TxPin),
-        m_Lowlevel(nullptr) { Init(); }
+        m_TxPin(TxPin) { Init(); }
     virtual ~SoftwareUART() override { Exit(); }
 
     virtual uint8_t PutCh(uint8_t TxByte) override;
@@ -36,7 +39,8 @@ protected:
     uint8_t m_TxPin;        /**< Transmit data UART pin */
 
 private:
-    void *m_Lowlevel;       /**< Pointer to Low-Level Serial class */
     bool Init();
     void Exit();
 };
+
+#endif /* defined(ARDUINO_ARCH_AVR) || defined(ARDUINO_ARCH_STM32) || defined(ARDUINO_ARCH_ESP32) */

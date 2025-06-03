@@ -70,9 +70,10 @@ public:
         return m_UART->available();
     }
 
-private:
+protected:    
     T* m_UART;               /**< Pointer to the Serial port object */
 
+private:
     /** @brief Initialize the UART
 
         This function initializes the UART by starting the serial port with the specified baud rate.
