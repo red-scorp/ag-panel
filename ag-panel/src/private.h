@@ -9,9 +9,6 @@
 #if !defined(UNIT_TEST)
 
 #include <Arduino.h>
-#if defined(ARDUINO_ARCH_ESP32)
-    #include <analogWrite.h>
-#endif
 
 #if defined(__riscv) && !defined(ARDUINO_ARCH_ESP32)
     #if __INTPTR_WIDTH__ == 32
