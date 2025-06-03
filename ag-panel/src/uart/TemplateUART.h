@@ -33,7 +33,7 @@ public:
 
         This destructor calls Exit() to clean up resources.
      */
-    virtual ~TemplateUART() {
+    virtual ~TemplateUART() override {
         Exit();
     }
 
@@ -44,7 +44,7 @@ public:
      */
     virtual uint8_t PutCh(
         uint8_t TxByte      /**< Character to be written to UART */
-    ) {
+    ) override {
         return m_UART->write(TxByte);
     }
 
@@ -54,7 +54,7 @@ public:
         It blocks until a character is available.
         @returns Character (byte) read from UART
      */
-    virtual uint8_t GetCh() {
+    virtual uint8_t GetCh() override {
         while(Available() == 0) {
             yield();
         }
@@ -66,7 +66,7 @@ public:
         This function returns the baud rate of the UART.
         @returns Baud rate of the UART
      */
-    virtual uint32_t Available() {
+    virtual uint32_t Available() override {
         return m_UART->available();
     }
 
