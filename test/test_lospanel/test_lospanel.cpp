@@ -1,6 +1,6 @@
 /** @file test_lospanel.cpp
     @brief AG-Panel Project unit test los-panel protocol code
-    @copyright (C) 2023 Andriy Golovnya
+    @copyright (C) 2023-2025 Andriy Golovnya
     @author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
@@ -46,7 +46,7 @@ MOCK_VARIABLE uint8_t c_MockBacklight_Brightness = 0;
 class MockBacklight: public AbstractBacklight {
 public:
     MockBacklight(): AbstractBacklight() { }
-    virtual ~MockBacklight() { }
+    virtual ~MockBacklight() override { }
     virtual void SetOn(bool on) override { i_MockBacklight_SetOn_called++; }
     virtual void SetBrightness(uint8_t brightness) override { i_MockBacklight_SetBrightness_called++; c_MockBacklight_Brightness = brightness; }
     virtual void SetRGB(uint8_t red, uint8_t green, uint8_t blue) override { i_MockBacklight_SetRGB_called++; }
@@ -64,7 +64,7 @@ MOCK_VARIABLE int i_MockTextLCD_CommandBufferPos = 0;
 class MockTextLCD: public AbstractTextLCD {
 public:
     MockTextLCD(AbstractBacklight *Backlight): AbstractTextLCD(Backlight, MOCK_LCD_WIDTH, MOCK_LCD_HEIGHT) { }
-    virtual ~MockTextLCD() { }
+    virtual ~MockTextLCD() override { }
     virtual void Clear() override { i_MockTextLCD_Clear_called++; }
     virtual void SetCursor(uint8_t x, uint8_t y) override { i_MockTextLCD_SetCursor_called++; }
     virtual void Print(const char *str) override { i_MockTextLCD_Print_str_called++; }
@@ -92,7 +92,7 @@ MOCK_VARIABLE int i_MockUART_RxBufferMax = 0;
 class MockUART: public AbstractUART {
 public:
     MockUART(): AbstractUART() { }
-    virtual ~MockUART() { }
+    virtual ~MockUART() override { }
     virtual uint8_t PutCh(uint8_t TxByte) override {
         i_MockUART_PutCh_called++;
         if(i_MockUART_TxBufferPos < MOCK_UART_TXBUF_SIZE)
@@ -123,7 +123,7 @@ MOCK_VARIABLE uint8_t c_MockKeyboard_GetKey_return = 0;
 class MockKeyboard: public AbstractKeyboard {
 public:
     MockKeyboard(): AbstractKeyboard() { }
-    virtual ~MockKeyboard() { }
+    virtual ~MockKeyboard() override { }
     virtual uint8_t GetKey() override { i_MockKeyboard_GetKey_called++; return c_MockKeyboard_GetKey_return; }
     virtual uint8_t GetKeyCount() override { i_MockKeyboard_GetKeyCount_called++; return 5; }
 };

@@ -1,6 +1,6 @@
 /** @file test_main.cpp
     @brief AG-Panel Project unit test main code
-    @copyright (C) 2021-2023 Andriy Golovnya
+    @copyright (C) 2021-2025 Andriy Golovnya
     @author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
@@ -110,7 +110,7 @@ MOCK_VARIABLE int i_MockProtocol_Yield_called = 0;
 class MockProtocol: public AbstractProtocol {
 public:
     MockProtocol(): AbstractProtocol(nullptr, nullptr, nullptr) { }
-    virtual ~MockProtocol() { }
+    virtual ~MockProtocol() override { }
     virtual void Loop() override { i_MockProtocol_Loop_called++; }
     virtual void Yield() override { i_MockProtocol_Yield_called++; }
 };
@@ -123,7 +123,7 @@ MOCK_VARIABLE int i_MockBacklight_SetRGB_called = 0;
 class MockBacklight: public AbstractBacklight {
 public:
     MockBacklight(): AbstractBacklight() { }
-    virtual ~MockBacklight() { }
+    virtual ~MockBacklight() override { }
     virtual void SetOn(bool on) override { i_MockBacklight_SetOn_called++; }
     virtual void SetBrightness(uint8_t brightness) override { i_MockBacklight_SetBrightness_called++; }
     virtual void SetRGB(uint8_t red, uint8_t green, uint8_t blue) override { i_MockBacklight_SetRGB_called++; }
@@ -135,7 +135,7 @@ MOCK_VARIABLE int i_MockLCD_Print_ch_called = 0;
 class MockLCD: public AbstractLCD {
 public:
     MockLCD(AbstractBacklight *Backlight): AbstractLCD(Backlight, 20, 2) { }
-    virtual ~MockLCD() { }
+    virtual ~MockLCD() override { }
     virtual void Clear() override { i_MockLCD_Clear_called++; }
     virtual void SetCursor(uint8_t x, uint8_t y) override { i_MockLCD_SetCursor_called++; }
     virtual void Print(const char *str) override { i_MockLCD_Print_str_called++; }
@@ -145,7 +145,7 @@ MOCK_VARIABLE int i_MockUART_GetBaudRate_called = 0;
 class MockUART: public AbstractUART {
 public:
     MockUART(): AbstractUART() { }
-    virtual ~MockUART() { }
+    virtual ~MockUART() override { }
     virtual uint8_t PutCh(uint8_t TxByte) override { return 0; }
     virtual uint8_t GetCh() override { return 0; }
     virtual uint32_t GetBaudRate() const override { i_MockUART_GetBaudRate_called++; return AbstractUART::GetBaudRate(); }
