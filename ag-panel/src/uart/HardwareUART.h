@@ -21,7 +21,7 @@ public:
     ) : TemplateUART(&Serial, BaudRate) {}
 };
 
-#if defined(HAVE_HWSERIAL1) || defined(SERIAL_PORT_HARDWARE1)
+#if defined(HAVE_HWSERIAL1) || defined(SERIAL_PORT_HARDWARE1) || SOC_UART_NUM > 1 || defined(__SERIAL1_DEVICE)
 /** @brief Hardware UART1 class
 
     This class implements hardware UART for port 1.
@@ -34,7 +34,7 @@ public:
 };
 #endif
 
-#if defined(HAVE_HWSERIAL2) || defined(SERIAL_PORT_HARDWARE2)
+#if defined(HAVE_HWSERIAL2) || defined(SERIAL_PORT_HARDWARE2) || SOC_UART_NUM > 2 || defined(__SERIAL2_DEVICE)
 /** @brief Hardware UART2 class
 
     This class implements hardware UART for port 2.
@@ -47,7 +47,7 @@ public:
 };
 #endif
 
-#if defined(HAVE_HWSERIAL3) || defined(SERIAL_PORT_HARDWARE3)
+#if defined(HAVE_HWSERIAL3) || defined(SERIAL_PORT_HARDWARE3) || SOC_UART_NUM > 3 || defined(__SERIAL3_DEVICE)
 /** @brief Hardware UART3 class
 
     This class implements hardware UART for port 3.
@@ -60,7 +60,7 @@ public:
 };
 #endif
 
-#if defined(HAVE_HWSERIAL4) || defined(SERIAL_PORT_HARDWARE4)
+#if defined(HAVE_HWSERIAL4) || defined(SERIAL_PORT_HARDWARE4) || SOC_UART_NUM > 4 || defined(__SERIAL4_DEVICE)
 /** @brief Hardware UART4 class
 
     This class implements hardware UART for port 4.
@@ -73,7 +73,7 @@ public:
 };
 #endif
 
-#if defined(HAVE_HWSERIAL5) || defined(SERIAL_PORT_HARDWARE5)
+#if defined(HAVE_HWSERIAL5) || defined(SERIAL_PORT_HARDWARE5) || SOC_UART_NUM > 5 || defined(__SERIAL5_DEVICE)
 /** @brief Hardware UART5 class
 
     This class implements hardware UART for port 5.
@@ -86,7 +86,7 @@ public:
 };
 #endif
 
-#if defined(HAVE_HWSERIAL6) || defined(SERIAL_PORT_HARDWARE6)
+#if defined(HAVE_HWSERIAL6) || defined(SERIAL_PORT_HARDWARE6) || SOC_UART_NUM > 6 || defined(__SERIAL6_DEVICE)
 /** @brief Hardware UART6 class
 
     This class implements hardware UART for port 6.
@@ -99,7 +99,7 @@ public:
 };
 #endif
 
-#if defined(HAVE_HWSERIAL7) || defined(SERIAL_PORT_HARDWARE7)
+#if defined(HAVE_HWSERIAL7) || defined(SERIAL_PORT_HARDWARE7) || SOC_UART_NUM > 7 || defined(__SERIAL7_DEVICE)
 /** @brief Hardware UART7 class
 
     This class implements hardware UART for port 7.
@@ -112,7 +112,7 @@ public:
 };
 #endif
 
-#if defined(HAVE_HWSERIAL8) || defined(SERIAL_PORT_HARDWARE8)
+#if defined(HAVE_HWSERIAL8) || defined(SERIAL_PORT_HARDWARE8) || SOC_UART_NUM > 8 || defined(__SERIAL8_DEVICE)
 /** @brief Hardware UART8 class
 
     This class implements hardware UART for port 8.
@@ -125,7 +125,7 @@ public:
 };
 #endif
 
-#if defined(HAVE_HWSERIAL9) || defined(SERIAL_PORT_HARDWARE9)
+#if defined(HAVE_HWSERIAL9) || defined(SERIAL_PORT_HARDWARE9) || SOC_UART_NUM > 9 || defined(__SERIAL9_DEVICE)
 /** @brief Hardware UART9 class
 
     This class implements hardware UART for port 9.
@@ -138,7 +138,7 @@ public:
 };
 #endif
 
-#if defined(HAVE_HWSERIAL10) || defined(SERIAL_PORT_HARDWARE10)
+#if defined(HAVE_HWSERIAL10) || defined(SERIAL_PORT_HARDWARE10) || SOC_UART_NUM > 10 || defined(__SERIAL10_DEVICE)
 /** @brief Hardware UART10 class
 
     This class implements hardware UART for port 10.
