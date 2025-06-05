@@ -87,6 +87,7 @@ const int MaxAnalogValue = (1 << AnalogResolution) - 1;
 
 /* Some compiler attribute defines */
 #define A_UNUSED                __attribute__((unused))
+#define A_WEAK                  __attribute__((weak))
 #define A_ALIGN(bytes)          __attribute__((aligned(bytes)))
 #define A_PACKED(bytes)         __attribute__((packed(bytes)))
 #define A_NAKED                 __attribute__((naked))
