@@ -89,6 +89,6 @@ private:
         This function cleans up resources used by the UART.
      */
     void Exit() {
-        // Nothing to do here
+        m_UART = nullptr; // Set the UART pointer to nullptr to avoid dangling pointer
     }
 };

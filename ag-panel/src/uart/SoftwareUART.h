@@ -43,10 +43,6 @@ public:
         Exit();
     }
 
-    virtual uint8_t PutCh(uint8_t TxByte) override;
-    virtual uint8_t GetCh() override;
-    virtual uint32_t Available() override;
-
 protected:
     uint8_t m_RxPin;        /**< Receive data UART pin */
     uint8_t m_TxPin;        /**< Transmit data UART pin */
@@ -68,7 +64,10 @@ private:
      */
     void Exit() {
         delete m_UART; // Clean up the SoftwareSerial object
+        m_UART = nullptr; // Set the pointer to nullptr to avoid dangling pointer
     }
 };
 
+#else
+#warning SoftwareUART is not supported on this platform. Please use a different UART implementation.
 #endif
