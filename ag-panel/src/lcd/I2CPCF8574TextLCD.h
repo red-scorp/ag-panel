@@ -7,7 +7,10 @@
 #pragma once
 
 #include "../private.h"
-#include "AbstractTextLCD.h"
+#include "TemplateTextLCD.h"
+#include <LiquidCrystal_I2C.h>
+
+#if !defined(ARDUINO_ARCH_GD32V) && !defined(ARDUINO_ARCH_KENDRYTE)
 
 /** @brief I2C Text LCD class
 
@@ -15,36 +18,66 @@
     with a help of PCF8574(T/AT) I2C 8-bit digital I/O expander chip.
     This class implements it's own backlight control.
  */
-class I2CPCF8574TextLCD: public AbstractTextLCD {
+class I2CPCF8574TextLCD: public TemplateTextLCD<LiquidCrystal_I2C> {
 
 public:
     explicit I2CPCF8574TextLCD(
-        uint8_t Columns,            /**< Number of columns of the text LCD */
-        uint8_t Rows,               /**< Number of rows of the text LCD */
-        uint8_t I2CAddress          /**< I2C address of digital I/O expander chip */
-    ): AbstractTextLCD(nullptr, Columns, Rows),
-        m_I2CAddress(I2CAddress),
-        m_Lowlevel(nullptr) { Init(); }
-    virtual ~I2CPCF8574TextLCD() override { Exit(); }
+        uint8_t Columns,
+        uint8_t Rows,
+        uint8_t I2CAddress
+    ): TemplateTextLCD<LiquidCrystal_I2C>(new LiquidCrystal_I2C(I2CAddress, Columns, Rows), Columns, Rows),
+        m_I2CAddress(I2CAddress) {}
+    virtual ~I2CPCF8574TextLCD() override {}
 
-    virtual void SetBacklight(bool on) override;
-    virtual void SetBacklight(uint8_t brightness) override;
-    virtual void SetBacklight(uint8_t red, uint8_t green, uint8_t blue) override;
-    virtual void SetBacklight(uint32_t rgb) override;
+    /** @brief Set backlight in binary (on/off) form
 
-    virtual void Clear() override;
-    virtual void SetCursor(uint8_t column, uint8_t row) override;
-    virtual void Print(const char *str) override;
-    virtual void Print(char character) override;
+        This function calls corresponding function of LiquidCrystal_I2C class instance.
+    */
+    void SetBacklight(
+        bool on               /**< Backlight state in on/off format */
+    ) override {
+        if(on)
+            m_LCD->backlight();
+        else
+            m_LCD->noBacklight();
+    }
 
-    virtual void Write(uint8_t byte) override;
-    virtual void Command(uint8_t byte) override;
+    /** @brief Set backlight brightness if supported
+
+        This function enables LCD backlight if brightness is non-zero.
+    */
+    void SetBacklight(
+        uint8_t brightness    /**< Backlight brightness value */
+    ) override {
+        SetBacklight(bool(brightness > 0? true: false));
+    }
+
+    /** @brief Set backlight RGB colors if supported
+
+        This function enables LCD backlight if RGB is non-zero.
+    */
+    void SetBacklight(
+        uint8_t red,          /**< Red color value */
+        uint8_t green,        /**< Green color value */
+        uint8_t blue          /**< Blue color value */
+    ) override {
+        SetBacklight(bool(red > 0 || green > 0 || blue > 0? true: false));
+    }
+
+    /** @brief Set backlight RGB colors if supported
+
+        This function enables LCD backlight if RGB is non-zero.
+    */
+    void SetBacklight(
+        uint32_t rgb          /**< RGB integer value */
+    ) override {
+        SetBacklight(bool(rgb > 0? true: false));
+    }
 
 protected:
-    uint8_t m_I2CAddress;         /**< I2C address of digital I/O expander chip */
-
-private:
-    void *m_Lowlevel;       /**< Pointer to Low-Level LCD class */
-    bool Init();
-    void Exit();
+    uint8_t m_I2CAddress;
 };
+
+#else
+#warning 'I2CPCF8574TextLCD' is not implemented for GD32V and KENDRYTE platforms because it lacks of standard header 'Wire.h'!
+#endif /* !ARDUINO_ARCH_GD32V && !ARDUINO_ARCH_KENDRYTE */
