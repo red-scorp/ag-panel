@@ -1,6 +1,6 @@
 /** @file main.cpp
     @brief AG-Panel Project main code
-    @copyright (C) 2019-2023 Andriy Golovnya
+    @copyright (C) 2019-2026 Andriy Golovnya
     @author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 

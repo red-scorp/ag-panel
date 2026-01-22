@@ -1,6 +1,6 @@
 /** @file debug.h
     @brief AG-Panel Project debugging header
-    @copyright (C) 2019-2023 Andriy Golovnya
+    @copyright (C) 2019-2026 Andriy Golovnya
     @author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
