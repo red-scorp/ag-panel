@@ -39,9 +39,14 @@
 #if defined(DEBUG_STR_ENABLED)
     #include "uart/AbstractUART.h"
     extern AbstractUART *g_DebugUART;
-    #define DEBUG_STR(str) g_DebugUART->PutStr(str)
+    #define DEBUG_STR(str) g_DebugUART->PutStr(str) /**< Print the string to debug UART */
 #else
     #define DEBUG_STR(str) /* Nothing */
 #endif
+
+#define DEBUG_STR2(str1, str2)  {DEBUG_STR(str1); DEBUG_STR(str2);} /**< Print two strings to debug UART */
+#define DEBUG_STR3(str1, str2, str3)  {DEBUG_STR(str1); DEBUG_STR(str2); DEBUG_STR(str3);}  /**< Print three strings to debug UART */
+#define DEBUG_STR4(str1, str2, str3, str4)  {DEBUG_STR(str1); DEBUG_STR(str2); DEBUG_STR(str3); DEBUG_STR(str4)};   /**< Print four strings to debug UART */
+#define DEBUG_STR5(str1, str2, str3, str4, str5)  {DEBUG_STR(str1); DEBUG_STR(str2); DEBUG_STR(str3); DEBUG_STR(str4); DEBUG_STR(str5);}    /**< Print five strings to debug UART */
 
 extern AbstractUART* initDebug();

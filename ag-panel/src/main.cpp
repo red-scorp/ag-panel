@@ -53,17 +53,17 @@ void print_welcome() {
     memset(str, 0, sizeof(str));
     s_LCD->Clear();
     s_LCD->SetBacklight(bool(true));
-    DEBUG_STR("Backlight> "); DEBUG_STR("true"); DEBUG_STR("\n");
+    DEBUG_STR("Backlight> true\n");
 
     s_LCD->SetCursor(center_x, center_y);
     snprintf(str, sizeof(str) - 1, FW_NAME " v" FW_VERSION);
     s_LCD->Print(str);
-    DEBUG_STR("LCD> "); DEBUG_STR(str); DEBUG_STR("\n");
+    DEBUG_STR3("LCD> ", str, "\n");
 
     s_LCD->SetCursor(center_x, center_y + 1);
     snprintf(str, sizeof(str) - 1, "@%luBd Ready", (unsigned long)s_UART->GetBaudRate());
     s_LCD->Print(str);
-    DEBUG_STR("LCD> "); DEBUG_STR(str); DEBUG_STR("\n");
+    DEBUG_STR3("LCD> ", str, "\n");
 }
 
 /* Trick to use print_welcome() function in unit tests (undo rename) */
