@@ -45,24 +45,24 @@ static AbstractProtocol *s_Protocol = nullptr;
 
     This function prints project name, project version and UART baud rate to the attached LCD.
  */
-void print_welcome() {
-    char str[s_LCD->GetColumns() + 1];
-    uint8_t center_x = (s_LCD->GetColumns() - 16) / 2;
-    uint8_t center_y = (s_LCD->GetRows() - 2) / 2;
+void print_welcome(AbstractLCD *p_LCD, AbstractUART *p_UART) {
+    char str[p_LCD->GetColumns() + 1];
+    uint8_t center_x = (p_LCD->GetColumns() - 16) / 2;
+    uint8_t center_y = (p_LCD->GetRows() - 2) / 2;
 
     memset(str, 0, sizeof(str));
-    s_LCD->Clear();
-    s_LCD->SetBacklight(bool(true));
+    p_LCD->Clear();
+    p_LCD->SetBacklight(bool(true));
     DEBUG_STR("Backlight> true\n");
 
-    s_LCD->SetCursor(center_x, center_y);
+    p_LCD->SetCursor(center_x, center_y);
     snprintf(str, sizeof(str) - 1, FW_NAME " v" FW_VERSION);
-    s_LCD->Print(str);
+    p_LCD->Print(str);
     DEBUG_STR3("LCD> ", str, "\n");
 
-    s_LCD->SetCursor(center_x, center_y + 1);
-    snprintf(str, sizeof(str) - 1, "@%luBd Ready", (unsigned long)s_UART->GetBaudRate());
-    s_LCD->Print(str);
+    p_LCD->SetCursor(center_x, center_y + 1);
+    snprintf(str, sizeof(str) - 1, "@%luBd Ready", (unsigned long)p_UART->GetBaudRate());
+    p_LCD->Print(str);
     DEBUG_STR3("LCD> ", str, "\n");
 }
 
@@ -116,7 +116,7 @@ void setup() {
     s_Protocol = initProtocol(s_UART, s_LCD, s_Keyboard);
 
     /* 6. Print a splash screen/welcome message. */
-    print_welcome();
+    print_welcome(s_LCD, s_UART);
 }
 
 /**  @brief Main loop function

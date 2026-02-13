@@ -100,7 +100,7 @@ MOCK_FUNCTION AbstractProtocol *initProtocol(AbstractUART *UART, AbstractLCD *LC
 
 /* Mocks for print_welcome() function */
 MOCK_VARIABLE int i_print_welcome_called = 0;
-MOCK_FUNCTION void print_welcome() {
+MOCK_FUNCTION void print_welcome(AbstractLCD *p_LCD, AbstractUART *p_UART) {
     i_print_welcome_called++;
 }
 
@@ -116,7 +116,7 @@ public:
 };
 
 /* Mocks for real_print_welcome() function */
-void real_print_welcome();
+void real_print_welcome(AbstractLCD *p_LCD, AbstractUART *p_UART);
 MOCK_VARIABLE int i_MockBacklight_SetOn_called = 0;
 MOCK_VARIABLE int i_MockBacklight_SetBrightness_called = 0;
 MOCK_VARIABLE int i_MockBacklight_SetRGB_called = 0;
@@ -273,7 +273,7 @@ void test_print_welcome_calls_lcd_functions(void) {
     printf("baud rate = %d\n", s_UART->GetBaudRate());
 
     /* Calling the function under test */
-    real_print_welcome();
+    real_print_welcome(s_LCD, s_UART);
 
     /* Check if all init functions are called */
     TEST_ASSERT_TRUE(i_MockBacklight_SetOn_called >= 1 || i_MockBacklight_SetBrightness_called >= 1 || i_MockBacklight_SetRGB_called >= 1);
