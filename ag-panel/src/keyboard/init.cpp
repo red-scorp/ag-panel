@@ -1,6 +1,6 @@
 /** @file init.cpp
     @brief AG-Panel Project Keyboard initialization
-    @copyright (C) 2020-2023 Andriy Golovnya
+    @copyright (C) 2020-2026 Andriy Golovnya
     @author Andriy Golovnya (andriy.golovnya@gmail.com)
 */
 
@@ -14,7 +14,9 @@
     This function chooses one or more keyboard classes to use based on configuration defined in config.h
     @returns Pointer to keyboard class
  */
-AbstractKeyboard *initKeyboard(AbstractLCD *p_LCD) {
+AbstractKeyboard *initKeyboard(
+    AbstractLCD *p_LCD          /**< Pointer to LCD class */
+) {
     AbstractKeyboard *p_Keyboard = nullptr;
 
     /* Initialize joined keyboard subsystem */

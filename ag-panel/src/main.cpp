@@ -45,7 +45,10 @@ static AbstractProtocol *s_Protocol = nullptr;
 
     This function prints project name, project version and UART baud rate to the attached LCD.
  */
-void print_welcome(AbstractLCD *p_LCD, AbstractUART *p_UART) {
+void print_welcome(
+    AbstractLCD *p_LCD,         /**< Pointer to LCD class */
+    AbstractUART *p_UART        /**< Pointer to UART class */
+) {
     char str[p_LCD->GetColumns() + 1];
     uint8_t center_x = (p_LCD->GetColumns() - 16) / 2;
     uint8_t center_y = (p_LCD->GetRows() - 2) / 2;

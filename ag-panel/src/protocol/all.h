@@ -1,6 +1,6 @@
 /** @file all.h
     @brief AG-Panel Project all Keyboard includes
-    @copyright (C) 2019-2023 Andriy Golovnya
+    @copyright (C) 2019-2026 Andriy Golovnya
     @author Andriy Golovnya (andriy.golovnya@gmail.com)
 */
 
@@ -11,4 +11,4 @@
 #include "LoSPanelProtocol.h"
 #include "RawSerialProtocol.h"
 
-extern AbstractProtocol *initProtocol(AbstractUART *UART, AbstractLCD *LCD, AbstractKeyboard *Keyboard);
+extern AbstractProtocol *initProtocol(AbstractUART *p_UART, AbstractLCD *p_LCD, AbstractKeyboard *p_Keyboard);

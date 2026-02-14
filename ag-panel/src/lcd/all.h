@@ -1,6 +1,6 @@
 /** @file all.h
     @brief AG-Panel Project all LCD includes
-    @copyright (C) 2019-2023 Andriy Golovnya
+    @copyright (C) 2019-2026 Andriy Golovnya
     @author Andriy Golovnya (andriy.golovnya@gmail.com)
 */
 
@@ -25,4 +25,4 @@
 
 #endif/*UNIT_TEST*/
 
-extern AbstractLCD *initLCD(AbstractBacklight *Backlight, AbstractFont *Font);
+extern AbstractLCD *initLCD(AbstractBacklight *p_Backlight, AbstractFont *p_Font);

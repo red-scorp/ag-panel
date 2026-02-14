@@ -1,6 +1,6 @@
 /** @file test_main.cpp
     @brief AG-Panel Project unit test main code
-    @copyright (C) 2021-2025 Andriy Golovnya
+    @copyright (C) 2021-2026 Andriy Golovnya
     @author Andriy Golovnya (andriy.golovnya@gmail.com)
  */
 
